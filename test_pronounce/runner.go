@@ -308,7 +308,7 @@ type testOut struct {
 type testsOut []testOut
 
 func runTests(dictfile, phdictfile, infolder, testsToRun, expectations, outfolder, featparams, hmm string) {
-	testfile := filepath.Join(infolder, testsToRun)
+	testfile := testsToRun //filepath.Join(infolder, testsToRun)
 	tests, err := fetchTests(testfile)
 	if err != nil {
 		fmt.Println("Failed to fetch tests, err =", err)
@@ -318,7 +318,7 @@ func runTests(dictfile, phdictfile, infolder, testsToRun, expectations, outfolde
 		infolder,
 		tests,
 	}
-	expectFile := filepath.Join(infolder, expectations)
+	expectFile := expectations //filepath.Join(infolder, expectations)
 	testOutData, err := fetchExpectations(expectFile)
 	if err != nil {
 		fmt.Println("Failed to fetch expectations, err =", err)
@@ -382,6 +382,7 @@ func runTests(dictfile, phdictfile, infolder, testsToRun, expectations, outfolde
 		testOutData[i].pass = test.checkResult(hmm)
 	}
 	testOutData.summary(outfolder)
+	clean_ctls("./tmp")
 }
 
 func fetchTests(file string) ([]testIn, error) {
@@ -736,7 +737,7 @@ func (ts testsOut) summary(outfolder string) {
 	if err := os.Mkdir(outfolder, 0777); err != nil && !os.IsExist(err) {
 		return
 	}
-	summaryFile := filepath.Join(outfolder, "summary.txt")
+	summaryFile := filepath.Join(outfolder, "000__summary__000.txt")
 	f, err := os.Create(summaryFile)
 	if err != nil {
 		log.Fatal()
@@ -771,8 +772,31 @@ func (ts testsOut) summary(outfolder string) {
 	}
 }
 
+// func check(e error) error {
+// 	if e != nil {
+// 		// fmt.Println(">>>> test_pronounce : ", e)
+// 		// panic(e)
+// 		return e
+// 	}
+// 	return e
+// }
+
+// exists returns whether the given file or directory exists
+func create_no_overwrite_(path string) (string, error) {
+	_, err := os.Stat(path)
+	if os.IsNotExist(err) {
+		err_mk := os.Mkdir(path, 0777)
+		if err_mk != nil {
+			return "", err_mk
+		}
+		return path, nil
+	}
+	return path, nil
+}
+
 func SaveCtlfile(audio string) (string, error) {
-	filename := "ctl_" + audio + ".txt"
+	create_no_overwrite_("./tmp")
+	filename := filepath.Join("./tmp/", "ctl_"+audio+".txt")
 	f, err := os.Create(filename)
 	if err != nil {
 		return "", err
@@ -784,4 +808,8 @@ func SaveCtlfile(audio string) (string, error) {
 		return "", err
 	}
 	return filename, nil
+}
+
+func clean_ctls(folder string) {
+	os.RemoveAll(folder)
 }

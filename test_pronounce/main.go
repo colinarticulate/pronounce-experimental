@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"path/filepath"
 	"time"
 )
 
@@ -21,7 +20,7 @@ const (
 )
 
 var testErrors = []string{
-	"File missing. Usage: ./testPronounce -dict filename -phdict filename -infolder filename -tests filename -expectations filename -outfolder foldername -featparams filename\n",
+	"File missing. Usage: ./testPronounce -dict filename -phdict filename -infolder filename -tests filename -expectations filename -outfolder foldername -featparams filename -hmm foldername\n",
 }
 
 func (p testError) Error() string {
@@ -60,13 +59,13 @@ func init() {
 }
 
 func guard() error {
-	params := []string{dictfile, phdictfile, infolder, tests, expectations, outfolder, featparams}
+	params := []string{dictfile, phdictfile, infolder, tests, expectations, outfolder, featparams, hmm}
 	for _, param := range params {
 		if param == "" {
 			return badCall
 		}
 	}
-	filepaths := []string{dictfile, phdictfile, infolder, outfolder}
+	filepaths := []string{dictfile, phdictfile, infolder, tests, expectations, outfolder, featparams, hmm}
 	for _, path := range filepaths {
 		if path == "" {
 			return badCall
@@ -76,14 +75,14 @@ func guard() error {
 			return err
 		}
 	}
-	files := []string{tests, expectations}
-	for _, file := range files {
-		path := filepath.Join(infolder, file)
-		_, err := os.Stat(path)
-		if os.IsNotExist(err) {
-			return err
-		}
-	}
+	// files := []string{tests, expectations}
+	// for _, file := range files {
+	// 	path := filepath.Join(infolder, file)
+	// 	_, err := os.Stat(path)
+	// 	if os.IsNotExist(err) {
+	// 		return err
+	// 	}
+	// }
 	return nil
 }
 
