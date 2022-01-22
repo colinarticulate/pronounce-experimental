@@ -8,10 +8,10 @@ test_pronounce requires cli_pron to be installed in your system.
   
    1. Go to the folder cli_pron and install it in your system:  
   ``` $ cd install_cli_pron ```  
-  ``` $ cd cli_pron ``` 
+  ``` $ cd cli_pron ```  
   ``` $ go install -tags "noSend debug" ```  
   2. Go to the folder test_pronounce and build test_pronounce:  
-  ``` $ cd .. ```
+  ``` $ cd .. ```  
   ``` $ cd .. ```  
   ``` $ cd test_pronounce ```  
   ``` $ go build -tags "noSend debug" ```  
@@ -30,7 +30,7 @@ test_pronounce requires cli_pron to be installed in your system.
  ```
 $ ./test_pronounce     -dict ./../Dictionaries/art_db_v2.dic \  
                         -phdict ./../Dictionaries/art_db_v2.phone \  
-                        -infolder /home/Data/audio_clips \
+                        -infolder /home/user/Data/audio_clips \
                         -test ./../Expectations/pronounce_inputs.csv \  
                         -expectations ./../Expectations/expectations_v2.csv \  
                         -outfolder ./output_25600  \  
