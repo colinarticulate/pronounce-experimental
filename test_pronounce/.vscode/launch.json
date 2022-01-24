@@ -10,7 +10,7 @@
             "request": "launch",
             "mode": "auto",
             "program": "${fileDirname}",
-            "buildFlags": "-tags 'noSend debug testCase'",
+            "buildFlags": "-tags 'noSend debug'", //or "-tags 'noSend debug testCase'"
             "args": [
                 "-dict", "./../Dictionaries/art_db_v2.dic",
                 "-phdict", "./../Dictionaries/art_db_v2_inference.phone",

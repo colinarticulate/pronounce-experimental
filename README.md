@@ -1,70 +1,42 @@
 # pronounce-experimental
-# test_pronounce  
-A test harness to test performance of our current system.  
+Here we test new experimental features for Pronounce, keep track of new dictionaries, transcriptions for training, new models, tests, and expectations.  
+It is meant to work accross platforms and it should give the same results or at least very similar.  
+  
+Current version of test_pronounce and cli_pron accepts -hmm as an option.  
+  
+    
+    
 
 ##  Requirements, Installation and Execution  
+Pronounce is currently written in Go. Therefore, Go must be installed in your system
 
-test_pronounce requires cli_pron to be installed in your system.  
-  
-   1. Go to the folder cli_pron and install it in your system:  
-  ``` $ cd install_cli_pron ```  
-  ``` $ cd cli_pron ```  
-  ``` $ go install -tags "noSend debug" ```  
-  2. Go to the folder test_pronounce and build test_pronounce:  
-  ``` $ cd .. ```  
-  ``` $ cd .. ```  
-  ``` $ cd test_pronounce ```  
-  ``` $ go build -tags "noSend debug" ```  
-  3. Install the audio files in a folder of your choice.  
-  4. pocketsphinx needs to be installed in your system and the following programs available system-wide:  
-        - pocketsphinx_continuous  
-        - pocketsphinx_batch  
-  5. Locate the -dict and -phdict files in your system with Articulate's current versions in use in the folder /Dictionaries.  
-  6. Execute test_pronounce with all the options from the command line:  
-  ``` $ ./test_pronounce -dict <dict-file>.dic -phdict <phdict-file>.phone -infolder <folder-containing-the-audios-expectations-and-input-test-files> -test <file-with-the-test-inputs(inside infolder)>.csv -outfolder <folder-to-output-the-results-of-the-test>  -featparams <your-model-folder>/feat.params -hmm <your-model-folder> ```  
-  7. Alternatively, make your own srcript invoking the above command line in point 6. You can time your code with 'time'.  
-  8. Results are a list of .txt files in the output folder (one per audio file tested) together with  the 'summary.txt' file in which you can check the final performance accuracy.  
+1. 'sox' must be installed in your system.  http://sox.sourceforge.net/   
+        (make sure 'sox' and 'soxi' are available system-wide)
+2. 'pocketsphinx' must be installed in your system.  https://github.com/cmusphinx/pocketsphinx  
+        (make sure 'pocketsphinx_continuous' and 'pocketsphinx_batch' are available system-wide)
+3. cli_pron must be installed in your system (see test_pronounce directory for instructions)
+4. test_pronounce must be build to test Pronounce (follow instructions in test_pronounce directory)
+5. You must have somewhere in your system a folder with all the audios (.wav) for the test harness required to test Pronounce.  
 
-  Example:  
 
- ```
-$ ./test_pronounce     -dict ./../Dictionaries/art_db_v2.dic \  
-                        -phdict ./../Dictionaries/art_db_v2.phone \  
-                        -infolder /home/user/Data/audio_clips \
-                        -test ./../Expectations/pronounce_inputs.csv \  
-                        -expectations ./../Expectations/expectations_v2.csv \  
-                        -outfolder ./output_25600  \  
-                        -featparams ./../Models/25600.ci_cont/feat.params \  
-                        -hmm ./../Models/25600.ci_cont 
-``` 
+By default the system is configured to work given the current directory structure. However, the path to the audios for the test harness must be reconfigured depending where your have them located in your system. The following must be changed:  
 
-Alternatively, you can start test_pronounce from vscode using the existing launch.json file. Just open vscode on the test_pronounce folder, open main.go and press F5.  
+1. if you use test_pronounce from the cli, you must change the -infolder option accordingly. See the example in README.md within test_pronounce folder.  
+2. if you use test_pronunce debugging from vscode, you must change the -infolder option in the 'args' field of the file launch.json.  
+3. if you want to use the python tool to clean up temporary files that test_prononunce might have left (due to a crash or stopping execution) you must change 'dir_target' accordingly in the file 'remove_tmp.py':    
+```
+#Currently set to "~/Data/audio_clips", where '~' represents '/home/user'  
+dir_target=os.path.join(home,"Data","audio_clips")  
 
-  ```   
-  {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "name": "Launch Package",
-            "type": "go",
-            "request": "launch",
-            "mode": "auto",
-            "program": "${fileDirname}",
-            "buildFlags": "-tags 'noSend debug'",
-            "args": [
-                "-dict", "./../Dictionaries/art_db_v2.dic",
-                "-phdict", "./../Dictionaries/art_db_v2_inference.phone",
-                "-infolder", "/home/dbarbera/Data/audio_clips",
-                "-tests", "./../Tests/pronounce_input.csv",
-                "-expectations", "./../Expectations/expectations_v2.csv",
-                "-outfolder", "./../Test_Output/output_25600",
-                "-featparams", "./../Models/25600.ci_cont/feat.params",
-                "-hmm", "./../Models/25600.ci_cont"
-            ]
-        }
-    ]
-}  
- ```  
+#Change it to "~/wherever/is/my-audios-folder"  
+dir_target=os.path.join(home,"wherever","is","my-audio-folder") 
+```  
+4. if you want to build test_pronounce with the tag "testCase", you must change the path in testCasing.go line 134:
+```  
+func testCaseIt(name string, result []result, hmm string) {
+	outfolder := "/home/dbarbera/Repositories/test_pronounce/audio_clips/"  
+```  
+
+and use go build -tags "noSend debug testCase" to build test_pronounce. This will store the results of Pronounce in the "/test_cases" folder within the audios folder.  If you install cli_pron with the "testCase" folder, executing test_pronounce will also store all the information passed to pocketsphinx during Pronounce execution (logs, pocketsphinx parameters for each call, audios and pocketsphinx's results)  
+ 
+
