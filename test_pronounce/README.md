@@ -25,9 +25,9 @@ test_pronounce requires cli_pron to be installed in your system.
 
  ```
 $ ./test_pronounce     -dict ./../Dictionaries/art_db_v2.dic \  
-                        -phdict ./../Dictionaries/art_db_v2.phone \  
+                        -phdict ./../Dictionaries/art_db_v2_inference.phone \  
                         -infolder /home/Data/audio_clips \
-                        -test ./../Expectations/pronounce_inputs.csv \  
+                        -tests ./../Tests/pronounce_inputs.csv \  
                         -expectations ./../Expectations/expectations_v2.csv \  
                         -outfolder ./output_25600  \  
                         -featparams ./../Models/25600.ci_cont/feat.params \  
