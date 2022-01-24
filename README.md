@@ -19,7 +19,7 @@ Pronounce is currently written in Go. Therefore, Go must be installed in your sy
 5. You must have somewhere in your system a folder with all the audios (.wav) for the test harness required to test Pronounce.  
 
 
-By default the system is configured to work given the current directory structure. However, the path to the audios for the test harness must be reconfigured depending where your have them located in your system. The following must be changed:  
+By default the system is configured to work given the current directory structure. However, the path to the audios for the test harness must be reconfigured depending where you have them located in your system. The following must be changed:  
 
 1. if you use test_pronounce from the cli, you must change the -infolder option accordingly. See the example in README.md within test_pronounce folder.  
 2. if you use test_pronunce debugging from vscode, you must change the -infolder option in the 'args' field of the file launch.json.  
@@ -31,7 +31,7 @@ dir_target=os.path.join(home,"Data","audio_clips")
 #Change it to "~/wherever/is/my-audios-folder"  
 dir_target=os.path.join(home,"wherever","is","my-audio-folder") 
 ```  
-4. if you want to build test_pronounce with the tag "testCase", you must change the path in testCasing.go line 134:
+4. if you want to build test_pronounce with the tag "testCase", you must change the variable 'outfolder' with the correct path to your audios folder (test harness) in testCasing.go line 134:
 ```  
 func testCaseIt(name string, result []result, hmm string) {
 	outfolder := "/home/dbarbera/Repositories/test_pronounce/audio_clips/"  
