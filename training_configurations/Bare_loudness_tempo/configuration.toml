@@ -1,0 +1,38 @@
+
+[training_configuration]
+# Model name
+"__CFG_EXPTNAME__" = "Bare_loudness_tempo"
+
+# Database for sphinxtrain
+"__CFG_BASE_DIR__" = "/home/dbarbera/Repositories/art_db"
+
+# Dictionaries
+"__CFG_DICTIONARY__" = "art_db_v2_dummy.dic"
+"__CFG_RAWPHONEFILE__" = "art_db_v2.phone"
+"__DEC_CFG_DICTIONARY__" = "art_db_v2.dic"
+"__CFG_FILLERDICT__" = "art_db.filler"
+
+# Training files
+"__CFG_LISTOFFILES__" = "art_db_Bare_loudness_tempo_train.fileids"
+"__CFG_TRANSCRIPTFILE__" = "art_db_Bare_loudness_tempo_train.transcription"
+
+
+
+[files_for_training]
+# fileids, transcriptions (train/test), cfg, feat.params
+"main_files_folder" = "./../training_configurations/Bare_loudness_tempo/etc"
+
+[dictionaries_for_training]
+# Dictionaries
+"dictionary"="./../Dictionaries/art_db_v2_dummy.dic"
+"dictionary_decoding"="./../Dictionaries/art_db_v2.dic"
+"phone_dictionary"="./../Dictionaries/art_db_v2.phone"
+"filler" = "./../Dictionaries/art_db.filler"
+"languge" = "./../Dictionaries/art_db.lm"
+
+[features]
+"feat_params" = "./../Common_etc/feat.params"
+
+[testing]
+"test_fileids" = "./../Common_etc/art_db_test.fileids"
+"test_transcriptions" = "./../Common_etc/art_db_test.transcription"

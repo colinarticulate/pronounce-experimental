@@ -28,6 +28,7 @@ func (p testError) Error() string {
 }
 
 func main() {
+	fmt.Println("Starting test pronounce...")
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
 	flag.Parse()
 
@@ -38,6 +39,7 @@ func main() {
 		return
 	}
 	if err = guard(); err != nil {
+		fmt.Println("here", err)
 		fmt.Println("Error in input parameters", err.Error())
 		return
 	}
@@ -60,18 +62,23 @@ func init() {
 
 func guard() error {
 	params := []string{dictfile, phdictfile, infolder, tests, expectations, outfolder, featparams, hmm}
+	fmt.Println(params)
 	for _, param := range params {
 		if param == "" {
+			fmt.Println("badcall1 -> param: ", param)
 			return badCall
 		}
 	}
 	filepaths := []string{dictfile, phdictfile, infolder, tests, expectations, outfolder, featparams, hmm}
 	for _, path := range filepaths {
+		fmt.Println("parsing ", path)
 		if path == "" {
+			fmt.Println("badcall2")
 			return badCall
 		}
 		_, err := os.Stat(path)
 		if os.IsNotExist(err) {
+			fmt.Print("Problems with ", path)
 			return err
 		}
 	}
