@@ -65,10 +65,10 @@ class test():
 
 
 def main():
-    config_file="./../testing_configurations/Bare_x_Test_Harness.toml"
+    #config_file= os.path.normpath(os.path.join(os.getcwd(), "./../testing_configurations/Bare_pitch_x_Test_Harness.toml"))
+    config_file = "./../testing_configurations/Bare_tempo_x_Test_Harness.toml"
 
-
-    testing_bare=test(config_file)
+    testing_bare = test(config_file)
 
     testing_bare.fit()
 

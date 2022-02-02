@@ -91,23 +91,23 @@ class train():
             src = os.path.join(folder, filename)
             dst = os.path.join(self.etc, filename)
             shutil.copy(src, dst)
+
             
+    def copy_src_to_dst_folder(self, src, dst_path):
+        filename = os.path.basename(src)
+        dst = os.path.join(dst_path, filename)
+        shutil.copy(src, dst)
+
 
     def copy_other_files_to_etc(self):
-        folder = self.cfg['files_for_training']['features']
+        src = self.cfg['features']['feat_params']
+        self.copy_src_to_dst_folder(src, self.etc)
 
-        for filename in os.listdir(folder):
-            src = os.path.join(folder, filename)
-            dst = os.path.join(self.etc, filename)
-            shutil.copy(src, dst)
+        src = self.cfg['testing']['test_fileids']
+        self.copy_src_to_dst_folder(src, self.etc)
 
-        folder = self.cfg['files_for_training']['testing']
-
-        for filename in os.listdir(folder):
-            src = os.path.join(folder, filename)
-            dst = os.path.join(self.etc, filename)
-            shutil.copy(src, dst)
-
+        src = self.cfg['testing']['test_transcriptions']
+        self.copy_src_to_dst_folder(src, self.etc)
 
 
     def prepare_training(self):
@@ -125,7 +125,7 @@ class train():
         print(f"\tCopying training files to {self.etc}")
         self.copy_training_files_to_etc()
         #training log files (capturing stdout)
-        
+        self.copy_other_files_to_etc()
 
 
     def execute(self, command, cwd, file):
@@ -195,7 +195,7 @@ class train():
 
 
 def main():
-    config_folder="./../training_configurations/Bare"
+    config_folder="./../training_configurations/Bare_tempo"
 
 
     training_bare=train(config_folder)

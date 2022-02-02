@@ -13,12 +13,27 @@ import numpy as np
 
 from exec import execute
 
+
 class Experiment():
 
-    def __init__(self, original_model_name, transforms_parameters, augmentation_sets, wav_dir, audios_dir, fileids_file, transcription_file, training_configurations_dir, template_file):
+    def __init__(self,  original_model_name, transforms_parameters, augmentation_sets, 
+                        wav_dir, audios_dir, 
+                        fileids_file, transcription_file, 
+                        training_configurations_dir, training_template_file, 
+                        testing_configurations_dir, testing_template_file,
+                        test_set_folder, test_set_name,
+                        experiments_folder, experiment_name):
+
+        self.experiments_folder = experiments_folder
+        self.experiment_name = experiment_name
 
         self.training_configurations_dir = training_configurations_dir
-        self.template_file = template_file
+        self.training_template_file = training_template_file
+        self.testing_template_file = testing_template_file
+        self.testing_configurations_dir  = testing_configurations_dir
+
+        self.test_set_folder = test_set_folder
+        self.test_set_name = test_set_name
 
         self.original_model_name=original_model_name
 
@@ -161,7 +176,7 @@ class Experiment():
 
 
     def add_training_configuration(self, cfg_file, model_name):
-        with open(self.template_file, 'r') as f:
+        with open(self.training_template_file, 'r') as f:
             contents=f.read()
 
         new_contents=f"{model_name}".join(contents.split("$(__MODEL_NAME__)"))
@@ -185,25 +200,82 @@ class Experiment():
 
         self.add_fileids_transcriptions(fileids, transcriptions, etc_dir, f"art_db_{model_name}_train.fileids", f"art_db_{model_name}_train.transcription")
         self.add_training_configuration(os.path.join(model_dir,"configuration.toml"), model_name)
-        
+                
         return model_name 
+
+    
+    def prepare_model_testing(self, model_name, test_set_folder, test_set_name):
+        with open(self.testing_template_file,'r') as f:
+            contents = f.read()
+
+            testing_output_folder = f"./../Test_Output/output_{model_name}"
+
+            template_keys = {
+                '-dict' : ["__DICT__", "./../Dictionaries/art_db_v2.dic"],
+                '-phdict' : ["__PHDICT__", "./../Dictionaries/art_db_v2_inference.phone"],
+                '-infolder' : ["__AUDIOS_FOLDER__", test_set_folder], #Test_harness 
+                '-tests' : ["__INPUTS__", "./../Tests/pronounce_input.csv"],
+                '-expectations' : ["__EXPECTATIONS__", "./../Expectations/expectations_v2.csv"],
+                '-outfolder' : ["__OUTPUT_FOLDER__", testing_output_folder],
+                '-featparams' : ["__FEAT_PARAMS__", f"./../Models/{model_name}.ci_cont/feat.params"],
+                '-hmm' : ["__HMM__", f"./../Models/{model_name}.ci_cont"]
+            }
+
+            if not os.path.exists(testing_output_folder):
+                os.mkdir(testing_output_folder)
+
+        
+            for k in template_keys:
+                contents=f"{template_keys[k][1]}".join(contents.split(f"{template_keys[k][0]}"))
+
+            with open(os.path.join(self.testing_configurations_dir, f"{model_name}_x_{test_set_name}.toml"), 'w') as f:
+                f.write(contents)
+
+  
+    def create_experiment_configuration(self):
+        with open(os.path.join(self.experiments_folder,f"{self.experiment_name}.toml"), 'w') as f:
+            models_header="[models]\n"
+            datasets_header="[test_sets]\n"
+
+            f.write(models_header)
+            if self.model_names!=None or self.model_names!=[]:
+                f.write("'models' = [")
+                for model_name in self.model_names[:-1]:
+                    f.write(f"\"{model_name}\", ")
+                f.write(f"\"{self.model_names[-1]}\" ]\n")
+
+            f.write("\n")
+
+            f.write(datasets_header)
+            #At the moment, only one dataset (test harness)
+            f.write(f"'datasets' = [")
+            f.write(f"\"{self.test_set_name}\" ]")
 
 
     def create_experiment(self):
-        
+        print("Creating augmented audios and corresponding training files for:\n")
         self.augmented_fileids=self.original_fileids
         self.augmented_transcription=self.original_transcription
 
-        for transform_sets in self.augmentation_sets[19:20]:
+        self.model_names=[]
+        for i,transform_sets in enumerate(self.augmentation_sets[:]):
+            model_name=self.original_model_name+"_"+"_".join(transform_sets)
+            self.model_names.append(model_name)
 
+            print(f"{i+1}\t\t{model_name}")
+            
             new_fileids, new_transcriptions = self.create_data(self.original_fileids, self.original_transcription, transform_sets)
             model_name_set = self.prepare_training(new_fileids, new_transcriptions, transform_sets)
 
+            self.prepare_model_testing(model_name_set, self.test_set_folder, self.test_set_name )
 
+        self.create_experiment_configuration()
+
+        return self.model_names
 
 
 def main():
-    config_test_folder="./../testing_configurations/data_augmentation_experiment.toml"
+    #config_test_folder="./../testing_configurations/data_augmentation_experiment.toml"
 
     config_folder="./../training_configurations/Bare"
     fileids= os.path.join(config_folder,"etc","art_db_Bare_train.fileids")
@@ -211,7 +283,13 @@ def main():
     wav_dir = "/home/dbarbera/Repositories/art_db/wav"
     audios_dir = "train/art_db_compilation"
     training_configurations_dir = "/home/dbarbera/Repositories/pronounce-experimental/training_configurations"
-    template_file = "/home/dbarbera/Repositories/pronounce-experimental/templates/model_configuration_template.toml"
+    training_template_file = "/home/dbarbera/Repositories/pronounce-experimental/templates/model_training_template.toml"
+    testing_configurations_dir = "/home/dbarbera/Repositories/pronounce-experimental/testing_configurations"
+    testing_template_file = "/home/dbarbera/Repositories/pronounce-experimental/templates/model_testing_template.toml"
+    test_set_folder = "/home/dbarbera/Data/audio_clips"
+    test_set_name = "Test_Harness"
+    experiments_folder = "./../experiments"
+    experiment_name = "Testing_Training_Data_Augmentation_no_pitch"
 
     audios = [ f for f in os.listdir(os.path.join(wav_dir,audios_dir))]
     
@@ -247,14 +325,26 @@ def main():
                         ['pitch','loudness','speed','tempo','pitchxloudness', 'pitchxloudnessxspeed','pitchxloudnessxtempo']
                         ]
 
-    augmentation=Experiment("Bare", parameters, augmentation_sets, wav_dir, audios_dir, fileids, transcription, training_configurations_dir, template_file)
+    augmentation_sets=[ 
+                        ['loudnessxspeed'],
+                        ['loudnessxtempo'],
+                        ['speedxtempo'],
+                        ['loudnessxspeed','loudnessxtempo'],
+                        ['speed','tempo','speedxtempo'],
+                        ['speed','loudnessxspeed'],
+                        ['tempo','loudnessxtempo'],
+                        ['loudness','speed','tempo','speedxtempo','loudnessxspeed', 'loudnessxtempo','loudnessxspeedxtempo']
+                        ]
 
-    augmentation.create_experiment()
+    augmentation=Experiment("Bare", parameters, augmentation_sets, wav_dir, audios_dir, fileids, transcription, 
+                                    training_configurations_dir, training_template_file, 
+                                    testing_configurations_dir, testing_template_file,
+                                    test_set_folder, test_set_name,
+                                    experiments_folder, experiment_name)
 
+    model_names = augmentation.create_experiment()
 
-
-
-
+    
 
 if __name__=='__main__':
     start=time.time()
