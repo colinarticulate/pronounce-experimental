@@ -79,7 +79,7 @@ def get_summary_data(file, results):
 
     #Need to do this, otherwise if a txt file was corrupted, its entry won't be in the summary file.
     txt_predictions_keys=list(txt_predictions.keys())
-    results_keys = list(results.keys())
+    results_keys = sorted(list(results.keys()))
     predictions={}
     for result_key in results_keys:
         if result_key not in txt_predictions_keys:
@@ -98,6 +98,7 @@ def gather_test_pronounce_results(model_name, dataset_name, src_results_folder, 
     #with open(os.path.join(dst_results_folder, toml_filename), 'w') as f:
 
     files = [ f for f in os.listdir(src_results_folder) if "000__summary__000" not in f]
+    files = sorted(files) #Sorted alphabetically
     summary_file = "000__summary__000.txt" # [ f for f in os.listdir(src_results_folder) if "000__summary__000" in f][0]
 
     results={}#defaultdict(list)
