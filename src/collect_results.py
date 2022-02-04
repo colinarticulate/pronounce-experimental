@@ -52,19 +52,21 @@ def get_test_input_result(file):
                 result.append((phoneme,verdict))
     else:
         print(f"Error: file {file} has no explicit result written. Please check.")
+        result.append(" ")
     
 
     return result
 
 
 
-def get_summary_data(file):
+def get_summary_data(file, results):
     with open(file, 'r') as f:
         raw = f.read()
 
     lines = raw.strip("\n").split("\n")
 
-    predictions={}
+    txt_predictions={}
+
     for line in lines:
         if "Pass rate = " in line:
             accuracy = line.split("Pass rate = ")[1]
@@ -73,7 +75,18 @@ def get_summary_data(file):
             parts = line.split(",")
             test_name = parts[0]
             prediction = parts[1].strip(" ")
-            predictions[test_name] =  prediction
+            txt_predictions[test_name] =  prediction
+
+    #Need to do this, otherwise if a txt file was corrupted, its entry won't be in the summary file.
+    txt_predictions_keys=list(txt_predictions.keys())
+    results_keys = list(results.keys())
+    predictions={}
+    for result_key in results_keys:
+        if result_key not in txt_predictions_keys:
+            predictions[result_key] = ""
+        else:
+            predictions[result_key]=txt_predictions[result_key]
+            
 
     return accuracy, predictions
 
@@ -84,38 +97,37 @@ def gather_test_pronounce_results(model_name, dataset_name, src_results_folder, 
 
     #with open(os.path.join(dst_results_folder, toml_filename), 'w') as f:
 
-    files = [ f for f in os.listdir(src_results_folder)]
+    files = [ f for f in os.listdir(src_results_folder) if "000__summary__000" not in f]
+    summary_file = "000__summary__000.txt" # [ f for f in os.listdir(src_results_folder) if "000__summary__000" in f][0]
 
     results={}#defaultdict(list)
     accuracy=0
     predictions={}
     for file in files[:]:
-        if "summary" in file:
-            accuracy, predictions = get_summary_data(os.path.join(src_results_folder, file))
+          
+        result = get_test_input_result(os.path.join(src_results_folder,file))
+        results[file[:-4]] = result
 
-        else:
-            
-            result = get_test_input_result(os.path.join(src_results_folder,file))
-            results[file[:-4]] = result
+    accuracy, predictions = get_summary_data(os.path.join(src_results_folder, summary_file), results)
 
     
     with open(os.path.join(dst_results_folder,toml_filename),'w') as f:
         f.write(f"[info]\n")
-        f.write(f"'model_name' : '{model_name}'\n")
-        f.write(f"'dataset' : '{dataset_name}'\n")
+        f.write(f"\"model_name\" = \"{model_name}\"\n")
+        f.write(f"\"dataset\" = \"{dataset_name}\"\n")
         f.write("\n")
         f.write("[performance]\n")
-        f.write(f"'accuracy' : '{accuracy}'\n")
+        f.write(f"\"accuracy\" = \"{accuracy}\"\n")
         f.write("\n")
         f.write(f"[predictions]\n")
         for prediction in predictions:
-            f.write(f"'{prediction}' : '{predictions[prediction]}'\n")
+            f.write(f"\"{prediction}\" = \"{predictions[prediction]}\"\n")
 
 
         f.write("\n")
         f.write("[results]\n")
         for result in results:
-            f.write(f"'{result}' : '{results[result]}'\n")
+            f.write(f"\"{result}\" = \"{results[result]}\"\n")
 
 
    
