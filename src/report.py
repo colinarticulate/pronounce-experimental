@@ -55,8 +55,21 @@ def add_predictions(worksheet, col, predictions):
     for i, prediction in enumerate(list(predictions.keys())):
         worksheet.write(i, col, predictions[prediction])
 
+def format_result(result):
+    #print(result)
+    formatted_result = [" ".join(item) for item in result]
+    return formatted_result
 
-def conditional_formatting(workbook, worksheet, n_rows, n_cols):
+
+def add_results(worksheet, predictions, results):
+    add_items(worksheet, predictions)
+    add_predictions(worksheet, 1, predictions)
+    for i, result in enumerate(results):
+        formatted_results = format_result(results[result])
+        worksheet.write_row(i, 2, formatted_results)
+
+
+def conditional_formatting(workbook, worksheet, start_row, start_col, n_rows, n_cols):
     
     # Add a format. Light red fill with dark red text.
     format_fail = workbook.add_format({'bg_color': '#FFC7CE',
@@ -71,17 +84,17 @@ def conditional_formatting(workbook, worksheet, n_rows, n_cols):
                                        'font_color': '#006100'})
 
 
-    worksheet.conditional_format(0,1, n_rows, n_cols, {'type':     'text',
+    worksheet.conditional_format(start_row, start_col, n_rows, n_cols, {'type':     'text',
                                                         'criteria': 'containing',
                                                         'value':    'PASS',
                                                         'format':   format_pass})
 
-    worksheet.conditional_format(0,1, n_rows, n_cols, {'type':     'text',
+    worksheet.conditional_format(start_row, start_col, n_rows, n_cols, {'type':     'text',
                                                         'criteria': 'containing',
                                                         'value':    'FAIL',
                                                         'format':   format_fail})
 
-    worksheet.conditional_format(0,1, n_rows, n_cols, {'type':     'blanks',
+    worksheet.conditional_format(start_row, start_col, n_rows, n_cols, {'type':     'blanks',
                                                        # 'criteria': 'containing',
                                                        # 'value':    '',
                                                         'format':   format_blank})
@@ -202,6 +215,13 @@ def formatting_report(workbook, worksheet, worksheet_legend, nrow, ncol, predict
 
     worksheet.set_column(1,200, None, contents_format)
    
+
+def format_results_sheet(workbook, worksheet, predictions):
+
+    max_len = calculate_max_len(predictions)
+
+    worksheet.set_column(0,0,max_len+5)
+    worksheet.set_column(2,200,12) #the lenght of someting like: "ehr missing"
     
 
 def create_report(report_file, experiment_name, results_files, results_folder):
@@ -217,6 +237,10 @@ def create_report(report_file, experiment_name, results_files, results_folder):
             add_items(worksheet, predictions)
 
         add_predictions(worksheet, i+1, predictions)
+        worksheet_i = workbook.add_worksheet(f"{i+1}")
+        add_results(worksheet_i, predictions, results)
+        format_results_sheet(workbook, worksheet_i, predictions)
+        conditional_formatting(workbook, worksheet_i, 0, 1, len(predictions)-1, 1)
         model_info.append((info,predictions))
         
         
@@ -224,7 +248,7 @@ def create_report(report_file, experiment_name, results_files, results_folder):
 
     add_info(workbook, worksheet, worksheet_legend, model_info)
     formatting_report(workbook, worksheet, worksheet_legend, len(predictions)-1, i+1, predictions )
-    conditional_formatting(workbook, worksheet, len(predictions)-1, i+1)
+    conditional_formatting(workbook, worksheet, 0, 1, len(predictions)-1, i+1)
 
 
     workbook.close()

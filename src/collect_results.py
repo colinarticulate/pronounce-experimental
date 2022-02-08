@@ -49,7 +49,7 @@ def get_test_input_result(file):
 
             for phoneme in phonemes:
             
-                result.append((phoneme,verdict))
+                result.append([phoneme,verdict])
     else:
         print(f"Error: file {file} has no explicit result written. Please check.")
         result.append(" ")
@@ -91,9 +91,12 @@ def get_summary_data(file, results):
     return accuracy, predictions
 
 
-def gather_test_pronounce_results(model_name, dataset_name, src_results_folder, dst_results_folder):
+def gather_test_pronounce_results(model_name, dataset_name, src_results_folder, dst_results_folder, toml_filename=None):
 
-    toml_filename = f"{model_name}_x_{dataset_name}.toml"
+    if toml_filename == None:
+        toml_filename = f"{model_name}_x_{dataset_name}.toml"
+    else:
+        toml_filename = toml_filename
 
     #with open(os.path.join(dst_results_folder, toml_filename), 'w') as f:
 
@@ -128,10 +131,9 @@ def gather_test_pronounce_results(model_name, dataset_name, src_results_folder, 
         f.write("\n")
         f.write("[results]\n")
         for result in results:
-            f.write(f"\"{result}\" = \"{results[result]}\"\n")
+            f.write(f"\"{result}\" = {results[result]}\n")
 
-
-   
+  
 
 def main():
     model_name = "Bare"

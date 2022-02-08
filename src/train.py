@@ -6,6 +6,7 @@ import os
 import shutil
 import subprocess
 import time
+import datetime
 import toml
 import stat
 
@@ -27,9 +28,15 @@ class train():
         self.base_dir = self.cfg['training_configuration']['__CFG_BASE_DIR__']
         self.etc = os.path.join(self.base_dir,"etc")
         self.model_name = self.cfg['training_configuration']['__CFG_EXPTNAME__']
-
+        
+        
+        now = datetime.datetime.now()
+        timestamp = now.strftime('%Y-%m-%dT%H:%M:%S') + ('-%03d' % (now.microsecond / 10000))
+        self.timestamp_model_name = f"{timestamp}_{self.model_name}"
         self.model_location = os.path.join(self.base_dir, "model_parameters", f"{self.model_name}.ci_cont")
-        self.model_destination = os.path.join("./../Models", f"{self.model_name}.ci_cont") 
+
+        model_destination_path = os.path.join("./../Models",self.model_name)
+        self.model_destination = os.path.join(model_destination_path, f"{self.timestamp_model_name}.ci_cont") 
 
         print("Preparing training...")
         self.prepare_training()
@@ -40,6 +47,9 @@ class train():
             os.mkdir(log_model_folder)
         self.log_file = os.path.join(log_model_folder, "training.log")
 
+    def create_directory(self, directory):
+        if not os.path.exists(directory):
+            os.makedirs(directory)
 
     def replace_template_variables(self):
         configuration=self.template
@@ -151,7 +161,7 @@ class train():
 
     def fit(self):
         #call sphinxtrain run
-        command_train=['sphinxtrain','run']
+        #command_train=['sphinxtrain','run']
         command_train=['sphinxtrain run']
         cwd = self.base_dir
 
@@ -195,7 +205,7 @@ class train():
 
 
 def main():
-    config_folder="./../training_configurations/Bare_tempo"
+    config_folder="./../training_configurations/Bare"
 
 
     training_bare=train(config_folder)
