@@ -122,10 +122,10 @@ func fetchTrimBounds(audiofile string, phons []phoneme) (float64, float64) {
 
 	start = math.Min(start2, start3)
 
-	if start-0.1 <= 0 {
+	if start - 0.2 <= 0 {
 		start = 0
 	} else {
-		start = start - 0.1
+		start = start - 0.10
 	}
 
 	/*
@@ -168,12 +168,12 @@ func fetchTrimBounds(audiofile string, phons []phoneme) (float64, float64) {
 	// //duration = duration
 	//}
 
-	duration = duration + 0.4 // 0.4 is required to get contraceptives1_tomo to work
+	duration = duration + 0.45 // 0.4 is required to get contraceptives1_tomo to work
 	//duration = duration
 
 	//check if start + duration is greater than the end of the audio file
 	if (start + duration) >= length_audio {
-		duration = length_audio - start - 0.1
+		duration = length_audio - start - 0.02
 	}
 
 	guard_end := 0.0

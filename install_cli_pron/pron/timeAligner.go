@@ -489,6 +489,10 @@ func modifiedResults(results []timeAlignedPhoneme) []timeAlignedPhoneme {
 				if res.end-res.start >= 3 {
 					modRes = append(modRes, res)
 				}
+			} else if i == len(results) {  // allowing longer "ao" sounds at the end of a word like ..your..
+				if (res.end-res.start >= 4) && (res.end-res.start <= 60){
+					modRes = append(modRes, res)
+				}
 			}
 
 		case aa:
