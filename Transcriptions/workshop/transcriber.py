@@ -1,3 +1,8 @@
+'''
+Given a normal word-based .transcription file and a dictionary. Returns .fileids file and .transcription based on dummy word (joined phonemes)
+and also phonemes-based for different modalities of training.
+'''
+
 import os
 import time
 
