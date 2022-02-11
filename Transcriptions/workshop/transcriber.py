@@ -189,13 +189,13 @@ def main():
 
     dictionary=get_dictionary(dictionary_file)
 
-    # original_transcriptions = convert_transcription_to_dummy_train(dictionary, transcriptions_file, new_transcriptions_file)
-    # #convert_transcription_to_dummy_test(dictionary, test_transcription_file, new_test_transcription_file)
+    original_transcriptions = convert_transcription_to_dummy_train(dictionary, transcriptions_file, new_transcriptions_file)
+    #convert_transcription_to_dummy_test(dictionary, test_transcription_file, new_test_transcription_file)
 
-    # create_file_ids(original_transcriptions, fileids_file, audios_dir)
+    create_file_ids(original_transcriptions, fileids_file, audios_dir)
 
 
-    # create_dummy_dictionary(dictionary,new_dictionary_file)
+    create_dummy_dictionary(dictionary,new_dictionary_file)
 
     phoneme_transcriptions_file="data/art_db_new_train_phonemes.transcription"
     convert_transcription_to_phonemes_train(dictionary, transcriptions_file, phoneme_transcriptions_file)
