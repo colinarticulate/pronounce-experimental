@@ -26,7 +26,7 @@ class train():
         self.create_training_configuration_file()
 
         self.base_dir = self.cfg['training_configuration']['__CFG_BASE_DIR__']
-        self.etc = os.path.join(self.base_dir,"etc")
+        self.etc = os.path.join(self.base_dir,"etc")    
         self.model_name = self.cfg['training_configuration']['__CFG_EXPTNAME__']
         
         
@@ -46,6 +46,8 @@ class train():
         if not os.path.exists(log_model_folder):
             os.mkdir(log_model_folder)
         self.log_file = os.path.join(log_model_folder, "training.log")
+
+        
 
     def create_directory(self, directory):
         if not os.path.exists(directory):

@@ -1,3 +1,4 @@
+import os
 import time
 
 def get_dictionary( file ):
@@ -48,28 +49,7 @@ def convert_transcription_to_dummy_train(dictionary, transcriptions_in, transcri
             new_line = f"{new_transcription}\t{file}\n"
             fw.write(new_line)
 
-            
-
-
-    #         entry = line.split("<sil>")[1].strip(" ")
-            
-    #         entries = entry.split(" ")
-    #         if len(entries) > 1:
-    #             all_new_entries=[]
-    #             for entry_ in entries:
-    #                 new_entry_= "_".join(dictionary[entry_].split(" "))
-    #                 all_new_entries.append(new_entry_)
-    #             new_entry = " ".join(all_new_entries)
-    #         else:
-    #             new_entry = "_".join(dictionary[entry].split(" "))
-
-    #         parts = line.split(entry)
-    #         new_line = "".join([parts[0], new_entry, parts[1]])+"\n"
-    #         print(f"{i+1}\t\t{new_line[:-1]}")
-    #         fw.write(new_line)
-    #         new_lines.append(new_line)
-
-    # print(f"Train Length: {len(new_lines)}")
+    return lines
 
 
 def convert_transcription_to_dummy_test(dictionary, transcriptions_in, transcriptions_out):
@@ -130,6 +110,38 @@ def convert_transcription_to_dummy_test(dictionary, transcriptions_in, transcrip
     print(f"Test Length: {len(new_lines)}")
 
 
+def convert_transcription_to_phonemes_train(dictionary, transcriptions_in, transcriptions_out):
+
+    with open(transcriptions_in, "r") as fr:
+        raw =fr.read()
+
+    lines=raw.strip("\n").split("\n")
+
+    dictionary['<sil>']='<sil>'
+    dictionary['<s>']='<s>'
+    dictionary['</s>']='</s>'
+
+    new_lines=[]
+    with open(transcriptions_out, "w") as fw:
+        for i,line in enumerate(lines):
+            parts = line.split("\t")
+            file= parts[-1]
+            transcription = parts[0]
+            transcription_words = transcription.split(" ")
+
+            new_transcription_words = []
+            for word in transcription_words:
+                new_word = dictionary[word] #" ".join(dictionary[word].split(" "))
+                new_transcription_words.append(new_word)
+
+            new_transcription = " ".join(new_transcription_words)
+
+            new_line = f"{new_transcription}\t{file}\n"
+            fw.write(new_line)
+
+    return lines
+
+
 
 def create_dummy_dictionary(dictionary, new_dictionary_file):
 
@@ -150,6 +162,12 @@ def create_dummy_dictionary(dictionary, new_dictionary_file):
             f.write(entry)
 
 
+def create_file_ids(transcriptions, file, audios_dir):
+    with open(file, 'w') as f:
+        for transcription in transcriptions:
+            audiofilename = transcription.split("\t")[1][1:-1]
+            f.write(f"{os.path.join(audios_dir, audiofilename)}\n")
+
 
 def main():
     
@@ -162,16 +180,25 @@ def main():
     new_transcriptions_file="data/art_db_new_train_dummy.transcription"
     new_dictionary_file="data/art_db_v2_dummy.dic"
 
+    fileids_file = "data/art_db_v2_Bare_train.fileids"
+    audios_dir = "train/art_db_compilation"
+
     #No need at the moment until we want to obtain phone error rate
     # test_transcription_file="art_db_test.transcription"
     # new_test_transcription_file="art_db_test_dummy.transcription"
 
     dictionary=get_dictionary(dictionary_file)
 
-    convert_transcription_to_dummy_train(dictionary, transcriptions_file, new_transcriptions_file)
-    #convert_transcription_to_dummy_test(dictionary, test_transcription_file, new_test_transcription_file)
+    # original_transcriptions = convert_transcription_to_dummy_train(dictionary, transcriptions_file, new_transcriptions_file)
+    # #convert_transcription_to_dummy_test(dictionary, test_transcription_file, new_test_transcription_file)
 
-    create_dummy_dictionary(dictionary,new_dictionary_file)
+    # create_file_ids(original_transcriptions, fileids_file, audios_dir)
+
+
+    # create_dummy_dictionary(dictionary,new_dictionary_file)
+
+    phoneme_transcriptions_file="data/art_db_new_train_phonemes.transcription"
+    convert_transcription_to_phonemes_train(dictionary, transcriptions_file, phoneme_transcriptions_file)
 
 
     

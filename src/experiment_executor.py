@@ -115,6 +115,8 @@ def test_Bare_on_train_data_and_two_expectations():
     experiment_name="Testing_Bare_with_training_data"
     experiment_file=f"./../experiments/{experiment_name}.toml"
 
+
+
     model_names, test_sets = read_model_names(experiment_file)
 
     expectations=["./../Expectations/train_expectations_rigorous.csv","./../Expectations/train_expectations_lenient.csv"]
@@ -135,9 +137,9 @@ def test_Bare_on_train_data_and_two_expectations():
                 toml_files.append(os.path.basename(config_file))
                 output_folder = f"./../Test_Output/output_{model_name}_{test_set}_{expectation_type}"
                 output_folders.append(output_folder)
-                # create_testing_configuration(model_name, output_folder, audio_folder, expectation, input, config_file)
-                # testing_bare = test(config_file)
-                # testing_bare.fit()
+                create_testing_configuration(model_name, output_folder, audio_folder, expectation, input, config_file)
+                testing_bare = test(config_file)
+                testing_bare.fit()
 
     #gathering test results
     
@@ -154,11 +156,27 @@ def test_Bare_on_train_data_and_two_expectations():
     results_folder = "./../Results"
     create_report(report_file, experiment_name, toml_files, results_folder)
 
+def train_Bare(experiment_name, experiment_file):
+    model_type="Bare"
+    config_folder=f"./../training_configurations/{model_type}"
+    model = train(config_folder)
+    model_name = model.model_destination
+    print("---------------------------------------------------------------------------------------------")
+    print(f"\nTraining model:   {model_name} ")
+    print("---------------------------------------------------------------------------------------------")
+    
+    model.fit()
+    model.copy_model()
 
+    return model_name
 
 def main():
 
     #test_Bare_several_times(10)
+    # experiment_name="Testing_Bare_with_training_data"
+    # experiment_file=f"./../experiments/{experiment_name}.toml"
+    # model_name = train_Bare(experiment_name, experiment_file)
+    # test_Bare_on_train_data_and_two_expectations([model_name])
     test_Bare_on_train_data_and_two_expectations()
 
     

@@ -24,6 +24,13 @@ def variant_format(word):
 
     return variant
 
+def strip_variant_number(variant):
+    word = variant
+    if "(" in variant:
+        word= variant.split("(")[0]
+
+    return word
+
 
 def obtain_transcriptions_data(transcription_file, dictionary):
 #
@@ -52,7 +59,8 @@ def obtain_transcriptions_data(transcription_file, dictionary):
         for w in raw_words:
             raw_translation.append(dictionary[w])
             #variant=variant_format(w)
-            word_entries.append(w)
+            w_bare=strip_variant_number(w)
+            word_entries.append(w_bare.lower())
 
         phonemes=" ".join(raw_translation).strip(" ").lower()    
 
