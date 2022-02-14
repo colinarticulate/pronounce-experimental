@@ -77,13 +77,14 @@ def create_fileids_from_transcription( transcription_file, fileids_file, audio_f
 
     transcriptions=raw.strip("\n").split("\n")
 
-
+    fileids=[]
     with open(fileids_file, 'w') as f:
         for transcription in transcriptions:
             fileid = transcription.split("\t")[1][1:-1]
             f.write(f"{audio_folder}{fileid}\n")
+            fileids.append(fileid)
 
-    return transcriptions
+    return transcriptions, fileids
     
 def load_dummy(dummy_dict_file):
 
@@ -108,6 +109,23 @@ def save_dummy_dict(filename, dictionary):
             f.write(f"{dummy_word} {dictionary[dummy_word]}\n")
 
 
+def discard_entries_from_training_files(to_discard_file, fileids, transcriptions):
+    with open(to_discard_file, 'r') as f:
+        raw=f.read()
+
+    missing_files = raw.strip("\n").split("\n")
+
+    clean_fileids=[]
+    clean_transcriptions=[]
+    for fileid, transcription in zip(fileids, transcriptions):
+        filename = transcription.split("\t")[1][-1:1]
+        if filename not in missing_files:
+            clean_fileids.append(fileid)
+            clean_transcriptions.append(transcription)
+
+    return clean_fileids, clean_transcriptions
+
+
 def given_dummy_transcriptions_create_fileids_and_an_update_general_dummy_dict():
     # folder = "/home/dbarbera/Data/"
     # word = "TWO"   
@@ -127,8 +145,10 @@ def given_dummy_transcriptions_create_fileids_and_an_update_general_dummy_dict()
     fileids_file="./data/art_db_Bare_train_Double.fileids"
     audio_folder="train/art_db_compilation/"
 
-    transcriptions = create_fileids_from_transcription( transcription_file, fileids_file, audio_folder)
+    raw_transcriptions, raw_fileids = create_fileids_from_transcription( transcription_file, fileids_file, audio_folder)
 
+    to_discard_file="./data/missing_not_found.txt"
+    transcriptions, fileids = discard_entries_from_training_files(to_discard_file, raw_fileids, raw_transcriptions)
     dummy_entries = create_dummy_dictionary_entries(transcriptions)
 
     dummy_dict_file="./../../Dictionaries/art_db_v2_dummy.dic"
@@ -139,8 +159,40 @@ def given_dummy_transcriptions_create_fileids_and_an_update_general_dummy_dict()
     filename="./data/art_db_v2_dummy_new.dic"
     save_dummy_dict(filename, merged_dummy_entries)
 
+
+
+def check_and_create_missing_audios(missing_audios_file, src_path, dst_path):
+
+    with open(missing_audios_file, 'r') as f:
+        raw=f.read()
+
+    audiofiles=raw.strip("\n").split("\n")
+
+    with open("./data/missing_not_found.txt",'w') as f:
+        for audiofile in audiofiles:
+            src = "/".join(audiofile.split("-"))
+            src_file = os.path.join(src_path, src+".wav")
+            dst_file = os.path.join(dst_path, audiofile+".wav")
+            if os.path.exists(src_file):
+                shutil.copy(src_file, dst_file)
+            else:
+                f.write(f"{audiofile}\n")
+                
+        
+
+
+
+
+
 def main():
-    
+
+    # missing_audios_file="./data/missing_audios.txt"
+    # src_path="/home/dbarbera/Repositories/art_db/wav/train"
+    # dst_path="/home/dbarbera/Repositories/art_db/wav/train/art_db_compilation"
+
+    # check_and_create_missing_audios(missing_audios_file, src_path, dst_path)
+
+    given_dummy_transcriptions_create_fileids_and_an_update_general_dummy_dict
 
 
 
