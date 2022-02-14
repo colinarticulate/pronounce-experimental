@@ -52,7 +52,7 @@ def main():
 
     transcription_file="./data/art_db_Bare_train_Double.transcription"
     phones = extract_all_phones_from_dummy_transcription(transcription_file)
-    print(phones)
+    print(phones, len(phones))
 
     
 
