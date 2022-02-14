@@ -145,10 +145,12 @@ def given_dummy_transcriptions_create_fileids_and_an_update_general_dummy_dict()
     fileids_file="./data/art_db_Bare_train_Double.fileids"
     audio_folder="train/art_db_compilation/"
 
-    raw_transcriptions, raw_fileids = create_fileids_from_transcription( transcription_file, fileids_file, audio_folder)
+    transcriptions, fileids = create_fileids_from_transcription( transcription_file, fileids_file, audio_folder)
+    #raw_transcriptions, raw_fileids = create_fileids_from_transcription( transcription_file, fileids_file, audio_folder)
 
-    to_discard_file="./data/missing_not_found.txt"
-    transcriptions, fileids = discard_entries_from_training_files(to_discard_file, raw_fileids, raw_transcriptions)
+    #to_discard_file="./data/missing_not_found.txt"
+    #transcriptions, fileids = discard_entries_from_training_files(to_discard_file, raw_fileids, raw_transcriptions)
+    
     dummy_entries = create_dummy_dictionary_entries(transcriptions)
 
     dummy_dict_file="./../../Dictionaries/art_db_v2_dummy.dic"
@@ -192,7 +194,7 @@ def main():
 
     # check_and_create_missing_audios(missing_audios_file, src_path, dst_path)
 
-    given_dummy_transcriptions_create_fileids_and_an_update_general_dummy_dict
+    given_dummy_transcriptions_create_fileids_and_an_update_general_dummy_dict()
 
 
 
