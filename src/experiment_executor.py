@@ -170,6 +170,29 @@ def train_Bare(experiment_name, experiment_file):
 
     return model_name
 
+
+def double_experiment():
+
+    experiment_name="double"
+    experiment_file=f"./../experiments/{experiment_name}.toml"
+
+    model_name = train_Bare(experiment_name, experiment_file)
+
+    #Create experiment file for the record:
+    with open(experiment_file, 'w') as f:
+        f.write(f"[models]\n")
+        f.write(f"'models' = [\"{os.path.basename(model_name)}\"]")
+        f.write(f"\n")
+        f.write(f"[test_sets]\n")
+        f.write(f"'datasets' = [\"Train_set\"]\n")
+
+    
+
+
+
+
+
+
 def main():
 
     #test_Bare_several_times(10)
@@ -177,7 +200,8 @@ def main():
     # experiment_file=f"./../experiments/{experiment_name}.toml"
     # model_name = train_Bare(experiment_name, experiment_file)
     # test_Bare_on_train_data_and_two_expectations([model_name])
-    test_Bare_on_train_data_and_two_expectations()
+    #test_Bare_on_train_data_and_two_expectations()
+    double_experiment()
 
     
     print("finished.main")
