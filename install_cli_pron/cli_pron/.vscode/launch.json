@@ -16,8 +16,8 @@
             "type": "go",
             "request": "launch",
             "mode": "auto",
-            "program": "${fileDirname}",
-            "buildFlags": "-tags 'noSend debug'", //or "-tags 'noSend debug testCase'"
+            "program": "${file}",
+            "buildFlags": "-tags 'noSend debug testCase'", //or "-tags 'noSend debug testCase'"
             "args":[
                 "-audio", "/home/dbarbera/Data/audio_clips/allowed1_philip.wav",   
                 "-featparams", "./../../Models/25600.ci_cont/feat.params",
@@ -26,6 +26,18 @@
                 "-dict", "./../../Dictionaries/art_db_v2.dic",
                 "-phdict", "./../../Dictionaries/art_db_v2_inference.phone"
                ],
+            // "args":[
+            //     "-dict", "./../Dictionaries/art_db_v2.dic",
+            //     "-phdict", "./../Dictionaries/art_db_v2_inference.phone",
+            //     "-infolder", "/home/dbarbera/Repositories/art_db/wav/train/art_db_compilation",
+            //     "-tests", "./../Tests/train_inputs.csv",
+            //     "-expectations", "./../Expectations/train_expectations_rigorous.csv",
+            //     "-outfolder", "./../Test_Output/output_2022-02-07T14:11:46-092_Bare_with_UWs_Train_set_rigorous",
+            //     "-featparams", "./../Models/Bare/2022-02-07T14:11:46-092_Bare_with_UWs.ci_cont/feat.params",
+            //     "-hmm", "./../Models/Bare/2022-02-07T14:11:46-092_Bare_with_UWs.ci_cont"
+            //    ],
+
+               
         }
     ]
 }

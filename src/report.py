@@ -100,6 +100,28 @@ def conditional_formatting(workbook, worksheet, start_row, start_col, n_rows, n_
                                                         'format':   format_blank})
 
 
+def conditional_formatting_on_results(workbook, worksheet, start_row, start_col, n_rows, n_cols):
+    
+    # Add a format. Light red fill with dark red text.
+    format_missing = workbook.add_format({'bg_color': '#6BEBEF',
+                                       'font_color': '#063637'})
+
+    worksheet.conditional_format(start_row, start_col, n_rows, n_cols, {'type':     'text',
+                                                        'criteria': 'containing',
+                                                        'value':    'missing',
+                                                        'format':   format_missing})
+
+        # Add a format. Light red fill with dark red text.
+    format_surprise = workbook.add_format({'bg_color': '#FBB637',
+                                       'font_color': '#503502'})
+
+    worksheet.conditional_format(start_row, start_col, n_rows, n_cols, {'type':     'text',
+                                                        'criteria': 'containing',
+                                                        'value':    'surprise',
+                                                        'format':   format_surprise})
+
+
+
 def transform_to_numpy(predictions):
     np_predictions = np.array(list(predictions.values()))
     #fail_set = np.argwhere(np_predictions=='FAIL')[:,0]
@@ -240,6 +262,7 @@ def create_report(report_file, experiment_name, results_files, results_folder):
         worksheet_i = workbook.add_worksheet(f"{i+1}")
         add_results(worksheet_i, predictions, results)
         format_results_sheet(workbook, worksheet_i, predictions)
+        conditional_formatting_on_results(workbook, worksheet_i, 0, 2, len(results), 300)
         conditional_formatting(workbook, worksheet_i, 0, 1, len(predictions)-1, 1)
         model_info.append((info,predictions))
         
