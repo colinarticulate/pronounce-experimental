@@ -31,25 +31,41 @@ def get_test_input_result(file):
         contents = f.read()
 
     result=[]
-    if "lettersVerdicts = [" in contents and "]\npublish<-" in contents:
-        part = contents.split("lettersVerdicts = [")[1]
-        raw_result = part.split("]\npublish<-")[0].strip("\n")
-        entries = raw_result[1:-1].split("} {")
+    # if "lettersVerdicts = [" in contents and "]\npublish<-" in contents:
+    #     part = contents.split("lettersVerdicts = [")[1]
+    #     raw_result = part.split("]\npublish<-")[0].strip("\n")
+    #     entries = raw_result[1:-1].split("} {")
 
-        for entry in entries:
-            parts1 = entry.split(" [")
-            parts2 = parts1[1].split("] ")
-            letter = parts1[0]
-            phoneme_transcription = parts2[0]
-            int_verdict = parts2[1]
+    #     for entry in entries:
+    #         parts1 = entry.split(" [")
+    #         parts2 = parts1[1].split("] ")
+    #         letter = parts1[0]
+    #         phoneme_transcription = parts2[0]
+    #         int_verdict = parts2[1]
 
-            verdict = pron_verdict[int(int_verdict)]
+    #         verdict = pron_verdict[int(int_verdict)]
 
-            phonemes = phoneme_transcription.split(" ")
+    #         phonemes = phoneme_transcription.split(" ")
 
-            for phoneme in phonemes:
+    #         for phoneme in phonemes:
             
-                result.append([phoneme,verdict])
+    #             result.append([phoneme,verdict])
+    if "testPronounce" in contents and "publish->" in contents:
+        raw_result=contents.split("testPronounce ")[1].split("publish->")[0].strip("\n")
+        result_list=raw_result.split(" ")
+        phonemes=[]
+        verdicts=[]
+        for i, r in enumerate(result_list):
+            if i%2==0:
+                phonemes.append(r)
+            else:
+                verdicts.append(r)
+
+        result=[]
+        for phoneme, verdict in zip(phonemes,verdicts):
+            result.append([phoneme,verdict])
+
+     
     else:
         print(f"Error: file {file} has no explicit result written. Please check.")
         result.append(" ")
