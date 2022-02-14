@@ -153,7 +153,11 @@ def given_dummy_transcriptions_create_fileids_and_an_update_general_dummy_dict()
     
     dummy_entries = create_dummy_dictionary_entries(transcriptions)
 
-    dummy_dict_file="./../../Dictionaries/art_db_v2_dummy.dic"
+    dummy_dict_file="./data/art_db_v2_dummy.dic"
+    dictionary = get_dictionary("./../../Dictionaries/art_db_v2.dic") #create dummy again
+    create_dummy_dictionary(dictionary, dummy_dict_file)
+
+    
     current_dummy = load_dummy(dummy_dict_file)
 
     merged_dummy_entries = merge_dummy_dictionaries(current_dummy, dummy_entries)

@@ -46,6 +46,30 @@ def extract_all_phones_from_dummy_transcription(transcription_file):
     return sorted(phones)
 
 
+def compare_phone_lists(file1, file2):
+    with open(file1, 'r') as f:
+        raw=f.read()
+    phones1=raw.strip("\n").split("\n")
+
+    with open(file2, 'r') as f:
+        raw=f.read()
+    phones2=raw.strip("\n").split("\n") 
+
+    print("phones from phones2 not in phones1")
+    for phone in phones2:
+        if phone not in phones1:
+            print(phone)  
+
+    print("phones from phones1 not in phones2")
+    for phone in phones1:
+        if phone not in phones2:
+            print(phone)  
+
+
+def save_phones(file, phones):
+    with open(file, 'w') as f:
+        f.write("\n".join(phones))
+        f.write("\n")
 
 
 def main():
@@ -54,6 +78,12 @@ def main():
     phones = extract_all_phones_from_dummy_transcription(transcription_file)
     print(phones, len(phones))
 
+    file="./data/phones_from_transcription.txt"
+    save_phones(file,phones)
+
+
+    file_reference="./data/art_db_v2.phone"
+    compare_phone_lists(file_reference, file)
     
 
 
