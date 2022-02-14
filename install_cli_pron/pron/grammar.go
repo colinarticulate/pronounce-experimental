@@ -121,20 +121,29 @@ const (
 	r_kl = "<kl>"
 	r_pl = "<pl>"
 	r_bl = "<bl>"
-	//r_sts = "<sts>"
-	//r_st = "<st>"
+
 	r_uwl = "<uwl>"
 	r_uwn = "<uwn>"
 	r_uwm = "<uwm>"
 	r_axr = "<axr>"
-	//r_axnoise = "<axnoise>"
-	//r_ernoise = "<ernoise>"
+
 	r_kr = "<kr>"
 	r_pr = "<pr>"
 	r_gr = "<gr>"
 	r_tr = "<tr>"
 	r_ing = "<ing>"
 	
+	// Added 14th Feb 2022
+	/*
+	r_thr = "<thr>"
+	r_ihl = "<ihl>"
+	r_yuw = "<yuw>"
+	r_sts = "<sts>"
+	r_st = "<st>"
+	r_ehl = "<ehl>"
+	r_kt = "<kt>"
+	r_fl = "<fl>"
+	*/	
 	
 	r_any_vowel_noSlide = "<any_vowel_noSlide>"
 	r_check = "<check>"
@@ -401,20 +410,20 @@ var consonantsByGroup = map[consonantGroup][]phoneme{
 	dental: {
 		//dh, th,
 		t, d, n, l, r, th, dh,
+		//t, d, n, l, r, th, dh, thr, kt, st, sts
 	},
 	alveolar: {
-		//d, l, n, s, st, t, z, r, nd, dz, ts, axn, axl, axm,
-		//d, l, n, s, t, z, r, dz, ts, axn, axl, uwl, sts,
 		d, l, n, s, t, z, r, dz, ts,
+		//d, l, n, s, t, z, r, dz, ts, st, sts, kt, thr,
 	},
 	post_alveolar: {
 		//sh, zh,
 		t, d, n, l, r, sh, zh,
+		//t, d, n, l, r, sh, zh, kt, st, sts,
 	},
 	retroflex: {
-		//t, d,
-		//t, d, ng, s, z, r, l, ts, dz, sts,
 		t, d, ng, s, z, r, l, dz, ts, ing,
+		//t, d, ng, s, z, r, l, dz, ts, ing, sts, st, fl, kt
 	},
 	palatal: {
 		ch, jh, // what about ch and jh?   .... removing y, placing in vowels
@@ -428,12 +437,14 @@ var consonantsByGroup = map[consonantGroup][]phoneme{
 
 	plosive: {
 		b, d, g, jh, ch, k, p, t, kl, pl, bl, kr, gr, tr, pr,
+		//b, d, g, jh, ch, k, p, t, kl, pl, bl, kr, gr, tr, pr, kt, st, sts
 	},
 	nasal: {
 		m, n, ng, ing,
 	},
 	fricative: {
 		dh, hh, v, z, zh, f, hh, s, sh, th, // should jh be in this list?
+		//dh, hh, v, z, zh, f, hh, s, sh, th, thr, fl
 	},
 	approximant: {
 		l, r, w, // moving y to vowel
@@ -607,9 +618,6 @@ var groupsByConsonant = map[phoneme][]consonantGroup{
 	sh: {
 		fricative, post_alveolar,
 	},
-	//st: {
-	//  alveolar, fricative, sss,
-	//},
 	t: {
 		dental, alveolar, post_alveolar, plosive,
 	},
@@ -638,12 +646,7 @@ var groupsByConsonant = map[phoneme][]consonantGroup{
 	ts: {
 		alveolar, retroflex,
 	},
-	//sts: {
-	//  alveolar, retroflex,
-	//},
-	//st: {
-	//  alveolar, retroflex,
-	//},
+
 	ks: {
 		velar,
 	},
@@ -675,6 +678,25 @@ var groupsByConsonant = map[phoneme][]consonantGroup{
 		//nasal, velar,
 		nasal, velar, retroflex,
 	},
+/*
+	sts: {
+	  alveolar, retroflex, plosive, dental,
+	},
+	st: {
+	  alveolar, retroflex, plosive, dental,
+	},
+
+	thr: {
+	  fricative, alveolar, dental,
+	},
+	kt: {
+		plosive, dental,
+	},
+	fl: {
+		retroflex, fricative,
+	},
+*/
+
 }
 
 /*
@@ -804,6 +826,7 @@ func newConsonants() map[phoneme]bool {
 		//b: true, ch: true, d: true, dh: true, f: true, g: true, hh: true, jh: true, k: true, l: true, m: true, n: true, nd: true, ng: true, p: true, r: true, s: true, sh: true, st: true, t: true, th: true, v: true, w: true, z: true, zh: true, dz: true, ts: true, axn: true, axm: true, axl: true, kw: true, ks: true,
 		//b: true, ch: true, d: true, dh: true, f: true, g: true, hh: true, jh: true, k: true, l: true, m: true, n: true, ng: true, p: true, r: true, s: true, sh: true, t: true, th: true, v: true, w: true, z: true, zh: true, dz: true, ts: true, axn: true, axl: true, kw: true, ks: true, uwl: true, sts: true,
 		b: true, ch: true, d: true, dh: true, f: true, g: true, hh: true, jh: true, k: true, l: true, m: true, n: true, ng: true, p: true, r: true, s: true, sh: true, t: true, th: true, v: true, w: true, z: true, zh: true, dz: true, kw: true, ks: true, ts: true, kl: true, pl: true, bl: true, tr: true, kr: true, pr: true, gr: true, ing: true,
+		//b: true, ch: true, d: true, dh: true, f: true, g: true, hh: true, jh: true, k: true, l: true, m: true, n: true, ng: true, p: true, r: true, s: true, sh: true, t: true, th: true, v: true, w: true, z: true, zh: true, dz: true, kw: true, ks: true, ts: true, kl: true, pl: true, bl: true, tr: true, kr: true, pr: true, gr: true, ing: true, thr: true, sts: true, st: true, kt: true, fl: true,
 	}
 	return consonants
 }
@@ -878,6 +901,8 @@ func (gr *jsgfGrammar) new_R_Cx(exceptPhons ...phoneme) R_Cx {
 		//remaining = consRemove(remaining, p, t, k, f, th, s, sh, st, jh, r, y, dz, ts, axn, axm, axl, kw, ks)
 		//remaining = consRemove(remaining, p, t, k, f, th, s, sh, jh, r, y, dz, ts, axn, axl, kw, ks, uwl, sts)
 		remaining = consRemove(remaining, p, t, k, f, th, s, sh, jh, r, y, dz, kw, ks, ts, kl, pl, bl, tr, pr, "gr", kr)
+		//remaining = consRemove(remaining, p, t, k, f, th, s, sh, jh, r, y, dz, kw, ks, ts, kl, pl, bl, tr, pr, "gr", kr, thr, sts, st, kt, fl)  
+		
 		/*            // groups to reduce any_consonant by ..... the reason to do so is to help the different scan return a similar surprise
 		p, b,
 		t, d,
@@ -927,9 +952,9 @@ func (g *jsgfGrammar) new_R_Vx(exceptPhons ...phoneme) R_Vx {
 	}
 	r := g.new_R_named(name, func() rule {
 		vowels := map[phoneme]bool{
-			//aa: true, ae: true, ah: true, ao: true, aw: true, ax: true, ay: true, eh: true, ehr: true, er: true, ey: true, ih: true, iy: true, oh: true, ow: true, oy: true, uw: true, uh: true, y: true, axnoise: true, ernoise: true, axl: true, axm: true, axn: true, uwn: true, uwl: true, uwm: true,
       		aa: true, ae: true, ah: true, ao: true, aw: true, ax: true, ay: true, eh: true, ehr: true, er: true, ey: true, ih: true, iy: true, oh: true, ow: true, oy: true, uw: true, uh: true, y: true, axl: true, axm: true, axn: true, uwn: true, uwl: true, uwm: true, axr: true,
-			// aa: true, ae: true, ah: true, ao: true, aw: true, ax: true, ay: true, eh: true, ehr: true, er: true, ey: true, ih: true, iy: true, oh: true, ow: true, oy: true, uw: true, uh: true, y: true, axl: true, axm: true, axn: true, uwn: true, uwl: true, uwm: true,
+			//aa: true, ae: true, ah: true, ao: true, aw: true, ax: true, ay: true, eh: true, ehr: true, er: true, ey: true, ih: true, iy: true, oh: true, ow: true, oy: true, uw: true, uh: true, y: true, axl: true, axm: true, axn: true, uwn: true, uwl: true, uwm: true, axr: true, yuw: true, ihl: true, ehl: true,
+
 		}
 		remaining := phonDiff(vowels, exceptPhons)
 		phons := []rule{}
@@ -973,9 +998,16 @@ func (g *jsgfGrammar) new_R_noSlide_X(exceptPhons ...phoneme) R_V_noSlide_X {
 	name += "_noSlide"
 	r := g.new_R_named(name, func() rule {
 		noSlideVowels := map[phoneme]bool{
-			//aa: true, ae: true, ah: true, ao: true, ax: true, eh: true, ehr: true,  er: true, ih: true, iy: true, oh: true, uw: true, uh: true, y: true, axnoise: true, ernoise: true, axl: true, axm: true, axn: true, uwn: true, uwl:  true, uwm: true,
-      		aa: true, ae: true, ah: true, ao: true, ax: true, eh: true, ehr: true,  er: true, ih: true, iy: true, oh: true, uw: true, uh: true, y: true, axl: true, axm: true, axn: true, uwn: true, uwl:  true, uwm: true, axr: true,
-			// aa: true, ae: true, ah: true, ao: true, ax: true, eh: true, ehr: true,  er: true, ih: true, iy: true, oh: true, uw: true, uh: true, y: true, axl: true, axm: true, axn: true, uwn: true, uwl:  true, uwm: true,
+
+      		aa: true, ae: true, ah: true, ao: true, ax: true, eh: true, ehr: true, er: true, ih: true, iy: true, oh: true, uw: true, uh: true, y: true, axl: true, axm: true, axn: true, uwn: true, uwl:  true, uwm: true, axr: true,
+			
+			// possibly this should have no compound phonemes (or ax)
+			//aa: true, ae: true, ah: true, ao: true, ax: true, eh: true, er: true, ih: true, iy: true, oh: true, uw: true, uh: true, y: true,
+
+			// alternately, have to add the new compound phonemes 
+			//aa: true, ae: true, ah: true, ao: true, ax: true, eh: true, ehr: true, er: true, ih: true, iy: true, oh: true, uw: true, uh: true, y: true, axl: true, axm: true, axn: true, uwn: true, uwl:  true, uwm: true, axr: true, yuw: true, ihl: true, ehl: true,
+
+			
 		}
 		remaining := phonDiff(noSlideVowels, exceptPhons)
 		phons := []rule{}
@@ -1018,8 +1050,9 @@ func (g *jsgfGrammar) new_R_V_noSlide() R_V_noSlide {
 
 			// removing ax, axm, axn, axl, uwl, uwm, uwn because they seem to be interferring (being surprises) when guards, especially on words ending with AX
 			// PE 2nd Jan 2022
-			// Not adding axr - 5 Jan 2022  (just because if the above have already been removed, it doesn't make sense to add it in)     
-			aa, ae, ah, eh, ehr, er, ih, iy, oh, uw, uh, y,  
+			// Not adding axr - 5 Jan 2022  (just because if the above have already been removed, it doesn't make sense to add it in)
+			// Not including any compound phoneme, ax or any diphthong      
+			aa, ae, ah, eh, er, ih, iy, oh, uw, uh, y,  
 		}
 		phons := []rule{}
 		for _, v := range noSlideVowels {
@@ -1067,10 +1100,10 @@ func (gr *jsgfGrammar) new_R_C() R_C {
 	r := gr.new_R_named(name, func() rule {
 		consonants := []phoneme{
 			// b, ch, d, dh, f, g, hh, jh, k, l, m, n, ng, p, r, s, sh, t, th, v, w, z, zh,
-			// b, ch, d, dh, f, g, hh, jh, k, l, m, n, p, r, s, sh, t, th, v, w, z, zh, st, nd, dz, ts, axm, axn, axl, kw, ks,
-			//b, ch, d, dh, f, g, hh, jh, k, l, m, n, p, r, s, sh, t, th, v, w, z, zh, dz, ts, axn, axl, kw, ks, uwl, sts,
 			b, ch, d, dh, f, g, hh, jh, k, l, m, n, p, r, s, sh, t, th, v, w, z, zh, dz, kw, ks, ts, kl, pl, bl, tr, "gr", pr, kr, ing,
 
+			//b, ch, d, dh, f, g, hh, jh, k, l, m, n, p, r, s, sh, t, th, v, w, z, zh, dz, kw, ks, ts, kl, pl, bl, tr, "gr", pr, kr, ing, thr, sts, st, kt, fl,
+		
 			/*            // groups to reduce any_consonant by ..... the reason to do so is to help the different scan return a similar surprise
 			p, b,
 			d, t,
@@ -1336,6 +1369,9 @@ func (g *jsgfGrammar) trappedOpeningRule(phons []phoneme) parsableRule {
 	//remaining_pool := consRemove(newConsonants(), phons[0], ch, d, dh, f, "g", jh, k, l, m, n, ng, p, r, s, sh, t, th, v, w, z, zh, b, hh, dz, ts, axn, axl, kw, ks, uwl, sts) // remove everything
 	remaining_pool := consRemove(newConsonants(), phons[0], ch, d, dh, f, "g", jh, k, l, m, n, ng, p, r, s, sh, t, th, v, w, z, zh, b, hh, dz, kw, ks, ts, kl, pl, bl, tr, pr, gr, kr, ing) // remove everything
 
+	//remaining_pool := consRemove(newConsonants(), phons[0], ch, d, dh, f, "g", jh, k, l, m, n, ng, p, r, s, sh, t, th, v, w, z, zh, b, hh, dz, kw, ks, ts, kl, pl, bl, tr, pr, gr, kr, ing, thr, sts, st, kt, fl) // remove everything
+
+	
 	switch phons[0] {
 	case k:
 		remaining_pool[b] = true
@@ -2215,10 +2251,9 @@ func (j *jsgfStandard) openingPenalty(ph phoneme) (phonRule, bool) {
 	//penalties = consRemove(penalties, b, p)
 
 	//penalties := consRemove(newConsonants(), b, ch, d, dh, f, "g", hh, jh, k, l, m, n, nd, ng, p, r, s, sh, tS, t, th, v, w, z, zh, dz, ts, axm, axl, axn, kw, ks)  // remove everything
-	//penalties := consRemove(newConsonants(), b, ch, d, dh, f, "g", hh, jh, k, l, m, n, ng, p, r, s, sh, t, th, v, w, z, zh, dz, ts, axl, axn, kw, ks, uwl, sts)  // remove everything
+	
 	penalties := consRemove(newConsonants(), b, ch, d, dh, f, "g", hh, jh, k, l, m, n, ng, p, r, s, sh, t, th, v, w, z, zh, dz, kw, ks, ts, kl, pl, bl, tr, kr, pr, gr, ing)  // remove everything
-
-	//penalties := consRemove(newConsonants(), hh, f, m, v, r, w, l, y, sh, k, zh, dh, ng, n, jh, b, p, g, th, ph)     // allowing HH in the opening run is useful for many things BUT, messes up eh-school (turning ae into ih)
+	//penalties := consRemove(newConsonants(), b, ch, d, dh, f, "g", hh, jh, k, l, m, n, ng, p, r, s, sh, t, th, v, w, z, zh, dz, kw, ks, ts, kl, pl, bl, tr, kr, pr, gr, ing, thr, sts, st, kt, fl)  // remove everything
 
 	//partner := []phoneme{}
 
@@ -2567,7 +2602,37 @@ var confusionMatrix = map[phoneme]map[phoneme]float64{
 		p: 26.3, t: 7.9, k: 12.1, f: 11.3, th: 5, s: 0.8, sh: 0.4, ch: 0.9, hh: 99, b: 14.6, d: 6.7, g: 4.9, v: 6.6, dh: 3, z: 0.5, zh: 0.4, jh: 0.5, y: 0.5, m: 3.6, n: 5, ng: 10, l: 14.8, r: 96, w: 6.7, ih: 0.3, aa: 99, ah: 99, oy: 3, ax: 99, axn: 99, axm: 99, axl: 99, uwn: 99, uwm: 99, uwl: 99,
 	},
 	}
-	
+
+	/*
+	// Adding 14 Feb 2022 for the new compound phonemes
+	thr: {
+		p: 18.8, t: 24.6, k: 5.6, f: 39.3, th: 99, s: 12, sh: 2.5, ch: 2.5, hh: 7.1, b: 14.2, d: 7.9, g: 2.5, v: 10, dh: 10, z: 5.5, zh: 1.0, jh: 1.0, y: 2, m: 2.5, n: 2.5, ng: 0.5, l: 14.8, r: 99, w: 10.0,
+	},
+	sts: {
+		p: 25, t: 99, k:14.0, f: 20.0, th: 25.0, s: 99, sh: 15.0, ch: 7, hh: 4, b: 5, d: 20, g: 5, v: 2, dh: 5, z: 25, zh: 10, jh: 2.7, y: 1.5, m: 0.8, n: 0.5, ng: 0.9, l: 1.4, r: 3, w: 0.5, ih: 0.3, aa: 0.5, ao:1,
+	},
+	ts: {
+		p: 25, t: 99, k:14.0, f: 20.0, th: 25.0, s: 99, sh: 15.0, ch: 7, hh: 4, b: 5, d: 20, g: 5, v: 2, dh: 5, z: 25, zh: 10, jh: 2.7, y: 1.5, m: 0.8, n: 0.5, ng: 0.9, l: 1.4, r: 3, w: 0.5, ih: 0.3, aa: 0.5, ao:1,
+	},
+	st: {
+		p: 25, t: 99, k:14.0, f: 20.0, th: 25.0, s: 99, sh: 15.0, ch: 7, hh: 4, b: 5, d: 20, g: 5, v: 2, dh: 5, z: 25, zh: 10, jh: 2.7, y: 1.5, m: 0.8, n: 0.5, ng: 0.9, l: 1.4, r: 3, w: 0.5, ih: 0.3, aa: 0.5, ao:1,
+	},
+	kt: {
+		p: 25, t: 99, k: 99, f: 7.7, th: 9.2, s: 1, sh: 1, ch: 20, hh: 11.3, b: 7.1, d: 20.4, g: 15, v: 0.5, dh: 5.4, z: 0.5, zh: 0.5, jh: 5, y: 1.5, m: 2.1, n: 3.3, ng: 3, l: 2.4, r: 0.8, w: 1, oy: 0.5, ao: 0.5, aa: 0.5, ih: 2,
+	},
+	fl: {
+		p: 24.6, t: 21.7, k: 13.9, f: 99, th: 11.3, s: 7.5, sh: 2.4, ch: 1.5, hh: 9.2, b: 15, d: 10.4, g: 5.5, v: 5.4, dh: 5, z: 1.4, zh: 1, jh: 2, y: 2.0, m: 1.7, n: 2, ng: 1.2, l: 99, r: 15, w: 15, uwl: 99, axl: 99,
+	},
+	ihl: {
+		p: 30, t: 8.3, k: 1.7, f: 5.8, th: 5, s: 1, sh: 0.5, ch: 1.0, hh: 30, b: 8.3, d: 1, g: 3.6, v: 8.7, dh: 3.3, z: 2.5, zh: 1, jh: 1, y: 3, m: 10, n: 3, ng: 3.0, l: 99, r: 10, w: 10, uwl: 99, axl: 99, ih: 99,
+	},
+	yuw: {
+		p: 1.3, t: 0.5, k: 0.8, f: 0.9, th: 0.8, s: 1.4, sh: 3, ch: 0.9, hh: 5, b: 5, d: 2.5, g: 3, v: 0.7, dh: 2.0, z: 0.5, zh: 0.5, jh: 4.6, y: 99, m: 10, n: 4.2, ng: 0, l: 10, r: 3, w: 10, y: 99, uw:99,
+	},
+	ehl: {
+		p: 3.0, t: 3.0, k: 3.0, f: 8.8, th: 5.0, s: 2, sh: 0.5, ch: 1.0, hh: 99, b: 8.3, d: 2, g: 3.6, v: 8.7, dh: 4.0, z: 2.5, zh: 1.0, jh: 2, y: 1.0, m: 4, n: 1.1, ng: 1.0, l: 99, r: 4.2, w: 5.4, uwl: 99, axl: 99, oy: 0.5, ax:99, axr: 99, eh:99
+	},
+	*/
 	
 	
 	// Added 9th March 2021 (suppressed d in words like bends) -- using n guards for now
@@ -2696,6 +2761,7 @@ func (j *jsgfStandard) closingPenalty(ph phoneme) (phonRule, bool) {
 	//penalties := consRemove(newConsonants(), b, ph)
 
 	penalties := consRemove(newConsonants(), b, ch, d, dh, f, "g", hh, jh, k, l, m, n, ng, p, r, s, sh, t, th, v, w, z, zh, dz, kw, ks, ts, kl, pl, bl, tr, kr, pr, gr, ing)
+	//penalties := consRemove(newConsonants(), b, ch, d, dh, f, "g", hh, jh, k, l, m, n, ng, p, r, s, sh, t, th, v, w, z, zh, dz, kw, ks, ts, kl, pl, bl, tr, kr, pr, gr, ing, th, sts, st, kt, fl)
 
 	/*
 
@@ -2877,9 +2943,8 @@ func (j *jsgfStandard) vowelHandler(ph phoneme) []phoneme {
 		str := fmt.Sprintln("vowelHandler: ph =", ph)
 		// Test isVowel and report anything unexpected
 		vowels := []phoneme{
-			//aa, ae, ah, ao, aw, ax, ay, eh, er, ey, ih, iy, oh, ow, oy, uw, uh, y, axnoise, ernoise, axl, axm, axn, uwl, uwn, uwm,
-		    aa, ae, ah, ao, aw, ax, ay, eh, er, ey, ih, iy, oh, ow, oy, uw, uh, y, axl, axm, axn, uwl, uwn, uwm, axr,
-			// aa, ae, ah, ao, aw, ax, ay, eh, er, ey, ih, iy, oh, ow, oy, uw, uh, y, axl, axm, axn, uwl, uwn, uwm,
+		    aa, ae, ah, ao, aw, ax, ay, eh, ehr, er, ey, ih, iy, oh, ow, oy, uw, uh, y, axl, axm, axn, uwl, uwn, uwm, axr,
+			//aa, ae, ah, ao, aw, ax, ay, eh, ehr, er, ey, ih, iy, oh, ow, oy, uw, uh, y, axl, axm, axn, uwl, uwn, uwm, axr, ihl, yuw, ehl,
 		}
 		for _, vowel := range vowels {
 			if !isVowel(vowel) {
@@ -2962,9 +3027,8 @@ func (j *jsgfDiphthong) vowelHandler(ph phoneme) []phoneme {
 		str := fmt.Sprintln("vowelHandler: ph =", ph)
 		// Test isVowel and report anything unexpected
 		vowels := []phoneme{
-			//aa, ae, ah, ao, aw, ax, ay, eh, er, ey, ih, iy, oh, ow, oy, uw, uh, y, axnoise, ernoise, axl, axm, axn, uwl, uwn, uwm,
-      		aa, ae, ah, ao, aw, ax, ay, eh, er, ey, ih, iy, oh, ow, oy, uw, uh, y, axl, axm, axn, uwl, uwn, uwm, axr,
-			// aa, ae, ah, ao, aw, ax, ay, eh, er, ey, ih, iy, oh, ow, oy, uw, uh, y, axl, axm, axn, uwl, uwn, uwm,
+      		aa, ae, ah, ao, aw, ax, ay, eh, ehr, er, ey, ih, iy, oh, ow, oy, uw, uh, y, axl, axm, axn, uwl, uwn, uwm, axr,
+			//aa, ae, ah, ao, aw, ax, ay, eh, ehr, er, ey, ih, iy, oh, ow, oy, uw, uh, y, axl, axm, axn, uwl, uwn, uwm, axr, ihl, yuw, ehl,
 		}
 		for _, vowel := range vowels {
 			if !isVowel(vowel) {
