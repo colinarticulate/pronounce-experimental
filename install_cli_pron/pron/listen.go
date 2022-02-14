@@ -65,7 +65,6 @@ const (
 	l   = "l"
 	m   = "m"
 	n   = "n"
-	//nd = "nd"
 	ng = "ng"
 	oh = "oh"
 	ow = "ow"
@@ -73,7 +72,6 @@ const (
 	p  = "p"
 	r  = "r"
 	s  = "s"
-	//st = "st"
 	sh  = "sh"
 	sil = "sil"
 	ss  = "ss"
@@ -100,18 +98,24 @@ const (
 	uwm = "uwm"
 
 	ts = "ts"
-	//sts = "sts"
-	//st = "st"
 	kl = "kl"
 	pl = "pl"
 	bl = "bl"
-	//axnoise = "axnoise"
-	//ernoise = "ernoise"
 
 	kr = "kr"
 	gr = "gr"
 	tr = "tr"
 	pr = "pr"
+/*
+	thr = "thr"
+	ihl = "ihl"
+	yuw = "yuw"
+	sts = "sts"
+	st = "st"
+	ehl = "ehl"
+	kt = "ehl"
+	fl = "fl"
+*/
 )
 
 var cmubetToIpa = map[phoneme]string{
@@ -176,19 +180,24 @@ var cmubetToIpa = map[phoneme]string{
 	uwm: "uwm",
 
 	ts: "ts",
-	//sts: "sts",
-	//st: "st",
-
 	kl: "kl",
 	pl: "pl",
 	bl: "bl",
-	//axnoise: "axnoise",
-	//ernoise: "ernoise",
 
 	kr: "kr",
 	gr: "gr",
 	tr: "tr",
 	pr: "pr",
+/*
+	thr: "thr",
+	ihl: "ihl",
+	yuw: "yuw",
+	sts: "sts",
+	st: "st",
+	ehl: "ehl",
+	kt: "kt",
+	fl: "fl",
+*/
 }
 
 type neighbours map[phoneme][]phoneme
@@ -493,18 +502,7 @@ var neighbourRules = neighbours{
 	bl: {
 		bl,
 	},
-	//sts: {
-	// sts,
-	//},
-	//st: {
-	// st,
-	//},
-	//axnoise: {
-	// axnoise,
-	//},
-	//ernoise: {
-	// ernoise,
-	//},
+
 
 	kr: {
 		kr,
@@ -518,6 +516,32 @@ var neighbourRules = neighbours{
 	pr: {
 		pr,
 	},
+/*
+	thr: {
+		thr,
+	},
+	ihl: {
+		ihl,
+	},
+	yuw: {
+		yuw,
+	},
+	sts: {
+		sts,
+	},
+	st: {
+		st,
+	},
+	ehl: {
+		ehl,
+	},
+	kt: {
+		kt,
+	},
+	fl: {
+		fl,
+	},
+*/	
 }
 
 type psFlag string
@@ -3319,15 +3343,21 @@ var nearestNeighbours = map[phoneme]phoneme{
 	kl:  k,
 	pl:  p,
 	bl:  b,
-	//sts: s,
-	//st: s,
-	//axnoise: ax,
-	//ernoise: er,
 
 	kr: r,
 	gr: r,
 	tr: r,
 	pr: r,
+/*
+	thr: r,
+	ihl: l,
+	yuw: y,
+	sts: s,
+	st: s,
+	ehl: l,
+	kt: t,
+	fl: l,
+*/
 }
 
 type phonemePair struct {
