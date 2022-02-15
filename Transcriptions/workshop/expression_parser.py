@@ -30,9 +30,7 @@ def combinations(mx):
     return result
 
 
-
-def main():
-
+def creates_combinations_given_lengths():
     idx = np.array([0,1,2,3])
     mx = np.array([1,2,1,3])
 
@@ -55,6 +53,13 @@ def main():
     result2 = combinations(mx2)
 
     result = combinations(mx)
+
+
+
+
+def main():
+
+    transcription = "K Y UW T IH K AX L"
 
     print("working on it.")
 
