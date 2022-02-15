@@ -173,7 +173,7 @@ def train_Bare(experiment_name, experiment_file):
 
 def double_experiment():
 
-    experiment_name="double"
+    experiment_name="Expanded"
     experiment_file=f"./../experiments/{experiment_name}.toml"
 
     model_name = train_Bare(experiment_name, experiment_file)
@@ -240,10 +240,10 @@ def main():
     # test_Bare_on_train_data_and_two_expectations([model_name])
     #test_Bare_on_train_data_and_two_expectations()
 
-    #double_experiment()
-    experiment_name="double"
-    experiment_file=f"./../experiments/{experiment_name}.toml"
-    test_double_experiment(experiment_name, experiment_file)
+    double_experiment()
+    # experiment_name="Expanded"
+    # experiment_file=f"./../experiments/{experiment_name}.toml"
+    # test_double_experiment(experiment_name, experiment_file)
 
     
     print("finished.main")

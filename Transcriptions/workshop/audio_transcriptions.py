@@ -141,8 +141,10 @@ def given_dummy_transcriptions_create_fileids_and_an_update_general_dummy_dict()
     #     copy_audios_and_create_transcription( word_folder, word, dst_audio, dst_transcription)
    
 
-    transcription_file="./data/art_db_Bare_train_Double.transcription"
-    fileids_file="./data/art_db_Bare_train_Double.fileids"
+    # transcription_file="./data/art_db_Bare_train_Double.transcription"
+    # fileids_file="./data/art_db_Bare_train_Double.fileids"
+    transcription_file="./data/art_db_Bare_train_Expanded.transcription"
+    fileids_file="./data/art_db_Bare_train_Expanded.fileids"
     audio_folder="train/art_db_compilation/"
 
     transcriptions, fileids = create_fileids_from_transcription( transcription_file, fileids_file, audio_folder)
@@ -153,8 +155,8 @@ def given_dummy_transcriptions_create_fileids_and_an_update_general_dummy_dict()
     
     dummy_entries = create_dummy_dictionary_entries(transcriptions)
 
-    dummy_dict_file="./data/art_db_v2_dummy.dic"
-    dictionary = get_dictionary("./../../Dictionaries/art_db_v2.dic") #create dummy again
+    dummy_dict_file="./data/art_db_v3_dummy.dic"
+    dictionary = get_dictionary("./../../Dictionaries/art_db_v3.dic") #create dummy again
     create_dummy_dictionary(dictionary, dummy_dict_file)
 
     
@@ -162,7 +164,7 @@ def given_dummy_transcriptions_create_fileids_and_an_update_general_dummy_dict()
 
     merged_dummy_entries = merge_dummy_dictionaries(current_dummy, dummy_entries)
 
-    filename="./data/art_db_v2_dummy_new.dic"
+    filename="./data/art_db_v3_dummy_new.dic"
     save_dummy_dict(filename, merged_dummy_entries)
 
 
