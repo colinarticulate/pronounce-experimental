@@ -50,13 +50,13 @@ def data_augmentation_experiment():
 
 
 
-def create_testing_configuration(model_name, output_folder, audio_folder, expectation, input, toml_filename):
+def create_testing_configuration(model_name, output_folder, audio_folder, expectation, input, toml_filename, dict_version=2):
     with open(toml_filename,'w') as f:
         f.write("[test_pronounce_parameters]\n")
         f.write("\n")
 
-        f.write("'-dict' = \"./../Dictionaries/art_db_v2.dic\"\n")
-        f.write("'-phdict' = \"./../Dictionaries/art_db_v2_inference.phone\"\n")
+        f.write(f"'-dict' = \"./../Dictionaries/art_db_v{dict_version}.dic\"\n")
+        f.write(f"'-phdict' = \"./../Dictionaries/art_db_v{dict_version}_inference.phone\"\n")
         f.write(f"'-infolder' = \"{audio_folder}\"\n")
         f.write(f"'-tests' = \"{input}\"\n")
         f.write(f"'-expectations' = \"{expectation}\"\n")
@@ -210,7 +210,7 @@ def test_double_experiment(experiment_name, experiment_file):
                 toml_files.append(os.path.basename(config_file))
                 output_folder = f"./../Test_Output/output_{model_name}_{test_set}_{expectation_type}"
                 output_folders.append(output_folder)
-                create_testing_configuration(model_name, output_folder, audio_folder, expectation, input, config_file)
+                create_testing_configuration(model_name, output_folder, audio_folder, expectation, input, config_file, dict_version=3)
                 testing_bare = test(config_file)
                 testing_bare.fit()
 
@@ -240,10 +240,10 @@ def main():
     # test_Bare_on_train_data_and_two_expectations([model_name])
     #test_Bare_on_train_data_and_two_expectations()
 
-    double_experiment()
-    # experiment_name="Expanded"
-    # experiment_file=f"./../experiments/{experiment_name}.toml"
-    # test_double_experiment(experiment_name, experiment_file)
+    #double_experiment()
+    experiment_name="Expanded"
+    experiment_file=f"./../experiments/{experiment_name}.toml"
+    test_double_experiment(experiment_name, experiment_file)
 
     
     print("finished.main")

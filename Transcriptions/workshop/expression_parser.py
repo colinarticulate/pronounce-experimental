@@ -55,11 +55,33 @@ def creates_combinations_given_lengths():
     result = combinations(mx)
 
 
+def join_list(alist,join_pattern):
+
+    result=[]
+    for item in alist[:-1]:
+        if item!='':
+            result.append([item.strip(" ")])
+        result.append(join_pattern)
+    if alist[-1]!='':
+        result.append([alist[-1].strip(" ")])
+
+    return tuple(result)
 
 
 def main():
 
-    transcription = "K Y UW T IH K AX L"
+    transcription = [["K Y UW T IH K AX L"]]
+    r1=["K axL", "K AX L", "K L"]
+
+    for i,item in enumerate(transcription):
+        if len(item)==1:
+            for pattern in r1:
+                if pattern in item[0]:
+                    parts = item[0].split(pattern)
+                    #tr = f"{pattern}".join(parts)
+                    result = join_list(parts, r1)
+                    transcription[i]= result
+
 
     print("working on it.")
 

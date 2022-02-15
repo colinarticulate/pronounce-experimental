@@ -102,9 +102,26 @@ def phones_from_dictionary():
     save_phones("./data/art_db_v3.phone", phones)
 
 
+def create_inference_phone_file(src,dst):
+    with open(src, 'r') as f:
+        raw=f.read()
+
+    phones = raw.strip("\n").split("\n")
+
+    with open(dst, 'w') as f:
+        for phone in phones:
+            f.write(f"{phone.lower()}\t{phone}\n")
+
+def task_create_inference_phone_file():
+    src = "./../../Dictionaries/art_db_v3.phone"
+    dst = "./../../Dictionaries/art_db_v3_inference.phone"
+    create_inference_phone_file(src, dst)
+
 def main():
 
-    phones_from_transciptions()
+
+    task_create_inference_phone_file()
+    #phones_from_transciptions()
     #phones_from_dictionary()
 
 

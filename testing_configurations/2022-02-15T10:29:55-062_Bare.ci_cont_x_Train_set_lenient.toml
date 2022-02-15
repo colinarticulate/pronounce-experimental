@@ -1,0 +1,10 @@
+[test_pronounce_parameters]
+
+'-dict' = "./../Dictionaries/art_db_v2.dic"
+'-phdict' = "./../Dictionaries/art_db_v2_inference.phone"
+'-infolder' = "/home/dbarbera/Repositories/art_db/wav/train/art_db_compilation"
+'-tests' = "./../Tests/train_inputs.csv"
+'-expectations' = "./../Expectations/train_expectations_lenient.csv"
+'-outfolder' = "./../Test_Output/output_2022-02-15T10:29:55-062_Bare.ci_cont_Train_set_lenient"
+'-featparams' = "./../Models/Bare/2022-02-15T10:29:55-062_Bare.ci_cont.ci_cont/feat.params"
+'-hmm' = "./../Models/Bare/2022-02-15T10:29:55-062_Bare.ci_cont.ci_cont"
