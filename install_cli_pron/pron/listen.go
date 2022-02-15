@@ -106,16 +106,16 @@ const (
 	gr = "gr"
 	tr = "tr"
 	pr = "pr"
-/*
+
 	thr = "thr"
 	ihl = "ihl"
 	yuw = "yuw"
 	sts = "sts"
 	st = "st"
 	ehl = "ehl"
-	kt = "ehl"
+	kt = "kt"
 	fl = "fl"
-*/
+
 )
 
 var cmubetToIpa = map[phoneme]string{
@@ -188,7 +188,7 @@ var cmubetToIpa = map[phoneme]string{
 	gr: "gr",
 	tr: "tr",
 	pr: "pr",
-/*
+
 	thr: "thr",
 	ihl: "ihl",
 	yuw: "yuw",
@@ -197,7 +197,7 @@ var cmubetToIpa = map[phoneme]string{
 	ehl: "ehl",
 	kt: "kt",
 	fl: "fl",
-*/
+
 }
 
 type neighbours map[phoneme][]phoneme
@@ -516,7 +516,7 @@ var neighbourRules = neighbours{
 	pr: {
 		pr,
 	},
-/*
+
 	thr: {
 		thr,
 	},
@@ -541,7 +541,7 @@ var neighbourRules = neighbours{
 	fl: {
 		fl,
 	},
-*/	
+	
 }
 
 type psFlag string
@@ -3348,7 +3348,7 @@ var nearestNeighbours = map[phoneme]phoneme{
 	gr: r,
 	tr: r,
 	pr: r,
-/*
+
 	thr: r,
 	ihl: l,
 	yuw: y,
@@ -3357,7 +3357,7 @@ var nearestNeighbours = map[phoneme]phoneme{
 	ehl: l,
 	kt: t,
 	fl: l,
-*/
+
 }
 
 type phonemePair struct {
