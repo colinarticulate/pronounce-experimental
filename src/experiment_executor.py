@@ -193,15 +193,18 @@ def test_double_experiment(experiment_name, experiment_file):
     model_names, test_sets = read_model_names(experiment_file)
      
     expectations=["./../Expectations/train_expectations_lenient.csv"]
+    #expectations=["./../Expectations/expectations_v2.csv"]
     input = "./../Tests/train_inputs.csv"
+    #input = "./../Tests/pronounce_input.csv"
     audio_folder="/home/dbarbera/Repositories/art_db/wav/train/art_db_compilation"
+    #audio_folder="/home/dbarbera/Data/audio_clips"
 
     toml_files=[]
     output_folders=[]
     for model_name in model_names:
         for test_set in test_sets:
             for expectation in expectations:
-                expectation_type=expectation.split("_")[-1].split(".")[0]
+                expectation_type=os.path.basename(expectations[0][:-4])#expectation.split("_")[-1].split(".")[0]
                 print("---------------------------------------------------------------------------------------------")
                 print(f"Iteration: {expectation}")
                 print(f"\nTesting model:\n{model_name}\n on dataset:\n {test_set}\n  ")
