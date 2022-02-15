@@ -15,8 +15,8 @@ time ./test_pronounce -dict /Users/test/Downloads/sourceFiltered.dict \
                         -tests /Users/test/Downloads/train/scrape/hossein/HY_test/0_hy_test_input.csv  \
                         -expectations /Users/test/Downloads/train/scrape/hossein/HY_test/0_HY_expectations.csv  \
                         -outfolder /Users/test/Downloads/audio_temp \
-                        -featparams /Users/test/Documents/GitHub/pronounce-experimental/Models/2022-02-11T11.25.24-056_Bare.ci_cont/feat.params \
-                        -hmm /Users/test/Documents/GitHub/pronounce-experimental/Models/2022-02-11T11.25.24-056_Bare.ci_cont
+                        -featparams /Users/test/Documents/GitHub/pronounce-experimental/Models/2022-02-14T15.50.13-019_Bare.ci_cont/feat.params \
+                        -hmm /Users/test/Documents/GitHub/pronounce-experimental/Models/2022-02-14T15.50.13-019_Bare.ci_cont
                         
 
 #
