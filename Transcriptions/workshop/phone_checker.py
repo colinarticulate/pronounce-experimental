@@ -71,20 +71,43 @@ def save_phones(file, phones):
         f.write("\n".join(phones))
         f.write("\n")
 
+def extract_all_phones_from_dictionary(dictionary):
+    phones=[]
+    for entry in dictionary:
+        phones = phones + dictionary[entry].split(" ")
+        phones = list(set(phones))
 
-def main():
+    return sorted(phones)
 
+def phones_from_transciptions():
     transcription_file="./data/art_db_Bare_train_Double.transcription"
+
     phones = extract_all_phones_from_dummy_transcription(transcription_file)
     print(phones, len(phones))
 
     file="./data/phones_from_transcription.txt"
     save_phones(file,phones)
 
-
     file_reference="./data/art_db_v2.phone"
     compare_phone_lists(file_reference, file)
+
+
+def phones_from_dictionary():
+    dict_file="./../../Dictionaries/raw/sourceFiltered_clustering.dict"
+    #dict_file="/home/dbarbera/Repositories/pronounce-experimental/Dictionaries/raw/sourceFiltered_clustering.dict"
+    dictionary = get_dictionary(dict_file)
+    phones = extract_all_phones_from_dictionary(dictionary)
+    save_phones("./data/art_db_v3.phone", phones)
+
+
+def main():
+
+    #phones_from_transciptions()
+    phones_from_dictionary()
+
+
     
+
 
 
 if __name__ == '__main__':
