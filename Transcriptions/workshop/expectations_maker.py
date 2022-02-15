@@ -103,6 +103,15 @@ def create_exepectation_files(expectations_file, audiofiles, phonetic_transcript
             f.write("\n")
 
 
+    #tailor-made
+    with open(expectations_file[:-4]+"_lenient.csv", 'w') as f:
+        for audiofile, phonetic_transcription, word in zip(audiofiles, phonetic_transcriptions, words):
+            f.write(f"{audiofile}_{word},")
+            for phoneme in phonetic_transcription.split(" "):
+                f.write(f"{phoneme.lower()},good,possible,")
+            f.write("\n")
+
+
 def create_expectations_from_transcriptions(transcription_file, dictionary, expectations_file, inputs_file):
 
         audiofiles, phonetic_transcriptions, words = obtain_transcriptions_data(transcription_file, dictionary)
