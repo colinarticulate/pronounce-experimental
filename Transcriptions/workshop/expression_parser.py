@@ -65,24 +65,42 @@ def join_list(alist,join_pattern):
     if alist[-1]!='':
         result.append([alist[-1].strip(" ")])
 
-    return tuple(result)
+    return result
+
+def parser(transcription, rules_set):
+
+    for rule in rules_set:
+        for i,item in enumerate(transcription):
+            for pattern in rule:
+            
+                if len(item)==1:
+
+                    if pattern in item[0]:
+                        parts = item[0].split(pattern)
+                        result = join_list(parts, rule)
+                        before=transcription[:i]
+                        after = transcription[i+1:]
+                        transcription = before+result+after
+                        break
+ 
+    return transcription
+
+def parser_example():
+    transcription = [["K Y UW T IH K AX L"]]
+    r1=["K axL", "K AX L", "K L"]
+    r2=["Y UW","Yuw"]
+    rules_set=[r1,r2]
+
+    valid_transcriptions = parser(transcription, rules_set)
+    print("transcription: ",transcription)
+    print("all valid transcriptions: ", valid_transcriptions)
 
 
 def main():
 
-    transcription = [["K Y UW T IH K AX L"]]
-    r1=["K axL", "K AX L", "K L"]
-
-    for i,item in enumerate(transcription):
-        if len(item)==1:
-            for pattern in r1:
-                if pattern in item[0]:
-                    parts = item[0].split(pattern)
-                    #tr = f"{pattern}".join(parts)
-                    result = join_list(parts, r1)
-                    transcription[i]= result
 
 
+    parser_example()
     print("working on it.")
 
 
