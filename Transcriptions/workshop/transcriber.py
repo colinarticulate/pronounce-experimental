@@ -25,6 +25,26 @@ def get_dictionary( file ):
     return dictionary
 
 
+def get_dictionary_inv( file ):
+    with open(file, 'r') as f:
+        lines = f.readlines()
+
+    dictionary={}
+    for line in lines:
+        parts = line.strip("\n").split(" ")
+        entry = parts[0]
+
+        if len(parts[1:])>1:
+            transcription = " ".join(parts[1:])
+        else:
+            transcription = parts[1]
+
+        #dictionary[entry]=transcription
+        dictionary[transcription]=entry
+
+    return dictionary
+
+
 def convert_transcription_to_dummy_train(dictionary, transcriptions_in, transcriptions_out):
 
     with open(transcriptions_in, "r") as fr:

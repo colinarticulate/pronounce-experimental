@@ -192,9 +192,9 @@ def double_experiment():
 def test_double_experiment(experiment_name, experiment_file):
     model_names, test_sets = read_model_names(experiment_file)
      
-    expectations=["./../Expectations/train_expectations_lenient.csv"]
+    expectations=["./../Expectations/train_expectations_v3.csv"]
     #expectations=["./../Expectations/expectations_v2.csv"]
-    input = "./../Tests/train_inputs.csv"
+    input = "./../Tests/train_inputs_v3.csv"
     #input = "./../Tests/pronounce_input.csv"
     audio_folder="/home/dbarbera/Repositories/art_db/wav/train/art_db_compilation"
     #audio_folder="/home/dbarbera/Data/audio_clips"

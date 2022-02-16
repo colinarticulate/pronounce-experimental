@@ -4,6 +4,7 @@ Parsing utilities for grammar-like patterns
 
 import os
 import time
+import toml
 
 import numpy as np
 
@@ -67,8 +68,9 @@ def join_list(alist,join_pattern):
 
     return result
 
-def parser(transcription, rules_set):
+def parser(transcription_str, rules_set):
 
+    transcription = [[transcription_str]]
     for rule in rules_set:
         for i,item in enumerate(transcription):
             for pattern in rule:
@@ -124,20 +126,117 @@ def example_combinations_of_valid_possibilities():
 
     print(len(all_transcriptions),all_transcriptions)
 
-def example_all_together():
+#def example_all_together():
+
+def generate_expectation(multi_transcript):
+    sep=","
+    verdicts=["good","possible"]
+    expectation=[]
+    for item in multi_transcript:
+        if len(item)==1:
+            for phone in item[0].split(" "):
+                expectation.append(phone)
+                for v in verdicts:
+                    expectation.append(v)
+        else:
+            expectation.append("(")
+            for subitem in item[:-1]:
+                for phone in subitem.split(" "):
+                    expectation.append(phone)
+                    for v in verdicts:
+                        expectation.append(v)
+                expectation.append("||")
+            for phone in item[-1].split(" "):
+                expectation.append(phone)
+                for v in verdicts:
+                    expectation.append(v)
+            expectation.append(")")
+
+    merge1=" ".join(expectation)
+    merge2=merge1.split(" ")
+    merge3=sep.join(merge2)+sep
     
+    return merge3
+
+
+
+def extract_rules(rules_file):
+    cfg=toml.load(rules_file)
+    
+    sets=cfg['Sets']
+    metarules=cfg['Meta-Rules']
+    rules=cfg['Rules']
+    
+    all_rules=[]
+    for mr in metarules:
+        for s in sets:
+            if s in metarules[mr][0]:
+                
+                for phone in sets[s]:
+                    rule_instance=[]
+                    for pattern in metarules[mr]:
+                    
+                        instance = pattern.replace(s,phone)
+                        rule_instance.append(instance)
+                    all_rules.append(rule_instance)
+    
+    for rule in rules:
+        all_rules.append(rules[rule])
+
+    return all_rules
+
+
+def example_for_one_transcription():
+    rules_file="./data/rules.toml"
+
+    rules=extract_rules(rules_file)
+
+    transcription = "K Y UW T IH K AX L"
+
+    multi_transcript = parser(transcription, rules)
+
+    valid_transcriptions = generate_valid_transcriptions(multi_transcript)
+    
+    expectation = generate_expectation(multi_transcript)    
+    print(transcription)
+    print(multi_transcript)
+    print(expectation)
+    print(valid_transcriptions)
+
+
+def extract_word(fileid):
+    word = fileid.split("-")[-1].split("_")[0]
+    return word
+
+def extract_transcriptions_inputs( transcription_file ):
+
+    with open(transcription_file, "r") as f:
+        raw=f.read()
+
+    transcriptions=raw.strip("\n").split("\n")
+
+    inputs=[]
+    
+    for transcription in transcriptions:
+        fileid = transcription.split("\t")[1][1:-1]
+        word = extract_word(fileid)
+        inputs.append([fileid,word])
+
+    return transcriptions, inputs
 
 def main():
+    ## To add to unit testing:
     #example_creating_combinations_given_lengths()
     #parser_example()
     #example_combinations_of_valid_possibilities()
-
-    
-
-    #print(all_transcriptions, len(all_transcriptions))
+    #example_for_one_transcription()
             
 
-    #print("working on it.")
+    transcription_file="./data/art_db_Bare_train_Expanded.transcription"   
+
+        
+
+    print("working on it.")
 
    
 
