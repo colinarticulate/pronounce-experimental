@@ -30,7 +30,7 @@ def combinations(mx):
     return result
 
 
-def creates_combinations_given_lengths():
+def example_creating_combinations_given_lengths():
     idx = np.array([0,1,2,3])
     mx = np.array([1,2,1,3])
 
@@ -85,6 +85,7 @@ def parser(transcription, rules_set):
  
     return transcription
 
+
 def parser_example():
     transcription = [["K Y UW T IH K AX L"]]
     r1=["K axL", "K AX L", "K L"]
@@ -96,17 +97,49 @@ def parser_example():
     print("all valid transcriptions: ", valid_transcriptions)
 
 
+def generate_valid_transcriptions( valid_possibilities ):
+    lengths = []
+    for item in valid_possibilities:
+        lengths.append(len(item))
+
+    mx=np.array(lengths)
+    idxs = combinations(mx)
+
+    m, n = idxs.shape
+
+    all_transcriptions=[]
+    for i in range(m):
+        transcription=[]
+        for j in range(n):
+            phone = valid_possibilities[j][idxs[i,j]]
+            transcription.append(phone)
+        all_transcriptions.append(" ".join(transcription))
+
+    return all_transcriptions
+
+def example_combinations_of_valid_possibilities():
+    valid_transcriptions=[['K'], ['Y UW', 'Yuw'], ['T IH'], ['K axL', 'K AX L', 'K L']]
+
+    all_transcriptions = generate_valid_transcriptions( valid_transcriptions)
+
+    print(len(all_transcriptions),all_transcriptions)
+
+def example_all_together():
+    
+
 def main():
-
-
-
-    parser_example()
-    print("working on it.")
-
-
-
+    #example_creating_combinations_given_lengths()
+    #parser_example()
+    #example_combinations_of_valid_possibilities()
 
     
+
+    #print(all_transcriptions, len(all_transcriptions))
+            
+
+    #print("working on it.")
+
+   
 
 
 
