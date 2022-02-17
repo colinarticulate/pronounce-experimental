@@ -213,22 +213,22 @@ def test_double_experiment(experiment_name, experiment_file):
                 toml_files.append(os.path.basename(config_file))
                 output_folder = f"./../Test_Output/output_{model_name}_{test_set}_{expectation_type}"
                 output_folders.append(output_folder)
-                create_testing_configuration(model_name, output_folder, audio_folder, expectation, input, config_file, dict_version=3)
-                testing_bare = test(config_file)
-                testing_bare.fit()
+                # create_testing_configuration(model_name, output_folder, audio_folder, expectation, input, config_file, dict_version=3)
+                # testing_bare = test(config_file)
+                # testing_bare.fit()
 
     #gathering test results
     
     dst_results_folder = "./../Results"
     for i, (toml_file, src_folder) in enumerate(zip(toml_files, output_folders)):
-        gather_test_pronounce_results(model_name,test_set, src_folder,dst_results_folder,toml_file)
+        gather_test_pronounce_results(model_name,test_set, src_folder,dst_results_folder,audio_folder, toml_file)
 
 
     #Create report
 
     report_dir = "./../Reports"
     #experiment_name = "Data_augmentation"
-    report_file = os.path.join(report_dir, f"{experiment_name}.xlsx")
+    report_file = os.path.join(report_dir, f"{experiment_name}_testing.xlsx")
     results_folder = "./../Results"
     create_report(report_file, experiment_name, toml_files, results_folder)
 

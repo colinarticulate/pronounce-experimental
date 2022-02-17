@@ -107,7 +107,7 @@ def get_summary_data(file, results):
     return accuracy, predictions
 
 
-def gather_test_pronounce_results(model_name, dataset_name, src_results_folder, dst_results_folder, toml_filename=None):
+def gather_test_pronounce_results(model_name, dataset_name, src_results_folder, dst_results_folder, audio_folder, toml_filename=None):
 
     if toml_filename == None:
         toml_filename = f"{model_name}_x_{dataset_name}.toml"
@@ -131,10 +131,11 @@ def gather_test_pronounce_results(model_name, dataset_name, src_results_folder, 
     accuracy, predictions = get_summary_data(os.path.join(src_results_folder, summary_file), results)
 
     
-    with open(os.path.join(dst_results_folder,toml_filename),'w') as f:
+    with open(os.path.join(dst_results_folder, toml_filename),'w') as f:
         f.write(f"[info]\n")
         f.write(f"\"model_name\" = \"{model_name}\"\n")
         f.write(f"\"dataset\" = \"{dataset_name}\"\n")
+        f.write(f"\"audios_folder\" = \"{audio_folder}\"\n")
         f.write("\n")
         f.write("[performance]\n")
         f.write(f"\"accuracy\" = \"{accuracy}\"\n")

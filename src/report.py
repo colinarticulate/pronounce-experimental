@@ -49,6 +49,12 @@ def add_items(worksheet,predictions):
     items = list(predictions.keys())    
     worksheet.write_column(0,0, items)
 
+def add_items_hyperlink_format(worksheet, predictions, path, file_extension):
+    items = list(predictions.keys())
+    for i, item in enumerate(items): 
+        audio_file = "_".join(item.split("_")[:-1])   
+        worksheet.write_url(i,0, os.path.join(path,f"{audio_file}.{file_extension}") ,string=item)
+
 
 def add_predictions(worksheet, col, predictions):
 
@@ -61,8 +67,9 @@ def format_result(result):
     return formatted_result
 
 
-def add_results(worksheet, predictions, results):
-    add_items(worksheet, predictions)
+def add_results(worksheet, predictions, results, audios_folder):
+    #add_items(worksheet, predictions)
+    add_items_hyperlink_format(worksheet, predictions, audios_folder, "wav")
     add_predictions(worksheet, 1, predictions)
     for i, result in enumerate(results):
         formatted_results = format_result(results[result])
@@ -260,7 +267,7 @@ def create_report(report_file, experiment_name, results_files, results_folder):
 
         add_predictions(worksheet, i+1, predictions)
         worksheet_i = workbook.add_worksheet(f"{i+1}")
-        add_results(worksheet_i, predictions, results)
+        add_results(worksheet_i, predictions, results, info['audios_folder'])
         format_results_sheet(workbook, worksheet_i, predictions)
         conditional_formatting_on_results(workbook, worksheet_i, 0, 2, len(results), 300)
         conditional_formatting(workbook, worksheet_i, 0, 1, len(predictions)-1, 1)
@@ -280,7 +287,7 @@ def main():
 
 
     report_dir = "./../Reports"
-    experiment_name = "Data_augmentation"
+    experiment_name = "Data_augmentation_testing"
     report_file = os.path.join(report_dir, f"{experiment_name}.xlsx")
     results_folder = "./../Results"
 
