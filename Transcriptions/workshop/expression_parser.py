@@ -191,7 +191,12 @@ def example_for_one_transcription():
 
     rules=extract_rules(rules_file)
 
-    transcription = "K Y UW T IH K AX L"
+    #transcription = "K Y UW T IH K AX L"
+    #transcription = "A B S AX N T"
+    #transcription = "EHR M AX N"
+    #transcription = "K EH M IH S T"
+    transcription = "IH N V AY AX R axN M axN T"
+
 
     multi_transcript = parser(transcription, rules)
 
@@ -229,10 +234,10 @@ def main():
     #example_creating_combinations_given_lengths()
     #parser_example()
     #example_combinations_of_valid_possibilities()
-    #example_for_one_transcription()
+    example_for_one_transcription()
             
 
-    transcription_file="./data/art_db_Bare_train_Expanded.transcription"   
+    #transcription_file="./data/art_db_Bare_train_Expanded.transcription"   
 
         
 

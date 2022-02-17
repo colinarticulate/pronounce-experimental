@@ -34,15 +34,25 @@
             //     "-hmm", "./../Models/Bare/2022-02-07T14:11:46-092_Bare_with_UWs.ci_cont"
             //    ],
             //Debug
+            // "args": [
+            //     "-dict", "./../Dictionaries/art_db_v2.dic",
+            //     "-phdict", "./../Dictionaries/art_db_v2_inference.phone",
+            //     "-infolder", "/home/dbarbera/Data/audio_clips",
+            //     "-tests", "./../Tests/debug_inputs.csv",
+            //     "-expectations", "./../Expectations/debug_expectations.csv",
+            //     "-outfolder", "./../Test_Output/output_debug",
+            //     "-featparams", "./../Models/Bare/2022-02-07T14:11:46-092_Bare_with_UWs.ci_cont/feat.params",
+            //     "-hmm", "./../Models/Bare/2022-02-07T14:11:46-092_Bare_with_UWs.ci_cont"
+            // ]
             "args": [
-                "-dict", "./../Dictionaries/art_db_v2.dic",
-                "-phdict", "./../Dictionaries/art_db_v2_inference.phone",
-                "-infolder", "/home/dbarbera/Data/audio_clips",
-                "-tests", "./../Tests/debug_inputs.csv",
-                "-expectations", "./../Expectations/debug_expectations.csv",
-                "-outfolder", "./../Test_Output/output_debug",
-                "-featparams", "./../Models/Bare/2022-02-07T14:11:46-092_Bare_with_UWs.ci_cont/feat.params",
-                "-hmm", "./../Models/Bare/2022-02-07T14:11:46-092_Bare_with_UWs.ci_cont"
+                "-dict", "./../Dictionaries/art_db_v3.dic",
+                "-phdict", "./../Dictionaries/art_db_v3_inference.phone",
+                "-infolder", "/home/dbarbera/Repositories/art_db/wav/train/art_db_compilation",
+                "-tests", "./../Tests/debug_train_inputs_v3.csv",
+                "-expectations", "./../Expectations/debug_train_expectations_v3.csv",
+                "-outfolder", "./../Test_Output/output_debug_trainset_v3",
+                "-featparams", "./../Models/Bare/2022-02-15T10:29:55-062_Bare.ci_cont/feat.params",
+                "-hmm", "./../Models/Bare/2022-02-15T10:29:55-062_Bare.ci_cont"
             ]
         }
     ]

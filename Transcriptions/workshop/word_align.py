@@ -3,6 +3,8 @@
 import time
 import sys
 import editdistance
+import numpy as np
+from expression_parser import extract_rules, parser, generate_valid_transcriptions
 
 INS = 1
 DEL = 2
@@ -98,6 +100,7 @@ def extract_hypothesis(file):
     hypothesis=[]
     for line in lines:
         hyp=line.split(" (")[0].split(" ")
+        hyp=" ".join(hyp).strip("SIL").strip(" ").split(" ")
         hypothesis.append(hyp)
 
     return hypothesis
@@ -111,9 +114,28 @@ def extract_words(file):
     words=[]
     for line in lines:
         word=line.split(" <sil> </s>")[0].split("<s> <sil> ")[1].split(" ")
-        words.append(["SIL"]+word+["SIL"])
+        words.append(word)
 
     return words
+
+
+def multi_editdistance(hyp,ref, rules):
+
+    ref_str = " ".join(ref)
+    multi_transcript = parser(ref_str, rules)
+
+    valid_transcriptions = generate_valid_transcriptions(multi_transcript)
+
+    edit_distances=[]
+    for valid in valid_transcriptions:
+        ref_valid=valid.split(" ")
+        edit_distances.append(editdistance.eval(hyp,ref_valid))
+
+    dists=np.array(edit_distances)
+    argmin = np.argmin(dists)
+    
+    return dists[argmin], valid_transcriptions[argmin].split(" ")
+
 
 def main():
     hyp_file="/home/dbarbera/Repositories/art_db/__workshop/tests_art_db_1-to-1.match"
@@ -129,25 +151,46 @@ def main():
     # words1 = " ".join(fn1.readlines()).split()
     # words2 = " ".join(fn2.readlines()).split()
 
-    words1 = extract_hypothesis(hyp_file)
-    words2 = extract_words(ref_file)
+    hyps = extract_hypothesis(hyp_file)
+    refs = extract_words(ref_file)
 
     #align(words1, words2)
     count=0
     relative_error=0
-    for i, (word1, word2) in enumerate(zip(words1,words2)):
-        ed=editdistance.eval(word1,word2)
+    for i, (hyp, ref) in enumerate(zip(hyps,refs)):
+        ed =editdistance.eval(hyp,ref)
         
-        w1=" ".join(word1)
-        w2=" ".join(word2)
+        w1=" ".join(hyp)
+        w2=" ".join(ref)
         print(f"\t{w1}")
         print(f"\t{w2}")
-        print(f"{i} {ed} {ed/len(word2)*100:.2f}%\n")
+        print(f"{i} {ed} {ed/len(ref)*100:.2f}%\n")
         count=count+ed
-        relative_error=relative_error+ed/len(word2)
+        relative_error=relative_error+ed/len(ref)
 
-    print(count, count/len(words1)*100)
-    print("PER: ", relative_error/len(words2)*100)
+    print(count, count/len(hyps)*100)
+    print("PER: ", relative_error/len(refs)*100)
+
+
+
+    rules_file="./data/rules.toml"
+    rules=extract_rules(rules_file)
+
+    count=0
+    relative_error=0
+    for i, (hyp, ref) in enumerate(zip(hyps,refs)):
+        #ed=editdistance.eval(hyp,ref)
+        ed, best_fit =multi_editdistance(hyp, ref, rules)
+        w1=" ".join(hyp)
+        w2=" ".join(best_fit)
+        print(f"\t{w1}")
+        print(f"\t{w2}")
+        print(f"{i} {ed} {ed/len(ref)*100:.2f}%\n")
+        count=count+ed
+        relative_error=relative_error+ed/len(ref)
+
+    print(count, count/len(hyps)*100)
+    print("PER: ", relative_error/len(refs)*100)
  
 
 
