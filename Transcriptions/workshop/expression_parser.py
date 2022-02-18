@@ -68,6 +68,13 @@ def join_list(alist,join_pattern):
 
     return result
 
+def remove_unidirectional(rule):
+    for i,r in enumerate(rule):
+        if ">>" in r:
+            rule[i]=r.strip(">>")
+    
+    return rule
+
 def parser(transcription_str, rules_set):
 
     transcription = [[transcription_str]]
@@ -77,9 +84,10 @@ def parser(transcription_str, rules_set):
             
                 if len(item)==1:
 
-                    if pattern in item[0]:
+                    if pattern in item[0] and ">>" not in pattern:
                         parts = item[0].split(pattern)
-                        result = join_list(parts, rule)
+                        uni_rule=remove_unidirectional(rule)
+                        result = join_list(parts, uni_rule)
                         before=transcription[:i]
                         after = transcription[i+1:]
                         transcription = before+result+after
@@ -191,11 +199,12 @@ def example_for_one_transcription():
 
     rules=extract_rules(rules_file)
 
-    #transcription = "K Y UW T IH K AX L"
-    #transcription = "A B S AX N T"
-    #transcription = "EHR M AX N"
+    transcription = "K Y UW T IH K AX L"
+    transcription = "A B S AX N T"
+    transcription = "EHR M AX N"
     #transcription = "K EH M IH S T"
     transcription = "IH N V AY AX R axN M axN T"
+    #transcription = "AE R M"
 
 
     multi_transcript = parser(transcription, rules)

@@ -87,11 +87,13 @@ def strip_variant(variant):
     return word
 
 def extract_word(phonemes, word_dictionary, audiofile):
-    temptative=audiofile.split("-")[-1].split("_")[0].upper()
-    if temptative in word_dictionary.values():
-        word = temptative
-    else:
-        word = strip_variant(word_dictionary[phonemes])
+    # temptative=audiofile.split("-")[-1].split("_")[0].upper()
+    # if temptative in word_dictionary.values():
+    #     word = temptative
+    # else:
+    #     word = strip_variant(word_dictionary[phonemes])
+
+    word=audiofile.split("-")[-1].split("_")[0].upper()
 
     return word
 
