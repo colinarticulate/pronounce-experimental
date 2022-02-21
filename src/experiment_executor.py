@@ -50,13 +50,13 @@ def data_augmentation_experiment():
 
 
 
-def create_testing_configuration(model_name, output_folder, audio_folder, expectation, input, toml_filename):
+def create_testing_configuration(model_name, output_folder, audio_folder, expectation, input, toml_filename, dict_version=2):
     with open(toml_filename,'w') as f:
         f.write("[test_pronounce_parameters]\n")
         f.write("\n")
 
-        f.write("'-dict' = \"./../Dictionaries/art_db_v2.dic\"\n")
-        f.write("'-phdict' = \"./../Dictionaries/art_db_v2_inference.phone\"\n")
+        f.write(f"'-dict' = \"./../Dictionaries/art_db_v{dict_version}.dic\"\n")
+        f.write(f"'-phdict' = \"./../Dictionaries/art_db_v{dict_version}_inference.phone\"\n")
         f.write(f"'-infolder' = \"{audio_folder}\"\n")
         f.write(f"'-tests' = \"{input}\"\n")
         f.write(f"'-expectations' = \"{expectation}\"\n")
@@ -192,16 +192,19 @@ def double_experiment():
 def test_double_experiment(experiment_name, experiment_file):
     model_names, test_sets = read_model_names(experiment_file)
      
-    expectations=["./../Expectations/train_expectations_lenient.csv"]
-    input = "./../Tests/train_inputs.csv"
+    expectations=["./../Expectations/train_expectations_v3.csv"]
+    #expectations=["./../Expectations/expectations_v2.csv"]
+    input = "./../Tests/train_inputs_v3.csv"
+    #input = "./../Tests/pronounce_input.csv"
     audio_folder="/home/dbarbera/Repositories/art_db/wav/train/art_db_compilation"
+    #audio_folder="/home/dbarbera/Data/audio_clips"
 
     toml_files=[]
     output_folders=[]
     for model_name in model_names:
         for test_set in test_sets:
             for expectation in expectations:
-                expectation_type=expectation.split("_")[-1].split(".")[0]
+                expectation_type=os.path.basename(expectations[0][:-4])#expectation.split("_")[-1].split(".")[0]
                 print("---------------------------------------------------------------------------------------------")
                 print(f"Iteration: {expectation}")
                 print(f"\nTesting model:\n{model_name}\n on dataset:\n {test_set}\n  ")
@@ -210,22 +213,22 @@ def test_double_experiment(experiment_name, experiment_file):
                 toml_files.append(os.path.basename(config_file))
                 output_folder = f"./../Test_Output/output_{model_name}_{test_set}_{expectation_type}"
                 output_folders.append(output_folder)
-                create_testing_configuration(model_name, output_folder, audio_folder, expectation, input, config_file)
-                testing_bare = test(config_file)
-                testing_bare.fit()
+                # create_testing_configuration(model_name, output_folder, audio_folder, expectation, input, config_file, dict_version=3)
+                # testing_bare = test(config_file)
+                # testing_bare.fit()
 
     #gathering test results
     
     dst_results_folder = "./../Results"
     for i, (toml_file, src_folder) in enumerate(zip(toml_files, output_folders)):
-        gather_test_pronounce_results(model_name,test_set, src_folder,dst_results_folder,toml_file)
+        gather_test_pronounce_results(model_name,test_set, src_folder,dst_results_folder,audio_folder, toml_file)
 
 
     #Create report
 
     report_dir = "./../Reports"
     #experiment_name = "Data_augmentation"
-    report_file = os.path.join(report_dir, f"{experiment_name}.xlsx")
+    report_file = os.path.join(report_dir, f"{experiment_name}_testing.xlsx")
     results_folder = "./../Results"
     create_report(report_file, experiment_name, toml_files, results_folder)
 
@@ -240,10 +243,10 @@ def main():
     # test_Bare_on_train_data_and_two_expectations([model_name])
     #test_Bare_on_train_data_and_two_expectations()
 
-    double_experiment()
-    # experiment_name="Expanded"
-    # experiment_file=f"./../experiments/{experiment_name}.toml"
-    # test_double_experiment(experiment_name, experiment_file)
+    #double_experiment()
+    experiment_name="Expanded"
+    experiment_file=f"./../experiments/{experiment_name}.toml"
+    test_double_experiment(experiment_name, experiment_file)
 
     
     print("finished.main")
