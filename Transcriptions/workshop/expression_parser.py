@@ -204,6 +204,7 @@ def example_for_one_transcription():
     transcription = "EHR M AX N"
     #transcription = "K EH M IH S T"
     transcription = "IH N V AY AX R axN M axN T"
+    #transcription = "IH N V AY AX R AX N M AX N T"
     #transcription = "AE R M"
 
 
