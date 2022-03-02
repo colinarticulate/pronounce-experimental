@@ -11,18 +11,18 @@ echo
 #
 
 
-time ./test_pronounce -dict /Users/test/Downloads/sourceFiltered.dict \
- 						-phdict /Users/test/Documents/GitHub/pronounce-experimental/Dictionaries/art_db_v2_inference.phone \
-                        -infolder /Users/test/Downloads/train/SpeechCommands/bird/ \
-                        -tests /Users/test/Downloads/train/SpeechCommands/bird/bird_input.csv \
-                        -expectations /Users/test/Downloads/train/SpeechCommands/bird/bird_expectations.csv \
+time ./test_pronounce -dict /Users/test/Downloads/sourceFiltered_exp2.dict \
+ 						-phdict /Users/test/Documents/GitHub/pronounce-experimental/Dictionaries/art_db_v3_inference.phone \
+                        -infolder /Users/test/Downloads/train/SpeechCommands/bird/bird/ \
+                        -tests /Users/test/Downloads/train/SpeechCommands/bird/bird/bird_input.csv \
+                        -expectations /Users/test/Downloads/train/SpeechCommands/bird/bird/bird_expectations.csv \
                         -outfolder /Users/test/Downloads/audio_temp \
-                        -featparams /Users/test/Documents/GitHub/pronounce-experimental/Models/2022-02-14T15.50.13-019_Bare.ci_cont/feat.params \
-                        -hmm /Users/test/Documents/GitHub/pronounce-experimental/Models/2022-02-14T15.50.13-019_Bare.ci_cont
+                        -featparams /Users/test/Documents/GitHub/pronounce-experimental/Models/Bare.ci_cont_2Mar22/feat.params \
+                        -hmm /Users/test/Documents/GitHub/pronounce-experimental/Models/Bare.ci_cont_2Mar22
 
 echo
 echo "clean up"
-rm /Users/test/Downloads/train/SpeechCommands/bird/*_fixed*.wav                        
+rm /Users/test/Downloads/train/SpeechCommands/bird/bird/*_fixed*.wav                        
 echo
 date
 echo

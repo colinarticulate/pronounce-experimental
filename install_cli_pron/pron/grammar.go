@@ -923,7 +923,9 @@ func (g *jsgfGrammar) new_R_noSlide_X(exceptPhons ...phoneme) R_V_noSlide_X {
       		//aa: true, ae: true, ah: true, ao: true, ax: true, eh: true, ehr: true, er: true, ih: true, iy: true, oh: true, uw: true, uh: true, y: true, axl: true, axm: true, axn: true, uwn: true, uwl:  true, uwm: true, axr: true,
 			
 			// possibly this should have no compound phonemes (or ax)
-			aa: true, ae: true, ah: true, ao: true, ax: true, eh: true, er: true, ih: true, iy: true, oh: true, uw: true, uh: true, y: true,
+			//aa: true, ae: true, ah: true, ao: true, ax: true, eh: true, er: true, ih: true, iy: true, oh: true, uw: true, uh: true, y: true,
+			// remove er (23 Feb 22) as er is a slide/diphthong
+			aa: true, ae: true, ah: true, ao: true, ax: true, eh: true, ih: true, iy: true, oh: true, uw: true, uh: true, y: true,
 
 			// alternately, have to add the new compound phonemes 
 			//aa: true, ae: true, ah: true, ao: true, ax: true, eh: true, ehr: true, er: true, ih: true, iy: true, oh: true, uw: true, uh: true, y: true, axl: true, axm: true, axn: true, uwn: true, uwl:  true, uwm: true, axr: true, yuw: true, ihl: true, ehl: true,
@@ -973,7 +975,9 @@ func (g *jsgfGrammar) new_R_V_noSlide() R_V_noSlide {
 			// PE 2nd Jan 2022
 			// Not adding axr - 5 Jan 2022  (just because if the above have already been removed, it doesn't make sense to add it in)
 			// Not including any compound phoneme, ax or any diphthong      
-			aa, ae, ah, eh, er, ih, iy, oh, uw, uh, y,  
+			//aa, ae, ah, eh, er, ih, iy, oh, uw, uh, y, 
+			// removing er (23 Feb 22) as it's a slide/diphthong
+			aa, ae, ah, eh, ih, iy, oh, uw, uh, y, 
 		}
 		phons := []rule{}
 		for _, v := range noSlideVowels {
@@ -1259,11 +1263,13 @@ func (r R_trappedOpening) parse(res []psPhonemeDatum, i int) ([]parseResult, err
 // This function inserts an extra P at the beginning of the grammar (even before s) to force the pocketsphinx engine into finding nothing
 // (If removing then comment back in the function below)
 
+
 //optional sill
 func (r R_trappedOpening) generate() string {
 	rTO := new_R_or(r.rO, new_R_and(r.rT, r.rO))
 	return rTO.generate()
 }
+
 
 /*
 //compulsory sil
@@ -2302,7 +2308,7 @@ func (j *jsgfStandard) openingPenalty(ph phoneme) (phonRule, bool) {
 		penalties[r] = true
 		penalties[l] = true
 	case ehr: // Added 8 March 2021 - simply copied eh rule to get strated.
-		penalties[b] = true
+		penalties[s] = true    // was b, but always seems to be found.
 		penalties[hh] = true
 		penalties[r] = true
 		penalties[l] = true
@@ -2418,10 +2424,10 @@ var confusionMatrix = map[phoneme]map[phoneme]float64{
 		p: 26.3, t: 4.6, k: 12.1, f: 0.5, th: 5, s: 0.4, sh: 0.4, ch: 3, hh: 99, b: 8.3, d: 1.3, g: 2, v: 4.6, dh: 1.7, z: 0.4, zh: 2, jh: 0.5, y: 3, m: 2, n: 3, ng: 2, l: 1.7, r: 1.5, w: 2,
 	},
 	ey: {
-		p: 26.3, t: 4.6, k: 12.1, f: 11.3, th: 5, s: 1.4, sh: 0.8, ch: 0.9, hh: 99, b: 8.3, d: 2.5, g: 1.3, v: 4.6, dh: 1.7, z: 1.6, zh: 3, jh: 0.5, y: 2.2, m: 10, n: 4.2, ng: 2.6, l: 8.5, r: 2.6, w: 1, ao: 0.3,
+		p: 26.3, t: 4.6, k: 12.1, f: 11.3, th: 5, s: 1.4, sh: 0.8, ch: 0.9, hh: 99, b: 8.3, d: 2.5, g: 1.3, v: 4.6, dh: 1.7, z: 1.6, zh: 3, jh: 0.5, y: 2.2, m: 10, n: 4.2, ng: 2.6, l: 8.5, r: 2.6, w: 1, ao: 0.3, ehr:99, eh:99, er:99,
 	},
 	eh: {
-		p: 26.3, t: 7.9, k: 12.1, f: 11.3, th: 5, s: 0.5, sh: 0.5, ch: 0.5, hh: 99, b: 14.6, d: 6.7, g: 4.9, v: 6.6, dh: 1.7, z: 2.5, zh: 0.5, jh: 0.5, y: 0.5, m: 4.1, n: 4.1, ng: 1, l: 14.8, r: 96, w: 1, oy: 0.5, ax:99, axr: 99,
+		p: 26.3, t: 7.9, k: 12.1, f: 11.3, th: 5, s: 0.5, sh: 0.5, ch: 0.5, hh: 99, b: 14.6, d: 6.7, g: 4.9, v: 6.6, dh: 1.7, z: 2.5, zh: 0.5, jh: 0.5, y: 0.5, m: 4.1, n: 4.1, ng: 1, l: 14.8, r: 96, w: 1, oy: 0.5, ax:99, axr: 99, ehr:99, ey:99, er:99,
 	},
 	ae: {
 		p: 2.5, t: 7.9, k: 1.7, f: 2.1, th: 3.8, s: 0.8, sh: 0.4, ch: 0.9, hh: 5.8, b: 14.6, d: 6.7, g: 4.9, v: 6.6, dh: 2, z: 0.5, zh: 0.4, jh: 0.5, y: 0.5, m: 3.6, n: 2.1, ng: 0, l: 14.8, r: 96, w: 6.7, aa: 3, ao: 0.5,
@@ -2463,7 +2469,7 @@ var confusionMatrix = map[phoneme]map[phoneme]float64{
 		p: 26.3, t: 7.9, k: 12.1, f: 11.3, th: 5, s: 0.8, sh: 0.4, ch: 0.9, hh: 99, b: 3, d: 6.7, g: 4.9, v: 6.6, dh: 1.7, z: 0.5, zh: 0.4, jh: 0.5, y: 0.5, m: 3.6, n: 2.9, ng: 0.5, l: 14.8, r: 96, w: 6.7, aa: 99, ah: 99, ax: 99, axr: 99,
 	},
 	ehr: {
-		p: 26.3, t: 7.9, k: 12.1, f: 11.3, th: 5, s: 0.5, sh: 0.5, ch: 0.5, hh: 99, b: 14.6, d: 6.7, g: 4.9, v: 6.6, dh: 1.7, z: 2.5, zh: 0.5, jh: 0.5, y: 0.5, m: 4.1, n: 4.1, ng: 1, l: 14.8, r: 96, w: 1, oy: 0.5, ax: 99, axr: 99,
+		p: 26.3, t: 7.9, k: 12.1, f: 11.3, th: 5, s: 0.5, sh: 0.5, ch: 0.5, hh: 99, b: 14.6, d: 6.7, g: 4.9, v: 6.6, dh: 1.7, z: 2.5, zh: 0.5, jh: 0.5, y: 0.5, m: 4.1, n: 4.1, ng: 1, l: 14.8, r: 96, w: 1, oy: 0.5, ax: 99, axr: 99, er:99, eh:99, ey:99,
 	},
 	axl: {
 		p: 5.8, t: 8.3, k: 1.7, f: 5.8, th: 3.3, s: 2, sh: 0.5, ch: 1.2, hh: 2.1, b: 8.3, d: 2, g: 3.6, v: 8.7, dh: 3.3, z: 2.5, zh: 2.5, jh: 4, y: 1.8, m: 10, n: 1.1, ng: 3.0, l: 99, r: 4.2, w: 5.4, ax: 99, axn: 99, axm: 99, axl: 99, uwn: 99, uwm: 99, uwl: 99, axr: 99,
