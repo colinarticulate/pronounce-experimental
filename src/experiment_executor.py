@@ -173,7 +173,7 @@ def train_Bare(experiment_name, experiment_file):
 
 def double_experiment():
 
-    experiment_name="Expanded"
+    experiment_name="Expanded_revisited"
     experiment_file=f"./../experiments/{experiment_name}.toml"
 
     model_name = train_Bare(experiment_name, experiment_file)
@@ -181,7 +181,8 @@ def double_experiment():
     #Create experiment file for the record:
     with open(experiment_file, 'w') as f:
         f.write(f"[models]\n")
-        f.write(f"'models' = [\"{os.path.basename(model_name)}\"]")
+        bare_name=os.path.basename(model_name).split(".")[0]
+        f.write(f"'models' = [\"{bare_name}\"]")
         f.write(f"\n")
         f.write(f"[test_sets]\n")
         f.write(f"'datasets' = [\"Train_set\"]\n")
@@ -213,9 +214,9 @@ def test_double_experiment(experiment_name, experiment_file):
                 toml_files.append(os.path.basename(config_file))
                 output_folder = f"./../Test_Output/output_{model_name}_{test_set}_{expectation_type}"
                 output_folders.append(output_folder)
-                # create_testing_configuration(model_name, output_folder, audio_folder, expectation, input, config_file, dict_version=3)
-                # testing_bare = test(config_file)
-                # testing_bare.fit()
+                create_testing_configuration(model_name, output_folder, audio_folder, expectation, input, config_file, dict_version=3)
+                testing_bare = test(config_file)
+                testing_bare.fit()
 
     #gathering test results
     
@@ -228,7 +229,7 @@ def test_double_experiment(experiment_name, experiment_file):
 
     report_dir = "./../Reports"
     #experiment_name = "Data_augmentation"
-    report_file = os.path.join(report_dir, f"{experiment_name}_testing.xlsx")
+    report_file = os.path.join(report_dir, f"{experiment_name}_training_and_testing.xlsx")
     results_folder = "./../Results"
     create_report(report_file, experiment_name, toml_files, results_folder)
 
@@ -243,10 +244,10 @@ def main():
     # test_Bare_on_train_data_and_two_expectations([model_name])
     #test_Bare_on_train_data_and_two_expectations()
 
-    #double_experiment()
-    experiment_name="Expanded"
+    double_experiment()
+    experiment_name="Expanded_revisited"
     experiment_file=f"./../experiments/{experiment_name}.toml"
-    test_double_experiment(experiment_name, experiment_file)
+    #test_double_experiment(experiment_name, experiment_file)
 
     
     print("finished.main")
