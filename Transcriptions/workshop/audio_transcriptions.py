@@ -155,7 +155,7 @@ def given_dummy_transcriptions_create_fileids_and_an_update_general_dummy_dict()
     
     dummy_entries = create_dummy_dictionary_entries(transcriptions)
 
-    dummy_dict_file="./data/art_db_v3_dummy.dic"
+    dummy_dict_file="./../../Dictionaries/art_db_v3_dummy.dic"
     dictionary = get_dictionary("./../../Dictionaries/art_db_v3.dic") #create dummy again
     create_dummy_dictionary(dictionary, dummy_dict_file)
 
@@ -188,6 +188,105 @@ def check_and_create_missing_audios(missing_audios_file, src_path, dst_path):
                 
         
 
+def fix_naming_audios():
+
+    replace_dict={
+        "mustn_t":"mustn't",
+        "i_m":"i'm",
+        "don_t":"don't",
+        "i_ve":"i've",
+        "it_s":"it's",
+        "let_s":"let's",
+        "that_s":"that's",
+        "they_re":"they're",
+        "you_re":"you're"
+    }
+
+    audios_dir="/home/dbarbera/Repositories/art_db/wav/train/art_db_compilation"
+    transcription_file="./data/art_db_Bare_train_Expanded.transcription"
+    fileids_file="./data/art_db_Bare_train_Expanded.fileids"
+
+    audios = [f for f in os.listdir(audios_dir) if f.endswith(".wav")]
+    
+    for audio in audios:
+        for r in replace_dict.keys():
+            if r in audio:
+                fixed_audio = replace_dict[r].join(audio.split(r))
+                shutil.copy(os.path.join(audios_dir,audio),os.path.join(audios_dir, fixed_audio))
+                break
+
+    with open(transcription_file,'r') as f:
+        raw=f.read()
+    transcriptions=raw.strip("\n").split("\n")
+
+    fixed_transcriptions=[]
+    for transcription in transcriptions:
+        fixed_transcription = transcription
+        for r in replace_dict.keys():
+            if r in transcription:
+                fixed_transcription = replace_dict[r].join(transcription.split(r))
+
+        fixed_transcriptions.append(fixed_transcription)
+
+    with open(transcription_file, 'w') as f:
+        f.write("\n".join(fixed_transcriptions)+"\n")
+
+
+    with open(fileids_file,'r') as f:
+        raw=f.read()
+    fileids=raw.strip("\n").split("\n")
+
+    fixed_fileids=[]
+    for fileid in fileids:
+        fixed_fileid = fileid
+        for r in replace_dict.keys():
+            if r in fileid:
+                fixed_fileid = replace_dict[r].join(fileid.split(r))
+
+        fixed_fileids.append(fixed_fileid)
+
+    with open(fileids_file, 'w') as f:
+        f.write("\n".join(fixed_fileids)+"\n")
+
+
+def fix_audiofilenames_in_transcriptions_and_fileids():
+  
+    transcription_file="./data/art_db_Bare_train_Expanded.transcription"
+    fileids_file="./data/art_db_Bare_train_Expanded.fileids"
+
+ 
+    with open(transcription_file,'r') as f:
+        raw=f.read()
+    transcriptions=raw.strip("\n").split("\n")
+
+    locator="scrape-colin2-colin2-"
+
+    fixed_transcriptions=[]
+    for transcription in transcriptions:
+        fixed_transcription = transcription
+        if locator in transcription:
+            fixed_transcription = "_".join(transcription.split("_")[:-1]) +")"
+
+        fixed_transcriptions.append(fixed_transcription)
+
+    with open(transcription_file, 'w') as f:
+        f.write("\n".join(fixed_transcriptions)+"\n")
+
+
+    with open(fileids_file,'r') as f:
+        raw=f.read()
+    fileids=raw.strip("\n").split("\n")
+
+    fixed_fileids=[]
+    for fileid in fileids:
+        fixed_fileid = fileid
+        if locator in fileid:
+            fixed_fileid = "_".join(fileid.split("_")[:-1])
+
+        fixed_fileids.append(fixed_fileid)
+
+    with open(fileids_file, 'w') as f:
+        f.write("\n".join(fixed_fileids)+"\n")
 
 
 
@@ -201,10 +300,13 @@ def main():
     # check_and_create_missing_audios(missing_audios_file, src_path, dst_path)
 
     given_dummy_transcriptions_create_fileids_and_an_update_general_dummy_dict()
-
-
-
     
+
+    #fix_naming_audios()
+
+
+    #This a one-of fix
+    #fix_audiofilenames_in_transcriptions_and_fileids()    
 
 
 if __name__ == '__main__':
