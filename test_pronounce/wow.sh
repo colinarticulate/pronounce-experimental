@@ -11,14 +11,14 @@ echo
 #
 
 
-time ./test_pronounce -dict /Users/test/Downloads/sourceFiltered_exp2.dict \
+time ./test_pronounce -dict /Users/test/Downloads/sourceFiltered_exp3Mar22.dict \
  						-phdict /Users/test/Documents/GitHub/pronounce-experimental/Dictionaries/art_db_v3_inference.phone \
                         -infolder /Users/test/Downloads/train/SpeechCommands/wow/wow/ \
                         -tests /Users/test/Downloads/train/SpeechCommands/wow/wow/wow_input.csv \
                         -expectations /Users/test/Downloads/train/SpeechCommands/wow/wow/wow_expectations.csv \
                         -outfolder /Users/test/Downloads/audio_temp \
-                        -featparams /Users/test/Documents/GitHub/pronounce-experimental/Models/Bare.ci_cont_2Mar22/feat.params \
-                        -hmm /Users/test/Documents/GitHub/pronounce-experimental/Models/Bare.ci_cont_2Mar22
+                        -featparams /Users/test/Documents/GitHub/pronounce-experimental/Models/Bare.ci_cont_3Mar22_v2/feat.params \
+                        -hmm /Users/test/Documents/GitHub/pronounce-experimental/Models/Bare.ci_cont_3Mar22_v2
 
 echo
 echo "clean up"

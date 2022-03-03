@@ -11,7 +11,7 @@ echo
 #
 
 
-time ./test_pronounce -dict /Users/test/Downloads/sourceFiltered_exp2.dict \
+time ./test_pronounce -dict /Users/test/Downloads/sourceFiltered_exp3Mar22.dict \
  						-phdict /Users/test/Documents/GitHub/pronounce-experimental/Dictionaries/art_db_v3_inference.phone \
                         -infolder /Users/test/Downloads/train/SpeechCommands/bed/bed/ \
                         -tests /Users/test/Downloads/train/SpeechCommands/bed/bed/bed_input.csv \
