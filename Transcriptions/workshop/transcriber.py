@@ -193,9 +193,7 @@ def create_file_ids(transcriptions, file, audios_dir):
             audiofilename = transcription.split("\t")[1][1:-1]
             f.write(f"{os.path.join(audios_dir, audiofilename)}\n")
 
-
-def main():
-    
+def given_dictionary_and_word_transcriptions_creates_dummy_versions_and_fileids():
     #dictionary_file="art_db_oldest.dic"
     #New versions:
     dictionary_file="./../../Dictionaries/art_db_v2.dic"
@@ -225,6 +223,17 @@ def main():
     phoneme_transcriptions_file="data/art_db_new_train_phonemes.transcription"
     convert_transcription_to_phonemes_train(dictionary, transcriptions_file, phoneme_transcriptions_file)
 
+
+def create_dummy_dictionary_from_dictionary():
+    dictionary_file="./../../Dictionaries/art_db_v3.dic"
+    new_dictionary_file="data/art_db_v3_dummy.dic"
+    dictionary=get_dictionary(dictionary_file)
+    create_dummy_dictionary(dictionary,new_dictionary_file)
+
+
+def main():
+    
+    create_dummy_dictionary_from_dictionary()
 
     
 
