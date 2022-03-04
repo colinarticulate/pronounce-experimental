@@ -13,18 +13,19 @@ echo
 
 time ./test_pronounce -dict /Users/test/Downloads/sourceFiltered_exp3Mar22.dict \
  						-phdict /Users/test/Documents/GitHub/pronounce-experimental/Dictionaries/art_db_v3_inference.phone \
-                        -infolder /Users/test/Downloads/2264/pronounce \
-                        -tests /Users/test/Downloads/2264/pronounce/2264_input.csv \
-                        -expectations /Users/test/Downloads/2264/pronounce/2264_expectation.csv \
+                        -infolder /Users/test/Downloads/train/scrape/paul2/paul2/ \
+                        -tests /Users/test/Downloads/train/scrape/paul2/paul2/paul2_input.csv \
+                        -expectations /Users/test/Downloads/train/scrape/paul2/paul2/paul2_expectations.csv \
                         -outfolder /Users/test/Downloads/audio_temp \
-                        -featparams /Users/test/Documents/GitHub/pronounce-experimental/Models/Bare.ci_cont_3Mar22_v3/feat.params \
-                        -hmm /Users/test/Documents/GitHub/pronounce-experimental/Models/Bare.ci_cont_3Mar22_v3
-                        
+                        -featparams /Users/test/Documents/GitHub/pronounce-experimental/Models/Bare.ci_cont_3Mar22_v2/feat.params \
+                        -hmm /Users/test/Documents/GitHub/pronounce-experimental/Models/Bare.ci_cont_3Mar22_v2
+                     
 echo
-echo "clean up"
-rm /Users/test/Downloads/2264/pronounce/*_fixed*.wav                        
+echo "clean paul2"
+rm /Users/test/Downloads/train/scrape/paul2/paul2/*_fixed*.wav                        
 echo
 date
 echo
 echo
+
 
