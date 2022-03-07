@@ -192,6 +192,7 @@ def create_file_ids(transcriptions, file, audios_dir):
         for transcription in transcriptions:
             audiofilename = transcription.split("\t")[1][1:-1]
             f.write(f"{os.path.join(audios_dir, audiofilename)}\n")
+            
 
 def given_dictionary_and_word_transcriptions_creates_dummy_versions_and_fileids():
     #dictionary_file="art_db_oldest.dic"

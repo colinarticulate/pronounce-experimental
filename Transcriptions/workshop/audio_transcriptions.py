@@ -7,7 +7,7 @@ import os
 import time
 import shutil
 
-from transcriber import get_dictionary, create_dummy_dictionary
+from transcriber import get_dictionary, create_dummy_dictionary, create_file_ids
 
 def copy_audios_and_create_transcription( folder, word, dst_audio, dst_transcription):
 
@@ -148,6 +148,7 @@ def given_dummy_transcriptions_create_fileids_and_an_update_general_dummy_dict()
     audio_folder="train/art_db_compilation/"
 
     transcriptions, fileids = create_fileids_from_transcription( transcription_file, fileids_file, audio_folder)
+    create_file_ids(transcriptions, fileids_file, audio_folder)
     #raw_transcriptions, raw_fileids = create_fileids_from_transcription( transcription_file, fileids_file, audio_folder)
 
     #to_discard_file="./data/missing_not_found.txt"
@@ -259,7 +260,7 @@ def fix_audiofilenames_in_transcriptions_and_fileids():
         raw=f.read()
     transcriptions=raw.strip("\n").split("\n")
 
-    locator="scrape-colin2-colin2-"
+    locator="scrape-paul2-paul2-"
 
     fixed_transcriptions=[]
     for transcription in transcriptions:
@@ -288,6 +289,14 @@ def fix_audiofilenames_in_transcriptions_and_fileids():
     with open(fileids_file, 'w') as f:
         f.write("\n".join(fixed_fileids)+"\n")
 
+def delete_invalid_audios():
+
+    path_dir = "/home/dbarbera/Repositories/art_db/wav/train/art_db_compilation"
+
+    files = [f for f in os.listdir(path_dir) if "_f90" in f]
+
+    for file in files:
+        os.remove(os.path.join(path_dir, file))
 
 
 
@@ -299,8 +308,8 @@ def main():
 
     # check_and_create_missing_audios(missing_audios_file, src_path, dst_path)
 
-    given_dummy_transcriptions_create_fileids_and_an_update_general_dummy_dict()
-    
+    #given_dummy_transcriptions_create_fileids_and_an_update_general_dummy_dict()
+    delete_invalid_audios()
 
     #fix_naming_audios()
 
