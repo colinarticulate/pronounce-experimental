@@ -308,8 +308,8 @@ def main():
 
     # check_and_create_missing_audios(missing_audios_file, src_path, dst_path)
 
-    #given_dummy_transcriptions_create_fileids_and_an_update_general_dummy_dict()
-    delete_invalid_audios()
+    given_dummy_transcriptions_create_fileids_and_an_update_general_dummy_dict()
+    #delete_invalid_audios()
 
     #fix_naming_audios()
 
