@@ -54,7 +54,7 @@ func main() {
 	results, err := pron.Pronounce(outfolder, audiofile, word, dictfile, phdictfile, featureparams, hmm)
 	result := pron.ToJSON(results, err)
 	returnJSON(result)
-	testCaseIt(outfolder, audiofile, word, dictfile, phdictfile, featureparams, string(result))
+	//testCaseIt(outfolder, audiofile, word, dictfile, phdictfile, featureparams, string(result))
 }
 
 func init() {

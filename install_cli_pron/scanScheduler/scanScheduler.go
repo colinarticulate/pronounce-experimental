@@ -7,6 +7,8 @@ import (
 	"os/exec"
 	"path"
 	"strings"
+
+	"github.com/davidbarbera/articulate-pocketsphinx-go/xyz_plus"
 )
 
 type batchState int
@@ -131,6 +133,16 @@ type psError struct {
 	args []string
 }
 
+type Utt struct {
+	Text       string
+	Start, End int32
+}
+
+type UttResp struct {
+	Utts []Utt
+	Err  error
+}
+
 func (p psError) Error() string {
 	return fmt.Sprintf("Check pocketsphinx settings? args are %v\n", p.args)
 }
@@ -138,7 +150,11 @@ func (p psError) Error() string {
 type PsScan struct {
 	Settings     []PsParam
 	ContextFlags []string
-	RespondTo    chan error
+	//RespondTo    chan error
+	RespondTo    chan []xyz_plus.Utt
+	Jsgf_buffer  []byte
+	Audio_buffer []byte
+	Parameters   []string
 }
 
 func (s Scheduler) ScheduleScan(sc PsScan) {
@@ -181,8 +197,10 @@ func (p PsScan) getBatchId() batchId {
 
 func (s *Scheduler) doScan(scan PsScan, bScan batchScan) {
 	// Set up the arguments for pocketsphinx_continuous
-	args := []string{}
+	//result := []xyz_plus.Utt
+	args := []string{"pocketsphinx_continuous"}
 	word := "word"
+
 	for _, setting := range scan.Settings {
 		value := setting.Value
 		if setting.Flag == "-word" {
@@ -196,17 +214,32 @@ func (s *Scheduler) doScan(scan PsScan, bScan batchScan) {
 		args = append(args, setting.Flag, value)
 	}
 
+	scan.Parameters = args
+
 	// The output bytes are useless! So just return back to the caller
 	// indictating an error - if there was one
 
-	_, err := exec.Command("pocketsphinx_continuous", args...).Output()
+	// _, err := exec.Command("pocketsphinx_continuous", args...).Output()
+
 	testCaseItContinuous(args, word) //After the call so we can add the log file from pocketsphinx_continuous to the test case.
-	if err != nil {
-		err = psError{
-			args,
-		}
-	}
-	scan.RespondTo <- err
+	// if err != nil {
+	// 	err = psError{
+	// 		args,
+	// 	}
+	// }
+	// scan.RespondTo <- err
+
+	// defer func() {
+	// 	if r := recover(); r != nil {
+	// 		scan.RespondTo <- UttResp{
+	// 			[]Utt{},
+	// 			errors.New("pocketsphinx crashed!"),
+	// 		}
+	// 		// scan.RespondTo <- errors.New("pocketsphinx crashed!")
+	// 	}
+	// }()
+
+	scan.RespondTo <- xyz_plus.Ps_plus_call(scan.Jsgf_buffer, scan.Audio_buffer, args)
 }
 
 func (s *Scheduler) DoScan(scan PsScan) {

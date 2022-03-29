@@ -19,6 +19,7 @@ import (
 
 	"github.com/colinarticulate/dictionary"
 	"github.com/colinarticulate/scanScheduler"
+	"github.com/davidbarbera/articulate-pocketsphinx-go/xyz_plus"
 	"github.com/google/uuid"
 )
 
@@ -65,13 +66,13 @@ const (
 	l   = "l"
 	m   = "m"
 	n   = "n"
-	ng = "ng"
-	oh = "oh"
-	ow = "ow"
-	oy = "oy"
-	p  = "p"
-	r  = "r"
-	s  = "s"
+	ng  = "ng"
+	oh  = "oh"
+	ow  = "ow"
+	oy  = "oy"
+	p   = "p"
+	r   = "r"
+	s   = "s"
 	sh  = "sh"
 	sil = "sil"
 	ss  = "ss"
@@ -111,11 +112,10 @@ const (
 	ihl = "ihl"
 	yuw = "yuw"
 	sts = "sts"
-	st = "st"
+	st  = "st"
 	ehl = "ehl"
-	kt = "kt"
-	fl = "fl"
-
+	kt  = "kt"
+	fl  = "fl"
 )
 
 var cmubetToIpa = map[phoneme]string{
@@ -193,11 +193,10 @@ var cmubetToIpa = map[phoneme]string{
 	ihl: "ihl",
 	yuw: "yuw",
 	sts: "sts",
-	st: "st",
+	st:  "st",
 	ehl: "ehl",
-	kt: "kt",
-	fl: "fl",
-
+	kt:  "kt",
+	fl:  "fl",
 }
 
 type neighbours map[phoneme][]phoneme
@@ -503,7 +502,6 @@ var neighbourRules = neighbours{
 		bl,
 	},
 
-
 	kr: {
 		kr,
 	},
@@ -541,7 +539,6 @@ var neighbourRules = neighbours{
 	fl: {
 		fl,
 	},
-	
 }
 
 type psFlag string
@@ -3353,11 +3350,10 @@ var nearestNeighbours = map[phoneme]phoneme{
 	ihl: l,
 	yuw: y,
 	sts: s,
-	st: s,
+	st:  s,
 	ehl: l,
-	kt: t,
-	fl: l,
-
+	kt:  t,
+	fl:  l,
 }
 
 type phonemePair struct {
@@ -4329,6 +4325,30 @@ func runVariantScanWithConfig(c chan <-resultWithConfig, wg *sync.WaitGroup, con
   })
 }
 */
+// type Utt struct {
+// 	Text       string
+// 	Start, End int32
+// }
+
+func toPhonemeData(resp []xyz_plus.Utt) []psPhonemeDatum {
+	phonemeData := []psPhonemeDatum{}
+
+	for _, utt := range resp {
+		phonemeData = append(phonemeData, psPhonemeDatum{
+			phoneme(utt.Text),
+			int(utt.Start),
+			int(utt.End),
+		})
+	}
+	return phonemeData
+}
+
+func check(e error) {
+	if e != nil {
+		fmt.Println(e)
+		panic(e)
+	}
+}
 
 func doRunScan(s scanScheduler.Scheduler, config newPsConfig, word string, f func([]psPhonemeResults)) {
 	// Need to set up arguments for acall to s.DoScan(scan PsScan)
@@ -4362,6 +4382,24 @@ func doRunScan(s scanScheduler.Scheduler, config newPsConfig, word string, f fun
 	}
 	params = append(params, paramword)
 
+	//Locate jsgf and audio files paths
+	var jsgf_file string
+	var audio_file string
+	for _, param := range params {
+		if param.Flag == "-infile" {
+			audio_file = param.Value
+		}
+		if param.Flag == "-jsgf" {
+			jsgf_file = param.Value
+		}
+	}
+	var jsgf_buffer []byte
+	var audio_buffer []byte
+	var err error
+	jsgf_buffer, err = os.ReadFile(jsgf_file)
+	check(err)
+	audio_buffer, err = os.ReadFile(audio_file)
+	check(err)
 	//  ___                            _           _          _      _
 	// | _ \__ _ _ _ __ _ _ __  ___   | |_ ___    | |__  __ _| |_ __| |_      ___ __ __ _ _ _
 	// |  _/ _` | '_/ _` | '  \(_-<   |  _/ _ \   | '_ \/ _` |  _/ _| ' \    (_-</ _/ _` | ' \
@@ -4397,25 +4435,31 @@ func doRunScan(s scanScheduler.Scheduler, config newPsConfig, word string, f fun
 
 	context := []string{"-hmm", "-frate", "-lw", "-nfft", "-wlen", "-alpha", "-dither", "-doublebw", "-maxhmmpf", "-maxwpf", "-beam", "-wbeam", "-pbeam", "-fwdflat", "-bestpath", "-wip", "-pip", "-remove_noise", "-remove_silence", "-vad_postspeech", "-vad_prespeech", "-vad_startspeech", "-vad_threshold", "-topn", "-pl_window", "-lpbeam", "-lponlybeam"}
 	//context := []string{"-frate"}
-	ch := make(chan error)
+	//ch := make(chan error)
+	ch := make(chan []xyz_plus.Utt, 1)
 
 	// Now create a scan, send it and wait on ch for a reply
 	psScan := scanScheduler.PsScan{
 		Settings:     params,
 		ContextFlags: context,
 		RespondTo:    ch,
+		Jsgf_buffer:  jsgf_buffer,
+		Audio_buffer: audio_buffer,
 	}
 	frate, _ := strconv.Atoi((config.settings[0]["-frate"]))
 
 	s.DoScan(psScan)
-	err := <-ch // All that's returned is an error. It's the log file I need
-	if err != nil {
-		debug("DoScan returned err =", err)
-	}
+	//err := <-ch // All that's returned is an error. It's the log file I need
+	response := <-ch
+	// if err != nil {
+	// 	debug("DoScan returned err =", err)
+	// }
 
+	utts := toPhonemeData(response)
 	results := psPhonemeResults{
 		frate,
-		parsePsData(logfile),
+		//parsePsData(logfile),
+		utts,
 	}
 	testCaseIt(params, results.data, word)
 	f([]psPhonemeResults{results})
