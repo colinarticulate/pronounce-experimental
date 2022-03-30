@@ -16,16 +16,18 @@
             "type": "go",
             "request": "launch",
             "mode": "auto",
-            "program": "${file}",
+            "program": "main.go",
             "buildFlags": "-tags 'noSend debug'", //or "-tags 'noSend debug testCase'"
-            "args":[
-                "-audio", "/home/dbarbera/Data/audio_clips/allowed1_philip.wav",   
-                "-featparams", "/home/dbarbera/Repositories/pronounce-experimental/Models/Bare/2022-03-24T10:36:01-020_Bare.ci_cont/feat.params",
-                "-hmm", "/home/dbarbera/Repositories/pronounce-experimental/Models/Bare/2022-03-24T10:36:01-020_Bare.ci_cont",
-                "-word", "allowed",                                 
-                "-dict", "/home/dbarbera/Repositories/pronounce-experimental/Dictionaries/art_db_v3.dic",
-                "-phdict", "/home/dbarbera/Repositories/pronounce-experimental/Dictionaries/art_db_v3_inference.phone"
-               ],
+            // "args":[
+            //     "-audio", "/home/dbarbera/Data/audio_clips/allowed1_philip.wav",   
+            //     "-featparams", "/home/dbarbera/Repositories/pronounce-experimental/Models/Bare/2022-03-30T10:55:59-093_Bare.ci_cont/feat.params",
+            //     "-hmm", "/home/dbarbera/Repositories/pronounce-experimental/Models/Bare/2022-03-30T10:55:59-093_Bare.ci_cont",
+            //     "-word", "allowed",                                 
+            //     "-dict", "/home/dbarbera/Repositories/pronounce-experimental/Dictionaries/art_db_v3.dic",
+            //     "-phdict", "/home/dbarbera/Repositories/pronounce-experimental/Dictionaries/art_db_v3_inference.phone"
+            //    ],
+            "args":["-audio","/home/dbarbera/Data/audio_clips/abandoned1_paul.wav","-featparams","/home/dbarbera/Repositories/pronounce-experimental/Models/Bare/2022-03-30T10:55:59-093_Bare.ci_cont/feat.params","-word","abandoned","-dict","/home/dbarbera/Repositories/pronounce-experimental/Dictionaries/art_db_v3.dic","-phdict","/home/dbarbera/Repositories/pronounce-experimental/Dictionaries/art_db_v3_inference.phone","-hmm","/home/dbarbera/Repositories/pronounce-experimental/Models/Bare/2022-03-30T10:55:59-093_Bare.ci_cont"],
+            "env":{"GODEBUG":"cgocheck=0"},
             // "args":[
             //     "-dict", "./../Dictionaries/art_db_v2.dic",
             //     "-phdict", "./../Dictionaries/art_db_v2_inference.phone",

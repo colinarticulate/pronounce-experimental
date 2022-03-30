@@ -18,21 +18,22 @@
             //     "-infolder", "/home/dbarbera/Data/audio_clips",
             //     "-tests", "./../Tests/pronounce_input.csv",
             //     "-expectations", "./../Expectations/expectations_v2.csv",
-            //     "-outfolder", "./../Test_Output/output_25600",
-            //     "-featparams", "./../Models/25600.ci_cont/feat.params",
-            //     "-hmm", "./../Models/25600.ci_cont"
-            // ]
+            //     "-outfolder", "./../Test_Output/output_testing_xyz_plus",
+            //     "-featparams", "./../Models/Bare/2022-03-30T10:55:59-093_Bare.ci_cont/feat.params",
+            //     "-hmm", "./../Models/Bare/2022-03-30T10:55:59-093_Bare.ci_cont"
+            // ],
             // Train set
-            // "args":[
-            //     "-dict", "./../Dictionaries/art_db_v2.dic",
-            //     "-phdict", "./../Dictionaries/art_db_v2_inference.phone",
-            //     "-infolder", "/home/dbarbera/Data/audio_clips",
-            //     "-tests", "./../Tests/debug_inputs.csv",
-            //     "-expectations", "./../Expectations/train_expectations_rigorous.csv",
-            //     "-outfolder", "./../Test_Output/output_2022-02-07T14:11:46-092_Bare_with_UWs_Train_set_rigorous",
-            //     "-featparams", "./../Models/Bare/2022-02-07T14:11:46-092_Bare_with_UWs.ci_cont/feat.params",
-            //     "-hmm", "./../Models/Bare/2022-02-07T14:11:46-092_Bare_with_UWs.ci_cont"
-            //    ],
+            "args":[
+                "-dict", "/home/dbarbera/Repositories/pronounce-experimental/Dictionaries/art_db_v3.dic",
+                "-phdict", "/home/dbarbera/Repositories/pronounce-experimental/Dictionaries/art_db_v3_inference.phone",
+                "-infolder", "/home/dbarbera/Data/audio_clips",
+                "-tests", "/home/dbarbera/Repositories/pronounce-experimental/Tests/debug_inputs.csv",
+                "-expectations", "/home/dbarbera/Repositories/pronounce-experimental/Expectations/debug_expectations.csv",
+                "-outfolder", "/home/dbarbera/Repositories/pronounce-experimental/Test_Output/output_output_testing_xyz_plus",
+                "-featparams", "/home/dbarbera/Repositories/pronounce-experimental/Models/Bare/2022-03-30T10:55:59-093_Bare.ci_cont/feat.params",
+                "-hmm", "/home/dbarbera/Repositories/pronounce-experimental/Models/Bare/2022-03-30T10:55:59-093_Bare.ci_cont"
+               ],
+              // /home/dbarbera/Repositories/pronounce-experimental/Expectations/debug_expectations.csv
             //Debug
             // "args": [
             //     "-dict", "./../Dictionaries/art_db_v2.dic",
@@ -44,16 +45,16 @@
             //     "-featparams", "./../Models/Bare/2022-02-07T14:11:46-092_Bare_with_UWs.ci_cont/feat.params",
             //     "-hmm", "./../Models/Bare/2022-02-07T14:11:46-092_Bare_with_UWs.ci_cont"
             // ]
-            "args": [
-                "-dict", "./../Dictionaries/art_db_v3.dic",
-                "-phdict", "./../Dictionaries/art_db_v3_inference.phone",
-                "-infolder", "/home/dbarbera/Repositories/art_db/wav/train/art_db_compilation",
-                "-tests", "./../Tests/debug_train_inputs_v3.csv",
-                "-expectations", "./../Expectations/debug_train_expectations_v3.csv",
-                "-outfolder", "./../Test_Output/output_debug_trainset_v3",
-                "-featparams", "./../Models/Bare/2022-02-15T10:29:55-062_Bare.ci_cont/feat.params",
-                "-hmm", "./../Models/Bare/2022-02-15T10:29:55-062_Bare.ci_cont"
-            ]
+            // "args": [
+            //     "-dict", "./../Dictionaries/art_db_v3.dic",
+            //     "-phdict", "./../Dictionaries/art_db_v3_inference.phone",
+            //     "-infolder", "/home/dbarbera/Repositories/art_db/wav/train/art_db_compilation",
+            //     "-tests", "./../Tests/debug_train_inputs_v3.csv",
+            //     "-expectations", "./../Expectations/debug_train_expectations_v3.csv",
+            //     "-outfolder", "./../Test_Output/output_debug_trainset_v3",
+            //     "-featparams", "./../Models/Bare/2022-02-15T10:29:55-062_Bare.ci_cont/feat.params",
+            //     "-hmm", "./../Models/Bare/2022-02-15T10:29:55-062_Bare.ci_cont"
+            // ]
         }
     ]
 }

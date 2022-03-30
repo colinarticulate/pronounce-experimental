@@ -9,7 +9,6 @@ import (
 	"os"
 	"os/exec"
 	"path"
-	pathpkg "path"
 	"path/filepath"
 	"runtime"
 	"sort"
@@ -3936,15 +3935,15 @@ func clean(outfolder string) {
 
 func cleanWavFiles(originalWavFile string, word string) {
 	testCaseAudio(originalWavFile, word)
-	wavDir, _ := filepath.Split(originalWavFile)
-	_ = filepath.Walk(wavDir, func(path string, info os.FileInfo, err error) error {
-		_, wavFile := filepath.Split(path)
-		if matched, _ := pathpkg.Match("*fixed*.wav", wavFile); matched {
+	// wavDir, _ := filepath.Split(originalWavFile)
+	// _ = filepath.Walk(wavDir, func(path string, info os.FileInfo, err error) error {
+	// 	_, wavFile := filepath.Split(path)
+	// 	if matched, _ := pathpkg.Match("*fixed*.wav", wavFile); matched {
 
-			removeFromDisk(path)
-		}
-		return nil
-	})
+	// 		removeFromDisk(path)
+	// 	}
+	// 	return nil
+	// })
 }
 
 //=====================================================================

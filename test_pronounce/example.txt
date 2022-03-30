@@ -1,0 +1,8 @@
+./test_pronounce     -dict /home/dbarbera/Repositories/pronounce-experimental/Dictionaries/art_db_v3.dic \
+                        -phdict /home/dbarbera/Repositories/pronounce-experimental/Dictionaries/art_db_v3_inference.phone \
+                        -infolder /home/dbarbera/Data/audio_clips \
+                        -tests /home/dbarbera/Repositories/pronounce-experimental/Tests/pronounce_input.csv \
+                        -expectations /home/dbarbera/Repositories/pronounce-experimental/Expectations/expectations_v2.csv \
+                        -outfolder ./output_testing_xyz_plus  \
+                        -featparams /home/dbarbera/Repositories/pronounce-experimental/Models/Bare/2022-03-30T10:55:59-093_Bare.ci_cont/feat.params \
+                        -hmm /home/dbarbera/Repositories/pronounce-experimental/Models/Bare/2022-03-30T10:55:59-093_Bare.ci_cont
