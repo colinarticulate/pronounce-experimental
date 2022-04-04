@@ -444,6 +444,10 @@ func modifiedResults(results []timeAlignedPhoneme) []timeAlignedPhoneme {
 				if res.end-res.start >= 3 {
 					modRes = append(modRes, res)
 				}
+			} else if i > 0 && i < len(results)-1 && results[i-1].phoneme == sh && results[i+1].phoneme == l { // the short iy in shelia
+				if res.end-res.start >= 3 {
+					modRes = append(modRes, res)
+				}
 			} else if i > 0 && i < len(results)-1 && results[i-1].phoneme == aa { // short when in diphthong AY --> aa iy
 				if res.end-res.start >= 1 {
 					modRes = append(modRes, res)

@@ -15,18 +15,18 @@ time ./test_pronounce -dict /Users/test/Downloads/sourceFiltered_exp3Mar22.dict 
                         -tests /Users/test/Downloads/train/scrape/hossein/HY_test/0_hy_test_input.csv  \
                         -expectations /Users/test/Downloads/train/scrape/hossein/HY_test/0_HY_expectations.csv  \
                         -outfolder /Users/test/Downloads/audio_temp \
-                        -featparams /Users/test/Documents/GitHub/pronounce-experimental/Models/Bare.ci_cont_3Mar22_v3/feat.params \
-                        -hmm /Users/test/Documents/GitHub/pronounce-experimental/Models/Bare.ci_cont_3Mar22_v3
-                        
+                        -featparams /Users/test/Documents/GitHub/pronounce-experimental/Models/Bare.ci_cont_4Apr22/feat.params \
+                        -hmm /Users/test/Documents/GitHub/pronounce-experimental/Models/Bare.ci_cont_4Apr22
 
-#
-#time /Users/test/keep_away_from_go/art/cmd/testPronounce/testPronounce 
-#						-dict /Users/test/Downloads/temp_accoustic/art_db.dic 
-#						-phdict /Users/test/Downloads/temp_accoustic/art_db.phone 
-#						-infolder /Users/test/Downloads/train/scrape/hossein/HY_test/ 
-#						-tests 0_hy_test_input.csv 
-#						-expectations 0_HY_expectations.csv 
-#						-outfolder ./testout -featparams /usr/local/share/pocketsphinx/model/en-us/en-us/feat.params
+
+#time ./test_pronounce -dict /Users/test/Downloads/pronunce_production/dictionary/art_db.dic \
+# 						-phdict /Users/test/Downloads/pronunce_production/dictionary/art_db.phone \
+#                        -infolder /Users/test/Downloads/train/scrape/hossein/HY_test/ \
+#                        -tests /Users/test/Downloads/train/scrape/hossein/HY_test/0_hy_test_input.csv  \
+#                        -expectations /Users/test/Downloads/train/scrape/hossein/HY_test/0_HY_expectations.csv  \
+#                        -outfolder /Users/test/Downloads/audio_temp \
+#                        -featparams /Users/test/Downloads/pronunce_production/acoustic_model/feat.params \
+#                        -hmm /Users/test/Downloads/pronunce_production/acoustic_model
 
 echo "clean up"
 rm /Users/test/Downloads/train/scrape/hossein/HY_test/*_fixed*.wav
