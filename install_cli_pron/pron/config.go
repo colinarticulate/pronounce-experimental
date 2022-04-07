@@ -523,7 +523,7 @@ func TestConfig(
 	suiteToRun psSuite,
 	targetRule func(string, []phoneme, dictionary.Dictionary) string,
 	config jsgfConfig,
-) newPsConfig {
+) (newPsConfig, []byte) {
 
 	settings := []psPhonemeSettings{}
 	// What the hell!? go does NOT provide a means of generating a UUID
@@ -536,7 +536,7 @@ func TestConfig(
 	g.new_R_target(word, phons)
 	_, file := path.Split(audiofile)
 	jsgfFilename := path.Join(tempDir, "forced_align_"+uuid.New().String()+"_"+file+".jsgf")
-	g.SaveToDisk(jsgfFilename)
+	//g.SaveToDisk(jsgfFilename)// the only time this is written to a file
 	for _, s := range suiteToRun {
 		runSettings := make(psPhonemeSettings)
 		for k, v := range s {
@@ -574,5 +574,5 @@ func TestConfig(
 		g.target,
 		neighbourRules,
 		outfolder,
-	}
+	}, g.SaveToByteSlice()
 }

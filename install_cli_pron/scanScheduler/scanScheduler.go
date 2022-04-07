@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"os/exec"
 	"path"
 	"strings"
 
@@ -273,7 +272,7 @@ func (b batchScan) doBatchScan(scan PsScan, cepdir, ctl, dict string) []string {
 		}
 	}
 
-	args := []string{
+	args := []string{"pocketsphinx_batch", //required for the xyz_plus API
 		"-adcin", "yes", "-cepdir", cepdir, "-cepext", ".wav", "-ctl", ctl, "-dict", dict, "-logfn", logfn,
 	}
 	// Add any other parameters. What happens if a setting is already included in
@@ -283,19 +282,21 @@ func (b batchScan) doBatchScan(scan PsScan, cepdir, ctl, dict string) []string {
 			args = append(args, setting.Flag, setting.Value)
 		}
 	}
-	_, err := exec.Command("pocketsphinx_batch", args...).Output()
 
-	if err != nil {
-		debug("Oops, check pocketsphinx settings? args are...", args)
-		return []string{}
-	}
-	cmnVec := b.getCmnVec(logfn)
+	// _, err := exec.Command("pocketsphinx_batch", args...).Output()
+
+	// if err != nil {
+	// 	debug("Oops, check pocketsphinx settings? args are...", args)
+	// 	return []string{}
+	// }
+	// cmnVec := b.getCmnVec(logfn)
+	cmnVec := xyz_plus.Ps_batch_plus_call(scan.Audio_buffer, args)
 	testCaseItBatch(args, word, logfn, cmnVec)
 
 	// We're done with the batch file so remove it now
-	if err := os.Remove(logfn); err != nil {
-		// Not much I can do here - I failed to remove the logfile...
-	}
+	// if err := os.Remove(logfn); err != nil {
+	// 	// Not much I can do here - I failed to remove the logfile...
+	// }
 	return cmnVec
 }
 

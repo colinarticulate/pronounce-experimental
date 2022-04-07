@@ -77,9 +77,9 @@ func new() runner {
 
 func (r *runner) loop() {
 	//Throttling
-	maxRunningTests := 200 //10 default
+	maxRunningTests := 10 //10 default
 	runningTests := 0
-	limit := time.Tick(25 * time.Millisecond) //500 default
+	limit := time.Tick(500 * time.Millisecond) //500 default
 	for {
 		select {
 		case <-limit:
@@ -88,6 +88,8 @@ func (r *runner) loop() {
 				go func(test scheduledTest) {
 					runningTests++
 					fmt.Println("running new test...")
+					//out, err := exec.Command("cli_pron", test.args...).Output()
+					os.Setenv("GODEBUG", "cgocheck=0")
 					out, err := exec.Command("cli_pron", test.args...).Output()
 					if err != nil {
 						fmt.Println("testPronounce:Oops, err is", err, "Check args maybe?...", test.args)

@@ -4228,8 +4228,8 @@ func runVariantScan(c chan<- variantResult, wg *sync.WaitGroup, sch scanSchedule
 		     debug("Failed to get frate for batch scan")
 		   }
 		*/
-		config := TestConfig(outfolder, audiofile, phdictfile, dict, featparams, hmm, word, variant, frates, suiteOfOne, targetRuleForWord, &builderConfig)
-		go runVariantScanWithConfig(c1, &wg1, sch, config, word)
+		config, jsgf_buffer := TestConfig(outfolder, audiofile, phdictfile, dict, featparams, hmm, word, variant, frates, suiteOfOne, targetRuleForWord, &builderConfig)
+		go runVariantScanWithConfig(c1, &wg1, sch, config, word, jsgf_buffer)
 	}
 
 	go func() {
@@ -4349,7 +4349,7 @@ func check(e error) {
 	}
 }
 
-func doRunScan(s scanScheduler.Scheduler, config newPsConfig, word string, f func([]psPhonemeResults)) {
+func doRunScan(s scanScheduler.Scheduler, config newPsConfig, word string, jsgf_buffer []byte, f func([]psPhonemeResults)) {
 	// Need to set up arguments for acall to s.DoScan(scan PsScan)
 	params := []scanScheduler.PsParam{}
 	// Really need to sort this out. it's a mess... Right now there should only
@@ -4382,21 +4382,21 @@ func doRunScan(s scanScheduler.Scheduler, config newPsConfig, word string, f fun
 	params = append(params, paramword)
 
 	//Locate jsgf and audio files paths
-	var jsgf_file string
+	//var jsgf_file string
 	var audio_file string
 	for _, param := range params {
 		if param.Flag == "-infile" {
 			audio_file = param.Value
 		}
-		if param.Flag == "-jsgf" {
-			jsgf_file = param.Value
-		}
+		// if param.Flag == "-jsgf" {
+		// 	jsgf_file = param.Value
+		// }
 	}
-	var jsgf_buffer []byte
+	//var jsgf_buffer []byte
 	var audio_buffer []byte
 	var err error
-	jsgf_buffer, err = os.ReadFile(jsgf_file)
-	check(err)
+	// jsgf_buffer, err = os.ReadFile(jsgf_file)
+	// check(err)
 	audio_buffer, err = os.ReadFile(audio_file)
 	check(err)
 	//  ___                            _           _          _      _
@@ -4466,12 +4466,12 @@ func doRunScan(s scanScheduler.Scheduler, config newPsConfig, word string, f fun
 
 // Not an ideal solution but implemented to get a solution together in as
 // short a time as possible and with minimal change to the existing code
-func runVariantScanWithConfig(c chan<- resultWithConfig, wg *sync.WaitGroup, sch scanScheduler.Scheduler, config newPsConfig, word string) {
+func runVariantScanWithConfig(c chan<- resultWithConfig, wg *sync.WaitGroup, sch scanScheduler.Scheduler, config newPsConfig, word string, jsgf_buffer []byte) {
 	defer wg.Done()
 
 	// scheduler := NewScanScheduler()
 	// scheduler.RunNewScan(config, func(arg1 []psPhonemeResults) {
-	doRunScan(sch, config, word, func(arg1 []psPhonemeResults) {
+	doRunScan(sch, config, word, jsgf_buffer, func(arg1 []psPhonemeResults) {
 		result := resultWithConfig{}
 		// There should only be one result
 		if len(arg1) == 1 {
@@ -4538,8 +4538,8 @@ func runDiphthongScan(c chan<- variantResult, wg *sync.WaitGroup, sch scanSchedu
 		     debug("Failed to get frate for batch scan")
 		   }
 		*/
-		config := TestConfig(outfolder, audiofile, phdictfile, dict, featparams, hmm, word, variant, frates, suiteOfOne, targetRuleForWord, &builderConfig)
-		go runVariantScanWithConfig(c1, &wg1, sch, config, word)
+		config, jsgf_buffer := TestConfig(outfolder, audiofile, phdictfile, dict, featparams, hmm, word, variant, frates, suiteOfOne, targetRuleForWord, &builderConfig)
+		go runVariantScanWithConfig(c1, &wg1, sch, config, word, jsgf_buffer)
 	}
 
 	go func() {
