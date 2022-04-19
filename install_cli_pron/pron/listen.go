@@ -3023,19 +3023,19 @@ func score(verdicts []phonVerdict) int {
 	for _, verdict := range verdicts {
 		switch verdict.goodBadEtc {
 		case good:
-			debug("+1 for", verdict.phon)
+			debug("+2 for", verdict.phon)
 			//ret += 1
 			ret += 2
 		case possible:
 			debug("+1 for", verdict.phon)
 			ret += 1
 		case missing:
-			debug("-1 for", verdict.phon)
+			debug("-2 for", verdict.phon)
 			allGood = false
 			//ret += -1
 			ret += -2
 		case surprise:
-			debug("-1 for", verdict.phon)
+			debug("-2 for", verdict.phon)
 			allGood = false
 			//ret += -1
 			ret += -2

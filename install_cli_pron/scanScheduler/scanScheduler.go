@@ -199,7 +199,8 @@ func (s *Scheduler) doScan(scan PsScan, bScan batchScan) {
 	// The output bytes are useless! So just return back to the caller
 	// indictating an error - if there was one
 
-	_, err := exec.Command("pocketsphinx_continuous", args...).Output()
+	//_, err := exec.Command("pocketsphinx_continuous", args...).Output()
+	_, err := exec.Command("xyzpocketsphinx_continuous", args...).Output()
 	testCaseItContinuous(args, word) //After the call so we can add the log file from pocketsphinx_continuous to the test case.
 	if err != nil {
 		err = psError{
@@ -250,8 +251,8 @@ func (b batchScan) doBatchScan(scan PsScan, cepdir, ctl, dict string) []string {
 			args = append(args, setting.Flag, setting.Value)
 		}
 	}
-	_, err := exec.Command("pocketsphinx_batch", args...).Output()
-
+	//_, err := exec.Command("pocketsphinx_batch", args...).Output()
+	_, err := exec.Command("xyzpocketsphinx_batch", args...).Output()
 	if err != nil {
 		debug("Oops, check pocketsphinx settings? args are...", args)
 		return []string{}

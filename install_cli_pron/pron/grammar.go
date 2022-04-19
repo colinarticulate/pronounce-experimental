@@ -1801,15 +1801,15 @@ func (gr jsgfGrammar) otherPhons(phons []phoneme, currPh int) []phoneme {
 
 	if currPh == 0 {
 		switch phon {
-		//case k:
-		//others = append(others, ch)
+		case k:
+		others = append(others, d)
 		//others = append(others, p, t)    //w
 		//others = append(others, p, g, t, f)    //w
 		//others = append(others, f, jh, ch)    //w
 		//case b:
 		//others = append(others, p, v, f)      // (r, z, hh)    .. tried y, aa, m, t, k    ... removed dh & th as they upset bars
 		case f:
-			others = append(others, s) // Note, can not do this the other way around because "f" will sit inside (is a shorter) "s"
+			others = append(others, s, p) // Note, can not do the "s" vs "f" the other way around because "f" will sit inside (is a shorter) "s"
 		case w:
 			others = append(others, v)
 		case r:
@@ -1817,7 +1817,7 @@ func (gr jsgfGrammar) otherPhons(phons []phoneme, currPh int) []phoneme {
 		case s:
 			others = append(others, z)
 		case th:
-			others = append(others, n)
+			others = append(others, t, d, s)  // was n prior to 9Apr22  PE
 		case dh:
 			others = append(others, t)
 		default:
@@ -2361,7 +2361,7 @@ var confusionMatrix = map[phoneme]map[phoneme]float64{
 		p: 18.8, t: 24.6, k: 5.6, f: 39.3, th: 74, s: 12, sh: 3.7, ch: 2.4, hh: 7.1, b: 14.2, d: 7.9, g: 0.5, v: 4, dh: 9.2, z: 5.5, zh: 0.5, jh: 0.5, y: 2, m: 1.3, n: 2.9, ng: 0.5, l: 2.9, r: 0.5, w: 0.5,
 	},
 	s: {
-		p: 6, t: 10.5, k: 5.2, f: 17.1, th: 24.6, s: 90, sh: 7, ch: 7, hh: 4, b: 0.5, d: 2.2, g: 0.5, v: 4.1, dh: 10, z: 25, zh: 7, jh: 2.7, y: 2, m: 0.8, n: 0.5, ng: 0.9, l: 1.4, r: 3, w: 0.5, ih: 0.3, aa: 0.5, ao:1,
+		p: 6, t: 10.5, k: 5.2, f: 17.1, th: 24.6, s: 90, sh: 7, ch: 7, hh: 4, b: 0.5, d: 2.2, g: 0.5, v: 4.1, dh: 10, z: 25, zh: 7, jh: 2.7, y: 2, m: 0.8, n: 0.5, ng: 0.9, l: 1.4, r: 3, w: 0.5, ih: 0.3, aa: 0.5, ao:1, oy: 0.1,
 	},
 	sh: {
 		p: 5.9, t: 9.7, k: 6.7, f: 4.1, th: 6, s: 11.3, sh: 87, ch: 26, hh: 2.2, b: 0.5, d: 0.5, g: 0.5, v: 2.2, dh: 1.6, z: 15, zh: 10, jh: 16.1, y: 0.8, m: 1.7, n: 0.5, ng: 0.5, l: 0.7, r: 0.4, w: 0,

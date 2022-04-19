@@ -15,8 +15,8 @@ time ./test_pronounce -dict /Users/test/Downloads/sourceFiltered_exp3Mar22.dict 
                         -tests /Users/test/Downloads/train/Shtooka/judith/judith/judith_input.csv  \
                         -expectations /Users/test/Downloads/train/Shtooka/judith/judith/judith_expectations.csv  \
                         -outfolder /Users/test/Downloads/audio_temp \
-                        -featparams /Users/test/Documents/GitHub/pronounce-experimental/Models/Bare.ci_cont_15Mar22/feat.params \
-                        -hmm /Users/test/Documents/GitHub/pronounce-experimental/Models/Bare.ci_cont_15Mar22
+                        -featparams /Users/test/Documents/GitHub/pronounce-experimental/Models/Bare.ci_cont_4Apr22/feat.params \
+                        -hmm /Users/test/Documents/GitHub/pronounce-experimental/Models/Bare.ci_cont_4Apr22
                         
 
 
