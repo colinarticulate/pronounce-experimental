@@ -82,7 +82,7 @@ def extract_all_phones_from_dictionary(dictionary):
 def phones_from_transciptions():
     #transcription_file="./data/art_db_Bare_train_Double.transcription"
 
-    transcription_file="./data/art_db_Bare_train_Expanded.transcription"
+    transcription_file="./data/art_db_Bare_train_Expanded (16).transcription"
 
     phones = extract_all_phones_from_dummy_transcription(transcription_file)
     print(phones, len(phones))
@@ -96,10 +96,11 @@ def phones_from_transciptions():
 
 def phones_from_dictionary():
     dict_file="./../../Dictionaries/raw/sourceFiltered_clustering.dict"
+    dict_file="./../../Dictionaries/Master/art_db_v3.dic"
     #dict_file="/home/dbarbera/Repositories/pronounce-experimental/Dictionaries/raw/sourceFiltered_clustering.dict"
     dictionary = get_dictionary(dict_file)
     phones = extract_all_phones_from_dictionary(dictionary)
-    save_phones("./data/art_db_v3.phone", phones)
+    save_phones("./data/art_db_v3_from_dict.phone", phones)
 
 
 def create_inference_phone_file(src,dst):
@@ -120,9 +121,9 @@ def task_create_inference_phone_file():
 def main():
 
 
-    task_create_inference_phone_file()
+    #task_create_inference_phone_file()
     #phones_from_transciptions()
-    #phones_from_dictionary()
+    phones_from_dictionary()
 
 
     
