@@ -275,6 +275,7 @@ func (b batchScan) doBatchScan(scan PsScan, cepdir, ctl, dict string) []string {
 	}
 
 	args := []string{"pocketsphinx_batch", //required for the xyz_plus API
+	//args := []string{"xyzpocketsphinx_batch", //   <----- Should this be used instead of the above?  PE 20/Apr/21
 		"-adcin", "yes", "-cepdir", cepdir, "-cepext", ".wav", "-ctl", ctl, "-dict", dict, "-logfn", logfn,
 	}
 	// Add any other parameters. What happens if a setting is already included in
