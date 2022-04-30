@@ -708,6 +708,10 @@ var settingsCatalgue = []psPhonemeSettings{
 		pbeam: "1e-10000",
 		wbeam: "1e-10000",
 
+		//beam:  "1e-100000000",  // trying something with 64 phoneme only - #define FSG_PNODE_CTXT_BVSZ	2
+		//pbeam: "1e-100000000",
+		//wbeam: "1e-100000000",
+
 		frate: "125",
 		wlen:  "0.016",
 		nfft:  "256",
@@ -816,6 +820,10 @@ var settingsCatalgue = []psPhonemeSettings{
 		pbeam: "1e-10000",
 		wbeam: "1e-10000",
 
+		//beam:  "1e-1000000",  // trying something with 64 phoneme only - #define FSG_PNODE_CTXT_BVSZ	2
+		//pbeam: "1e-1000000",
+		//wbeam: "1e-1000000",
+
 		frate: "105", //105
 		wlen:  "0.020",
 		nfft:  "512",
@@ -920,6 +928,10 @@ var settingsCatalgue = []psPhonemeSettings{
 		beam:  "1e-10000",
 		pbeam: "1e-10000",
 		wbeam: "1e-10000",
+
+		//beam:  "1e-1000000",  // trying something with 64 phoneme only - #define FSG_PNODE_CTXT_BVSZ	2
+		//pbeam: "1e-1000000",
+		//wbeam: "1e-1000000",
 
 		frate: "91", //91
 		wlen:  "0.024",
@@ -1029,6 +1041,10 @@ var settingsCatalgue = []psPhonemeSettings{
 		pbeam: "1e-10000",
 		wbeam: "1e-10000",
 
+		//beam:  "1e-1000000",  // trying something with 64 phoneme only - #define FSG_PNODE_CTXT_BVSZ	2
+		//pbeam: "1e-1000000",
+		//wbeam: "1e-1000000",
+
 		frate: "80",
 		wlen:  "0.028",
 		nfft:  "512",
@@ -1116,6 +1132,10 @@ var settingsCatalgue = []psPhonemeSettings{
 		beam:  "1e-10000",
 		pbeam: "1e-10000",
 		wbeam: "1e-10000",
+
+		//beam:  "1e-1000000",  // trying something with 64 phoneme only - #define FSG_PNODE_CTXT_BVSZ	2
+		//pbeam: "1e-1000000",
+		//wbeam: "1e-1000000",
 
 		frate: "72",
 		wlen:  "0.032",
