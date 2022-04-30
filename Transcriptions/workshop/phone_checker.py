@@ -123,8 +123,8 @@ def main():
 
 
     #task_create_inference_phone_file()
-    phones_from_transciptions()
-    #phones_from_dictionary()
+    #phones_from_transciptions()
+    phones_from_dictionary()
 
 
     

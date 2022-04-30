@@ -1,0 +1,13 @@
+#JSGF V1.0;
+grammar test;
+public <allowed> = (((sil [((z <any_Cx_ax_z_p>) | (<any_Cx_ax_z_p> z))] [((z <any_vowel_noSlide>) | (<any_vowel_noSlide> z))]) | (sil p (sil [((z <any_Cx_ax_z_p>) | (<any_Cx_ax_z_p> z))] [((z <any_vowel_noSlide>) | (<any_vowel_noSlide> z))]))) (([(<any_Cx_sh_p_z_ax_l> sh)] | [(sh <any_Cx_sh_p_z_ax_l>)]) (ax | ((<any_Cx_sh_p_z_ax_l> sh) | (sh <any_Cx_sh_p_z_ax_l>)))) (([(<any_Cx_sh_sh_l_ax> sh)] | [(sh <any_Cx_sh_sh_l_ax>)]) (l | ((<any_Cx_sh_sh_l> sh) | (sh <any_Cx_sh_sh_l>)))) ((([(<any_Vx_sh_sh_aw_noSlide> sh)] | [(sh <any_Vx_sh_sh_aw_noSlide>)]) ([(<any_Cx_sh_sh_d_l> sh)] | [(sh <any_Cx_sh_sh_d_l>)])) (aw | ((<any_Vx_sh_sh_aw_noSlide> sh) | (sh <any_Vx_sh_sh_aw_noSlide>)))) (([(<any_Cx_sh_sh_d> sh)] | [(sh <any_Cx_sh_sh_d>)]) (d | ((<any_Cx_sh_sh_d> sh) | (sh <any_Cx_sh_sh_d>)))) (([(<any_vowel_noSlide> b)] | [(b <any_vowel_noSlide>)]) ([(<any_Cx_sh_d_b> b)] | [(b <any_Cx_sh_d_b>)]) sil));
+<any_vowel_noSlide> = (aa | ae | ah | eh | ehr | er | ih | iy | oh | uw | uh | y);
+<any_Cx_sh_p_z_ax_l> = (g | w | ch | zh | v | dh | b | d | hh | m);
+<any_Cx_sh_sh_l> = (dh | z | ch | zh | m | v | w | g | b | d | hh);
+<any_Cx_sh_d_b> = (hh | m | g | zh | dh | v | l | w | z | ch);
+<any_Cx_ax_z_p> = (l | m | dh | ch | d | g | v | b | hh | w | zh);
+<any_Cx_sh_sh_l_ax> = (g | b | ch | d | dh | w | z | v | zh | hh | m);
+<any_Cx_sh_sh_d_l> = (hh | w | z | zh | ch | dh | m | g | v | b);
+<any_Vx_sh_sh_aw_noSlide> = (ao | ax | aa | oh | uwl | uwm | axr | eh | ih | iy | uh | uw | y | axl | axm | ae | ah | ehr | er | axn | uwn);
+<any_Cx_sh_sh_d> = (w | m | dh | v | b | z | l | g | hh | zh | ch);
+<any_Vx_sh_d_b> = (ah | ih | oh | axm | uwl | axr | ao | oy | uwn | y | iy | aa | aw | ae | ay | er | axl | eh | uh | axn | uwm | ax | ehr | ey | ow | uw);

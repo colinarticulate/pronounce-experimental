@@ -1,0 +1,27 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**",
+                //"${workspaceFolder}/../../xyzsphinxbase",
+                //"${workspaceFolder}/../../xyzpocketsphinx",
+                // "${workspaceFolder}/../../xyzsphinxbase/include",
+                //"${workspaceFolder}/../../xyzsphinxbase/include/xyzsphinxbase",
+                // "${workspaceFolder}/../../xyzpocketsphinx/include",
+                //"${workspaceFolder}/../../xyzpocketsphinx/src/libpocketsphinx",
+                // "${workspaceFolder}/../../xyzsphinxbase/src/libsphinxad",
+                // "${workspaceFolder}/../../xyzsphinxbase/src/libsphinxbase"
+                "/usr/local/include/xyzpocketsphinx",
+                "/usr/local/include/xyzsphinxbase"
+
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c11",
+            "cppStandard": "c++14",
+            "intelliSenseMode": "linux-gcc-x64"
+        }
+    ],
+    "version": 4
+}
