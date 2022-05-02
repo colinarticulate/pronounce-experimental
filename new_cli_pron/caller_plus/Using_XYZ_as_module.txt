@@ -1,0 +1,92 @@
+Priceless to read, i wish I could have found it sooner:
+https://github.com/lxwagn/using-go-with-c-libraries
+
+
+to make thigs easier we could call from the local folder so every change is automatically updated for the caller withouth having to commit code.
+go mod edit -replace github.com/davidbarbera/articulate-pocketsphinx-go/xyz=/home/dbarbera/Repositories/articulate-pocketsphinx-go/xyz
+go mod edit -replace github.com/davidbarbera/articulate-pocketsphinx-go/xyz=<your-local-path>/articulate-pocketsphinx-go/xyz
+
+
+>$ go mod init
+>$ go mod tidy
+
+
+
+Minimal to still get stuck at linking
+CGO_CFLAGS="-g -O2 -Wall -Wl,-rpath=/usr/local/lib \
+-Wno-unused-result \
+-Wno-unused-but-set-variable \
+-Wno-unused-function \
+-Wno-unused-parameter \
+-Wno-unused-variable \
+-I/usr/local/include/ \
+-I/usr/local/include/xyzsphinxbase \
+-I/usr/local/include/xyzpocketsphinx" \
+go build
+
+
+
+This worked!!!!!!!!
+CGO_CFLAGS="-g -O2 -Wall -Wl,-rpath,/usr/local/lib \
+-Wno-unused-result \
+-Wno-unused-but-set-variable \
+-Wno-unused-function \
+-Wno-unused-parameter \
+-Wno-unused-variable \
+-I/usr/local/include/ \
+-I/usr/local/include/xyzsphinxbase \
+-I/usr/local/include/xyzpocketsphinx" \
+CGO_LDFLAGS="-L/usr/local/lib -lxyzpocketsphinx -lxyzsphinxbase -lxyzsphinxad" \
+go build
+but then at runtime:
+./caller: error while loading shared libraries: libxyzpocketsphinx.so.3: cannot open shared object file: No such file or directory
+
+LD_PRELOAD="/usr/local/lib/libxyzpocketsphinx.so \
+/usr/local/lib/libxyzsphinxbase.so \
+/usr/local/lib/libxyzsphinxad.so" \
+./caller
+which works
+
+
+with soname
+CGO_CFLAGS="-g -O2 -Wall -Wl,-soname,libxyzpocketsphinx.so \
+-Wno-unused-result \
+-Wno-unused-but-set-variable \
+-Wno-unused-function \
+-Wno-unused-parameter \
+-Wno-unused-variable \
+-I/usr/local/include/ \
+-I/usr/local/include/xyzsphinxbase \
+-I/usr/local/include/xyzpocketsphinx" \
+CGO_LDFLAGS="-L/usr/local/lib -lxyzpocketsphinx -lxyzsphinxbase -lxyzsphinxad" \
+go build
+
+with rpath pointing a canonical installation (/usr/local/)
+CGO_CFLAGS="-g -O2 -Wall -Wl,-rpath=/usr/local/lib -fPIC -Wextra \
+-Wno-unused-result \
+-Wno-unused-but-set-variable \
+-Wno-unused-function \
+-Wno-unused-parameter \
+-Wno-unused-variable \
+-I/usr/local/include/ \
+-I/usr/local/include/sphinxbase \
+-I/usr/local/include/pocketsphinx" \
+CGO_LDFLAGS="-L/usr/local/lib -lxyzpocketsphinx -lxyzsphinxbase -lxyzsphinxad" \
+go build
+
+
+Statically?
+CGO_CFLAGS="-g -O2 -Wall -Wl,-Bstatic,-lxyzpocketsphinx \
+-Wno-unused-result \
+-Wno-unused-but-set-variable \
+-Wno-unused-function \
+-Wno-unused-parameter \
+-Wno-unused-variable \
+-I/usr/local/include/ \
+-I/usr/local/include/xyzsphinxbase \
+-I/usr/local/include/xyzpocketsphinx" \
+CGO_LDFLAGS="-L/usr/local/lib -lxyzpocketsphinx -lxyzsphinxbase -lxyzsphinxad" \
+go build
+
+
+go mod edit -replace github.com/davidbarbera/articulate-pocketsphinx-go/xyz=/home/dbarbera/Repositories/articulate-pocketsphinx-go/xyz

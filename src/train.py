@@ -36,7 +36,8 @@ class train():
         self.model_location = os.path.join(self.base_dir, "model_parameters", f"{self.model_name}.ci_cont")
 
         model_destination_path = os.path.join("./../Models",self.model_name)
-        self.model_destination = os.path.join(model_destination_path, f"{self.timestamp_model_name}.ci_cont") 
+        self.model_destination = os.path.join(model_destination_path, f"{self.timestamp_model_name}.ci_cont","model") 
+        self.model_etc_destination = os.path.join(model_destination_path, f"{self.timestamp_model_name}.ci_cont","etc") 
 
         print("Preparing training...")
         self.prepare_training()
@@ -46,6 +47,7 @@ class train():
         if not os.path.exists(log_model_folder):
             os.mkdir(log_model_folder)
         self.log_file = os.path.join(log_model_folder, "training.log")
+
 
         
 
@@ -201,6 +203,8 @@ class train():
     def copy_model(self):
         print(f"\nModel \"{self.model_name}\" copied from:\n{self.model_location}\n to:\n{os.path.normpath(os.path.join( os.getcwd(), self.model_destination))}\n")
         self.copytree(self.model_location, self.model_destination, symlinks=False, ignore=False)
+        print(f"\nTraining files \"{self.model_name}\" copied from:\n{self.etc}\n to:\n{os.path.normpath(os.path.join( os.getcwd(), self.model_etc_destination))}\n")
+        self.copytree(self.etc, self.model_etc_destination, symlinks=False, ignore=False)
 
 
 

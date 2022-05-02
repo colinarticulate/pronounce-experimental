@@ -237,8 +237,10 @@ func (s *Scheduler) doScan(scan PsScan, bScan batchScan) {
 	// 		// scan.RespondTo <- errors.New("pocketsphinx crashed!")
 	// 	}
 	// }()
-
+	//start := time.Now()
 	scan.RespondTo <- xyz_plus.Ps_plus_call(scan.Jsgf_buffer, scan.Audio_buffer, args)
+	// elapsed := time.Since(start)
+	// fmt.Printf("continuous: %s\n", elapsed)
 }
 
 func (s *Scheduler) DoScan(scan PsScan) {
@@ -291,7 +293,10 @@ func (b batchScan) doBatchScan(scan PsScan, cepdir, ctl, dict string) []string {
 	// 	return []string{}
 	// }
 	// cmnVec := b.getCmnVec(logfn)
+	//start := time.Now()
 	cmnVec := xyz_plus.Ps_batch_plus_call(scan.Audio_buffer, args)
+	// elapsed := time.Since(start)
+	// fmt.Printf("batch: %s\t%s\n", elapsed, cmnVec)
 	testCaseItBatch(args, word, logfn, cmnVec)
 
 	// We're done with the batch file so remove it now

@@ -1,0 +1,21 @@
+Building:
+go build -tags "noSend debug"
+
+
+Execution:
+
+./cli_pron -audio /home/dbarbera/Data/audio_clips/allowed1_philip.wav \
+-featparams /home/dbarbera/Repositories/pronounce-experimental/Models/Bare/2022-03-24T10:36:01-020_Bare.ci_cont/feat.params \
+-hmm    /home/dbarbera/Repositories/pronounce-experimental/Models/Bare/2022-03-24T10:36:01-020_Bare.ci_cont \
+-word allowed \
+-dict /home/dbarbera/Repositories/pronounce-experimental/Dictionaries/art_db_v3.dic \
+-phdict /home/dbarbera/Repositories/pronounce-experimental/Dictionaries/art_db_v3_inference.phone
+
+
+
+export GODEBUG=cgocheck=0 && ./cli_pron -audio /home/dbarbera/Data/audio_clips/allowed1_philip.wav \
+-featparams /home/dbarbera/Repositories/pronounce-experimental/Models/Bare/2022-03-24T10:36:01-020_Bare.ci_cont/feat.params \
+-hmm    /home/dbarbera/Repositories/pronounce-experimental/Models/Bare/2022-03-24T10:36:01-020_Bare.ci_cont \
+-word allowed \
+-dict /home/dbarbera/Repositories/pronounce-experimental/Dictionaries/art_db_v3.dic \
+-phdict /home/dbarbera/Repositories/pronounce-experimental/Dictionaries/art_db_v3_inference.phone

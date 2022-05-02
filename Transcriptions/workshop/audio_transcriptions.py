@@ -155,18 +155,20 @@ def given_dummy_transcriptions_create_fileids_and_an_update_general_dummy_dict()
     #transcriptions, fileids = discard_entries_from_training_files(to_discard_file, raw_fileids, raw_transcriptions)
     
     dummy_entries = create_dummy_dictionary_entries(transcriptions)
+    filename="./data/art_db_v3_dummy_new.dic"
+    save_dummy_dict(filename, dummy_entries)
 
-    dummy_dict_file="./../../Dictionaries/art_db_v3_dummy.dic"
-    dictionary = get_dictionary("./../../Dictionaries/art_db_v3.dic") #create dummy again
-    create_dummy_dictionary(dictionary, dummy_dict_file)
+    # dummy_dict_file="./../../Dictionaries/art_db_v3_dummy.dic"
+    # dictionary = get_dictionary("./../../Dictionaries/art_db_v3.dic") #create dummy again
+    # create_dummy_dictionary(dictionary, dummy_dict_file)
 
     
-    current_dummy = load_dummy(dummy_dict_file)
+    # current_dummy = load_dummy(dummy_dict_file)
 
-    merged_dummy_entries = merge_dummy_dictionaries(current_dummy, dummy_entries)
+    # merged_dummy_entries = merge_dummy_dictionaries(current_dummy, dummy_entries)
 
-    filename="./data/art_db_v3_dummy_new.dic"
-    save_dummy_dict(filename, merged_dummy_entries)
+    
+    # save_dummy_dict(filename, merged_dummy_entries)
 
 
 
@@ -298,6 +300,39 @@ def delete_invalid_audios():
     for file in files:
         os.remove(os.path.join(path_dir, file))
 
+def fix_emmanuel():
+    with open("data/emmanuel.txt",'r') as f:
+        raw=f.read()
+    transcriptions=raw.strip("\n").split("\n")
+
+    new_transcriptions=[]
+    for line in transcriptions:
+        transcription = line.split("(")[0]
+        bad_filename = line.split("(")[1].split(")")[0]
+        parts = bad_filename.split("_")
+        good_filename = "_".join([parts[0],parts[1]])
+
+        new_transcriptions.append(transcription+"("+good_filename+")")
+
+    with open("data/emmanuel_fixed.txt",'w') as f:
+        f.write("\n".join(new_transcriptions)+"\n")
+
+def find_duplicates():
+
+    file = "../../Dictionaries/art_db_v3.phone"
+
+    with open(file, 'r') as f:
+        contents = f.read()
+    entries = contents.strip("\n").split("\n")  
+
+    duplicates = []
+    for i,entry in enumerate(entries):
+        for j in range(len(entries)):
+            if i!=j and entry==entries[j]:
+                duplicates.append(entry)
+
+    print(duplicates)
+
 
 
 def main():
@@ -309,6 +344,8 @@ def main():
     # check_and_create_missing_audios(missing_audios_file, src_path, dst_path)
 
     given_dummy_transcriptions_create_fileids_and_an_update_general_dummy_dict()
+    #find_duplicates()
+    #fix_emmanuel()
     #delete_invalid_audios()
 
     #fix_naming_audios()

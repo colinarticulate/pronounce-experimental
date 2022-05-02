@@ -17,29 +17,26 @@
             "request": "launch",
             "mode": "auto",
             "program": "main.go",
-            "buildFlags": "-tags 'noSend debug'", //or "-tags 'noSend debug testCase'"
+            //"buildFlags": "-tags 'noSend debug'", //or "-tags 'noSend debug testCase'"
             // "args":[
             //     "-audio", "/home/dbarbera/Data/audio_clips/allowed1_philip.wav",   
-            //     "-featparams", "/home/dbarbera/Repositories/pronounce-experimental/Models/Bare/2022-03-30T10:55:59-093_Bare.ci_cont/feat.params",
-            //     "-hmm", "/home/dbarbera/Repositories/pronounce-experimental/Models/Bare/2022-03-30T10:55:59-093_Bare.ci_cont",
+            //     "-featparams", "/usr/local/share/xyzpocketsphinx/model/art-en-us/en-us/feat.params",
+            //     "-hmm", "/usr/local/share/xyzpocketsphinx/model/art-en-us/en-us",
             //     "-word", "allowed",                                 
-            //     "-dict", "/home/dbarbera/Repositories/pronounce-experimental/Dictionaries/art_db_v3.dic",
-            //     "-phdict", "/home/dbarbera/Repositories/pronounce-experimental/Dictionaries/art_db_v3_inference.phone"
+            //     "-dict", "/home/dbarbera/Data/art_db.dic",
+            //     "-phdict", "/home/dbarbera/Data/art_db.phone"
             //    ],
-            "args":["-audio","/home/dbarbera/Data/audio_clips/abandoned1_paul.wav","-featparams","/home/dbarbera/Repositories/pronounce-experimental/Models/Bare/2022-03-30T10:55:59-093_Bare.ci_cont/feat.params","-word","abandoned","-dict","/home/dbarbera/Repositories/pronounce-experimental/Dictionaries/art_db_v3.dic","-phdict","/home/dbarbera/Repositories/pronounce-experimental/Dictionaries/art_db_v3_inference.phone","-hmm","/home/dbarbera/Repositories/pronounce-experimental/Models/Bare/2022-03-30T10:55:59-093_Bare.ci_cont"],
+            //"args":["-audio","/home/dbarbera/Data/audio_clips/abandoned1_paul.wav","-featparams","/home/dbarbera/Repositories/pronounce-experimental/Models/Bare/2022-03-30T10:55:59-093_Bare.ci_cont/feat.params","-word","abandoned","-dict","/home/dbarbera/Repositories/pronounce-experimental/Dictionaries/art_db_v3.dic","-phdict","/home/dbarbera/Repositories/pronounce-experimental/Dictionaries/art_db_v3_inference.phone","-hmm","/home/dbarbera/Repositories/pronounce-experimental/Models/Bare/2022-03-30T10:55:59-093_Bare.ci_cont"],
+            "args":[
+                "-audio", "/home/dbarbera/Data/audio_clips/abandoned1_paul.wav",   
+                "-featparams", "/usr/local/share/xyzpocketsphinx/model/art-en-us/en-us/feat.params",
+                "-hmm", "/usr/local/share/xyzpocketsphinx/model/art-en-us/en-us",
+                "-word", "abandoned",                                 
+                "-dict", "/home/dbarbera/Data/art_db.dic",
+                "-phdict", "/home/dbarbera/Data/art_db.phone"
+               ],
             "env":{"GODEBUG":"cgocheck=0"},
-            // "args":[
-            //     "-dict", "./../Dictionaries/art_db_v2.dic",
-            //     "-phdict", "./../Dictionaries/art_db_v2_inference.phone",
-            //     "-infolder", "/home/dbarbera/Repositories/art_db/wav/train/art_db_compilation",
-            //     "-tests", "./../Tests/train_inputs.csv",
-            //     "-expectations", "./../Expectations/train_expectations_rigorous.csv",
-            //     "-outfolder", "./../Test_Output/output_2022-02-07T14:11:46-092_Bare_with_UWs_Train_set_rigorous",
-            //     "-featparams", "./../Models/Bare/2022-02-07T14:11:46-092_Bare_with_UWs.ci_cont/feat.params",
-            //     "-hmm", "./../Models/Bare/2022-02-07T14:11:46-092_Bare_with_UWs.ci_cont"
-            //    ],
-
-               
+              
         }
     ]
 }

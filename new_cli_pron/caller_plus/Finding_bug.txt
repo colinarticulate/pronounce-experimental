@@ -1,0 +1,11 @@
+Colin system reports working for all frates with option -remove_silence as 'no'. It uses two different models:-hmm is from original pocketsphinx installation and -featparams from new xyz pocketsphinx installation.
+He uses models with file sizes that don't match my current settings configured previously with articulate (art_db) settings.
+
+1. Replace my models with that of Colins.
+Outcome: frate=91 still doesnt work.I don't even get a log file.
+
+2.Fix installation bug: MODELDIR is still pointing to /usr/local/share/pocketsphinx/model/
+2.1. Uninstall both systems
+2.2 install original pocketsphinx
+2.3 install xyzpocketsphinx (fixing bug first)
+Outcome: still persists
