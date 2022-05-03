@@ -9,14 +9,14 @@ echo
 
 
 
-time ./test_pronounce -dict /Users/test/Downloads/sourceFiltered_exp2.dict \
+time ./test_pronounce -dict /Users/test/Downloads/sourceFiltered_exp3Mar22.dict \
  						-phdict /Users/test/Documents/GitHub/pronounce-experimental/Dictionaries/art_db_v3_inference.phone \
                         -infolder /Users/test/Downloads/train/scrape/hossein/HY_test/ \
                         -tests /Users/test/Downloads/train/scrape/hossein/HY_test/0_hy_test_input.csv  \
                         -expectations /Users/test/Downloads/train/scrape/hossein/HY_test/0_HY_expectations.csv  \
                         -outfolder /Users/test/Downloads/audio_temp \
-                        -featparams /Users/test/Documents/GitHub/pronounce-experimental/Models/Bare.ci_cont_2Mar22/feat.params \
-                        -hmm /Users/test/Documents/GitHub/pronounce-experimental/Models/Bare.ci_cont_2Mar22
+                        -featparams /Users/test/Documents/GitHub/pronounce-experimental/Models/Bare.ci_cont_3May22/model/feat.params \
+                        -hmm /Users/test/Documents/GitHub/pronounce-experimental/Models/Bare.ci_cont_3May22/model
                         
 
 #

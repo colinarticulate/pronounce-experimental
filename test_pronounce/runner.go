@@ -77,9 +77,9 @@ func new() runner {
 
 func (r *runner) loop() {
 	//Throttling
-	maxRunningTests := 10 //10 default
+	maxRunningTests := 100 //10 default
 	runningTests := 0
-	limit := time.Tick(500 * time.Millisecond) //500 default
+	limit := time.Tick(5 * time.Millisecond) //500 default
 	for {
 		select {
 		case <-limit:
