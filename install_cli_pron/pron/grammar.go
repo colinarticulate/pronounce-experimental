@@ -126,26 +126,39 @@ const (
 	r_uwm = "<uwm>"
 	r_axr = "<axr>"
 
-	r_kr  = "<kr>"
-	r_pr  = "<pr>"
-	r_gr  = "<gr>"
-	r_tr  = "<tr>"
+	r_kr = "<kr>"
+	r_pr = "<pr>"
+	r_gr = "<gr>"
+	r_tr = "<tr>"
 	r_ing = "<ing>"
-
+	
 	// Added 14th Feb 2022
-	r_thr = "<thr>"
 	r_ihl = "<ihl>"
+	r_ehl = "<ehl>"
+	r_fl = "<fl>"
+
+	//remove for 64only
+	r_thr = "<thr>"
 	r_yuw = "<yuw>"
 	r_sts = "<sts>"
-	r_st  = "<st>"
-	r_ehl = "<ehl>"
-	r_kt  = "<kt>"
-	r_fl  = "<fl>"
+	r_st = "<st>"
+	r_kt = "<kt>"
+	
+	// commented out for the 64Only phoneme set
+	//St
+	//StS
+	//Yuw
+	//axM
+	//kT
+	//thR
+	//uwM
+
+
 
 	r_any_vowel_noSlide = "<any_vowel_noSlide>"
-	r_check             = "<check>"
-	r_wild_consonant    = "<wild_consonant>"
-	r_wild_vowel        = "<wild_vowel>"
+	r_check = "<check>"
+	r_wild_consonant = "<wild_consonant>"
+	r_wild_vowel = "<wild_vowel>"
 )
 
 type blahRule struct {
@@ -341,11 +354,17 @@ var consonantsByGroup = map[consonantGroup][]phoneme{
 	},
 	dental: {
 		//t, d, n, l, r, th, dh,
+
 		t, d, n, l, r, th, dh, thr, kt, st, sts,
+		//64only
+		//t, d, n, l, r, th, dh,
 	},
 	alveolar: {
 		//d, l, n, s, t, z, r, dz, ts,
+
 		d, l, n, s, t, z, r, dz, ts, st, sts, kt, thr,
+		//64only
+		//d, l, n, s, t, z, r, dz, ts,
 	},
 	post_alveolar: {
 		//t, d, n, l, r, sh, zh,
@@ -353,13 +372,16 @@ var consonantsByGroup = map[consonantGroup][]phoneme{
 	},
 	retroflex: {
 		//t, d, ng, s, z, r, l, dz, ts, ing,
+
 		t, d, ng, s, z, r, l, dz, ts, ing, sts, st, fl, kt,
+		//64only
+		//t, d, ng, s, z, r, l, dz, ts, ing, fl,
 	},
 	palatal: {
 		ch, jh, // what about ch and jh?   .... removing y, placing in vowels
 	},
 	velar: {
-		g, k, ng, w, kw, ks, ing, // x is missing from CMUBET
+		g, k, ng, w, kw, ks, ing,  // x is missing from CMUBET
 	},
 	glottal: {
 		hh,
@@ -367,14 +389,20 @@ var consonantsByGroup = map[consonantGroup][]phoneme{
 
 	plosive: {
 		//b, d, g, jh, ch, k, p, t, kl, pl, bl, kr, gr, tr, pr,
+		
 		b, d, g, jh, ch, k, p, t, kl, pl, bl, kr, gr, tr, pr, kt, st, sts,
+		//64only
+		//b, d, g, jh, ch, k, p, t, kl, pl, bl, kr, gr, tr, pr,
 	},
 	nasal: {
 		m, n, ng, ing,
 	},
 	fricative: {
 		//dh, hh, v, z, zh, f, hh, s, sh, th, // should jh be in this list?
+		
 		dh, hh, v, z, zh, f, hh, s, sh, th, thr, fl,
+		//64only
+		//dh, hh, v, z, zh, f, hh, s, sh, th, fl,
 	},
 	approximant: {
 		l, r, w, // moving y to vowel
@@ -754,10 +782,15 @@ func newConsonants() map[phoneme]bool {
 		//b: true, ch: true, d: true, dh: true, f: true, g: true, hh: true, jh: true, k: true, l: true, m: true, n: true, nd: true, ng: true, p: true, r: true, s: true, sh: true, st: true, t: true, th: true, v: true, w: true, z: true, zh: true, dz: true, ts: true, axn: true, axm: true, axl: true, kw: true, ks: true,
 		//b: true, ch: true, d: true, dh: true, f: true, g: true, hh: true, jh: true, k: true, l: true, m: true, n: true, ng: true, p: true, r: true, s: true, sh: true, t: true, th: true, v: true, w: true, z: true, zh: true, dz: true, ts: true, axn: true, axl: true, kw: true, ks: true, uwl: true, sts: true,
 		//b: true, ch: true, d: true, dh: true, f: true, g: true, hh: true, jh: true, k: true, l: true, m: true, n: true, ng: true, p: true, r: true, s: true, sh: true, t: true, th: true, v: true, w: true, z: true, zh: true, dz: true, kw: true, ks: true, ts: true, kl: true, pl: true, bl: true, tr: true, kr: true, pr: true, gr: true, ing: true,
+		
 		b: true, ch: true, d: true, dh: true, f: true, g: true, hh: true, jh: true, k: true, l: true, m: true, n: true, ng: true, p: true, r: true, s: true, sh: true, t: true, th: true, v: true, w: true, z: true, zh: true, dz: true, kw: true, ks: true, ts: true, kl: true, pl: true, bl: true, tr: true, kr: true, pr: true, gr: true, ing: true, thr: true, sts: true, st: true, kt: true, fl: true,
+		
+		//64only
+		//b: true, ch: true, d: true, dh: true, f: true, g: true, hh: true, jh: true, k: true, l: true, m: true, n: true, ng: true, p: true, r: true, s: true, sh: true, t: true, th: true, v: true, w: true, z: true, zh: true, dz: true, kw: true, ks: true, ts: true, kl: true, pl: true, bl: true, tr: true, kr: true, pr: true, gr: true, ing: true, fl: true,
 	}
 	return consonants
 }
+
 
 func consRemove(cons map[phoneme]bool, remove ...phoneme) map[phoneme]bool {
 	ret := cons
@@ -829,8 +862,12 @@ func (gr *jsgfGrammar) new_R_Cx(exceptPhons ...phoneme) R_Cx {
 		//remaining = consRemove(remaining, p, t, k, f, th, s, sh, st, jh, r, y, dz, ts, axn, axm, axl, kw, ks)
 		//remaining = consRemove(remaining, p, t, k, f, th, s, sh, jh, r, y, dz, ts, axn, axl, kw, ks, uwl, sts)
 		//remaining = consRemove(remaining, p, t, k, f, th, s, sh, jh, r, y, dz, kw, ks, ts, kl, pl, bl, tr, pr, "gr", kr)
-		remaining = consRemove(remaining, p, t, k, f, th, s, sh, jh, r, y, dz, kw, ks, ts, kl, pl, bl, tr, pr, "gr", kr, thr, sts, st, kt, fl)
 
+		remaining = consRemove(remaining, p, t, k, f, th, s, sh, jh, r, y, dz, kw, ks, ts, kl, pl, bl, tr, pr, "gr", kr, thr, sts, st, kt, fl) 
+		
+		//64only
+		//remaining = consRemove(remaining, p, t, k, f, th, s, sh, jh, r, y, dz, kw, ks, ts, kl, pl, bl, tr, pr, "gr", kr, fl)  
+		
 		/*            // groups to reduce any_consonant by ..... the reason to do so is to help the different scan return a similar surprise
 		p, b,
 		t, d,
@@ -880,8 +917,12 @@ func (g *jsgfGrammar) new_R_Vx(exceptPhons ...phoneme) R_Vx {
 	}
 	r := g.new_R_named(name, func() rule {
 		vowels := map[phoneme]bool{
-			//aa: true, ae: true, ah: true, ao: true, aw: true, ax: true, ay: true, eh: true, ehr: true, er: true, ey: true, ih: true, iy: true, oh: true, ow: true, oy: true, uw: true, uh: true, y: true, axl: true, axm: true, axn: true, uwn: true, uwl: true, uwm: true, axr: true,
+      		//aa: true, ae: true, ah: true, ao: true, aw: true, ax: true, ay: true, eh: true, ehr: true, er: true, ey: true, ih: true, iy: true, oh: true, ow: true, oy: true, uw: true, uh: true, y: true, axl: true, axm: true, axn: true, uwn: true, uwl: true, uwm: true, axr: true,
+			
 			aa: true, ae: true, ah: true, ao: true, aw: true, ax: true, ay: true, eh: true, ehr: true, er: true, ey: true, ih: true, iy: true, oh: true, ow: true, oy: true, uw: true, uh: true, y: true, axl: true, axm: true, axn: true, uwn: true, uwl: true, uwm: true, axr: true, yuw: true, ihl: true, ehl: true,
+			
+			//64only
+			//aa: true, ae: true, ah: true, ao: true, aw: true, ax: true, ay: true, eh: true, ehr: true, er: true, ey: true, ih: true, iy: true, oh: true, ow: true, oy: true, uw: true, uh: true, y: true, axl: true, axn: true, uwn: true, uwl: true, axr: true, ihl: true, ehl: true,
 		}
 		remaining := phonDiff(vowels, exceptPhons)
 		phons := []rule{}
@@ -899,6 +940,7 @@ func (g *jsgfGrammar) new_R_Vx(exceptPhons ...phoneme) R_Vx {
 		r,
 	}
 }
+
 
 func (r R_Vx) generate() string {
 	return r.namedRule.generate()
@@ -926,16 +968,17 @@ func (g *jsgfGrammar) new_R_noSlide_X(exceptPhons ...phoneme) R_V_noSlide_X {
 	r := g.new_R_named(name, func() rule {
 		noSlideVowels := map[phoneme]bool{
 
-			//aa: true, ae: true, ah: true, ao: true, ax: true, eh: true, ehr: true, er: true, ih: true, iy: true, oh: true, uw: true, uh: true, y: true, axl: true, axm: true, axn: true, uwn: true, uwl:  true, uwm: true, axr: true,
-
+      		//aa: true, ae: true, ah: true, ao: true, ax: true, eh: true, ehr: true, er: true, ih: true, iy: true, oh: true, uw: true, uh: true, y: true, axl: true, axm: true, axn: true, uwn: true, uwl:  true, uwm: true, axr: true,
+			
 			// possibly this should have no compound phonemes (or ax)
 			//aa: true, ae: true, ah: true, ao: true, ax: true, eh: true, er: true, ih: true, iy: true, oh: true, uw: true, uh: true, y: true,
 			// remove er (23 Feb 22) as er is a slide/diphthong
 			aa: true, ae: true, ah: true, ao: true, ax: true, eh: true, ih: true, iy: true, oh: true, uw: true, uh: true, y: true,
 
-			// alternately, have to add the new compound phonemes
+			// alternately, have to add the new compound phonemes 
 			//aa: true, ae: true, ah: true, ao: true, ax: true, eh: true, ehr: true, er: true, ih: true, iy: true, oh: true, uw: true, uh: true, y: true, axl: true, axm: true, axn: true, uwn: true, uwl:  true, uwm: true, axr: true, yuw: true, ihl: true, ehl: true,
 
+			
 		}
 		remaining := phonDiff(noSlideVowels, exceptPhons)
 		phons := []rule{}
@@ -953,6 +996,7 @@ func (g *jsgfGrammar) new_R_noSlide_X(exceptPhons ...phoneme) R_V_noSlide_X {
 		r,
 	}
 }
+
 
 func (r R_V_noSlide_X) generate() string {
 	return r.namedRule.generate()
@@ -979,10 +1023,10 @@ func (g *jsgfGrammar) new_R_V_noSlide() R_V_noSlide {
 			// removing ax, axm, axn, axl, uwl, uwm, uwn because they seem to be interferring (being surprises) when guards, especially on words ending with AX
 			// PE 2nd Jan 2022
 			// Not adding axr - 5 Jan 2022  (just because if the above have already been removed, it doesn't make sense to add it in)
-			// Not including any compound phoneme, ax or any diphthong
-			//aa, ae, ah, eh, er, ih, iy, oh, uw, uh, y,
+			// Not including any compound phoneme, ax or any diphthong      
+			//aa, ae, ah, eh, er, ih, iy, oh, uw, uh, y, 
 			// removing er (23 Feb 22) as it's a slide/diphthong
-			aa, ae, ah, eh, ih, iy, oh, uw, uh, y,
+			aa, ae, ah, eh, ih, iy, oh, uw, uh, y, 
 		}
 		phons := []rule{}
 		for _, v := range noSlideVowels {
@@ -1033,6 +1077,11 @@ func (gr *jsgfGrammar) new_R_C() R_C {
 			//b, ch, d, dh, f, g, hh, jh, k, l, m, n, p, r, s, sh, t, th, v, w, z, zh, dz, kw, ks, ts, kl, pl, bl, tr, "gr", pr, kr, ing,
 
 			b, ch, d, dh, f, g, hh, jh, k, l, m, n, p, r, s, sh, t, th, v, w, z, zh, dz, kw, ks, ts, kl, pl, bl, tr, "gr", pr, kr, ing, thr, sts, st, kt, fl,
+			
+			//64only
+			b, ch, d, dh, f, g, hh, jh, k, l, m, n, p, r, s, sh, t, th, v, w, z, zh, dz, kw, ks, ts, kl, pl, bl, tr, "gr", pr, kr, ing, fl,
+
+
 
 			/*            // groups to reduce any_consonant by ..... the reason to do so is to help the different scan return a similar surprise
 			p, b,
@@ -1300,7 +1349,10 @@ func (g *jsgfGrammar) trappedOpeningRule(phons []phoneme) parsableRule {
 	//remaining_pool := consRemove(newConsonants(), phons[0], ch, d, dh, f, "g", jh, k, l, m, n, ng, p, r, s, sh, t, th, v, w, z, zh, b, hh, dz, kw, ks, ts, kl, pl, bl, tr, pr, gr, kr, ing) // remove everything
 
 	remaining_pool := consRemove(newConsonants(), phons[0], ch, d, dh, f, "g", jh, k, l, m, n, ng, p, r, s, sh, t, th, v, w, z, zh, b, hh, dz, kw, ks, ts, kl, pl, bl, tr, pr, gr, kr, ing, thr, sts, st, kt, fl) // remove everything
-
+	
+	//64only
+	//remaining_pool := consRemove(newConsonants(), phons[0], ch, d, dh, f, "g", jh, k, l, m, n, ng, p, r, s, sh, t, th, v, w, z, zh, b, hh, dz, kw, ks, ts, kl, pl, bl, tr, pr, gr, kr, ing, fl) // remove everything
+	
 	switch phons[0] {
 	case k:
 		remaining_pool[b] = true
@@ -1787,6 +1839,7 @@ func (g *jsgfGrammar) middleRule(phons []phoneme, currPh int) parsableRule {
 //                                                                    |___/
 // alternate, alternative, challenge
 //
+
 func (gr jsgfGrammar) otherPhons(phons []phoneme, currPh int) []phoneme {
 
 	// ideas
@@ -1803,15 +1856,15 @@ func (gr jsgfGrammar) otherPhons(phons []phoneme, currPh int) []phoneme {
 
 	if currPh == 0 {
 		switch phon {
-		//case k:
-		//others = append(others, ch)
+		case k:
+		others = append(others, d)
 		//others = append(others, p, t)    //w
 		//others = append(others, p, g, t, f)    //w
 		//others = append(others, f, jh, ch)    //w
 		//case b:
 		//others = append(others, p, v, f)      // (r, z, hh)    .. tried y, aa, m, t, k    ... removed dh & th as they upset bars
 		case f:
-			others = append(others, s) // Note, can not do this the other way around because "f" will sit inside (is a shorter) "s"
+			others = append(others, s, p) // Note, can not do the "s" vs "f" the other way around because "f" will sit inside (is a shorter) "s"
 		case w:
 			others = append(others, v)
 		case r:
@@ -1819,7 +1872,7 @@ func (gr jsgfGrammar) otherPhons(phons []phoneme, currPh int) []phoneme {
 		case s:
 			others = append(others, z)
 		case th:
-			others = append(others, n)
+			others = append(others, t, d, s)  // was n prior to 9Apr22  PE
 		case dh:
 			others = append(others, t)
 		default:
@@ -2180,11 +2233,15 @@ func (j *jsgfStandard) openingPenalty(ph phoneme) (phonRule, bool) {
 	//penalties = consRemove(penalties, b, p)
 
 	//penalties := consRemove(newConsonants(), b, ch, d, dh, f, "g", hh, jh, k, l, m, n, nd, ng, p, r, s, sh, tS, t, th, v, w, z, zh, dz, ts, axm, axl, axn, kw, ks)  // remove everything
-
+	
 	//penalties := consRemove(newConsonants(), b, ch, d, dh, f, "g", hh, jh, k, l, m, n, ng, p, r, s, sh, t, th, v, w, z, zh, dz, kw, ks, ts, kl, pl, bl, tr, kr, pr, gr, ing)  // remove everything
-	penalties := consRemove(newConsonants(), b, ch, d, dh, f, "g", hh, jh, k, l, m, n, ng, p, r, s, sh, t, th, v, w, z, zh, dz, kw, ks, ts, kl, pl, bl, tr, kr, pr, gr, ing, thr, sts, st, kt, fl) // remove everything
-
+	
+	penalties := consRemove(newConsonants(), b, ch, d, dh, f, "g", hh, jh, k, l, m, n, ng, p, r, s, sh, t, th, v, w, z, zh, dz, kw, ks, ts, kl, pl, bl, tr, kr, pr, gr, ing, thr, sts, st, kt, fl)  // remove everything
+	
+	//64only
+	//penalties := consRemove(newConsonants(), b, ch, d, dh, f, "g", hh, jh, k, l, m, n, ng, p, r, s, sh, t, th, v, w, z, zh, dz, kw, ks, ts, kl, pl, bl, tr, kr, pr, gr, ing, fl)  // remove everything
 	//partner := []phoneme{}
+
 
 	switch ph {
 
@@ -2363,7 +2420,7 @@ var confusionMatrix = map[phoneme]map[phoneme]float64{
 		p: 18.8, t: 24.6, k: 5.6, f: 39.3, th: 74, s: 12, sh: 3.7, ch: 2.4, hh: 7.1, b: 14.2, d: 7.9, g: 0.5, v: 4, dh: 9.2, z: 5.5, zh: 0.5, jh: 0.5, y: 2, m: 1.3, n: 2.9, ng: 0.5, l: 2.9, r: 0.5, w: 0.5,
 	},
 	s: {
-		p: 6, t: 10.5, k: 5.2, f: 17.1, th: 24.6, s: 90, sh: 7, ch: 7, hh: 4, b: 0.5, d: 2.2, g: 0.5, v: 4.1, dh: 10, z: 25, zh: 7, jh: 2.7, y: 2, m: 0.8, n: 0.5, ng: 0.9, l: 1.4, r: 3, w: 0.5, ih: 0.3, aa: 0.5, ao: 1,
+		p: 6, t: 10.5, k: 5.2, f: 17.1, th: 24.6, s: 90, sh: 7, ch: 7, hh: 4, b: 0.5, d: 2.2, g: 0.5, v: 4.1, dh: 10, z: 25, zh: 7, jh: 2.7, y: 2, m: 0.8, n: 0.5, ng: 0.9, l: 1.4, r: 3, w: 0.5, ih: 0.3, aa: 0.5, ao:1, oy: 0.1,
 	},
 	sh: {
 		p: 5.9, t: 9.7, k: 6.7, f: 4.1, th: 6, s: 11.3, sh: 87, ch: 26, hh: 2.2, b: 0.5, d: 0.5, g: 0.5, v: 2.2, dh: 1.6, z: 15, zh: 10, jh: 16.1, y: 0.8, m: 1.7, n: 0.5, ng: 0.5, l: 0.7, r: 0.4, w: 0,
@@ -2384,13 +2441,13 @@ var confusionMatrix = map[phoneme]map[phoneme]float64{
 		p: 3.3, t: 12.9, k: 9.2, f: 0.5, th: 0.5, s: 0.5, sh: 0.5, ch: 0.5, hh: 9.2, b: 10.1, d: 20.4, g: 100, v: 7.8, dh: 5, z: 0.5, zh: 0.5, jh: 9.5, y: 24.2, m: 2.5, n: 3.5, ng: 2, l: 3.6, r: 1.5, w: 1.7, oy: 0.3,
 	},
 	v: {
-		p: 7.5, t: 12.9, k: 3.8, f: 12.1, th: 5.4, s: 2.6, sh: 2.1, ch: 0.6, hh: 6.7, b: 30, d: 15.8, g: 7, v: 91, dh: 13, z: 14.7, zh: 0.5, jh: 2.7, y: 3.0, m: 3.8, n: 5.1, ng: 2.7, l: 4.2, r: 4, w: 5.4, oy: 0.5,
+		p: 7.5, t: 12.9, k: 3.8, f: 12.1, th: 5.4, s: 2.6, sh: 2.1, ch: 0.6, hh: 6.7, b: 30, d: 15.8, g: 7, v: 91, dh: 13, z: 14.7, zh: 0.5, jh: 2.7, y: 3.0, m: 3.8, n: 5.1, ng: 2.7, l: 4.2, r: 4, w: 5.4, oy:0.5,
 	},
 	dh: {
 		p: 2.5, t: 11.3, k: 2.5, f: 4.2, th: 14.6, s: 3.3, sh: 1.7, ch: 0.5, hh: 2.1, b: 17.1, d: 29.2, g: 6.3, v: 31.4, dh: 79, z: 12.3, zh: 0.5, jh: 7.9, y: 1.3, m: 1.8, n: 6.2, ng: 2, l: 12.1, r: 2.1, w: 2.9,
 	},
 	z: {
-		p: 1.6, t: 3.8, k: 0.5, f: 2.6, th: 10, s: 15, sh: 15, ch: 2.5, hh: 0.5, b: 7.9, d: 8.8, g: 1, v: 13.9, dh: 23.8, z: 98, zh: 8.3, jh: 4, y: 2.5, m: 2.6, n: 8.1, ng: 0.5, l: 2.6, r: 0.5, w: 3.8, oy: 0.5,
+		p: 1.6, t: 3.8, k: 0.5, f: 2.6, th: 10, s: 15, sh: 15, ch: 2.5, hh: 0.5, b: 7.9, d: 8.8, g: 1, v: 13.9, dh: 23.8, z: 98, zh: 8.3, jh: 4, y: 2.5, m: 2.6, n: 8.1, ng: 0.5, l: 2.6, r: 0.5, w: 3.8, oy:0.5,
 	},
 	zh: {
 		p: 1.6, t: 0.5, k: 1.4, f: 1.7, th: 2.9, s: 2.5, sh: 14.2, ch: 4.2, hh: 1.9, b: 0.5, d: 3.9, g: 22, v: 8.9, dh: 1, z: 13, zh: 45, jh: 45, y: 0, m: 1.3, n: 0.3, ng: 1.7, l: 0.8, r: 0.8, w: 10,
@@ -2420,31 +2477,31 @@ var confusionMatrix = map[phoneme]map[phoneme]float64{
 		p: 1.7, t: 0, k: 0.4, f: 1.2, th: 0.4, s: 1.2, sh: 0, ch: 0.9, hh: 1.7, b: 5.8, d: 0.8, g: 0, v: 2.1, dh: 0.4, z: 3.9, zh: 1, jh: 3.2, y: 6.5, m: 5.8, n: 0.8, ng: 10, l: 2.5, r: 4.2, w: 99,
 	},
 	iy: {
-		p: 26.3, t: 4.6, k: 12.1, f: 11.3, th: 5, s: 1.4, sh: 0.5, ch: 1.5, hh: 0.5, b: 8.3, d: 2.5, g: 3, v: 4.6, dh: 1.7, z: 1.6, zh: 3, jh: 4.6, y: 70.6, m: 10, n: 4.2, ng: 3, l: 8.5, r: 2.6, w: 3, ih: 99, aa: 0.5, ao: 0.5, aw: 0.5,
+		p: 26.3, t: 4.6, k: 12.1, f: 11.3, th: 5, s: 1.4, sh: 0.5, ch: 1.5, hh: 0.5, b: 8.3, d: 2.5, g: 3, v: 4.6, dh: 1.7, z: 1.6, zh: 3, jh: 4.6, y: 70.6, m: 10, n: 4.2, ng: 3, l: 8.5, r: 2.6, w: 3, ih: 99, aa: 0.5, ao:0.5, aw:0.5,
 	},
 	ih: {
 		p: 26.3, t: 4.6, k: 12.1, f: 0.5, th: 5, s: 0.4, sh: 0.4, ch: 3, hh: 99, b: 8.3, d: 1.3, g: 2, v: 4.6, dh: 1.7, z: 0.4, zh: 2, jh: 0.5, y: 3, m: 2, n: 3, ng: 2, l: 1.7, r: 1.5, w: 2,
 	},
 	ey: {
-		p: 26.3, t: 4.6, k: 12.1, f: 11.3, th: 5, s: 1.4, sh: 0.8, ch: 0.9, hh: 99, b: 8.3, d: 2.5, g: 1.3, v: 4.6, dh: 1.7, z: 1.6, zh: 3, jh: 0.5, y: 2.2, m: 10, n: 4.2, ng: 2.6, l: 8.5, r: 2.6, w: 1, ao: 0.3, ehr: 99, eh: 99, er: 99,
+		p: 26.3, t: 4.6, k: 12.1, f: 11.3, th: 5, s: 1.4, sh: 0.8, ch: 0.9, hh: 99, b: 8.3, d: 2.5, g: 1.3, v: 4.6, dh: 1.7, z: 1.6, zh: 3, jh: 0.5, y: 2.2, m: 10, n: 4.2, ng: 2.6, l: 8.5, r: 2.6, w: 1, ao: 0.3, ehr:99, eh:99, er:99,
 	},
 	eh: {
-		p: 26.3, t: 7.9, k: 12.1, f: 11.3, th: 5, s: 0.5, sh: 0.5, ch: 0.5, hh: 99, b: 14.6, d: 6.7, g: 4.9, v: 6.6, dh: 1.7, z: 2.5, zh: 0.5, jh: 0.5, y: 0.5, m: 4.1, n: 4.1, ng: 1, l: 14.8, r: 96, w: 1, oy: 0.5, ax: 99, axr: 99, ehr: 99, ey: 99, er: 99,
+		p: 26.3, t: 7.9, k: 12.1, f: 11.3, th: 5, s: 0.5, sh: 0.5, ch: 0.5, hh: 99, b: 14.6, d: 6.7, g: 4.9, v: 6.6, dh: 1.7, z: 2.5, zh: 0.5, jh: 0.5, y: 0.5, m: 4.1, n: 4.1, ng: 1, l: 14.8, r: 96, w: 1, oy: 0.5, ax:99, axr: 99, ehr:99, ey:99, er:99,
 	},
 	ae: {
 		p: 2.5, t: 7.9, k: 1.7, f: 2.1, th: 3.8, s: 0.8, sh: 0.4, ch: 0.9, hh: 5.8, b: 14.6, d: 6.7, g: 4.9, v: 6.6, dh: 2, z: 0.5, zh: 0.4, jh: 0.5, y: 0.5, m: 3.6, n: 2.1, ng: 0, l: 14.8, r: 96, w: 6.7, aa: 3, ao: 0.5,
 	},
 	aa: {
-		p: 26.3, t: 7.9, k: 12.1, f: 11.3, th: 5, s: 0.8, sh: 0.4, ch: 0.9, hh: 99, b: 3, d: 6.7, g: 4.9, v: 6.6, dh: 1.7, z: 0.5, zh: 0.4, jh: 0.5, y: 0.5, m: 3.6, n: 2.9, ng: 0.5, l: 14.8, r: 96, w: 6.7, ax: 99, axr: 99,
+		p: 26.3, t: 7.9, k: 12.1, f: 11.3, th: 5, s: 0.8, sh: 0.4, ch: 0.9, hh: 99, b: 3, d: 6.7, g: 4.9, v: 6.6, dh: 1.7, z: 0.5, zh: 0.4, jh: 0.5, y: 0.5, m: 3.6, n: 2.9, ng: 0.5, l: 14.8, r: 96, w: 6.7, ax:99, axr: 99,
 	},
 	ah: {
-		p: 26.3, t: 7.9, k: 12.1, f: 11.3, th: 5, s: 0.8, sh: 0.4, ch: 0.9, hh: 99, b: 14.6, d: 6.7, g: 4.9, v: 6.6, dh: 3, z: 0.5, zh: 0.4, jh: 0.5, y: 0.5, m: 3.6, n: 5, ng: 10, l: 14.8, r: 96, w: 6.7, ax: 99, axr: 99,
+		p: 26.3, t: 7.9, k: 12.1, f: 11.3, th: 5, s: 0.8, sh: 0.4, ch: 0.9, hh: 99, b: 14.6, d: 6.7, g: 4.9, v: 6.6, dh: 3, z: 0.5, zh: 0.4, jh: 0.5, y: 0.5, m: 3.6, n: 5, ng: 10, l: 14.8, r: 96, w: 6.7, ax:99, axr: 99,
 	},
 	ao: {
 		p: 26.3, t: 0.5, k: 12.1, f: 11.3, th: 5, s: 0.8, sh: 0.4, ch: 0.9, hh: 99, b: 14.6, d: 6.7, g: 4.9, v: 6.6, dh: 1.7, z: 0.5, zh: 0.5, jh: 0.5, y: 0.5, m: 3.6, n: 2.1, ng: 1, l: 14.8, r: 96, w: 6.7, oy: 3, ih: 0.3, ax: 99, axl: 99,
 	},
 	ow: {
-		p: 26.3, t: 7.9, k: 12.1, f: 1, th: 5, s: 0.5, sh: 1.5, ch: 0.5, hh: 99, b: 14.6, d: 6.7, g: 4.9, v: 6.6, dh: 1.7, z: 0.5, zh: 10, jh: 3.2, y: 0.5, m: 5.8, n: 2.1, ng: 10, l: 14.8, r: 96, w: 99,
+		 p: 26.3, t: 7.9, k: 12.1, f: 1, th: 5, s: 0.5, sh: 1.5, ch: 0.5, hh: 99, b: 14.6, d: 6.7, g: 4.9, v: 6.6, dh: 1.7, z: 0.5, zh: 10, jh: 3.2, y: 0.5, m: 5.8, n: 2.1, ng: 10, l: 14.8, r: 96, w: 99,
 	},
 	uh: {
 		p: 26.3, t: 4.6, k: 12.1, f: 11.3, th: 5, s: 0.4, sh: 0.4, ch: 0.8, hh: 99, b: 8.3, d: 1.3, g: 0.4, v: 4.6, dh: 1.7, z: 0.4, zh: 0, jh: 1, y: 0.8, m: 0, n: 0.8, ng: 0, l: 1.7, r: 0.8, w: 0.4, ax: 99, axr: 99, uwn: 99, uwl: 99,
@@ -2459,7 +2516,7 @@ var confusionMatrix = map[phoneme]map[phoneme]float64{
 		p: 1.3, t: 0, k: 0.8, f: 0.9, th: 0.8, s: 1.4, sh: 0.8, ch: 0.9, hh: 2.1, b: 4.2, d: 2.5, g: 0.1, v: 0.7, dh: 1.3, z: 1.6, zh: 0, jh: 4.6, y: 70.6, m: 10, n: 4.2, ng: 0, l: 8.5, r: 2.6, w: 2.4,
 	},
 	aw: {
-		p: 2.5, t: 7.9, k: 1.7, f: 0.5, th: 0.5, s: 0.8, sh: 0.4, ch: 0.5, hh: 5.8, b: 0.5, d: 0.5, g: 4.9, v: 0.5, dh: 0.8, z: 0.5, zh: 0.4, jh: 0.5, y: 4.6, m: 3.6, n: 2.1, ng: 10, l: 14.8, r: 96, w: 6.7, oy: 0.5, ax: 99, axr: 99,
+		p: 2.5, t: 7.9, k: 1.7, f: 0.5, th: 0.5, s: 0.8, sh: 0.4, ch: 0.5, hh: 5.8, b: 0.5, d: 0.5, g: 4.9, v: 0.5, dh: 0.8, z: 0.5, zh: 0.4, jh: 0.5, y: 4.6, m: 3.6, n: 2.1, ng: 10, l: 14.8, r: 96, w: 6.7, oy:0.5, ax: 99, axr: 99,
 	},
 	er: {
 		p: 26.3, t: 7.9, k: 12.1, f: 1, th: 5, s: 0.5, sh: 0.4, ch: 0.9, hh: 99, b: 14.6, d: 6.7, g: 4.9, v: 1, dh: 1.7, z: 2.5, zh: 0.4, jh: 0.5, y: 0.5, m: 3.6, n: 2.1, ng: 0.5, l: 14.8, r: 96, w: 1, ax: 99, axr: 99,
@@ -2471,7 +2528,7 @@ var confusionMatrix = map[phoneme]map[phoneme]float64{
 		p: 26.3, t: 7.9, k: 12.1, f: 11.3, th: 5, s: 0.8, sh: 0.4, ch: 0.9, hh: 99, b: 3, d: 6.7, g: 4.9, v: 6.6, dh: 1.7, z: 0.5, zh: 0.4, jh: 0.5, y: 0.5, m: 3.6, n: 2.9, ng: 0.5, l: 14.8, r: 96, w: 6.7, aa: 99, ah: 99, ax: 99, axr: 99,
 	},
 	ehr: {
-		p: 26.3, t: 7.9, k: 12.1, f: 11.3, th: 5, s: 0.5, sh: 0.5, ch: 0.5, hh: 99, b: 14.6, d: 6.7, g: 4.9, v: 6.6, dh: 1.7, z: 2.5, zh: 0.5, jh: 0.5, y: 0.5, m: 4.1, n: 4.1, ng: 1, l: 14.8, r: 96, w: 1, oy: 0.5, ax: 99, axr: 99, er: 99, eh: 99, ey: 99,
+		p: 26.3, t: 7.9, k: 12.1, f: 11.3, th: 5, s: 0.5, sh: 0.5, ch: 0.5, hh: 99, b: 14.6, d: 6.7, g: 4.9, v: 6.6, dh: 1.7, z: 2.5, zh: 0.5, jh: 0.5, y: 0.5, m: 4.1, n: 4.1, ng: 1, l: 14.8, r: 96, w: 1, oy: 0.5, ax: 99, axr: 99, er:99, eh:99, ey:99,
 	},
 	axl: {
 		p: 5.8, t: 8.3, k: 1.7, f: 5.8, th: 3.3, s: 2, sh: 0.5, ch: 1.2, hh: 2.1, b: 8.3, d: 2, g: 3.6, v: 8.7, dh: 3.3, z: 2.5, zh: 2.5, jh: 4, y: 1.8, m: 10, n: 1.1, ng: 3.0, l: 99, r: 4.2, w: 5.4, ax: 99, axn: 99, axm: 99, axl: 99, uwn: 99, uwm: 99, uwl: 99, axr: 99,
@@ -2483,13 +2540,13 @@ var confusionMatrix = map[phoneme]map[phoneme]float64{
 		p: 1.6, t: 9.6, k: 0.6, f: 1, th: 1.6, s: 0.9, sh: 0.3, ch: 0.3, hh: 3.2, b: 1.7, d: 8.3, g: 1.9, v: 4.5, dh: 2.1, z: 3.8, zh: 0.3, jh: 0.3, y: 1.2, m: 100, n: 100, ng: 100, l: 17.5, r: 4, w: 1.8, ax: 99, axn: 99, axm: 99, axl: 99, uwn: 99, uwm: 99, axr: 99,
 	},
 	ks: {
-		p: 6, t: 10.5, k: 5.2, f: 17.1, th: 24.6, s: 90, sh: 7, ch: 7, hh: 4, b: 0.5, d: 2.2, g: 0.5, v: 4.1, dh: 10, z: 25, zh: 7, jh: 2.7, y: 2, m: 0.8, n: 0.5, ng: 0.9, l: 1.4, r: 3, w: 0.5, ih: 0.3, aa: 0.5, ao: 1,
+		p: 6, t: 10.5, k: 5.2, f: 17.1, th: 24.6, s: 90, sh: 7, ch: 7, hh: 4, b: 0.5, d: 2.2, g: 0.5, v: 4.1, dh: 10, z: 25, zh: 7, jh: 2.7, y: 2, m: 0.8, n: 0.5, ng: 0.9, l: 1.4, r: 3, w: 0.5, ih: 0.3, aa: 0.5, ao:1,
 	},
 	kw: {
 		p: 25, t: 12.5, k: 98, f: 5.2, th: 5, s: 4, sh: 3.9, ch: 5.7, hh: 13.8, b: 4.2, d: 8, g: 12.5, v: 1.4, dh: 4.0, z: 0.4, zh: 0.5, jh: 6, y: 1.3, m: 1, n: 1.5, ng: 10, l: 1.6, r: 1.3, w: 1, ih: 2, oy: 0.5,
 	},
 	dz: {
-		p: 1.6, t: 3.8, k: 0.5, f: 2.6, th: 10, s: 15, sh: 15, ch: 2.5, hh: 0.5, b: 7.9, d: 8.8, g: 1, v: 13.9, dh: 23.8, z: 98, zh: 8.3, jh: 4, y: 2.5, m: 2.6, n: 8.1, ng: 0.5, l: 2.6, r: 0.5, w: 3.8, oy: 0.5,
+		p: 1.6, t: 3.8, k: 0.5, f: 2.6, th: 10, s: 15, sh: 15, ch: 2.5, hh: 0.5, b: 7.9, d: 8.8, g: 1, v: 13.9, dh: 23.8, z: 98, zh: 8.3, jh: 4, y: 2.5, m: 2.6, n: 8.1, ng: 0.5, l: 2.6, r: 0.5, w: 3.8, oy:0.5,
 	},
 	//ts: {
 	//	p: 6, t: 10.5, k: 5.2, f: 17.1, th: 24.6, s: 90, sh: 7, ch: 7, hh: 4, b: 0.5, d: 2.2, g: 0.5, v: 4.1, dh: 10, z: 25, zh: 7, jh: 2.7, y: 2, m: 0.8, n: 0.5, ng: 0.9, l: 1.4, r: 3, w: 0.5, ih: 0.3, aa: 0.5, ao:1,
@@ -2525,7 +2582,7 @@ var confusionMatrix = map[phoneme]map[phoneme]float64{
 		p: 2.5, t: 7.9, k: 1.7, f: 2.1, th: 0.5, s: 0.9, sh: 1.5, ch: 1.5, hh: 5.8, b: 14.6, d: 6.7, g: 4.9, v: 6.6, dh: 0.8, z: 0.5, zh: 1, jh: 1.6, y: 0.5, m: 3.6, n: 2.1, ng: 0.5, l: 14.8, r: 96, w: 6.7,
 	},
 	ing: {
-		p: 0, t: 6.7, k: 0.4, f: 2.1, th: 0.5, s: 0.5, sh: 0.5, ch: 0.5, hh: 0, b: 2.5, d: 5.8, g: 6.3, v: 1.9, dh: 1.7, z: 0.5, zh: 0.5, jh: 0.5, y: 0, m: 13.8, n: 99, ng: 99, l: 2.1, r: 1.7, w: 10, ih: 99, axn: 99, axm: 99, uwn: 99, uwm: 99,
+		p: 0, t: 6.7, k: 0.4, f: 2.1, th: 0.5, s: 0.5, sh: 0.5, ch: 0.5, hh: 0, b: 2.5, d: 5.8, g: 6.3, v: 1.9, dh: 1.7, z: 0.5, zh: 0.5, jh: 0.5, y: 0, m: 13.8, n: 99, ng: 99, l: 2.1, r: 1.7, w: 10, ih:99, axn: 99, axm: 99, uwn: 99, uwm: 99,
 	},
 	axr: {
 		p: 26.3, t: 7.9, k: 12.1, f: 11.3, th: 5, s: 0.8, sh: 0.4, ch: 0.9, hh: 99, b: 14.6, d: 6.7, g: 4.9, v: 6.6, dh: 3, z: 0.5, zh: 0.4, jh: 0.5, y: 0.5, m: 3.6, n: 5, ng: 10, l: 14.8, r: 96, w: 6.7, ih: 0.3, aa: 99, ah: 99, oy: 3, ax: 99, axn: 99, axm: 99, axl: 99, uwn: 99, uwm: 99, uwl: 99,
@@ -2536,13 +2593,13 @@ var confusionMatrix = map[phoneme]map[phoneme]float64{
 		p: 18.8, t: 24.6, k: 5.6, f: 39.3, th: 99, s: 12, sh: 2.5, ch: 2.5, hh: 7.1, b: 14.2, d: 7.9, g: 2.5, v: 10, dh: 10, z: 5.5, zh: 1.0, jh: 1.0, y: 2, m: 2.5, n: 2.5, ng: 0.5, l: 14.8, r: 99, w: 10.0,
 	},
 	sts: {
-		p: 25, t: 99, k: 14.0, f: 20.0, th: 25.0, s: 99, sh: 15.0, ch: 7, hh: 4, b: 5, d: 20, g: 5, v: 2, dh: 5, z: 25, zh: 10, jh: 2.7, y: 1.5, m: 0.8, n: 0.5, ng: 0.9, l: 1.4, r: 3, w: 0.5, ih: 0.3, aa: 0.5, ao: 1,
+		p: 25, t: 99, k:14.0, f: 20.0, th: 25.0, s: 99, sh: 15.0, ch: 7, hh: 4, b: 5, d: 20, g: 5, v: 2, dh: 5, z: 25, zh: 10, jh: 2.7, y: 1.5, m: 0.8, n: 0.5, ng: 0.9, l: 1.4, r: 3, w: 0.5, ih: 0.3, aa: 0.5, ao:1,
 	},
 	ts: {
-		p: 25, t: 99, k: 14.0, f: 20.0, th: 25.0, s: 99, sh: 15.0, ch: 7, hh: 4, b: 5, d: 20, g: 5, v: 2, dh: 5, z: 25, zh: 10, jh: 2.7, y: 1.5, m: 0.8, n: 0.5, ng: 0.9, l: 1.4, r: 3, w: 0.5, ih: 0.3, aa: 0.5, ao: 1,
+		p: 25, t: 99, k:14.0, f: 20.0, th: 25.0, s: 99, sh: 15.0, ch: 7, hh: 4, b: 5, d: 20, g: 5, v: 2, dh: 5, z: 25, zh: 10, jh: 2.7, y: 1.5, m: 0.8, n: 0.5, ng: 0.9, l: 1.4, r: 3, w: 0.5, ih: 0.3, aa: 0.5, ao:1,
 	},
 	st: {
-		p: 25, t: 99, k: 14.0, f: 20.0, th: 25.0, s: 99, sh: 15.0, ch: 7, hh: 4, b: 5, d: 20, g: 5, v: 2, dh: 5, z: 25, zh: 10, jh: 2.7, y: 1.5, m: 0.8, n: 0.5, ng: 0.9, l: 1.4, r: 3, w: 0.5, ih: 0.3, aa: 0.5, ao: 1,
+		p: 25, t: 99, k:14.0, f: 20.0, th: 25.0, s: 99, sh: 15.0, ch: 7, hh: 4, b: 5, d: 20, g: 5, v: 2, dh: 5, z: 25, zh: 10, jh: 2.7, y: 1.5, m: 0.8, n: 0.5, ng: 0.9, l: 1.4, r: 3, w: 0.5, ih: 0.3, aa: 0.5, ao:1,
 	},
 	kt: {
 		p: 25, t: 99, k: 99, f: 7.7, th: 9.2, s: 1, sh: 1, ch: 20, hh: 11.3, b: 7.1, d: 20.4, g: 15, v: 0.5, dh: 5.4, z: 0.5, zh: 0.5, jh: 5, y: 1.5, m: 2.1, n: 3.3, ng: 3, l: 2.4, r: 0.8, w: 1, oy: 0.5, ao: 0.5, aa: 0.5, ih: 2,
@@ -2554,37 +2611,213 @@ var confusionMatrix = map[phoneme]map[phoneme]float64{
 		p: 30, t: 8.3, k: 1.7, f: 5.8, th: 5, s: 1, sh: 0.5, ch: 1.0, hh: 30, b: 8.3, d: 1, g: 3.6, v: 8.7, dh: 3.3, z: 2.5, zh: 1, jh: 1, y: 3, m: 10, n: 3, ng: 3.0, l: 99, r: 10, w: 10, uwl: 99, axl: 99, ih: 99,
 	},
 	yuw: {
-		p: 1.3, t: 0.5, k: 0.8, f: 0.9, th: 0.8, s: 1.4, sh: 3, ch: 0.9, hh: 5, b: 5, d: 2.5, g: 3, v: 0.7, dh: 2.0, z: 0.5, zh: 0.5, jh: 4.6, y: 99, m: 10, n: 4.2, ng: 0, l: 10, r: 3, w: 10, uw: 99,
+		p: 1.3, t: 0.5, k: 0.8, f: 0.9, th: 0.8, s: 1.4, sh: 3, ch: 0.9, hh: 5, b: 5, d: 2.5, g: 3, v: 0.7, dh: 2.0, z: 0.5, zh: 0.5, jh: 4.6, y: 99, m: 10, n: 4.2, ng: 0, l: 10, r: 3, w: 10, uw:99,
 	},
 	ehl: {
-		p: 3.0, t: 3.0, k: 3.0, f: 8.8, th: 5.0, s: 2, sh: 0.5, ch: 1.0, hh: 99, b: 8.3, d: 2, g: 3.6, v: 8.7, dh: 4.0, z: 2.5, zh: 1.0, jh: 2, y: 1.0, m: 4, n: 1.1, ng: 1.0, l: 99, r: 4.2, w: 5.4, uwl: 99, axl: 99, oy: 0.5, ax: 99, axr: 99, eh: 99,
+		p: 3.0, t: 3.0, k: 3.0, f: 8.8, th: 5.0, s: 2, sh: 0.5, ch: 1.0, hh: 99, b: 8.3, d: 2, g: 3.6, v: 8.7, dh: 4.0, z: 2.5, zh: 1.0, jh: 2, y: 1.0, m: 4, n: 1.1, ng: 1.0, l: 99, r: 4.2, w: 5.4, uwl: 99, axl: 99, oy: 0.5, ax:99, axr: 99, eh:99,
 	},
+	
+}	
+
+
+// 64only
+/*
+p: {
+	p: 86, t: 13.8, k: 18.2, f: 9.6, th: 8.8, s: 1.5, sh: 3, ch: 3.0, hh: 19.2, b: 21.3, d: 5.8, g: 3.1, v: 2.9, dh: 3.3, z: 3, zh: 0.5, jh: 0.5, y: 3, m: 1.4, n: 3, ng: 0.5, l: 1.3, r: 1, w: 1.3,
+},
+t: {
+	p: 24.6, t: 95, k: 12.5, f: 7.7, th: 9.2, s: 4, sh: 2.7, ch: 5, hh: 11.3, b: 7.1, d: 20.4, g: 5, v: 2, dh: 5.4, z: 3.7, zh: 0.5, jh: 5, y: 1.5, m: 2.1, n: 3.3, ng: 2, l: 2.4, r: 0.8, w: 1, oy: 0.5, ao: 0.5, aa: 0.5,
+},
+k: {
+	p: 25, t: 12.5, k: 98, f: 5.2, th: 5, s: 4, sh: 3.9, ch: 5.7, hh: 13.8, b: 4.2, d: 8, g: 12.5, v: 1.4, dh: 4.0, z: 0.4, zh: 0.5, jh: 6, y: 1.3, m: 1, n: 1.5, ng: 10, l: 1.6, r: 1.3, w: 1, ih: 2, oy: 0.5,
+},
+f: {
+	p: 24.6, t: 21.7, k: 13.9, f: 90, th: 11.3, s: 7.5, sh: 2.4, ch: 2.1, hh: 9.2, b: 15, d: 10.4, g: 5.5, v: 5.4, dh: 5, z: 2.4, zh: 1, jh: 2, y: 0.4, m: 1.7, n: 2, ng: 1.2, l: 0.8, r: 0.4, w: 0.8,
+},
+th: {
+	p: 18.8, t: 24.6, k: 5.6, f: 39.3, th: 74, s: 12, sh: 3.7, ch: 2.4, hh: 7.1, b: 14.2, d: 7.9, g: 0.5, v: 4, dh: 9.2, z: 5.5, zh: 0.5, jh: 0.5, y: 2, m: 1.3, n: 2.9, ng: 0.5, l: 2.9, r: 0.5, w: 0.5,
+},
+s: {
+	p: 6, t: 10.5, k: 5.2, f: 17.1, th: 24.6, s: 90, sh: 7, ch: 7, hh: 4, b: 0.5, d: 2.2, g: 0.5, v: 4.1, dh: 10, z: 25, zh: 7, jh: 2.7, y: 2, m: 0.8, n: 0.5, ng: 0.9, l: 1.4, r: 3, w: 0.5, ih: 0.3, aa: 0.5, ao:1, oy: 0.1,
+},
+sh: {
+	p: 5.9, t: 9.7, k: 6.7, f: 4.1, th: 6, s: 11.3, sh: 87, ch: 26, hh: 2.2, b: 0.5, d: 0.5, g: 0.5, v: 2.2, dh: 1.6, z: 15, zh: 10, jh: 16.1, y: 0.8, m: 1.7, n: 0.5, ng: 0.5, l: 0.7, r: 0.4, w: 0,
+},
+ch: {
+	p: 7.7, t: 16.5, k: 5.5, f: 5.4, th: 3.7, s: 8.9, sh: 13, ch: 76, hh: 4, b: 4.6, d: 3.3, g: 3, v: 1.6, dh: 3.3, z: 1.4, zh: 5.4, jh: 34.2, y: 0.4, m: 1.5, n: 2.5, ng: 1.3, l: 0, r: 0, w: 0,
+},
+hh: {
+	p: 26.3, t: 4.6, k: 12.1, f: 11.3, th: 5, s: 2, sh: 2, ch: 2, hh: 99, b: 0.5, d: 1.3, g: 0.4, v: 4.6, dh: 2, z: 0.4, zh: 2, jh: 2, y: 2, m: 2, n: 2, ng: 2, l: 1.7, r: 2, w: 2,
+},
+b: {
+	p: 8.1, t: 7.5, k: 6.7, f: 13.7, th: 7.4, s: 0.5, sh: 0.5, ch: 1.1, hh: 0.5, b: 91, d: 15, g: 14.6, v: 18.6, dh: 6.1, z: 2, zh: 0.5, jh: 0.5, y: 2.9, m: 7.6, n: 3.8, ng: 1.3, l: 5, r: 1.3, w: 5,
+},
+d: {
+	p: 2.5, t: 16.3, k: 3, f: 3.1, th: 5.8, s: 2.7, sh: 1.5, ch: 3, hh: 8.8, b: 12.1, d: 92, g: 8, v: 5.5, dh: 12.9, z: 4.5, zh: 2.9, jh: 5.8, y: 6.3, m: 4.2, n: 12.5, ng: 2.5, l: 12.5, r: 2.1, w: 0.5,
+},
+g: {
+	p: 3.3, t: 12.9, k: 9.2, f: 0.5, th: 0.5, s: 0.5, sh: 0.5, ch: 0.5, hh: 9.2, b: 10.1, d: 20.4, g: 100, v: 7.8, dh: 5, z: 0.5, zh: 0.5, jh: 9.5, y: 24.2, m: 2.5, n: 3.5, ng: 2, l: 3.6, r: 1.5, w: 1.7, oy: 0.3,
+},
+v: {
+	p: 7.5, t: 12.9, k: 3.8, f: 12.1, th: 5.4, s: 2.6, sh: 2.1, ch: 0.6, hh: 6.7, b: 30, d: 15.8, g: 7, v: 91, dh: 13, z: 14.7, zh: 0.5, jh: 2.7, y: 3.0, m: 3.8, n: 5.1, ng: 2.7, l: 4.2, r: 4, w: 5.4, oy:0.5,
+},
+dh: {
+	p: 2.5, t: 11.3, k: 2.5, f: 4.2, th: 14.6, s: 3.3, sh: 1.7, ch: 0.5, hh: 2.1, b: 17.1, d: 29.2, g: 6.3, v: 31.4, dh: 79, z: 12.3, zh: 0.5, jh: 7.9, y: 1.3, m: 1.8, n: 6.2, ng: 2, l: 12.1, r: 2.1, w: 2.9,
+},
+z: {
+	p: 1.6, t: 3.8, k: 0.5, f: 2.6, th: 10, s: 15, sh: 15, ch: 2.5, hh: 0.5, b: 7.9, d: 8.8, g: 1, v: 13.9, dh: 23.8, z: 98, zh: 8.3, jh: 4, y: 2.5, m: 2.6, n: 8.1, ng: 0.5, l: 2.6, r: 0.5, w: 3.8, oy:0.5,
+},
+zh: {
+	p: 1.6, t: 0.5, k: 1.4, f: 1.7, th: 2.9, s: 2.5, sh: 14.2, ch: 4.2, hh: 1.9, b: 0.5, d: 3.9, g: 22, v: 8.9, dh: 1, z: 13, zh: 45, jh: 45, y: 0, m: 1.3, n: 0.3, ng: 1.7, l: 0.8, r: 0.8, w: 10,
+},
+jh: {
+	p: 5, t: 8.2, k: 5.5, f: 4.5, th: 4.8, s: 6.2, sh: 5.2, ch: 18.3, hh: 2.6, b: 0.5, d: 17.7, g: 23, v: 2, dh: 7.5, z: 7.8, zh: 17, jh: 59.8, y: 5.8, m: 1.7, n: 0.3, ng: 1.6, l: 3.1, r: 1.4, w: 0,
+},
+y: {
+	p: 1.3, t: 0, k: 0.8, f: 0.9, th: 0.8, s: 1.4, sh: 3, ch: 0.9, hh: 2.1, b: 4.2, d: 2.5, g: 1.3, v: 0.7, dh: 1.3, z: 1.6, zh: 0, jh: 4.6, y: 70.6, m: 10, n: 4.2, ng: 0, l: 8.5, r: 2.6, w: 2.4,
+},
+m: {
+	p: 3.8, t: 9.2, k: 2.5, f: 2.9, th: 4.6, s: 1.7, sh: 0.8, ch: 0.7, hh: 3.9, b: 9.6, d: 5.8, g: 1.5, v: 7.3, dh: 2.1, z: 1.5, zh: 1.2, jh: 2.4, y: 0.9, m: 100, n: 20, ng: 10.8, l: 11.7, r: 5.4, w: 4.2, ing: 99,
+},
+n: {
+	p: 1.6, t: 9.6, k: 0.6, f: 1, th: 1.6, s: 0.9, sh: 0.3, ch: 0.3, hh: 3.2, b: 1.7, d: 8.3, g: 1.9, v: 4.5, dh: 2.1, z: 3.8, zh: 0.3, jh: 0.3, y: 1.2, m: 24.1, n: 94, ng: 14.1, l: 17.5, r: 4, w: 1.8, ing: 99,
+},
+ng: {
+	p: 0, t: 6.7, k: 0.4, f: 2.1, th: 0.5, s: 0.5, sh: 0.5, ch: 0.5, hh: 0, b: 2.5, d: 5.8, g: 6.3, v: 1.9, dh: 1.7, z: 0.5, zh: 0.5, jh: 0.5, y: 0, m: 13.8, n: 35, ng: 60, l: 2.1, r: 1.7, w: 10, ing: 99,
+},
+l: {
+	p: 5.8, t: 8.3, k: 1.7, f: 5.8, th: 3.3, s: 2, sh: 0.5, ch: 1.2, hh: 2.1, b: 8.3, d: 2, g: 3.6, v: 8.7, dh: 3.3, z: 2.5, zh: 2.5, jh: 4, y: 1.8, m: 10, n: 1.1, ng: 3.0, l: 99, r: 4.2, w: 5.4, uwl: 99, axl: 99,
+},
+r: {
+	p: 2.5, t: 7.9, k: 1.7, f: 2.1, th: 0.5, s: 0.9, sh: 1.5, ch: 1.5, hh: 5.8, b: 14.6, d: 6.7, g: 4.9, v: 6.6, dh: 0.8, z: 0.5, zh: 1, jh: 1.6, y: 0.5, m: 3.6, n: 2.1, ng: 0.5, l: 14.8, r: 96, w: 6.7,
+},
+w: {
+	p: 1.7, t: 0, k: 0.4, f: 1.2, th: 0.4, s: 1.2, sh: 0, ch: 0.9, hh: 1.7, b: 5.8, d: 0.8, g: 0, v: 2.1, dh: 0.4, z: 3.9, zh: 1, jh: 3.2, y: 6.5, m: 5.8, n: 0.8, ng: 10, l: 2.5, r: 4.2, w: 99,
+},
+iy: {
+	p: 26.3, t: 4.6, k: 12.1, f: 11.3, th: 5, s: 1.4, sh: 0.5, ch: 1.5, hh: 0.5, b: 8.3, d: 2.5, g: 3, v: 4.6, dh: 1.7, z: 1.6, zh: 3, jh: 4.6, y: 70.6, m: 10, n: 4.2, ng: 3, l: 8.5, r: 2.6, w: 3, ih: 99, aa: 0.5, ao:0.5, aw:0.5,
+},
+ih: {
+	p: 26.3, t: 4.6, k: 12.1, f: 0.5, th: 5, s: 0.4, sh: 0.4, ch: 3, hh: 99, b: 8.3, d: 1.3, g: 2, v: 4.6, dh: 1.7, z: 0.4, zh: 2, jh: 0.5, y: 3, m: 2, n: 3, ng: 2, l: 1.7, r: 1.5, w: 2,
+},
+ey: {
+	p: 26.3, t: 4.6, k: 12.1, f: 11.3, th: 5, s: 1.4, sh: 0.8, ch: 0.9, hh: 99, b: 8.3, d: 2.5, g: 1.3, v: 4.6, dh: 1.7, z: 1.6, zh: 3, jh: 0.5, y: 2.2, m: 10, n: 4.2, ng: 2.6, l: 8.5, r: 2.6, w: 1, ao: 0.3, ehr:99, eh:99, er:99,
+},
+eh: {
+	p: 26.3, t: 7.9, k: 12.1, f: 11.3, th: 5, s: 0.5, sh: 0.5, ch: 0.5, hh: 99, b: 14.6, d: 6.7, g: 4.9, v: 6.6, dh: 1.7, z: 2.5, zh: 0.5, jh: 0.5, y: 0.5, m: 4.1, n: 4.1, ng: 1, l: 14.8, r: 96, w: 1, oy: 0.5, ax:99, axr: 99, ehr:99, ey:99, er:99,
+},
+ae: {
+	p: 2.5, t: 7.9, k: 1.7, f: 2.1, th: 3.8, s: 0.8, sh: 0.4, ch: 0.9, hh: 5.8, b: 14.6, d: 6.7, g: 4.9, v: 6.6, dh: 2, z: 0.5, zh: 0.4, jh: 0.5, y: 0.5, m: 3.6, n: 2.1, ng: 0, l: 14.8, r: 96, w: 6.7, aa: 3, ao: 0.5,
+},
+aa: {
+	p: 26.3, t: 7.9, k: 12.1, f: 11.3, th: 5, s: 0.8, sh: 0.4, ch: 0.9, hh: 99, b: 3, d: 6.7, g: 4.9, v: 6.6, dh: 1.7, z: 0.5, zh: 0.4, jh: 0.5, y: 0.5, m: 3.6, n: 2.9, ng: 0.5, l: 14.8, r: 96, w: 6.7, ax:99, axr: 99,
+},
+ah: {
+	p: 26.3, t: 7.9, k: 12.1, f: 11.3, th: 5, s: 0.8, sh: 0.4, ch: 0.9, hh: 99, b: 14.6, d: 6.7, g: 4.9, v: 6.6, dh: 3, z: 0.5, zh: 0.4, jh: 0.5, y: 0.5, m: 3.6, n: 5, ng: 10, l: 14.8, r: 96, w: 6.7, ax:99, axr: 99,
+},
+ao: {
+	p: 26.3, t: 0.5, k: 12.1, f: 11.3, th: 5, s: 0.8, sh: 0.4, ch: 0.9, hh: 99, b: 14.6, d: 6.7, g: 4.9, v: 6.6, dh: 1.7, z: 0.5, zh: 0.5, jh: 0.5, y: 0.5, m: 3.6, n: 2.1, ng: 1, l: 14.8, r: 96, w: 6.7, oy: 3, ih: 0.3, ax: 99, axl: 99,
+},
+ow: {
+	 p: 26.3, t: 7.9, k: 12.1, f: 1, th: 5, s: 0.5, sh: 1.5, ch: 0.5, hh: 99, b: 14.6, d: 6.7, g: 4.9, v: 6.6, dh: 1.7, z: 0.5, zh: 10, jh: 3.2, y: 0.5, m: 5.8, n: 2.1, ng: 10, l: 14.8, r: 96, w: 99,
+},
+uh: {
+	p: 26.3, t: 4.6, k: 12.1, f: 11.3, th: 5, s: 0.4, sh: 0.4, ch: 0.8, hh: 99, b: 8.3, d: 1.3, g: 0.4, v: 4.6, dh: 1.7, z: 0.4, zh: 0, jh: 1, y: 0.8, m: 0, n: 0.8, ng: 0, l: 1.7, r: 0.8, w: 0.4, ax: 99, axr: 99, uwn: 99, uwl: 99,
+},
+uw: {
+	p: 1.7, t: 2, k: 2, f: 1.2, th: 2, s: 1.2, sh: 0, ch: 0.5, hh: 1.7, b: 5.8, d: 2, g: 3, v: 2.1, dh: 2, z: 0.5, zh: 0.5, jh: 0.5, y: 5.0, m: 5.8, n: 2, ng: 10, l: 2.5, r: 4.2, w: 99, ax: 99, axr: 99,
+},
+ay: {
+	p: 0.5, t: 7.9, k: 12.1, f: 11.3, th: 3.8, s: 0.5, sh: 0.5, ch: 0.5, hh: 99, b: 14.6, d: 6.7, g: 4.9, v: 6.6, dh: 1.7, z: 0.5, zh: 0.4, jh: 0.5, y: 3, m: 10, n: 4.2, ng: 10, l: 14.8, r: 96, w: 6.7,
+},
+oy: {
+	p: 1.3, t: 0, k: 0.8, f: 0.9, th: 0.8, s: 1.4, sh: 0.8, ch: 0.9, hh: 2.1, b: 4.2, d: 2.5, g: 0.1, v: 0.7, dh: 1.3, z: 1.6, zh: 0, jh: 4.6, y: 70.6, m: 10, n: 4.2, ng: 0, l: 8.5, r: 2.6, w: 2.4,
+},
+aw: {
+	p: 2.5, t: 7.9, k: 1.7, f: 0.5, th: 0.5, s: 0.8, sh: 0.4, ch: 0.5, hh: 5.8, b: 0.5, d: 0.5, g: 4.9, v: 0.5, dh: 0.8, z: 0.5, zh: 0.4, jh: 0.5, y: 4.6, m: 3.6, n: 2.1, ng: 10, l: 14.8, r: 96, w: 6.7, oy:0.5, ax: 99, axr: 99,
+},
+er: {
+	p: 26.3, t: 7.9, k: 12.1, f: 1, th: 5, s: 0.5, sh: 0.4, ch: 0.9, hh: 99, b: 14.6, d: 6.7, g: 4.9, v: 1, dh: 1.7, z: 2.5, zh: 0.4, jh: 0.5, y: 0.5, m: 3.6, n: 2.1, ng: 0.5, l: 14.8, r: 96, w: 1, ax: 99, axr: 99,
+},
+ax: {
+	p: 26.3, t: 7.9, k: 12.1, f: 11.3, th: 5, s: 0.8, sh: 0.4, ch: 0.9, hh: 99, b: 14.6, d: 6.7, g: 4.9, v: 6.6, dh: 3, z: 0.5, zh: 0.4, jh: 0.5, y: 0.5, m: 3.6, n: 5, ng: 10, l: 14.8, r: 96, w: 6.7, ih: 0.3, aa: 99, ah: 99, oy: 3, axn: 99, axm: 99, axl: 99,
+},
+oh: {
+	p: 26.3, t: 7.9, k: 12.1, f: 11.3, th: 5, s: 0.8, sh: 0.4, ch: 0.9, hh: 99, b: 3, d: 6.7, g: 4.9, v: 6.6, dh: 1.7, z: 0.5, zh: 0.4, jh: 0.5, y: 0.5, m: 3.6, n: 2.9, ng: 0.5, l: 14.8, r: 96, w: 6.7, aa: 99, ah: 99, ax: 99, axr: 99,
+},
+ehr: {
+	p: 26.3, t: 7.9, k: 12.1, f: 11.3, th: 5, s: 0.5, sh: 0.5, ch: 0.5, hh: 99, b: 14.6, d: 6.7, g: 4.9, v: 6.6, dh: 1.7, z: 2.5, zh: 0.5, jh: 0.5, y: 0.5, m: 4.1, n: 4.1, ng: 1, l: 14.8, r: 96, w: 1, oy: 0.5, ax: 99, axr: 99, er:99, eh:99, ey:99,
+},
+axl: {
+	p: 5.8, t: 8.3, k: 1.7, f: 5.8, th: 3.3, s: 2, sh: 0.5, ch: 1.2, hh: 2.1, b: 8.3, d: 2, g: 3.6, v: 8.7, dh: 3.3, z: 2.5, zh: 2.5, jh: 4, y: 1.8, m: 10, n: 1.1, ng: 3.0, l: 99, r: 4.2, w: 5.4, ax: 99, axn: 99, axm: 99, axl: 99, uwn: 99, uwm: 99, uwl: 99, axr: 99,
+},
+//axm: {
+//	p: 3.8, t: 9.2, k: 2.5, f: 2.9, th: 4.6, s: 1.7, sh: 0.8, ch: 0.7, hh: 3.9, b: 9.6, d: 5.8, g: 1.5, v: 7.3, dh: 2.1, z: 1.5, zh: 1.2, jh: 2.4, y: 0.9, m: 100, n: 100, ng: 100, l: 11.7, r: 5.4, w: 4.2, ax: 99, axn: 99, axm: 99, axl: 99, uwn: 99, uwm: 99, axr: 99,
+//},
+axn: {
+	p: 1.6, t: 9.6, k: 0.6, f: 1, th: 1.6, s: 0.9, sh: 0.3, ch: 0.3, hh: 3.2, b: 1.7, d: 8.3, g: 1.9, v: 4.5, dh: 2.1, z: 3.8, zh: 0.3, jh: 0.3, y: 1.2, m: 100, n: 100, ng: 100, l: 17.5, r: 4, w: 1.8, ax: 99, axn: 99, axm: 99, axl: 99, uwn: 99, uwm: 99, axr: 99,
+},
+ks: {
+	p: 6, t: 10.5, k: 5.2, f: 17.1, th: 24.6, s: 90, sh: 7, ch: 7, hh: 4, b: 0.5, d: 2.2, g: 0.5, v: 4.1, dh: 10, z: 25, zh: 7, jh: 2.7, y: 2, m: 0.8, n: 0.5, ng: 0.9, l: 1.4, r: 3, w: 0.5, ih: 0.3, aa: 0.5, ao:1,
+},
+kw: {
+	p: 25, t: 12.5, k: 98, f: 5.2, th: 5, s: 4, sh: 3.9, ch: 5.7, hh: 13.8, b: 4.2, d: 8, g: 12.5, v: 1.4, dh: 4.0, z: 0.4, zh: 0.5, jh: 6, y: 1.3, m: 1, n: 1.5, ng: 10, l: 1.6, r: 1.3, w: 1, ih: 2, oy: 0.5,
+},
+dz: {
+	p: 1.6, t: 3.8, k: 0.5, f: 2.6, th: 10, s: 15, sh: 15, ch: 2.5, hh: 0.5, b: 7.9, d: 8.8, g: 1, v: 13.9, dh: 23.8, z: 98, zh: 8.3, jh: 4, y: 2.5, m: 2.6, n: 8.1, ng: 0.5, l: 2.6, r: 0.5, w: 3.8, oy:0.5,
+},
+//ts: {
+//	p: 6, t: 10.5, k: 5.2, f: 17.1, th: 24.6, s: 90, sh: 7, ch: 7, hh: 4, b: 0.5, d: 2.2, g: 0.5, v: 4.1, dh: 10, z: 25, zh: 7, jh: 2.7, y: 2, m: 0.8, n: 0.5, ng: 0.9, l: 1.4, r: 3, w: 0.5, ih: 0.3, aa: 0.5, ao:1,
+//},
+uwl: {
+	p: 5.8, t: 8.3, k: 1.7, f: 5.8, th: 3.3, s: 2, sh: 0.5, ch: 1.2, hh: 2.1, b: 8.3, d: 2, g: 3.6, v: 8.7, dh: 3.3, z: 2.5, zh: 2.5, jh: 4, y: 1.8, m: 10, n: 1.1, ng: 3.0, l: 99, r: 4.2, w: 5.4, ax: 99, axn: 99, axm: 99, axl: 99, uwn: 99, uwm: 99, uwl: 99, axr: 99,
+},
+uwn: {
+	p: 1.7, t: 2, k: 2, f: 1.2, th: 2, s: 1.2, sh: 0, ch: 0.5, hh: 1.7, b: 5.8, d: 2, g: 3, v: 2.1, dh: 2, z: 0.5, zh: 0.5, jh: 0.5, y: 5.0, m: 5.8, n: 2, ng: 10, l: 2.5, r: 4.2, w: 99, ax: 99, axn: 99, axm: 99, axl: 99, uwn: 99, uwm: 99, uwl: 99,
+},
+//uwm: {
+//	p: 1.7, t: 2, k: 2, f: 1.2, th: 2, s: 1.2, sh: 0, ch: 0.5, hh: 1.7, b: 5.8, d: 2, g: 3, v: 2.1, dh: 2, z: 0.5, zh: 0.5, jh: 0.5, y: 5.0, m: 5.8, n: 2, ng: 10, l: 2.5, r: 4.2, w: 99, ax: 99, axn: 99, axm: 99, axl: 99, uwn: 99, uwm: 99, uwl: 99,
+//},
+kl: {
+	p: 25, t: 12.5, k: 98, f: 5.2, th: 5, s: 4, sh: 3.9, ch: 5.7, hh: 13.8, b: 4.2, d: 8, g: 12.5, v: 1.4, dh: 4.0, z: 0.4, zh: 0.5, jh: 6, y: 1.3, m: 1, n: 1.5, ng: 10, l: 1.6, r: 1.3, w: 1, ih: 2, oy: 0.5,
+},
+bl: {
+	p: 8.1, t: 7.5, k: 6.7, f: 13.7, th: 7.4, s: 0.5, sh: 0.5, ch: 1.1, hh: 0.5, b: 91, d: 15, g: 14.6, v: 18.6, dh: 6.1, z: 2, zh: 0.5, jh: 0.5, y: 2.9, m: 7.6, n: 3.8, ng: 1.3, l: 5, r: 1.3, w: 5,
+},
+pl: {
+	p: 86, t: 13.8, k: 18.2, f: 9.6, th: 8.8, s: 1.5, sh: 3, ch: 3.0, hh: 19.2, b: 21.3, d: 5.8, g: 3.1, v: 2.9, dh: 3.3, z: 3, zh: 0.5, jh: 0.5, y: 3, m: 1.4, n: 3, ng: 0.5, l: 1.3, r: 1, w: 1.3,
+},
+pr: {
+	p: 2.5, t: 7.9, k: 1.7, f: 2.1, th: 0.5, s: 0.9, sh: 1.5, ch: 1.5, hh: 5.8, b: 14.6, d: 6.7, g: 4.9, v: 6.6, dh: 0.8, z: 0.5, zh: 1, jh: 1.6, y: 0.5, m: 3.6, n: 2.1, ng: 0.5, l: 14.8, r: 96, w: 6.7,
+},
+kr: {
+	p: 2.5, t: 7.9, k: 1.7, f: 2.1, th: 0.5, s: 0.9, sh: 1.5, ch: 1.5, hh: 5.8, b: 14.6, d: 6.7, g: 4.9, v: 6.6, dh: 0.8, z: 0.5, zh: 1, jh: 1.6, y: 0.5, m: 3.6, n: 2.1, ng: 0.5, l: 14.8, r: 96, w: 6.7,
+},
+tr: {
+	p: 2.5, t: 7.9, k: 1.7, f: 2.1, th: 0.5, s: 0.9, sh: 1.5, ch: 1.5, hh: 5.8, b: 14.6, d: 6.7, g: 4.9, v: 6.6, dh: 0.8, z: 0.5, zh: 1, jh: 1.6, y: 0.5, m: 3.6, n: 2.1, ng: 0.5, l: 14.8, r: 96, w: 6.7,
+},
+gr: {
+	p: 2.5, t: 7.9, k: 1.7, f: 2.1, th: 0.5, s: 0.9, sh: 1.5, ch: 1.5, hh: 5.8, b: 14.6, d: 6.7, g: 4.9, v: 6.6, dh: 0.8, z: 0.5, zh: 1, jh: 1.6, y: 0.5, m: 3.6, n: 2.1, ng: 0.5, l: 14.8, r: 96, w: 6.7,
+},
+ing: {
+	p: 0, t: 6.7, k: 0.4, f: 2.1, th: 0.5, s: 0.5, sh: 0.5, ch: 0.5, hh: 0, b: 2.5, d: 5.8, g: 6.3, v: 1.9, dh: 1.7, z: 0.5, zh: 0.5, jh: 0.5, y: 0, m: 13.8, n: 99, ng: 99, l: 2.1, r: 1.7, w: 10, ih:99, axn: 99, axm: 99, uwn: 99, uwm: 99,
+},
+axr: {
+	p: 26.3, t: 7.9, k: 12.1, f: 11.3, th: 5, s: 0.8, sh: 0.4, ch: 0.9, hh: 99, b: 14.6, d: 6.7, g: 4.9, v: 6.6, dh: 3, z: 0.5, zh: 0.4, jh: 0.5, y: 0.5, m: 3.6, n: 5, ng: 10, l: 14.8, r: 96, w: 6.7, ih: 0.3, aa: 99, ah: 99, oy: 3, ax: 99, axn: 99, axm: 99, axl: 99, uwn: 99, uwm: 99, uwl: 99,
+},
+fl: {
+	p: 24.6, t: 21.7, k: 13.9, f: 99, th: 11.3, s: 7.5, sh: 2.4, ch: 1.5, hh: 9.2, b: 15, d: 10.4, g: 5.5, v: 5.4, dh: 5, z: 1.4, zh: 1, jh: 2, y: 2.0, m: 1.7, n: 2, ng: 1.2, l: 99, r: 15, w: 15, uwl: 99, axl: 99,
+},
+ihl: {
+	p: 30, t: 8.3, k: 1.7, f: 5.8, th: 5, s: 1, sh: 0.5, ch: 1.0, hh: 30, b: 8.3, d: 1, g: 3.6, v: 8.7, dh: 3.3, z: 2.5, zh: 1, jh: 1, y: 3, m: 10, n: 3, ng: 3.0, l: 99, r: 10, w: 10, uwl: 99, axl: 99, ih: 99,
+},
+ehl: {
+	p: 3.0, t: 3.0, k: 3.0, f: 8.8, th: 5.0, s: 2, sh: 0.5, ch: 1.0, hh: 99, b: 8.3, d: 2, g: 3.6, v: 8.7, dh: 4.0, z: 2.5, zh: 1.0, jh: 2, y: 1.0, m: 4, n: 1.1, ng: 1.0, l: 99, r: 4.2, w: 5.4, uwl: 99, axl: 99, oy: 0.5, ax:99, axr: 99, eh:99,
+},
+
 }
-
-// Added 9th March 2021 (suppressed d in words like bends) -- using n guards for now
-//nd: {
-//   p: 1.6, t: 9.6, k: 0.6, f: 1, th: 1.6, s: 0.9, sh: 0.3, ch: 0.3, hh: 3.2, b: 1.7, d: 8.3, g: 1.9, v: 4.5, dh: 2.1, z: 3.8, zh: 0.3, jh: 0.3, y: 1.2, m: 24.1, n: 94, ng: 14.1, l: 17.5, r: 4, w: 1.8,
-//},
-// (suppressed t in sts words like arrests) -- using s guards for now
-//st: {
-//	p: 6, t: 10.5, k: 5.2, f: 17.1, th: 24.6, s: 90, sh: 7, ch: 7, hh: 4, b: 0.5, d: 2.2, g: 0.5, v: 4.1, dh: 10, z: 25, zh: 7, jh: 2.7, y: 2, m: 0.8, n: 0.5, ng: 0.9, l: 1.4, r: 3, w: 0.5, ih: 0.3, aa: 0.5, ao:1,
-// 	},
-
-//sts: {
-//	p: 6, t: 10.5, k: 5.2, f: 17.1, th: 24.6, s: 90, sh: 7, ch: 7, hh: 4, b: 0.5, d: 2.2, g: 0.5, v: 4.1, dh: 10, z: 25, zh: 7, jh: 2.7, y: 2, m: 0.8, n: 0.5, ng: 0.9, l: 1.4, r: 3, w: 0.5, ih: 0.3, aa: 0.5, ao:1,
-//},
-
-/*
-	ernoise: {
-		p: 26.3, t: 7.9, k: 12.1, f: 1, th: 5, s: 0.5, sh: 0.4, ch: 0.9, hh: 99, b: 14.6, d: 6.7, g: 4.9, v: 1, dh: 1.7, z: 2.5, zh: 0.4, jh: 0.5, y: 0.5, m: 3.6, n: 2.1, ng: 0.5, l: 14.8, r: 96, w: 1,
-	},
-	// Added 18th Nov 2020 to allow testing of the new training model for pocketsphinx
 */
-/*
-	axnoise: {
-		p: 26.3, t: 7.9, k: 12.1, f: 11.3, th: 5, s: 0.8, sh: 0.4, ch: 0.9, hh: 99, b: 14.6, d: 6.7, g: 4.9, v: 6.6, dh: 3, z: 0.5, zh: 0.4, jh: 0.5, y: 0.5, m: 3.6, n: 5, ng: 10, l: 14.8, r: 96, w: 6.7, ih: 0.3, aa: 99, ah: 99, oy: 3,
-	},
-*/
+
 
 // This is just one way of scoring the possible guards that are good to use
 // between two adjacent expected phonemes. We could think up others
@@ -2686,8 +2919,12 @@ func (j *jsgfStandard) closingPenalty(ph phoneme) (phonRule, bool) {
 	//penalties := consRemove(newConsonants(), b, ph)
 
 	//penalties := consRemove(newConsonants(), b, ch, d, dh, f, "g", hh, jh, k, l, m, n, ng, p, r, s, sh, t, th, v, w, z, zh, dz, kw, ks, ts, kl, pl, bl, tr, kr, pr, gr, ing)
+	
 	penalties := consRemove(newConsonants(), b, ch, d, dh, f, "g", hh, jh, k, l, m, n, ng, p, r, s, sh, t, th, v, w, z, zh, dz, kw, ks, ts, kl, pl, bl, tr, kr, pr, gr, ing, th, sts, st, kt, fl)
-
+	
+	//64only
+	//penalties := consRemove(newConsonants(), b, ch, d, dh, f, "g", hh, jh, k, l, m, n, ng, p, r, s, sh, t, th, v, w, z, zh, dz, kw, ks, ts, kl, pl, bl, tr, kr, pr, gr, ing, th, fl)
+	
 	/*
 
 	 if isVowel(ph) {
@@ -2868,8 +3105,12 @@ func (j *jsgfStandard) vowelHandler(ph phoneme) []phoneme {
 		str := fmt.Sprintln("vowelHandler: ph =", ph)
 		// Test isVowel and report anything unexpected
 		vowels := []phoneme{
-			//aa, ae, ah, ao, aw, ax, ay, eh, ehr, er, ey, ih, iy, oh, ow, oy, uw, uh, y, axl, axm, axn, uwl, uwn, uwm, axr,
+		    //aa, ae, ah, ao, aw, ax, ay, eh, ehr, er, ey, ih, iy, oh, ow, oy, uw, uh, y, axl, axm, axn, uwl, uwn, uwm, axr,
+			
 			aa, ae, ah, ao, aw, ax, ay, eh, ehr, er, ey, ih, iy, oh, ow, oy, uw, uh, y, axl, axm, axn, uwl, uwn, uwm, axr, ihl, yuw, ehl,
+
+			//64Only
+			//aa, ae, ah, ao, aw, ax, ay, eh, ehr, er, ey, ih, iy, oh, ow, oy, uw, uh, y, axl, axn, uwl, uwn, axr, ihl, ehl,
 		}
 		for _, vowel := range vowels {
 			if !isVowel(vowel) {
@@ -2952,8 +3193,12 @@ func (j *jsgfDiphthong) vowelHandler(ph phoneme) []phoneme {
 		str := fmt.Sprintln("vowelHandler: ph =", ph)
 		// Test isVowel and report anything unexpected
 		vowels := []phoneme{
-			//aa, ae, ah, ao, aw, ax, ay, eh, ehr, er, ey, ih, iy, oh, ow, oy, uw, uh, y, axl, axm, axn, uwl, uwn, uwm, axr,
-			aa, ae, ah, ao, aw, ax, ay, eh, ehr, er, ey, ih, iy, oh, ow, oy, uw, uh, y, axl, axm, axn, uwl, uwn, uwm, axr, ihl, yuw, ehl,
+      		//aa, ae, ah, ao, aw, ax, ay, eh, ehr, er, ey, ih, iy, oh, ow, oy, uw, uh, y, axl, axm, axn, uwl, uwn, uwm, axr,
+			
+			  aa, ae, ah, ao, aw, ax, ay, eh, ehr, er, ey, ih, iy, oh, ow, oy, uw, uh, y, axl, axm, axn, uwl, uwn, uwm, axr, ihl, yuw, ehl,
+			
+			// 64only
+			//aa, ae, ah, ao, aw, ax, ay, eh, ehr, er, ey, ih, iy, oh, ow, oy, uw, uh, y, axl, axn, uwl, uwn, axr, ihl, ehl,
 		}
 		for _, vowel := range vowels {
 			if !isVowel(vowel) {
