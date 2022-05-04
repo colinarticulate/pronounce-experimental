@@ -18,7 +18,7 @@ import (
 
 	"github.com/colinarticulate/dictionary"
 	"github.com/colinarticulate/scanScheduler"
-	"github.com/davidbarbera/articulate-pocketsphinx-go/xyz_plus"
+	"github.com/davidbarbera/xyz_plus"
 	"github.com/google/uuid"
 )
 
