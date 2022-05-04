@@ -165,7 +165,7 @@ def train_Bare(experiment_name, experiment_file):
     print(f"\nTraining model:   {model_name} ")
     print("---------------------------------------------------------------------------------------------")
     
-    #model.fit()
+    model.fit()
     model.copy_model()
 
     return model_name

@@ -1,0 +1,1006 @@
+
+ length of audio =  1.983625
+
+
+
+len(frame)= 640
+rate = 16000
+
+
+
+len(frame)= 640
+rate = 16000
+
+ start2, duration2, end2 =  0.6 1.1 1.7000000000000002
+
+ start3, duration3, end3 =  0.88 0.78 1.6600000000000001
+
+ Initial start, duration, end =  0.5 1.2000000000000002 1.7000000000000002
+
+ Cut at: start, duration =  0.5 1.463625     guard_end =  1.963625 
+
+Running scan for frate = 125
+Running scan for frate = 125
+Considering guard zh with value 1 for b ...
+Considering guard sh with value 1 for b ...
+Considering guard jh with value 1 for b ...
+candidateGuards = map[jh:true sh:true zh:true]
+Picking guard, zh
+
+Considering guard zh with value 2 for ae ...
+candidateGuards = map[zh:true]
+Picking guard, zh
+
+Considering guard jh with value 1 for b ...
+Considering guard zh with value 1 for b ...
+Considering guard sh with value 1 for b ...
+candidateGuards = map[jh:true sh:true zh:true]
+Picking guard, jh
+
+Considering guard z with value 2 for r ...
+Considering guard y with value 2 for r ...
+candidateGuards = map[y:true z:true]
+Picking guard, z
+
+Considering guard zh with value 2 for ae ...
+candidateGuards = map[zh:true]
+Picking guard, zh
+
+Considering guard y with value 3.5999999999999996 for ax ...
+candidateGuards = map[y:true]
+Picking guard, y
+
+Considering guard y with value 3.5999999999999996 for r ...
+candidateGuards = map[y:true]
+Picking guard, y
+
+Considering guard sh with value 1 for l ...
+candidateGuards = map[sh:true]
+Picking guard, sh
+
+Considering guard ch with value 3 for axl ...
+Considering guard sh with value 3 for axl ...
+candidateGuards = map[ch:true sh:true]
+Picking guard, ch
+
+frate, target rule = 125 public <barrel> = (((sil [((l <any_Cx_b_l_hh>) | (<any_Cx_b_l_hh> l))] [((l <any_vowel_noSlide>) | (<any_vowel_noSlide> l))]) | (sil hh (sil [((l <any_Cx_b_l_hh>) | (<any_Cx_b_l_hh> l))] [((l <any_vowel_noSlide>) | (<any_vowel_noSlide> l))]))) (([(<any_Cx_jh_hh_l_b> jh)] | [(jh <any_Cx_jh_hh_l_b>)]) (b | ((<any_Cx_jh_hh_l_b> jh) | (jh <any_Cx_jh_hh_l_b>)))) ((([(<any_Vx_zh_jh_ae_noSlide> zh)] | [(zh <any_Vx_zh_jh_ae_noSlide>)]) ([(<any_Cx_zh_jh_r_b> zh)] | [(zh <any_Cx_zh_jh_r_b>)])) (ae | ((<any_Vx_zh_jh_ae_noSlide> zh) | (zh <any_Vx_zh_jh_ae_noSlide>)))) (([(<any_Cx_y_zh_r> y)] | [(y <any_Cx_y_zh_r>)]) (r | ((<any_Cx_y_zh_r_axl> y) | (y <any_Cx_y_zh_r_axl>)))) (([(<any_Cx_ch_y_axl_r> ch)] | [(ch <any_Cx_ch_y_axl_r>)]) (axl | ((<any_Cx_ch_y_axl_r> ch) | (ch <any_Cx_ch_y_axl_r>)))) (([(<any_vowel_noSlide> hh)] | [(hh <any_vowel_noSlide>)]) ([(<any_Cx_ch_axl_hh> hh)] | [(hh <any_Cx_ch_axl_hh>)]) sil))
+frate, target rule = 125 public <barrel> = (((sil [((v <any_Cx_b_v_hh>) | (<any_Cx_b_v_hh> v))] [((v <any_vowel_noSlide>) | (<any_vowel_noSlide> v))]) | (sil hh (sil [((v <any_Cx_b_v_hh>) | (<any_Cx_b_v_hh> v))] [((v <any_vowel_noSlide>) | (<any_vowel_noSlide> v))]))) (([(<any_Cx_zh_hh_v_b> zh)] | [(zh <any_Cx_zh_hh_v_b>)]) (b | ((<any_Cx_zh_hh_v_b> zh) | (zh <any_Cx_zh_hh_v_b>)))) ((([(<any_Vx_zh_zh_ae_noSlide> zh)] | [(zh <any_Vx_zh_zh_ae_noSlide>)]) ([(<any_Cx_zh_zh_r_b> zh)] | [(zh <any_Cx_zh_zh_r_b>)])) (ae | ((<any_Vx_zh_zh_ae_noSlide> zh) | (zh <any_Vx_zh_zh_ae_noSlide>)))) (([(<any_Cx_z_zh_r_ax> z)] | [(z <any_Cx_z_zh_r_ax>)]) (r | ((<any_Cx_z_zh_r_ax> z) | (z <any_Cx_z_zh_r_ax>)))) (([(<any_Cx_y_z_ax_r> y)] | [(y <any_Cx_y_z_ax_r>)]) (ax | ((<any_Cx_y_z_ax_l_r> y) | (y <any_Cx_y_z_ax_l_r>)))) (([(<any_Cx_sh_y_l_ax> sh)] | [(sh <any_Cx_sh_y_l_ax>)]) (l | ((<any_Cx_sh_y_l_ax> sh) | (sh <any_Cx_sh_y_l_ax>)))) (([(<any_vowel_noSlide> f)] | [(f <any_vowel_noSlide>)]) ([(<any_Cx_sh_l_f> f)] | [(f <any_Cx_sh_l_f>)]) sil))
+Running scan for frate = 105
+Running scan for frate = 105
+Considering guard jh with value 1 for b ...
+Considering guard zh with value 1 for b ...
+Considering guard sh with value 1 for b ...
+candidateGuards = map[jh:true sh:true zh:true]
+Picking guard, zh
+
+Considering guard jh with value 1 for b ...
+Considering guard zh with value 1 for b ...
+Considering guard sh with value 1 for b ...
+candidateGuards = map[jh:true sh:true zh:true]
+Picking guard, jh
+
+Considering guard zh with value 2 for ae ...
+candidateGuards = map[zh:true]
+Picking guard, zh
+
+Considering guard zh with value 2 for ae ...
+candidateGuards = map[zh:true]
+Picking guard, zh
+
+Considering guard y with value 3.5999999999999996 for r ...
+candidateGuards = map[y:true]
+Picking guard, y
+
+Considering guard ch with value 3 for axl ...
+Considering guard sh with value 3 for axl ...
+candidateGuards = map[ch:true sh:true]
+Picking guard, ch
+
+Considering guard z with value 2 for r ...
+Considering guard y with value 2 for r ...
+candidateGuards = map[y:true z:true]
+Picking guard, z
+
+frate, target rule = 105 public <barrel> = (((sil [((p <any_Cx_b_p_hh>) | (<any_Cx_b_p_hh> p))] [((p <any_vowel_noSlide>) | (<any_vowel_noSlide> p))]) | (sil hh (sil [((p <any_Cx_b_p_hh>) | (<any_Cx_b_p_hh> p))] [((p <any_vowel_noSlide>) | (<any_vowel_noSlide> p))]))) (([(<any_Cx_zh_hh_p_b> zh)] | [(zh <any_Cx_zh_hh_p_b>)]) (b | ((<any_Cx_zh_hh_p_b> zh) | (zh <any_Cx_zh_hh_p_b>)))) ((([(<any_Vx_zh_zh_ae_noSlide> zh)] | [(zh <any_Vx_zh_zh_ae_noSlide>)]) ([(<any_Cx_zh_zh_r_b> zh)] | [(zh <any_Cx_zh_zh_r_b>)])) (ae | ((<any_Vx_zh_zh_ae_noSlide> zh) | (zh <any_Vx_zh_zh_ae_noSlide>)))) (([(<any_Cx_y_zh_r> y)] | [(y <any_Cx_y_zh_r>)]) (r | ((<any_Cx_y_zh_r_axl> y) | (y <any_Cx_y_zh_r_axl>)))) (([(<any_Cx_ch_y_axl_r> ch)] | [(ch <any_Cx_ch_y_axl_r>)]) (axl | ((<any_Cx_ch_y_axl_r> ch) | (ch <any_Cx_ch_y_axl_r>)))) (([(<any_vowel_noSlide> thr)] | [(thr <any_vowel_noSlide>)]) ([(<any_Cx_ch_axl_thr> thr)] | [(thr <any_Cx_ch_axl_thr>)]) sil))
+Running scan for frate = 91
+Considering guard y with value 3.5999999999999996 for ax ...
+candidateGuards = map[y:true]
+Picking guard, y
+
+Considering guard jh with value 1 for b ...
+Considering guard sh with value 1 for b ...
+Considering guard zh with value 1 for b ...
+candidateGuards = map[jh:true sh:true zh:true]
+Picking guard, jh
+
+Considering guard zh with value 2 for ae ...
+candidateGuards = map[zh:true]
+Picking guard, zh
+
+Considering guard y with value 3.5999999999999996 for r ...
+candidateGuards = map[y:true]
+Picking guard, y
+
+Considering guard ch with value 3 for axl ...
+Considering guard sh with value 3 for axl ...
+candidateGuards = map[ch:true sh:true]
+Picking guard, ch
+
+Considering guard sh with value 1 for l ...
+candidateGuards = map[sh:true]
+Picking guard, sh
+
+frate, target rule = 91 public <barrel> = (((sil [((f <any_Cx_b_f_hh>) | (<any_Cx_b_f_hh> f))] [((f <any_vowel_noSlide>) | (<any_vowel_noSlide> f))]) | (sil hh (sil [((f <any_Cx_b_f_hh>) | (<any_Cx_b_f_hh> f))] [((f <any_vowel_noSlide>) | (<any_vowel_noSlide> f))]))) (([(<any_Cx_jh_hh_f_b> jh)] | [(jh <any_Cx_jh_hh_f_b>)]) (b | ((<any_Cx_jh_hh_f_b> jh) | (jh <any_Cx_jh_hh_f_b>)))) ((([(<any_Vx_zh_jh_ae_noSlide> zh)] | [(zh <any_Vx_zh_jh_ae_noSlide>)]) ([(<any_Cx_zh_jh_r_b> zh)] | [(zh <any_Cx_zh_jh_r_b>)])) (ae | ((<any_Vx_zh_jh_ae_noSlide> zh) | (zh <any_Vx_zh_jh_ae_noSlide>)))) (([(<any_Cx_y_zh_r> y)] | [(y <any_Cx_y_zh_r>)]) (r | ((<any_Cx_y_zh_r_axl> y) | (y <any_Cx_y_zh_r_axl>)))) (([(<any_Cx_ch_y_axl_r> ch)] | [(ch <any_Cx_ch_y_axl_r>)]) (axl | ((<any_Cx_ch_y_axl_r> ch) | (ch <any_Cx_ch_y_axl_r>)))) (([(<any_vowel_noSlide> hh)] | [(hh <any_vowel_noSlide>)]) ([(<any_Cx_ch_axl_hh> hh)] | [(hh <any_Cx_ch_axl_hh>)]) sil))
+frate, target rule = 105 public <barrel> = (((sil [((p <any_Cx_b_p_hh>) | (<any_Cx_b_p_hh> p))] [((p <any_vowel_noSlide>) | (<any_vowel_noSlide> p))]) | (sil hh (sil [((p <any_Cx_b_p_hh>) | (<any_Cx_b_p_hh> p))] [((p <any_vowel_noSlide>) | (<any_vowel_noSlide> p))]))) (([(<any_Cx_jh_hh_p_b> jh)] | [(jh <any_Cx_jh_hh_p_b>)]) (b | ((<any_Cx_jh_hh_p_b> jh) | (jh <any_Cx_jh_hh_p_b>)))) ((([(<any_Vx_zh_jh_ae_noSlide> zh)] | [(zh <any_Vx_zh_jh_ae_noSlide>)]) ([(<any_Cx_zh_jh_r_b> zh)] | [(zh <any_Cx_zh_jh_r_b>)])) (ae | ((<any_Vx_zh_jh_ae_noSlide> zh) | (zh <any_Vx_zh_jh_ae_noSlide>)))) (([(<any_Cx_z_zh_r_ax> z)] | [(z <any_Cx_z_zh_r_ax>)]) (r | ((<any_Cx_z_zh_r_ax> z) | (z <any_Cx_z_zh_r_ax>)))) (([(<any_Cx_y_z_ax_r> y)] | [(y <any_Cx_y_z_ax_r>)]) (ax | ((<any_Cx_y_z_ax_l_r> y) | (y <any_Cx_y_z_ax_l_r>)))) (([(<any_Cx_sh_y_l_ax> sh)] | [(sh <any_Cx_sh_y_l_ax>)]) (l | ((<any_Cx_sh_y_l_ax> sh) | (sh <any_Cx_sh_y_l_ax>)))) (([(<any_vowel_noSlide> w)] | [(w <any_vowel_noSlide>)]) ([(<any_Cx_sh_l_w> w)] | [(w <any_Cx_sh_l_w>)]) sil))
+Running scan for frate = 80
+Considering guard zh with value 1 for b ...
+Considering guard sh with value 1 for b ...
+Considering guard jh with value 1 for b ...
+candidateGuards = map[jh:true sh:true zh:true]
+Picking guard, zh
+
+Running scan for frate = 91
+Considering guard zh with value 2 for ae ...
+candidateGuards = map[zh:true]
+Picking guard, zh
+
+Considering guard sh with value 1 for b ...
+Considering guard zh with value 1 for b ...
+Considering guard jh with value 1 for b ...
+candidateGuards = map[jh:true sh:true zh:true]
+Picking guard, sh
+
+Considering guard y with value 3.5999999999999996 for r ...
+candidateGuards = map[y:true]
+Picking guard, y
+
+Considering guard ch with value 3 for axl ...
+Considering guard sh with value 3 for axl ...
+candidateGuards = map[ch:true sh:true]
+Picking guard, ch
+
+Considering guard zh with value 2 for ae ...
+candidateGuards = map[zh:true]
+Picking guard, zh
+
+frate, target rule = 80 public <barrel> = (((sil [((p <any_Cx_b_p_hh>) | (<any_Cx_b_p_hh> p))] [((p <any_vowel_noSlide>) | (<any_vowel_noSlide> p))]) | (sil hh (sil [((p <any_Cx_b_p_hh>) | (<any_Cx_b_p_hh> p))] [((p <any_vowel_noSlide>) | (<any_vowel_noSlide> p))]))) (([(<any_Cx_zh_hh_p_b> zh)] | [(zh <any_Cx_zh_hh_p_b>)]) (b | ((<any_Cx_zh_hh_p_b> zh) | (zh <any_Cx_zh_hh_p_b>)))) ((([(<any_Vx_zh_zh_ae_noSlide> zh)] | [(zh <any_Vx_zh_zh_ae_noSlide>)]) ([(<any_Cx_zh_zh_r_b> zh)] | [(zh <any_Cx_zh_zh_r_b>)])) (ae | ((<any_Vx_zh_zh_ae_noSlide> zh) | (zh <any_Vx_zh_zh_ae_noSlide>)))) (([(<any_Cx_y_zh_r> y)] | [(y <any_Cx_y_zh_r>)]) (r | ((<any_Cx_y_zh_r_axl> y) | (y <any_Cx_y_zh_r_axl>)))) (([(<any_Cx_ch_y_axl_r> ch)] | [(ch <any_Cx_ch_y_axl_r>)]) (axl | ((<any_Cx_ch_y_axl_r> ch) | (ch <any_Cx_ch_y_axl_r>)))) (([(<any_vowel_noSlide> m)] | [(m <any_vowel_noSlide>)]) ([(<any_Cx_ch_axl_m> m)] | [(m <any_Cx_ch_axl_m>)]) sil))
+Considering guard y with value 2 for r ...
+Considering guard z with value 2 for r ...
+candidateGuards = map[y:true z:true]
+Picking guard, y
+
+Running scan for frate = 72
+Considering guard y with value 3.5999999999999996 for ax ...
+candidateGuards = map[y:true]
+Picking guard, y
+
+Considering guard zh with value 1 for b ...
+Considering guard jh with value 1 for b ...
+Considering guard sh with value 1 for b ...
+candidateGuards = map[jh:true sh:true zh:true]
+Picking guard, zh
+
+Considering guard sh with value 1 for l ...
+candidateGuards = map[sh:true]
+Picking guard, sh
+
+Considering guard zh with value 2 for ae ...
+candidateGuards = map[zh:true]
+Picking guard, zh
+
+Considering guard y with value 3.5999999999999996 for r ...
+candidateGuards = map[y:true]
+Picking guard, y
+
+Considering guard sh with value 3 for axl ...
+Considering guard ch with value 3 for axl ...
+candidateGuards = map[ch:true sh:true]
+Picking guard, ch
+
+frate, target rule = 91 public <barrel> = (((sil [((p <any_Cx_b_p_hh>) | (<any_Cx_b_p_hh> p))] [((p <any_vowel_noSlide>) | (<any_vowel_noSlide> p))]) | (sil hh (sil [((p <any_Cx_b_p_hh>) | (<any_Cx_b_p_hh> p))] [((p <any_vowel_noSlide>) | (<any_vowel_noSlide> p))]))) (([(<any_Cx_sh_hh_p_b> sh)] | [(sh <any_Cx_sh_hh_p_b>)]) (b | ((<any_Cx_sh_hh_p_b> sh) | (sh <any_Cx_sh_hh_p_b>)))) ((([(<any_Vx_zh_sh_ae_noSlide> zh)] | [(zh <any_Vx_zh_sh_ae_noSlide>)]) ([(<any_Cx_zh_sh_r_b> zh)] | [(zh <any_Cx_zh_sh_r_b>)])) (ae | ((<any_Vx_zh_sh_ae_noSlide> zh) | (zh <any_Vx_zh_sh_ae_noSlide>)))) (([(<any_Cx_y_zh_r_ax> y)] | [(y <any_Cx_y_zh_r_ax>)]) (r | ((<any_Cx_y_zh_r_ax> y) | (y <any_Cx_y_zh_r_ax>)))) (([(<any_Cx_y_y_ax_r> y)] | [(y <any_Cx_y_y_ax_r>)]) (ax | ((<any_Cx_y_y_ax_l_r> y) | (y <any_Cx_y_y_ax_l_r>)))) (([(<any_Cx_sh_y_l_ax> sh)] | [(sh <any_Cx_sh_y_l_ax>)]) (l | ((<any_Cx_sh_y_l_ax> sh) | (sh <any_Cx_sh_y_l_ax>)))) (([(<any_vowel_noSlide> f)] | [(f <any_vowel_noSlide>)]) ([(<any_Cx_sh_l_f> f)] | [(f <any_Cx_sh_l_f>)]) sil))
+frate, target rule = 72 public <barrel> = (((sil [((p <any_Cx_b_p_hh>) | (<any_Cx_b_p_hh> p))] [((p <any_vowel_noSlide>) | (<any_vowel_noSlide> p))]) | (sil hh (sil [((p <any_Cx_b_p_hh>) | (<any_Cx_b_p_hh> p))] [((p <any_vowel_noSlide>) | (<any_vowel_noSlide> p))]))) (([(<any_Cx_zh_hh_p_b> zh)] | [(zh <any_Cx_zh_hh_p_b>)]) (b | ((<any_Cx_zh_hh_p_b> zh) | (zh <any_Cx_zh_hh_p_b>)))) ((([(<any_Vx_zh_zh_ae_noSlide> zh)] | [(zh <any_Vx_zh_zh_ae_noSlide>)]) ([(<any_Cx_zh_zh_r_b> zh)] | [(zh <any_Cx_zh_zh_r_b>)])) (ae | ((<any_Vx_zh_zh_ae_noSlide> zh) | (zh <any_Vx_zh_zh_ae_noSlide>)))) (([(<any_Cx_y_zh_r> y)] | [(y <any_Cx_y_zh_r>)]) (r | ((<any_Cx_y_zh_r_axl> y) | (y <any_Cx_y_zh_r_axl>)))) (([(<any_Cx_ch_y_axl_r> ch)] | [(ch <any_Cx_ch_y_axl_r>)]) (axl | ((<any_Cx_ch_y_axl_r> ch) | (ch <any_Cx_ch_y_axl_r>)))) (([(<any_vowel_noSlide> thr)] | [(thr <any_vowel_noSlide>)]) ([(<any_Cx_ch_axl_thr> thr)] | [(thr <any_Cx_ch_axl_thr>)]) sil))
+Running scan for frate = 80
+Considering guard jh with value 1 for b ...
+Considering guard zh with value 1 for b ...
+Considering guard sh with value 1 for b ...
+candidateGuards = map[jh:true sh:true zh:true]
+Picking guard, jh
+
+Considering guard zh with value 2 for ae ...
+candidateGuards = map[zh:true]
+Picking guard, zh
+
+Considering guard z with value 2 for r ...
+Considering guard y with value 2 for r ...
+candidateGuards = map[y:true z:true]
+Picking guard, z
+
+Considering guard y with value 3.5999999999999996 for ax ...
+candidateGuards = map[y:true]
+Picking guard, y
+
+Considering guard sh with value 1 for l ...
+candidateGuards = map[sh:true]
+Picking guard, sh
+
+frate, target rule = 80 public <barrel> = (((sil [((v <any_Cx_b_v_hh>) | (<any_Cx_b_v_hh> v))] [((v <any_vowel_noSlide>) | (<any_vowel_noSlide> v))]) | (sil hh (sil [((v <any_Cx_b_v_hh>) | (<any_Cx_b_v_hh> v))] [((v <any_vowel_noSlide>) | (<any_vowel_noSlide> v))]))) (([(<any_Cx_jh_hh_v_b> jh)] | [(jh <any_Cx_jh_hh_v_b>)]) (b | ((<any_Cx_jh_hh_v_b> jh) | (jh <any_Cx_jh_hh_v_b>)))) ((([(<any_Vx_zh_jh_ae_noSlide> zh)] | [(zh <any_Vx_zh_jh_ae_noSlide>)]) ([(<any_Cx_zh_jh_r_b> zh)] | [(zh <any_Cx_zh_jh_r_b>)])) (ae | ((<any_Vx_zh_jh_ae_noSlide> zh) | (zh <any_Vx_zh_jh_ae_noSlide>)))) (([(<any_Cx_z_zh_r_ax> z)] | [(z <any_Cx_z_zh_r_ax>)]) (r | ((<any_Cx_z_zh_r_ax> z) | (z <any_Cx_z_zh_r_ax>)))) (([(<any_Cx_y_z_ax_r> y)] | [(y <any_Cx_y_z_ax_r>)]) (ax | ((<any_Cx_y_z_ax_l_r> y) | (y <any_Cx_y_z_ax_l_r>)))) (([(<any_Cx_sh_y_l_ax> sh)] | [(sh <any_Cx_sh_y_l_ax>)]) (l | ((<any_Cx_sh_y_l_ax> sh) | (sh <any_Cx_sh_y_l_ax>)))) (([(<any_vowel_noSlide> r)] | [(r <any_vowel_noSlide>)]) ([(<any_Cx_sh_l_r> r)] | [(r <any_Cx_sh_l_r>)]) sil))
+Running scan for frate = 72
+Considering guard zh with value 1 for b ...
+Considering guard sh with value 1 for b ...
+Considering guard jh with value 1 for b ...
+candidateGuards = map[jh:true sh:true zh:true]
+Picking guard, zh
+
+Considering guard zh with value 2 for ae ...
+candidateGuards = map[zh:true]
+Picking guard, zh
+
+Considering guard y with value 2 for r ...
+Considering guard z with value 2 for r ...
+candidateGuards = map[y:true z:true]
+Picking guard, y
+
+Considering guard y with value 3.5999999999999996 for ax ...
+candidateGuards = map[y:true]
+Picking guard, y
+
+Considering guard sh with value 1 for l ...
+candidateGuards = map[sh:true]
+Picking guard, sh
+
+frate, target rule = 72 public <barrel> = (((sil [((hh <any_Cx_b_hh_hh>) | (<any_Cx_b_hh_hh> hh))] [((hh <any_vowel_noSlide>) | (<any_vowel_noSlide> hh))]) | (sil hh (sil [((hh <any_Cx_b_hh_hh>) | (<any_Cx_b_hh_hh> hh))] [((hh <any_vowel_noSlide>) | (<any_vowel_noSlide> hh))]))) (([(<any_Cx_zh_hh_hh_b> zh)] | [(zh <any_Cx_zh_hh_hh_b>)]) (b | ((<any_Cx_zh_hh_hh_b> zh) | (zh <any_Cx_zh_hh_hh_b>)))) ((([(<any_Vx_zh_zh_ae_noSlide> zh)] | [(zh <any_Vx_zh_zh_ae_noSlide>)]) ([(<any_Cx_zh_zh_r_b> zh)] | [(zh <any_Cx_zh_zh_r_b>)])) (ae | ((<any_Vx_zh_zh_ae_noSlide> zh) | (zh <any_Vx_zh_zh_ae_noSlide>)))) (([(<any_Cx_y_zh_r_ax> y)] | [(y <any_Cx_y_zh_r_ax>)]) (r | ((<any_Cx_y_zh_r_ax> y) | (y <any_Cx_y_zh_r_ax>)))) (([(<any_Cx_y_y_ax_r> y)] | [(y <any_Cx_y_y_ax_r>)]) (ax | ((<any_Cx_y_y_ax_l_r> y) | (y <any_Cx_y_y_ax_l_r>)))) (([(<any_Cx_sh_y_l_ax> sh)] | [(sh <any_Cx_sh_y_l_ax>)]) (l | ((<any_Cx_sh_y_l_ax> sh) | (sh <any_Cx_sh_y_l_ax>)))) (([(<any_vowel_noSlide> r)] | [(r <any_vowel_noSlide>)]) ([(<any_Cx_sh_l_r> r)] | [(r <any_Cx_sh_l_r>)]) sil))
+
+results =
+{72 []}
+{80 []}
+{91 [{sil 0 40} {b 41 45} {ae 46 55} {r 56 70} {ax 71 73} {l 74 81} {ih 82 92} {f 93 95} {sil 96 131}]}
+{105 [{sil 0 47} {b 48 53} {ae 54 64} {r 65 81} {ax 82 84} {l 85 93} {w 94 96} {iy 97 111} {sil 112 152}]}
+{125 [{sil 3 57} {b 58 63} {ae 64 79} {r 80 97} {ax 98 101} {l 102 115} {iy 116 140} {f 141 146} {sil 147 182}]}
+
+normalised results =
+{72 []}
+{80 []}
+{91 [{sil 0 40} {b 45 49} {ae 51 60} {r 62 77} {ax 78 78} {l 81 89} {ih 90 101} {f 102 102} {sil 105 144}]}
+{105 [{sil 0 47} {b 46 50} {ae 51 61} {r 62 77} {ax 78 78} {l 81 89} {w 90 90} {iy 92 106} {sil 107 145}]}
+{125 [{sil 3 57} {b 46 50} {ae 51 63} {r 64 78} {ax 78 81} {l 82 92} {iy 93 112} {f 113 117} {sil 118 146}]}
+
+Mapped result =
+result 0 =
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+result 1 =
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+result 2 =
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+result 3 =
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+result 4 =
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+
+Rules =
+rule 0 =
+Trapped opening rule:
+trap: hh
+rule: {hh}
+Opening rule:
+guard: hh
+rule: {hh {[{sil} {{[{[{hh} {{any_Cx_b_hh_hh {[{w} {zh} {m} {v} {z} {g} {dh} {ch} {d} {l}]}}}]} {[{{any_Cx_b_hh_hh {[{w} {zh} {m} {v} {z} {g} {dh} {ch} {d} {l}]}}} {hh}]}]}} {{[{[{hh} {{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}}]} {[{{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}} {hh}]}]}}]}}
+Phoneme rule:
+guard: zh phoneme: b
+rule: {[{[{{[{{any_Cx_zh_hh_hh_b {[{v} {ch} {dh} {d} {w} {z} {l} {m} {g}]}}} {zh}]}} {{[{zh} {{any_Cx_zh_hh_hh_b {[{v} {ch} {dh} {d} {w} {z} {l} {m} {g}]}}}]}}]} {[{b} {[{[{{any_Cx_zh_hh_hh_b {[{v} {ch} {dh} {d} {w} {z} {l} {m} {g}]}}} {zh}]} {[{zh} {{any_Cx_zh_hh_hh_b {[{v} {ch} {dh} {d} {w} {z} {l} {m} {g}]}}}]}]}]}]}
+Phoneme rule:
+guard: zh phoneme: ae
+rule: {[{[{[{{[{{any_Vx_zh_zh_ae_noSlide {[{uw} {uh} {ax} {eh} {ih} {oh} {aa} {ah} {ao} {iy} {y}]}}} {zh}]}} {{[{zh} {{any_Vx_zh_zh_ae_noSlide {[{uw} {uh} {ax} {eh} {ih} {oh} {aa} {ah} {ao} {iy} {y}]}}}]}}]} {[{{[{{any_Cx_zh_zh_r_b {[{z} {hh} {d} {v} {ch} {dh} {l} {w} {g} {m}]}}} {zh}]}} {{[{zh} {{any_Cx_zh_zh_r_b {[{z} {hh} {d} {v} {ch} {dh} {l} {w} {g} {m}]}}}]}}]}]} {[{ae} {[{[{{any_Vx_zh_zh_ae_noSlide {[{uw} {uh} {ax} {eh} {ih} {oh} {aa} {ah} {ao} {iy} {y}]}}} {zh}]} {[{zh} {{any_Vx_zh_zh_ae_noSlide {[{uw} {uh} {ax} {eh} {ih} {oh} {aa} {ah} {ao} {iy} {y}]}}}]}]}]}]}
+Phoneme rule:
+guard: y phoneme: r
+rule: {[{[{{[{{any_Cx_y_zh_r_ax {[{d} {hh} {b} {dh} {g} {l} {z} {m} {w} {ch} {v}]}}} {y}]}} {{[{y} {{any_Cx_y_zh_r_ax {[{d} {hh} {b} {dh} {g} {l} {z} {m} {w} {ch} {v}]}}}]}}]} {[{r} {[{[{{any_Cx_y_zh_r_ax {[{d} {hh} {b} {dh} {g} {l} {z} {m} {w} {ch} {v}]}}} {y}]} {[{y} {{any_Cx_y_zh_r_ax {[{d} {hh} {b} {dh} {g} {l} {z} {m} {w} {ch} {v}]}}}]}]}]}]}
+Phoneme rule:
+guard: y phoneme: ax
+rule: {[{[{{[{{any_Cx_y_y_ax_r {[{v} {b} {ch} {dh} {g} {l} {m} {zh} {hh} {z} {d} {w}]}}} {y}]}} {{[{y} {{any_Cx_y_y_ax_r {[{v} {b} {ch} {dh} {g} {l} {m} {zh} {hh} {z} {d} {w}]}}}]}}]} {[{ax} {[{[{{any_Cx_y_y_ax_l_r {[{w} {zh} {d} {m} {ch} {z} {b} {v} {dh} {hh} {g}]}}} {y}]} {[{y} {{any_Cx_y_y_ax_l_r {[{w} {zh} {d} {m} {ch} {z} {b} {v} {dh} {hh} {g}]}}}]}]}]}]}
+Phoneme rule:
+guard: sh phoneme: l
+rule: {[{[{{[{{any_Cx_sh_y_l_ax {[{b} {hh} {ch} {dh} {g} {zh} {m} {d} {w} {z} {v}]}}} {sh}]}} {{[{sh} {{any_Cx_sh_y_l_ax {[{b} {hh} {ch} {dh} {g} {zh} {m} {d} {w} {z} {v}]}}}]}}]} {[{l} {[{[{{any_Cx_sh_y_l_ax {[{b} {hh} {ch} {dh} {g} {zh} {m} {d} {w} {z} {v}]}}} {sh}]} {[{sh} {{any_Cx_sh_y_l_ax {[{b} {hh} {ch} {dh} {g} {zh} {m} {d} {w} {z} {v}]}}}]}]}]}]}
+Closing rule:
+guard: r
+rule: {[{[{{[{{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}} {r}]}} {{[{r} {{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}}]}}]} {[{{[{{any_Cx_sh_l_r {[{hh} {dh} {w} {ch} {z} {d} {v} {b} {g} {zh} {m}]}}} {r}]}} {{[{r} {{any_Cx_sh_l_r {[{hh} {dh} {w} {ch} {z} {d} {v} {b} {g} {zh} {m}]}}}]}}]} {sil}]}
+rule 1 =
+Trapped opening rule:
+trap: hh
+rule: {hh}
+Opening rule:
+guard: v
+rule: {v {[{sil} {{[{[{v} {{any_Cx_b_v_hh {[{w} {zh} {m} {g} {dh} {l} {d} {z} {ch}]}}}]} {[{{any_Cx_b_v_hh {[{w} {zh} {m} {g} {dh} {l} {d} {z} {ch}]}}} {v}]}]}} {{[{[{v} {{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}}]} {[{{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}} {v}]}]}}]}}
+Phoneme rule:
+guard: jh phoneme: b
+rule: {[{[{{[{{any_Cx_jh_hh_v_b {[{m} {z} {ch} {zh} {d} {l} {dh} {g} {w}]}}} {jh}]}} {{[{jh} {{any_Cx_jh_hh_v_b {[{m} {z} {ch} {zh} {d} {l} {dh} {g} {w}]}}}]}}]} {[{b} {[{[{{any_Cx_jh_hh_v_b {[{m} {z} {ch} {zh} {d} {l} {dh} {g} {w}]}}} {jh}]} {[{jh} {{any_Cx_jh_hh_v_b {[{m} {z} {ch} {zh} {d} {l} {dh} {g} {w}]}}}]}]}]}]}
+Phoneme rule:
+guard: zh phoneme: ae
+rule: {[{[{[{{[{{any_Vx_zh_jh_ae_noSlide {[{aa} {ao} {iy} {y} {ah} {ax} {eh} {ih} {uh} {oh} {uw}]}}} {zh}]}} {{[{zh} {{any_Vx_zh_jh_ae_noSlide {[{aa} {ao} {iy} {y} {ah} {ax} {eh} {ih} {uh} {oh} {uw}]}}}]}}]} {[{{[{{any_Cx_zh_jh_r_b {[{m} {ch} {v} {g} {hh} {l} {dh} {z} {d} {w}]}}} {zh}]}} {{[{zh} {{any_Cx_zh_jh_r_b {[{m} {ch} {v} {g} {hh} {l} {dh} {z} {d} {w}]}}}]}}]}]} {[{ae} {[{[{{any_Vx_zh_jh_ae_noSlide {[{aa} {ao} {iy} {y} {ah} {ax} {eh} {ih} {uh} {oh} {uw}]}}} {zh}]} {[{zh} {{any_Vx_zh_jh_ae_noSlide {[{aa} {ao} {iy} {y} {ah} {ax} {eh} {ih} {uh} {oh} {uw}]}}}]}]}]}]}
+Phoneme rule:
+guard: z phoneme: r
+rule: {[{[{{[{{any_Cx_z_zh_r_ax {[{w} {b} {d} {dh} {hh} {m} {ch} {v} {g} {l}]}}} {z}]}} {{[{z} {{any_Cx_z_zh_r_ax {[{w} {b} {d} {dh} {hh} {m} {ch} {v} {g} {l}]}}}]}}]} {[{r} {[{[{{any_Cx_z_zh_r_ax {[{w} {b} {d} {dh} {hh} {m} {ch} {v} {g} {l}]}}} {z}]} {[{z} {{any_Cx_z_zh_r_ax {[{w} {b} {d} {dh} {hh} {m} {ch} {v} {g} {l}]}}}]}]}]}]}
+Phoneme rule:
+guard: y phoneme: ax
+rule: {[{[{{[{{any_Cx_y_z_ax_r {[{d} {g} {v} {w} {ch} {dh} {l} {hh} {zh} {b} {m}]}}} {y}]}} {{[{y} {{any_Cx_y_z_ax_r {[{d} {g} {v} {w} {ch} {dh} {l} {hh} {zh} {b} {m}]}}}]}}]} {[{ax} {[{[{{any_Cx_y_z_ax_l_r {[{g} {v} {d} {dh} {zh} {hh} {ch} {w} {m} {b}]}}} {y}]} {[{y} {{any_Cx_y_z_ax_l_r {[{g} {v} {d} {dh} {zh} {hh} {ch} {w} {m} {b}]}}}]}]}]}]}
+Phoneme rule:
+guard: sh phoneme: l
+rule: {[{[{{[{{any_Cx_sh_y_l_ax {[{zh} {hh} {w} {b} {ch} {d} {g} {v} {dh} {m} {z}]}}} {sh}]}} {{[{sh} {{any_Cx_sh_y_l_ax {[{zh} {hh} {w} {b} {ch} {d} {g} {v} {dh} {m} {z}]}}}]}}]} {[{l} {[{[{{any_Cx_sh_y_l_ax {[{zh} {hh} {w} {b} {ch} {d} {g} {v} {dh} {m} {z}]}}} {sh}]} {[{sh} {{any_Cx_sh_y_l_ax {[{zh} {hh} {w} {b} {ch} {d} {g} {v} {dh} {m} {z}]}}}]}]}]}]}
+Closing rule:
+guard: r
+rule: {[{[{{[{{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}} {r}]}} {{[{r} {{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}}]}}]} {[{{[{{any_Cx_sh_l_r {[{zh} {d} {m} {w} {g} {z} {hh} {b} {v} {dh} {ch}]}}} {r}]}} {{[{r} {{any_Cx_sh_l_r {[{zh} {d} {m} {w} {g} {z} {hh} {b} {v} {dh} {ch}]}}}]}}]} {sil}]}
+rule 2 =
+Trapped opening rule:
+trap: hh
+rule: {hh}
+Opening rule:
+guard: p
+rule: {p {[{sil} {{[{[{p} {{any_Cx_b_p_hh {[{v} {zh} {w} {d} {z} {l} {m} {ch} {g} {dh}]}}}]} {[{{any_Cx_b_p_hh {[{v} {zh} {w} {d} {z} {l} {m} {ch} {g} {dh}]}}} {p}]}]}} {{[{[{p} {{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}}]} {[{{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}} {p}]}]}}]}}
+Phoneme rule:
+guard: sh phoneme: b
+rule: {[{[{{[{{any_Cx_sh_hh_p_b {[{dh} {w} {l} {z} {zh} {ch} {v} {d} {m} {g}]}}} {sh}]}} {{[{sh} {{any_Cx_sh_hh_p_b {[{dh} {w} {l} {z} {zh} {ch} {v} {d} {m} {g}]}}}]}}]} {[{b} {[{[{{any_Cx_sh_hh_p_b {[{dh} {w} {l} {z} {zh} {ch} {v} {d} {m} {g}]}}} {sh}]} {[{sh} {{any_Cx_sh_hh_p_b {[{dh} {w} {l} {z} {zh} {ch} {v} {d} {m} {g}]}}}]}]}]}]}
+Phoneme rule:
+guard: zh phoneme: ae
+rule: {[{[{[{{[{{any_Vx_zh_sh_ae_noSlide {[{ah} {uw} {y} {eh} {aa} {ax} {oh} {uh} {ao} {ih} {iy}]}}} {zh}]}} {{[{zh} {{any_Vx_zh_sh_ae_noSlide {[{ah} {uw} {y} {eh} {aa} {ax} {oh} {uh} {ao} {ih} {iy}]}}}]}}]} {[{{[{{any_Cx_zh_sh_r_b {[{dh} {d} {l} {g} {z} {hh} {m} {v} {ch} {w}]}}} {zh}]}} {{[{zh} {{any_Cx_zh_sh_r_b {[{dh} {d} {l} {g} {z} {hh} {m} {v} {ch} {w}]}}}]}}]}]} {[{ae} {[{[{{any_Vx_zh_sh_ae_noSlide {[{ah} {uw} {y} {eh} {aa} {ax} {oh} {uh} {ao} {ih} {iy}]}}} {zh}]} {[{zh} {{any_Vx_zh_sh_ae_noSlide {[{ah} {uw} {y} {eh} {aa} {ax} {oh} {uh} {ao} {ih} {iy}]}}}]}]}]}]}
+Phoneme rule:
+guard: y phoneme: r
+rule: {[{[{{[{{any_Cx_y_zh_r_ax {[{ch} {m} {hh} {b} {dh} {v} {w} {z} {g} {l} {d}]}}} {y}]}} {{[{y} {{any_Cx_y_zh_r_ax {[{ch} {m} {hh} {b} {dh} {v} {w} {z} {g} {l} {d}]}}}]}}]} {[{r} {[{[{{any_Cx_y_zh_r_ax {[{ch} {m} {hh} {b} {dh} {v} {w} {z} {g} {l} {d}]}}} {y}]} {[{y} {{any_Cx_y_zh_r_ax {[{ch} {m} {hh} {b} {dh} {v} {w} {z} {g} {l} {d}]}}}]}]}]}]}
+Phoneme rule:
+guard: y phoneme: ax
+rule: {[{[{{[{{any_Cx_y_y_ax_r {[{b} {d} {w} {hh} {zh} {ch} {dh} {v} {z} {l} {m} {g}]}}} {y}]}} {{[{y} {{any_Cx_y_y_ax_r {[{b} {d} {w} {hh} {zh} {ch} {dh} {v} {z} {l} {m} {g}]}}}]}}]} {[{ax} {[{[{{any_Cx_y_y_ax_l_r {[{g} {v} {b} {dh} {w} {ch} {m} {d} {hh} {z} {zh}]}}} {y}]} {[{y} {{any_Cx_y_y_ax_l_r {[{g} {v} {b} {dh} {w} {ch} {m} {d} {hh} {z} {zh}]}}}]}]}]}]}
+Phoneme rule:
+guard: sh phoneme: l
+rule: {[{[{{[{{any_Cx_sh_y_l_ax {[{v} {zh} {d} {hh} {m} {w} {z} {g} {b} {ch} {dh}]}}} {sh}]}} {{[{sh} {{any_Cx_sh_y_l_ax {[{v} {zh} {d} {hh} {m} {w} {z} {g} {b} {ch} {dh}]}}}]}}]} {[{l} {[{[{{any_Cx_sh_y_l_ax {[{v} {zh} {d} {hh} {m} {w} {z} {g} {b} {ch} {dh}]}}} {sh}]} {[{sh} {{any_Cx_sh_y_l_ax {[{v} {zh} {d} {hh} {m} {w} {z} {g} {b} {ch} {dh}]}}}]}]}]}]}
+Closing rule:
+guard: f
+rule: {[{[{{[{{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}} {f}]}} {{[{f} {{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}}]}}]} {[{{[{{any_Cx_sh_l_f {[{z} {b} {ch} {m} {w} {d} {g} {dh} {hh} {v} {zh}]}}} {f}]}} {{[{f} {{any_Cx_sh_l_f {[{z} {b} {ch} {m} {w} {d} {g} {dh} {hh} {v} {zh}]}}}]}}]} {sil}]}
+rule 3 =
+Trapped opening rule:
+trap: hh
+rule: {hh}
+Opening rule:
+guard: p
+rule: {p {[{sil} {{[{[{p} {{any_Cx_b_p_hh {[{d} {dh} {zh} {l} {m} {g} {z} {ch} {v} {w}]}}}]} {[{{any_Cx_b_p_hh {[{d} {dh} {zh} {l} {m} {g} {z} {ch} {v} {w}]}}} {p}]}]}} {{[{[{p} {{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}}]} {[{{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}} {p}]}]}}]}}
+Phoneme rule:
+guard: jh phoneme: b
+rule: {[{[{{[{{any_Cx_jh_hh_p_b {[{zh} {dh} {d} {l} {z} {ch} {m} {w} {g} {v}]}}} {jh}]}} {{[{jh} {{any_Cx_jh_hh_p_b {[{zh} {dh} {d} {l} {z} {ch} {m} {w} {g} {v}]}}}]}}]} {[{b} {[{[{{any_Cx_jh_hh_p_b {[{zh} {dh} {d} {l} {z} {ch} {m} {w} {g} {v}]}}} {jh}]} {[{jh} {{any_Cx_jh_hh_p_b {[{zh} {dh} {d} {l} {z} {ch} {m} {w} {g} {v}]}}}]}]}]}]}
+Phoneme rule:
+guard: zh phoneme: ae
+rule: {[{[{[{{[{{any_Vx_zh_jh_ae_noSlide {[{ah} {ax} {oh} {ih} {iy} {uw} {y} {aa} {ao} {eh} {uh}]}}} {zh}]}} {{[{zh} {{any_Vx_zh_jh_ae_noSlide {[{ah} {ax} {oh} {ih} {iy} {uw} {y} {aa} {ao} {eh} {uh}]}}}]}}]} {[{{[{{any_Cx_zh_jh_r_b {[{g} {d} {w} {l} {v} {z} {ch} {m} {dh} {hh}]}}} {zh}]}} {{[{zh} {{any_Cx_zh_jh_r_b {[{g} {d} {w} {l} {v} {z} {ch} {m} {dh} {hh}]}}}]}}]}]} {[{ae} {[{[{{any_Vx_zh_jh_ae_noSlide {[{ah} {ax} {oh} {ih} {iy} {uw} {y} {aa} {ao} {eh} {uh}]}}} {zh}]} {[{zh} {{any_Vx_zh_jh_ae_noSlide {[{ah} {ax} {oh} {ih} {iy} {uw} {y} {aa} {ao} {eh} {uh}]}}}]}]}]}]}
+Phoneme rule:
+guard: z phoneme: r
+rule: {[{[{{[{{any_Cx_z_zh_r_ax {[{dh} {l} {v} {b} {w} {d} {ch} {g} {hh} {m}]}}} {z}]}} {{[{z} {{any_Cx_z_zh_r_ax {[{dh} {l} {v} {b} {w} {d} {ch} {g} {hh} {m}]}}}]}}]} {[{r} {[{[{{any_Cx_z_zh_r_ax {[{dh} {l} {v} {b} {w} {d} {ch} {g} {hh} {m}]}}} {z}]} {[{z} {{any_Cx_z_zh_r_ax {[{dh} {l} {v} {b} {w} {d} {ch} {g} {hh} {m}]}}}]}]}]}]}
+Phoneme rule:
+guard: y phoneme: ax
+rule: {[{[{{[{{any_Cx_y_z_ax_r {[{w} {b} {zh} {v} {g} {hh} {dh} {m} {ch} {d} {l}]}}} {y}]}} {{[{y} {{any_Cx_y_z_ax_r {[{w} {b} {zh} {v} {g} {hh} {dh} {m} {ch} {d} {l}]}}}]}}]} {[{ax} {[{[{{any_Cx_y_z_ax_l_r {[{w} {b} {d} {dh} {zh} {v} {ch} {g} {m} {hh}]}}} {y}]} {[{y} {{any_Cx_y_z_ax_l_r {[{w} {b} {d} {dh} {zh} {v} {ch} {g} {m} {hh}]}}}]}]}]}]}
+Phoneme rule:
+guard: sh phoneme: l
+rule: {[{[{{[{{any_Cx_sh_y_l_ax {[{w} {zh} {hh} {b} {ch} {v} {d} {dh} {g} {z} {m}]}}} {sh}]}} {{[{sh} {{any_Cx_sh_y_l_ax {[{w} {zh} {hh} {b} {ch} {v} {d} {dh} {g} {z} {m}]}}}]}}]} {[{l} {[{[{{any_Cx_sh_y_l_ax {[{w} {zh} {hh} {b} {ch} {v} {d} {dh} {g} {z} {m}]}}} {sh}]} {[{sh} {{any_Cx_sh_y_l_ax {[{w} {zh} {hh} {b} {ch} {v} {d} {dh} {g} {z} {m}]}}}]}]}]}]}
+Closing rule:
+guard: w
+rule: {[{[{{[{{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}} {w}]}} {{[{w} {{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}}]}}]} {[{{[{{any_Cx_sh_l_w {[{hh} {b} {z} {zh} {d} {g} {dh} {m} {v} {ch}]}}} {w}]}} {{[{w} {{any_Cx_sh_l_w {[{hh} {b} {z} {zh} {d} {g} {dh} {m} {v} {ch}]}}}]}}]} {sil}]}
+rule 4 =
+Trapped opening rule:
+trap: hh
+rule: {hh}
+Opening rule:
+guard: v
+rule: {v {[{sil} {{[{[{v} {{any_Cx_b_v_hh {[{g} {zh} {d} {ch} {z} {dh} {m} {w} {l}]}}}]} {[{{any_Cx_b_v_hh {[{g} {zh} {d} {ch} {z} {dh} {m} {w} {l}]}}} {v}]}]}} {{[{[{v} {{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}}]} {[{{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}} {v}]}]}}]}}
+Phoneme rule:
+guard: zh phoneme: b
+rule: {[{[{{[{{any_Cx_zh_hh_v_b {[{l} {d} {ch} {z} {g} {w} {dh} {m}]}}} {zh}]}} {{[{zh} {{any_Cx_zh_hh_v_b {[{l} {d} {ch} {z} {g} {w} {dh} {m}]}}}]}}]} {[{b} {[{[{{any_Cx_zh_hh_v_b {[{l} {d} {ch} {z} {g} {w} {dh} {m}]}}} {zh}]} {[{zh} {{any_Cx_zh_hh_v_b {[{l} {d} {ch} {z} {g} {w} {dh} {m}]}}}]}]}]}]}
+Phoneme rule:
+guard: zh phoneme: ae
+rule: {[{[{[{{[{{any_Vx_zh_zh_ae_noSlide {[{eh} {oh} {uw} {ah} {ao} {ax} {ih} {iy} {uh} {y} {aa}]}}} {zh}]}} {{[{zh} {{any_Vx_zh_zh_ae_noSlide {[{eh} {oh} {uw} {ah} {ao} {ax} {ih} {iy} {uh} {y} {aa}]}}}]}}]} {[{{[{{any_Cx_zh_zh_r_b {[{w} {z} {v} {g} {l} {ch} {hh} {m} {d} {dh}]}}} {zh}]}} {{[{zh} {{any_Cx_zh_zh_r_b {[{w} {z} {v} {g} {l} {ch} {hh} {m} {d} {dh}]}}}]}}]}]} {[{ae} {[{[{{any_Vx_zh_zh_ae_noSlide {[{eh} {oh} {uw} {ah} {ao} {ax} {ih} {iy} {uh} {y} {aa}]}}} {zh}]} {[{zh} {{any_Vx_zh_zh_ae_noSlide {[{eh} {oh} {uw} {ah} {ao} {ax} {ih} {iy} {uh} {y} {aa}]}}}]}]}]}]}
+Phoneme rule:
+guard: z phoneme: r
+rule: {[{[{{[{{any_Cx_z_zh_r_ax {[{ch} {hh} {l} {b} {m} {g} {v} {w} {d} {dh}]}}} {z}]}} {{[{z} {{any_Cx_z_zh_r_ax {[{ch} {hh} {l} {b} {m} {g} {v} {w} {d} {dh}]}}}]}}]} {[{r} {[{[{{any_Cx_z_zh_r_ax {[{ch} {hh} {l} {b} {m} {g} {v} {w} {d} {dh}]}}} {z}]} {[{z} {{any_Cx_z_zh_r_ax {[{ch} {hh} {l} {b} {m} {g} {v} {w} {d} {dh}]}}}]}]}]}]}
+Phoneme rule:
+guard: y phoneme: ax
+rule: {[{[{{[{{any_Cx_y_z_ax_r {[{b} {dh} {l} {w} {d} {m} {hh} {g} {v} {zh} {ch}]}}} {y}]}} {{[{y} {{any_Cx_y_z_ax_r {[{b} {dh} {l} {w} {d} {m} {hh} {g} {v} {zh} {ch}]}}}]}}]} {[{ax} {[{[{{any_Cx_y_z_ax_l_r {[{b} {d} {m} {g} {hh} {zh} {ch} {w} {dh} {v}]}}} {y}]} {[{y} {{any_Cx_y_z_ax_l_r {[{b} {d} {m} {g} {hh} {zh} {ch} {w} {dh} {v}]}}}]}]}]}]}
+Phoneme rule:
+guard: sh phoneme: l
+rule: {[{[{{[{{any_Cx_sh_y_l_ax {[{d} {v} {ch} {dh} {zh} {z} {hh} {g} {b} {m} {w}]}}} {sh}]}} {{[{sh} {{any_Cx_sh_y_l_ax {[{d} {v} {ch} {dh} {zh} {z} {hh} {g} {b} {m} {w}]}}}]}}]} {[{l} {[{[{{any_Cx_sh_y_l_ax {[{d} {v} {ch} {dh} {zh} {z} {hh} {g} {b} {m} {w}]}}} {sh}]} {[{sh} {{any_Cx_sh_y_l_ax {[{d} {v} {ch} {dh} {zh} {z} {hh} {g} {b} {m} {w}]}}}]}]}]}]}
+Closing rule:
+guard: f
+rule: {[{[{{[{{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}} {f}]}} {{[{f} {{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}}]}}]} {[{{[{{any_Cx_sh_l_f {[{v} {zh} {w} {b} {d} {m} {ch} {z} {dh} {g} {hh}]}}} {f}]}} {{[{f} {{any_Cx_sh_l_f {[{v} {zh} {w} {b} {d} {m} {ch} {z} {dh} {g} {hh}]}}}]}}]} {sil}]}
+
+parse: err = Parser error
+Mapped result =
+result 0 =
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+result 1 =
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+result 2 =
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+result 3 =
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+result 4 =
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+
+
+results =
+{72 []}
+{80 []}
+{91 [{sil 0 40} {b 41 45} {ae 46 55} {r 56 71} {axl 72 100} {sil 101 131}]}
+{105 [{sil 0 47} {b 48 53} {ae 54 64} {r 65 83} {axl 84 93} {thr 94 96} {iy 97 111} {sil 112 152}]}
+{125 [{sil 3 57} {b 58 63} {ae 64 79} {r 80 101} {axl 102 115} {iy 116 133} {hh 134 136} {sil 137 182}]}
+
+normalised results =
+{72 []}
+{80 []}
+{91 [{sil 0 40} {b 45 49} {ae 51 60} {r 62 78} {axl 79 110} {sil 111 144}]}
+{105 [{sil 0 47} {b 46 50} {ae 51 61} {r 62 79} {axl 80 89} {thr 90 90} {iy 92 106} {sil 107 145}]}
+{125 [{sil 3 57} {b 46 50} {ae 51 63} {r 64 81} {axl 82 92} {iy 93 106} {hh 107 107} {sil 110 146}]}
+
+Rules =
+rule 0 =
+Trapped opening rule:
+trap: hh
+rule: {hh}
+Opening rule:
+guard: hh
+rule: {hh {[{sil} {{[{[{hh} {{any_Cx_b_hh_hh {[{w} {zh} {m} {v} {z} {g} {dh} {ch} {d} {l}]}}}]} {[{{any_Cx_b_hh_hh {[{w} {zh} {m} {v} {z} {g} {dh} {ch} {d} {l}]}}} {hh}]}]}} {{[{[{hh} {{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}}]} {[{{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}} {hh}]}]}}]}}
+Phoneme rule:
+guard: zh phoneme: b
+rule: {[{[{{[{{any_Cx_zh_hh_hh_b {[{v} {ch} {dh} {d} {w} {z} {l} {m} {g}]}}} {zh}]}} {{[{zh} {{any_Cx_zh_hh_hh_b {[{v} {ch} {dh} {d} {w} {z} {l} {m} {g}]}}}]}}]} {[{b} {[{[{{any_Cx_zh_hh_hh_b {[{v} {ch} {dh} {d} {w} {z} {l} {m} {g}]}}} {zh}]} {[{zh} {{any_Cx_zh_hh_hh_b {[{v} {ch} {dh} {d} {w} {z} {l} {m} {g}]}}}]}]}]}]}
+Phoneme rule:
+guard: zh phoneme: ae
+rule: {[{[{[{{[{{any_Vx_zh_zh_ae_noSlide {[{uw} {uh} {ax} {eh} {ih} {oh} {aa} {ah} {ao} {iy} {y}]}}} {zh}]}} {{[{zh} {{any_Vx_zh_zh_ae_noSlide {[{uw} {uh} {ax} {eh} {ih} {oh} {aa} {ah} {ao} {iy} {y}]}}}]}}]} {[{{[{{any_Cx_zh_zh_r_b {[{z} {hh} {d} {v} {ch} {dh} {l} {w} {g} {m}]}}} {zh}]}} {{[{zh} {{any_Cx_zh_zh_r_b {[{z} {hh} {d} {v} {ch} {dh} {l} {w} {g} {m}]}}}]}}]}]} {[{ae} {[{[{{any_Vx_zh_zh_ae_noSlide {[{uw} {uh} {ax} {eh} {ih} {oh} {aa} {ah} {ao} {iy} {y}]}}} {zh}]} {[{zh} {{any_Vx_zh_zh_ae_noSlide {[{uw} {uh} {ax} {eh} {ih} {oh} {aa} {ah} {ao} {iy} {y}]}}}]}]}]}]}
+Phoneme rule:
+guard: y phoneme: r
+rule: {[{[{{[{{any_Cx_y_zh_r_ax {[{d} {hh} {b} {dh} {g} {l} {z} {m} {w} {ch} {v}]}}} {y}]}} {{[{y} {{any_Cx_y_zh_r_ax {[{d} {hh} {b} {dh} {g} {l} {z} {m} {w} {ch} {v}]}}}]}}]} {[{r} {[{[{{any_Cx_y_zh_r_ax {[{d} {hh} {b} {dh} {g} {l} {z} {m} {w} {ch} {v}]}}} {y}]} {[{y} {{any_Cx_y_zh_r_ax {[{d} {hh} {b} {dh} {g} {l} {z} {m} {w} {ch} {v}]}}}]}]}]}]}
+Phoneme rule:
+guard: y phoneme: ax
+rule: {[{[{{[{{any_Cx_y_y_ax_r {[{v} {b} {ch} {dh} {g} {l} {m} {zh} {hh} {z} {d} {w}]}}} {y}]}} {{[{y} {{any_Cx_y_y_ax_r {[{v} {b} {ch} {dh} {g} {l} {m} {zh} {hh} {z} {d} {w}]}}}]}}]} {[{ax} {[{[{{any_Cx_y_y_ax_l_r {[{w} {zh} {d} {m} {ch} {z} {b} {v} {dh} {hh} {g}]}}} {y}]} {[{y} {{any_Cx_y_y_ax_l_r {[{w} {zh} {d} {m} {ch} {z} {b} {v} {dh} {hh} {g}]}}}]}]}]}]}
+Phoneme rule:
+guard: sh phoneme: l
+rule: {[{[{{[{{any_Cx_sh_y_l_ax {[{b} {hh} {ch} {dh} {g} {zh} {m} {d} {w} {z} {v}]}}} {sh}]}} {{[{sh} {{any_Cx_sh_y_l_ax {[{b} {hh} {ch} {dh} {g} {zh} {m} {d} {w} {z} {v}]}}}]}}]} {[{l} {[{[{{any_Cx_sh_y_l_ax {[{b} {hh} {ch} {dh} {g} {zh} {m} {d} {w} {z} {v}]}}} {sh}]} {[{sh} {{any_Cx_sh_y_l_ax {[{b} {hh} {ch} {dh} {g} {zh} {m} {d} {w} {z} {v}]}}}]}]}]}]}
+Closing rule:
+guard: r
+rule: {[{[{{[{{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}} {r}]}} {{[{r} {{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}}]}}]} {[{{[{{any_Cx_sh_l_r {[{hh} {dh} {w} {ch} {z} {d} {v} {b} {g} {zh} {m}]}}} {r}]}} {{[{r} {{any_Cx_sh_l_r {[{hh} {dh} {w} {ch} {z} {d} {v} {b} {g} {zh} {m}]}}}]}}]} {sil}]}
+rule 1 =
+Trapped opening rule:
+trap: hh
+rule: {hh}
+Opening rule:
+guard: v
+rule: {v {[{sil} {{[{[{v} {{any_Cx_b_v_hh {[{w} {zh} {m} {g} {dh} {l} {d} {z} {ch}]}}}]} {[{{any_Cx_b_v_hh {[{w} {zh} {m} {g} {dh} {l} {d} {z} {ch}]}}} {v}]}]}} {{[{[{v} {{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}}]} {[{{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}} {v}]}]}}]}}
+Phoneme rule:
+guard: jh phoneme: b
+rule: {[{[{{[{{any_Cx_jh_hh_v_b {[{m} {z} {ch} {zh} {d} {l} {dh} {g} {w}]}}} {jh}]}} {{[{jh} {{any_Cx_jh_hh_v_b {[{m} {z} {ch} {zh} {d} {l} {dh} {g} {w}]}}}]}}]} {[{b} {[{[{{any_Cx_jh_hh_v_b {[{m} {z} {ch} {zh} {d} {l} {dh} {g} {w}]}}} {jh}]} {[{jh} {{any_Cx_jh_hh_v_b {[{m} {z} {ch} {zh} {d} {l} {dh} {g} {w}]}}}]}]}]}]}
+Phoneme rule:
+guard: zh phoneme: ae
+rule: {[{[{[{{[{{any_Vx_zh_jh_ae_noSlide {[{aa} {ao} {iy} {y} {ah} {ax} {eh} {ih} {uh} {oh} {uw}]}}} {zh}]}} {{[{zh} {{any_Vx_zh_jh_ae_noSlide {[{aa} {ao} {iy} {y} {ah} {ax} {eh} {ih} {uh} {oh} {uw}]}}}]}}]} {[{{[{{any_Cx_zh_jh_r_b {[{m} {ch} {v} {g} {hh} {l} {dh} {z} {d} {w}]}}} {zh}]}} {{[{zh} {{any_Cx_zh_jh_r_b {[{m} {ch} {v} {g} {hh} {l} {dh} {z} {d} {w}]}}}]}}]}]} {[{ae} {[{[{{any_Vx_zh_jh_ae_noSlide {[{aa} {ao} {iy} {y} {ah} {ax} {eh} {ih} {uh} {oh} {uw}]}}} {zh}]} {[{zh} {{any_Vx_zh_jh_ae_noSlide {[{aa} {ao} {iy} {y} {ah} {ax} {eh} {ih} {uh} {oh} {uw}]}}}]}]}]}]}
+Phoneme rule:
+guard: z phoneme: r
+rule: {[{[{{[{{any_Cx_z_zh_r_ax {[{w} {b} {d} {dh} {hh} {m} {ch} {v} {g} {l}]}}} {z}]}} {{[{z} {{any_Cx_z_zh_r_ax {[{w} {b} {d} {dh} {hh} {m} {ch} {v} {g} {l}]}}}]}}]} {[{r} {[{[{{any_Cx_z_zh_r_ax {[{w} {b} {d} {dh} {hh} {m} {ch} {v} {g} {l}]}}} {z}]} {[{z} {{any_Cx_z_zh_r_ax {[{w} {b} {d} {dh} {hh} {m} {ch} {v} {g} {l}]}}}]}]}]}]}
+Phoneme rule:
+guard: y phoneme: ax
+rule: {[{[{{[{{any_Cx_y_z_ax_r {[{d} {g} {v} {w} {ch} {dh} {l} {hh} {zh} {b} {m}]}}} {y}]}} {{[{y} {{any_Cx_y_z_ax_r {[{d} {g} {v} {w} {ch} {dh} {l} {hh} {zh} {b} {m}]}}}]}}]} {[{ax} {[{[{{any_Cx_y_z_ax_l_r {[{g} {v} {d} {dh} {zh} {hh} {ch} {w} {m} {b}]}}} {y}]} {[{y} {{any_Cx_y_z_ax_l_r {[{g} {v} {d} {dh} {zh} {hh} {ch} {w} {m} {b}]}}}]}]}]}]}
+Phoneme rule:
+guard: sh phoneme: l
+rule: {[{[{{[{{any_Cx_sh_y_l_ax {[{zh} {hh} {w} {b} {ch} {d} {g} {v} {dh} {m} {z}]}}} {sh}]}} {{[{sh} {{any_Cx_sh_y_l_ax {[{zh} {hh} {w} {b} {ch} {d} {g} {v} {dh} {m} {z}]}}}]}}]} {[{l} {[{[{{any_Cx_sh_y_l_ax {[{zh} {hh} {w} {b} {ch} {d} {g} {v} {dh} {m} {z}]}}} {sh}]} {[{sh} {{any_Cx_sh_y_l_ax {[{zh} {hh} {w} {b} {ch} {d} {g} {v} {dh} {m} {z}]}}}]}]}]}]}
+Closing rule:
+guard: r
+rule: {[{[{{[{{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}} {r}]}} {{[{r} {{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}}]}}]} {[{{[{{any_Cx_sh_l_r {[{zh} {d} {m} {w} {g} {z} {hh} {b} {v} {dh} {ch}]}}} {r}]}} {{[{r} {{any_Cx_sh_l_r {[{zh} {d} {m} {w} {g} {z} {hh} {b} {v} {dh} {ch}]}}}]}}]} {sil}]}
+rule 2 =
+Trapped opening rule:
+trap: hh
+rule: {hh}
+Opening rule:
+guard: p
+rule: {p {[{sil} {{[{[{p} {{any_Cx_b_p_hh {[{v} {zh} {w} {d} {z} {l} {m} {ch} {g} {dh}]}}}]} {[{{any_Cx_b_p_hh {[{v} {zh} {w} {d} {z} {l} {m} {ch} {g} {dh}]}}} {p}]}]}} {{[{[{p} {{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}}]} {[{{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}} {p}]}]}}]}}
+Phoneme rule:
+guard: sh phoneme: b
+rule: {[{[{{[{{any_Cx_sh_hh_p_b {[{dh} {w} {l} {z} {zh} {ch} {v} {d} {m} {g}]}}} {sh}]}} {{[{sh} {{any_Cx_sh_hh_p_b {[{dh} {w} {l} {z} {zh} {ch} {v} {d} {m} {g}]}}}]}}]} {[{b} {[{[{{any_Cx_sh_hh_p_b {[{dh} {w} {l} {z} {zh} {ch} {v} {d} {m} {g}]}}} {sh}]} {[{sh} {{any_Cx_sh_hh_p_b {[{dh} {w} {l} {z} {zh} {ch} {v} {d} {m} {g}]}}}]}]}]}]}
+Phoneme rule:
+guard: zh phoneme: ae
+rule: {[{[{[{{[{{any_Vx_zh_sh_ae_noSlide {[{ah} {uw} {y} {eh} {aa} {ax} {oh} {uh} {ao} {ih} {iy}]}}} {zh}]}} {{[{zh} {{any_Vx_zh_sh_ae_noSlide {[{ah} {uw} {y} {eh} {aa} {ax} {oh} {uh} {ao} {ih} {iy}]}}}]}}]} {[{{[{{any_Cx_zh_sh_r_b {[{dh} {d} {l} {g} {z} {hh} {m} {v} {ch} {w}]}}} {zh}]}} {{[{zh} {{any_Cx_zh_sh_r_b {[{dh} {d} {l} {g} {z} {hh} {m} {v} {ch} {w}]}}}]}}]}]} {[{ae} {[{[{{any_Vx_zh_sh_ae_noSlide {[{ah} {uw} {y} {eh} {aa} {ax} {oh} {uh} {ao} {ih} {iy}]}}} {zh}]} {[{zh} {{any_Vx_zh_sh_ae_noSlide {[{ah} {uw} {y} {eh} {aa} {ax} {oh} {uh} {ao} {ih} {iy}]}}}]}]}]}]}
+Phoneme rule:
+guard: y phoneme: r
+rule: {[{[{{[{{any_Cx_y_zh_r_ax {[{ch} {m} {hh} {b} {dh} {v} {w} {z} {g} {l} {d}]}}} {y}]}} {{[{y} {{any_Cx_y_zh_r_ax {[{ch} {m} {hh} {b} {dh} {v} {w} {z} {g} {l} {d}]}}}]}}]} {[{r} {[{[{{any_Cx_y_zh_r_ax {[{ch} {m} {hh} {b} {dh} {v} {w} {z} {g} {l} {d}]}}} {y}]} {[{y} {{any_Cx_y_zh_r_ax {[{ch} {m} {hh} {b} {dh} {v} {w} {z} {g} {l} {d}]}}}]}]}]}]}
+Phoneme rule:
+guard: y phoneme: ax
+rule: {[{[{{[{{any_Cx_y_y_ax_r {[{b} {d} {w} {hh} {zh} {ch} {dh} {v} {z} {l} {m} {g}]}}} {y}]}} {{[{y} {{any_Cx_y_y_ax_r {[{b} {d} {w} {hh} {zh} {ch} {dh} {v} {z} {l} {m} {g}]}}}]}}]} {[{ax} {[{[{{any_Cx_y_y_ax_l_r {[{g} {v} {b} {dh} {w} {ch} {m} {d} {hh} {z} {zh}]}}} {y}]} {[{y} {{any_Cx_y_y_ax_l_r {[{g} {v} {b} {dh} {w} {ch} {m} {d} {hh} {z} {zh}]}}}]}]}]}]}
+Phoneme rule:
+guard: sh phoneme: l
+rule: {[{[{{[{{any_Cx_sh_y_l_ax {[{v} {zh} {d} {hh} {m} {w} {z} {g} {b} {ch} {dh}]}}} {sh}]}} {{[{sh} {{any_Cx_sh_y_l_ax {[{v} {zh} {d} {hh} {m} {w} {z} {g} {b} {ch} {dh}]}}}]}}]} {[{l} {[{[{{any_Cx_sh_y_l_ax {[{v} {zh} {d} {hh} {m} {w} {z} {g} {b} {ch} {dh}]}}} {sh}]} {[{sh} {{any_Cx_sh_y_l_ax {[{v} {zh} {d} {hh} {m} {w} {z} {g} {b} {ch} {dh}]}}}]}]}]}]}
+Closing rule:
+guard: f
+rule: {[{[{{[{{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}} {f}]}} {{[{f} {{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}}]}}]} {[{{[{{any_Cx_sh_l_f {[{z} {b} {ch} {m} {w} {d} {g} {dh} {hh} {v} {zh}]}}} {f}]}} {{[{f} {{any_Cx_sh_l_f {[{z} {b} {ch} {m} {w} {d} {g} {dh} {hh} {v} {zh}]}}}]}}]} {sil}]}
+rule 3 =
+Trapped opening rule:
+trap: hh
+rule: {hh}
+Opening rule:
+guard: p
+rule: {p {[{sil} {{[{[{p} {{any_Cx_b_p_hh {[{d} {dh} {zh} {l} {m} {g} {z} {ch} {v} {w}]}}}]} {[{{any_Cx_b_p_hh {[{d} {dh} {zh} {l} {m} {g} {z} {ch} {v} {w}]}}} {p}]}]}} {{[{[{p} {{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}}]} {[{{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}} {p}]}]}}]}}
+Phoneme rule:
+guard: jh phoneme: b
+rule: {[{[{{[{{any_Cx_jh_hh_p_b {[{zh} {dh} {d} {l} {z} {ch} {m} {w} {g} {v}]}}} {jh}]}} {{[{jh} {{any_Cx_jh_hh_p_b {[{zh} {dh} {d} {l} {z} {ch} {m} {w} {g} {v}]}}}]}}]} {[{b} {[{[{{any_Cx_jh_hh_p_b {[{zh} {dh} {d} {l} {z} {ch} {m} {w} {g} {v}]}}} {jh}]} {[{jh} {{any_Cx_jh_hh_p_b {[{zh} {dh} {d} {l} {z} {ch} {m} {w} {g} {v}]}}}]}]}]}]}
+Phoneme rule:
+guard: zh phoneme: ae
+rule: {[{[{[{{[{{any_Vx_zh_jh_ae_noSlide {[{ah} {ax} {oh} {ih} {iy} {uw} {y} {aa} {ao} {eh} {uh}]}}} {zh}]}} {{[{zh} {{any_Vx_zh_jh_ae_noSlide {[{ah} {ax} {oh} {ih} {iy} {uw} {y} {aa} {ao} {eh} {uh}]}}}]}}]} {[{{[{{any_Cx_zh_jh_r_b {[{g} {d} {w} {l} {v} {z} {ch} {m} {dh} {hh}]}}} {zh}]}} {{[{zh} {{any_Cx_zh_jh_r_b {[{g} {d} {w} {l} {v} {z} {ch} {m} {dh} {hh}]}}}]}}]}]} {[{ae} {[{[{{any_Vx_zh_jh_ae_noSlide {[{ah} {ax} {oh} {ih} {iy} {uw} {y} {aa} {ao} {eh} {uh}]}}} {zh}]} {[{zh} {{any_Vx_zh_jh_ae_noSlide {[{ah} {ax} {oh} {ih} {iy} {uw} {y} {aa} {ao} {eh} {uh}]}}}]}]}]}]}
+Phoneme rule:
+guard: z phoneme: r
+rule: {[{[{{[{{any_Cx_z_zh_r_ax {[{dh} {l} {v} {b} {w} {d} {ch} {g} {hh} {m}]}}} {z}]}} {{[{z} {{any_Cx_z_zh_r_ax {[{dh} {l} {v} {b} {w} {d} {ch} {g} {hh} {m}]}}}]}}]} {[{r} {[{[{{any_Cx_z_zh_r_ax {[{dh} {l} {v} {b} {w} {d} {ch} {g} {hh} {m}]}}} {z}]} {[{z} {{any_Cx_z_zh_r_ax {[{dh} {l} {v} {b} {w} {d} {ch} {g} {hh} {m}]}}}]}]}]}]}
+Phoneme rule:
+guard: y phoneme: ax
+rule: {[{[{{[{{any_Cx_y_z_ax_r {[{w} {b} {zh} {v} {g} {hh} {dh} {m} {ch} {d} {l}]}}} {y}]}} {{[{y} {{any_Cx_y_z_ax_r {[{w} {b} {zh} {v} {g} {hh} {dh} {m} {ch} {d} {l}]}}}]}}]} {[{ax} {[{[{{any_Cx_y_z_ax_l_r {[{w} {b} {d} {dh} {zh} {v} {ch} {g} {m} {hh}]}}} {y}]} {[{y} {{any_Cx_y_z_ax_l_r {[{w} {b} {d} {dh} {zh} {v} {ch} {g} {m} {hh}]}}}]}]}]}]}
+Phoneme rule:
+guard: sh phoneme: l
+rule: {[{[{{[{{any_Cx_sh_y_l_ax {[{w} {zh} {hh} {b} {ch} {v} {d} {dh} {g} {z} {m}]}}} {sh}]}} {{[{sh} {{any_Cx_sh_y_l_ax {[{w} {zh} {hh} {b} {ch} {v} {d} {dh} {g} {z} {m}]}}}]}}]} {[{l} {[{[{{any_Cx_sh_y_l_ax {[{w} {zh} {hh} {b} {ch} {v} {d} {dh} {g} {z} {m}]}}} {sh}]} {[{sh} {{any_Cx_sh_y_l_ax {[{w} {zh} {hh} {b} {ch} {v} {d} {dh} {g} {z} {m}]}}}]}]}]}]}
+Closing rule:
+guard: w
+rule: {[{[{{[{{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}} {w}]}} {{[{w} {{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}}]}}]} {[{{[{{any_Cx_sh_l_w {[{hh} {b} {z} {zh} {d} {g} {dh} {m} {v} {ch}]}}} {w}]}} {{[{w} {{any_Cx_sh_l_w {[{hh} {b} {z} {zh} {d} {g} {dh} {m} {v} {ch}]}}}]}}]} {sil}]}
+rule 4 =
+Trapped opening rule:
+trap: hh
+rule: {hh}
+Opening rule:
+guard: v
+rule: {v {[{sil} {{[{[{v} {{any_Cx_b_v_hh {[{g} {zh} {d} {ch} {z} {dh} {m} {w} {l}]}}}]} {[{{any_Cx_b_v_hh {[{g} {zh} {d} {ch} {z} {dh} {m} {w} {l}]}}} {v}]}]}} {{[{[{v} {{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}}]} {[{{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}} {v}]}]}}]}}
+Phoneme rule:
+guard: zh phoneme: b
+rule: {[{[{{[{{any_Cx_zh_hh_v_b {[{l} {d} {ch} {z} {g} {w} {dh} {m}]}}} {zh}]}} {{[{zh} {{any_Cx_zh_hh_v_b {[{l} {d} {ch} {z} {g} {w} {dh} {m}]}}}]}}]} {[{b} {[{[{{any_Cx_zh_hh_v_b {[{l} {d} {ch} {z} {g} {w} {dh} {m}]}}} {zh}]} {[{zh} {{any_Cx_zh_hh_v_b {[{l} {d} {ch} {z} {g} {w} {dh} {m}]}}}]}]}]}]}
+Phoneme rule:
+guard: zh phoneme: ae
+rule: {[{[{[{{[{{any_Vx_zh_zh_ae_noSlide {[{eh} {oh} {uw} {ah} {ao} {ax} {ih} {iy} {uh} {y} {aa}]}}} {zh}]}} {{[{zh} {{any_Vx_zh_zh_ae_noSlide {[{eh} {oh} {uw} {ah} {ao} {ax} {ih} {iy} {uh} {y} {aa}]}}}]}}]} {[{{[{{any_Cx_zh_zh_r_b {[{w} {z} {v} {g} {l} {ch} {hh} {m} {d} {dh}]}}} {zh}]}} {{[{zh} {{any_Cx_zh_zh_r_b {[{w} {z} {v} {g} {l} {ch} {hh} {m} {d} {dh}]}}}]}}]}]} {[{ae} {[{[{{any_Vx_zh_zh_ae_noSlide {[{eh} {oh} {uw} {ah} {ao} {ax} {ih} {iy} {uh} {y} {aa}]}}} {zh}]} {[{zh} {{any_Vx_zh_zh_ae_noSlide {[{eh} {oh} {uw} {ah} {ao} {ax} {ih} {iy} {uh} {y} {aa}]}}}]}]}]}]}
+Phoneme rule:
+guard: z phoneme: r
+rule: {[{[{{[{{any_Cx_z_zh_r_ax {[{ch} {hh} {l} {b} {m} {g} {v} {w} {d} {dh}]}}} {z}]}} {{[{z} {{any_Cx_z_zh_r_ax {[{ch} {hh} {l} {b} {m} {g} {v} {w} {d} {dh}]}}}]}}]} {[{r} {[{[{{any_Cx_z_zh_r_ax {[{ch} {hh} {l} {b} {m} {g} {v} {w} {d} {dh}]}}} {z}]} {[{z} {{any_Cx_z_zh_r_ax {[{ch} {hh} {l} {b} {m} {g} {v} {w} {d} {dh}]}}}]}]}]}]}
+Phoneme rule:
+guard: y phoneme: ax
+rule: {[{[{{[{{any_Cx_y_z_ax_r {[{b} {dh} {l} {w} {d} {m} {hh} {g} {v} {zh} {ch}]}}} {y}]}} {{[{y} {{any_Cx_y_z_ax_r {[{b} {dh} {l} {w} {d} {m} {hh} {g} {v} {zh} {ch}]}}}]}}]} {[{ax} {[{[{{any_Cx_y_z_ax_l_r {[{b} {d} {m} {g} {hh} {zh} {ch} {w} {dh} {v}]}}} {y}]} {[{y} {{any_Cx_y_z_ax_l_r {[{b} {d} {m} {g} {hh} {zh} {ch} {w} {dh} {v}]}}}]}]}]}]}
+Phoneme rule:
+guard: sh phoneme: l
+rule: {[{[{{[{{any_Cx_sh_y_l_ax {[{d} {v} {ch} {dh} {zh} {z} {hh} {g} {b} {m} {w}]}}} {sh}]}} {{[{sh} {{any_Cx_sh_y_l_ax {[{d} {v} {ch} {dh} {zh} {z} {hh} {g} {b} {m} {w}]}}}]}}]} {[{l} {[{[{{any_Cx_sh_y_l_ax {[{d} {v} {ch} {dh} {zh} {z} {hh} {g} {b} {m} {w}]}}} {sh}]} {[{sh} {{any_Cx_sh_y_l_ax {[{d} {v} {ch} {dh} {zh} {z} {hh} {g} {b} {m} {w}]}}}]}]}]}]}
+Closing rule:
+guard: f
+rule: {[{[{{[{{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}} {f}]}} {{[{f} {{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}}]}}]} {[{{[{{any_Cx_sh_l_f {[{v} {zh} {w} {b} {d} {m} {ch} {z} {dh} {g} {hh}]}}} {f}]}} {{[{f} {{any_Cx_sh_l_f {[{v} {zh} {w} {b} {d} {m} {ch} {z} {dh} {g} {hh}]}}}]}}]} {sil}]}
+
+parse: err = Parser error
+Mapped result =
+result 0 =
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+result 1 =
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+result 2 =
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+result 3 =
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+result 4 =
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+
+ruleAligned = [{{b 1} [{2 1} {3 1} {4 1}]} {{ae 1} [{2 2} {3 2} {4 2}]} {{r 1} [{2 3} {3 3} {4 3}]} {{ax 2} [{4 4}]} {{l 1} [{2 5} {3 5} {4 5}]}]
+
+results (after rule-alignment) =
+{72 []}
+{80 []}
+{91 [{sil 0 0} {b 45 49} {ae 51 60} {r 62 77} {ax 78 78} {l 81 89} {ih 90 101} {f 102 102} {sil 105 105}]}
+{105 [{sil 0 0} {b 46 50} {ae 51 61} {r 62 77} {ax 78 78} {l 81 89} {w 90 90} {iy 92 106} {sil 107 107}]}
+{125 [{sil 3 3} {b 46 50} {ae 51 63} {r 64 78} {ax 78 81} {l 82 92} {iy 93 112} {f 113 117} {sil 118 118}]}
+
+timeAligned = [{{b 46 49} [{2 1} {3 1} {4 1}]} {{ae 51 60} [{2 2} {3 2} {4 2}]} {{r 64 77} [{2 3} {3 3} {4 3}]} {{l 82 89} [{2 5} {3 5} {4 5}]}]
+
+i, iTime, newITime, timeStartFrom = 0 0 0 0
+i, iTime, newITime, timeStartFrom = 1 0 1 49
+i, iTime, newITime, timeStartFrom = 2 1 2 60
+i, iTime, newITime, timeStartFrom = 3 2 -1 77
+i, iTime, newITime, timeStartFrom = 4 2 3 77
+combinedVerdict    = [{b 1} {ae 1} {r 1} {ax 2} {l 1}]
+ruleAlignedVerdict = [{b 1} {ae 1} {r 1} {ax 2} {l 1}]
+
+score->
++1 for b
++1 for ae
++1 for r
+-1 for ax
++1 for l
+score<-: 3
+Rules =
+rule 0 =
+Trapped opening rule:
+trap: hh
+rule: {hh}
+Opening rule:
+guard: p
+rule: {p {[{sil} {{[{[{p} {{any_Cx_b_p_hh {[{ch} {dh} {zh} {z} {g} {w} {d} {m} {l} {v}]}}}]} {[{{any_Cx_b_p_hh {[{ch} {dh} {zh} {z} {g} {w} {d} {m} {l} {v}]}}} {p}]}]}} {{[{[{p} {{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}}]} {[{{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}} {p}]}]}}]}}
+Phoneme rule:
+guard: zh phoneme: b
+rule: {[{[{{[{{any_Cx_zh_hh_p_b {[{ch} {d} {dh} {l} {z} {g} {m} {v} {w}]}}} {zh}]}} {{[{zh} {{any_Cx_zh_hh_p_b {[{ch} {d} {dh} {l} {z} {g} {m} {v} {w}]}}}]}}]} {[{b} {[{[{{any_Cx_zh_hh_p_b {[{ch} {d} {dh} {l} {z} {g} {m} {v} {w}]}}} {zh}]} {[{zh} {{any_Cx_zh_hh_p_b {[{ch} {d} {dh} {l} {z} {g} {m} {v} {w}]}}}]}]}]}]}
+Phoneme rule:
+guard: zh phoneme: ae
+rule: {[{[{[{{[{{any_Vx_zh_zh_ae_noSlide {[{ah} {ao} {eh} {iy} {oh} {y} {aa} {uw} {uh} {ax} {ih}]}}} {zh}]}} {{[{zh} {{any_Vx_zh_zh_ae_noSlide {[{ah} {ao} {eh} {iy} {oh} {y} {aa} {uw} {uh} {ax} {ih}]}}}]}}]} {[{{[{{any_Cx_zh_zh_r_b {[{dh} {hh} {m} {w} {z} {v} {ch} {d} {g} {l}]}}} {zh}]}} {{[{zh} {{any_Cx_zh_zh_r_b {[{dh} {hh} {m} {w} {z} {v} {ch} {d} {g} {l}]}}}]}}]}]} {[{ae} {[{[{{any_Vx_zh_zh_ae_noSlide {[{ah} {ao} {eh} {iy} {oh} {y} {aa} {uw} {uh} {ax} {ih}]}}} {zh}]} {[{zh} {{any_Vx_zh_zh_ae_noSlide {[{ah} {ao} {eh} {iy} {oh} {y} {aa} {uw} {uh} {ax} {ih}]}}}]}]}]}]}
+Phoneme rule:
+guard: y phoneme: r
+rule: {[{[{{[{{any_Cx_y_zh_r {[{m} {d} {l} {ch} {dh} {hh} {v} {w} {b} {z} {g}]}}} {y}]}} {{[{y} {{any_Cx_y_zh_r {[{m} {d} {l} {ch} {dh} {hh} {v} {w} {b} {z} {g}]}}}]}}]} {[{r} {[{[{{any_Cx_y_zh_r_axl {[{b} {dh} {v} {w} {ch} {g} {l} {z} {m} {d} {hh}]}}} {y}]} {[{y} {{any_Cx_y_zh_r_axl {[{b} {dh} {v} {w} {ch} {g} {l} {z} {m} {d} {hh}]}}}]}]}]}]}
+Phoneme rule:
+guard: ch phoneme: axl
+rule: {[{[{{[{{any_Cx_ch_y_axl_r {[{hh} {b} {l} {zh} {w} {d} {dh} {m} {v} {g} {z}]}}} {ch}]}} {{[{ch} {{any_Cx_ch_y_axl_r {[{hh} {b} {l} {zh} {w} {d} {dh} {m} {v} {g} {z}]}}}]}}]} {[{axl} {[{[{{any_Cx_ch_y_axl_r {[{hh} {b} {l} {zh} {w} {d} {dh} {m} {v} {g} {z}]}}} {ch}]} {[{ch} {{any_Cx_ch_y_axl_r {[{hh} {b} {l} {zh} {w} {d} {dh} {m} {v} {g} {z}]}}}]}]}]}]}
+Closing rule:
+guard: thr
+rule: {[{[{{[{{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}} {thr}]}} {{[{thr} {{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}}]}}]} {[{{[{{any_Cx_ch_axl_thr {[{v} {g} {w} {m} {d} {hh} {l} {z} {b} {dh} {zh}]}}} {thr}]}} {{[{thr} {{any_Cx_ch_axl_thr {[{v} {g} {w} {m} {d} {hh} {l} {z} {b} {dh} {zh}]}}}]}}]} {sil}]}
+rule 1 =
+Trapped opening rule:
+trap: hh
+rule: {hh}
+Opening rule:
+guard: p
+rule: {p {[{sil} {{[{[{p} {{any_Cx_b_p_hh {[{m} {zh} {l} {dh} {v} {g} {ch} {w} {z} {d}]}}}]} {[{{any_Cx_b_p_hh {[{m} {zh} {l} {dh} {v} {g} {ch} {w} {z} {d}]}}} {p}]}]}} {{[{[{p} {{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}}]} {[{{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}} {p}]}]}}]}}
+Phoneme rule:
+guard: zh phoneme: b
+rule: {[{[{{[{{any_Cx_zh_hh_p_b {[{z} {w} {d} {g} {ch} {dh} {v} {m} {l}]}}} {zh}]}} {{[{zh} {{any_Cx_zh_hh_p_b {[{z} {w} {d} {g} {ch} {dh} {v} {m} {l}]}}}]}}]} {[{b} {[{[{{any_Cx_zh_hh_p_b {[{z} {w} {d} {g} {ch} {dh} {v} {m} {l}]}}} {zh}]} {[{zh} {{any_Cx_zh_hh_p_b {[{z} {w} {d} {g} {ch} {dh} {v} {m} {l}]}}}]}]}]}]}
+Phoneme rule:
+guard: zh phoneme: ae
+rule: {[{[{[{{[{{any_Vx_zh_zh_ae_noSlide {[{eh} {iy} {uw} {uh} {ao} {ah} {ax} {ih} {oh} {y} {aa}]}}} {zh}]}} {{[{zh} {{any_Vx_zh_zh_ae_noSlide {[{eh} {iy} {uw} {uh} {ao} {ah} {ax} {ih} {oh} {y} {aa}]}}}]}}]} {[{{[{{any_Cx_zh_zh_r_b {[{ch} {hh} {w} {g} {m} {v} {dh} {d} {l} {z}]}}} {zh}]}} {{[{zh} {{any_Cx_zh_zh_r_b {[{ch} {hh} {w} {g} {m} {v} {dh} {d} {l} {z}]}}}]}}]}]} {[{ae} {[{[{{any_Vx_zh_zh_ae_noSlide {[{eh} {iy} {uw} {uh} {ao} {ah} {ax} {ih} {oh} {y} {aa}]}}} {zh}]} {[{zh} {{any_Vx_zh_zh_ae_noSlide {[{eh} {iy} {uw} {uh} {ao} {ah} {ax} {ih} {oh} {y} {aa}]}}}]}]}]}]}
+Phoneme rule:
+guard: y phoneme: r
+rule: {[{[{{[{{any_Cx_y_zh_r {[{b} {d} {m} {l} {v} {g} {hh} {w} {dh} {z} {ch}]}}} {y}]}} {{[{y} {{any_Cx_y_zh_r {[{b} {d} {m} {l} {v} {g} {hh} {w} {dh} {z} {ch}]}}}]}}]} {[{r} {[{[{{any_Cx_y_zh_r_axl {[{b} {d} {g} {m} {z} {hh} {w} {l} {v} {ch} {dh}]}}} {y}]} {[{y} {{any_Cx_y_zh_r_axl {[{b} {d} {g} {m} {z} {hh} {w} {l} {v} {ch} {dh}]}}}]}]}]}]}
+Phoneme rule:
+guard: ch phoneme: axl
+rule: {[{[{{[{{any_Cx_ch_y_axl_r {[{b} {z} {g} {zh} {v} {hh} {d} {w} {dh} {l} {m}]}}} {ch}]}} {{[{ch} {{any_Cx_ch_y_axl_r {[{b} {z} {g} {zh} {v} {hh} {d} {w} {dh} {l} {m}]}}}]}}]} {[{axl} {[{[{{any_Cx_ch_y_axl_r {[{b} {z} {g} {zh} {v} {hh} {d} {w} {dh} {l} {m}]}}} {ch}]} {[{ch} {{any_Cx_ch_y_axl_r {[{b} {z} {g} {zh} {v} {hh} {d} {w} {dh} {l} {m}]}}}]}]}]}]}
+Closing rule:
+guard: m
+rule: {[{[{{[{{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}} {m}]}} {{[{m} {{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}}]}}]} {[{{[{{any_Cx_ch_axl_m {[{b} {dh} {g} {l} {zh} {d} {hh} {v} {w} {z}]}}} {m}]}} {{[{m} {{any_Cx_ch_axl_m {[{b} {dh} {g} {l} {zh} {d} {hh} {v} {w} {z}]}}}]}}]} {sil}]}
+rule 2 =
+Trapped opening rule:
+trap: hh
+rule: {hh}
+Opening rule:
+guard: f
+rule: {f {[{sil} {{[{[{f} {{any_Cx_b_f_hh {[{w} {v} {d} {m} {z} {zh} {ch} {dh} {g} {l}]}}}]} {[{{any_Cx_b_f_hh {[{w} {v} {d} {m} {z} {zh} {ch} {dh} {g} {l}]}}} {f}]}]}} {{[{[{f} {{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}}]} {[{{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}} {f}]}]}}]}}
+Phoneme rule:
+guard: jh phoneme: b
+rule: {[{[{{[{{any_Cx_jh_hh_f_b {[{ch} {zh} {w} {l} {z} {d} {dh} {g} {m} {v}]}}} {jh}]}} {{[{jh} {{any_Cx_jh_hh_f_b {[{ch} {zh} {w} {l} {z} {d} {dh} {g} {m} {v}]}}}]}}]} {[{b} {[{[{{any_Cx_jh_hh_f_b {[{ch} {zh} {w} {l} {z} {d} {dh} {g} {m} {v}]}}} {jh}]} {[{jh} {{any_Cx_jh_hh_f_b {[{ch} {zh} {w} {l} {z} {d} {dh} {g} {m} {v}]}}}]}]}]}]}
+Phoneme rule:
+guard: zh phoneme: ae
+rule: {[{[{[{{[{{any_Vx_zh_jh_ae_noSlide {[{ah} {ao} {uh} {y} {aa} {ih} {eh} {iy} {oh} {uw} {ax}]}}} {zh}]}} {{[{zh} {{any_Vx_zh_jh_ae_noSlide {[{ah} {ao} {uh} {y} {aa} {ih} {eh} {iy} {oh} {uw} {ax}]}}}]}}]} {[{{[{{any_Cx_zh_jh_r_b {[{v} {d} {l} {m} {dh} {z} {g} {hh} {w} {ch}]}}} {zh}]}} {{[{zh} {{any_Cx_zh_jh_r_b {[{v} {d} {l} {m} {dh} {z} {g} {hh} {w} {ch}]}}}]}}]}]} {[{ae} {[{[{{any_Vx_zh_jh_ae_noSlide {[{ah} {ao} {uh} {y} {aa} {ih} {eh} {iy} {oh} {uw} {ax}]}}} {zh}]} {[{zh} {{any_Vx_zh_jh_ae_noSlide {[{ah} {ao} {uh} {y} {aa} {ih} {eh} {iy} {oh} {uw} {ax}]}}}]}]}]}]}
+Phoneme rule:
+guard: y phoneme: r
+rule: {[{[{{[{{any_Cx_y_zh_r {[{d} {dh} {z} {ch} {w} {g} {b} {v} {l} {hh} {m}]}}} {y}]}} {{[{y} {{any_Cx_y_zh_r {[{d} {dh} {z} {ch} {w} {g} {b} {v} {l} {hh} {m}]}}}]}}]} {[{r} {[{[{{any_Cx_y_zh_r_axl {[{d} {ch} {dh} {hh} {w} {l} {b} {g} {v} {m} {z}]}}} {y}]} {[{y} {{any_Cx_y_zh_r_axl {[{d} {ch} {dh} {hh} {w} {l} {b} {g} {v} {m} {z}]}}}]}]}]}]}
+Phoneme rule:
+guard: ch phoneme: axl
+rule: {[{[{{[{{any_Cx_ch_y_axl_r {[{g} {v} {w} {d} {l} {b} {z} {dh} {m} {hh} {zh}]}}} {ch}]}} {{[{ch} {{any_Cx_ch_y_axl_r {[{g} {v} {w} {d} {l} {b} {z} {dh} {m} {hh} {zh}]}}}]}}]} {[{axl} {[{[{{any_Cx_ch_y_axl_r {[{g} {v} {w} {d} {l} {b} {z} {dh} {m} {hh} {zh}]}}} {ch}]} {[{ch} {{any_Cx_ch_y_axl_r {[{g} {v} {w} {d} {l} {b} {z} {dh} {m} {hh} {zh}]}}}]}]}]}]}
+Closing rule:
+guard: hh
+rule: {[{[{{[{{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}} {hh}]}} {{[{hh} {{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}}]}}]} {[{{[{{any_Cx_ch_axl_hh {[{z} {g} {l} {v} {b} {m} {dh} {zh} {w} {d}]}}} {hh}]}} {{[{hh} {{any_Cx_ch_axl_hh {[{z} {g} {l} {v} {b} {m} {dh} {zh} {w} {d}]}}}]}}]} {sil}]}
+rule 3 =
+Trapped opening rule:
+trap: hh
+rule: {hh}
+Opening rule:
+guard: p
+rule: {p {[{sil} {{[{[{p} {{any_Cx_b_p_hh {[{d} {w} {ch} {v} {z} {m} {zh} {dh} {g} {l}]}}}]} {[{{any_Cx_b_p_hh {[{d} {w} {ch} {v} {z} {m} {zh} {dh} {g} {l}]}}} {p}]}]}} {{[{[{p} {{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}}]} {[{{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}} {p}]}]}}]}}
+Phoneme rule:
+guard: zh phoneme: b
+rule: {[{[{{[{{any_Cx_zh_hh_p_b {[{d} {z} {m} {v} {ch} {l} {dh} {g} {w}]}}} {zh}]}} {{[{zh} {{any_Cx_zh_hh_p_b {[{d} {z} {m} {v} {ch} {l} {dh} {g} {w}]}}}]}}]} {[{b} {[{[{{any_Cx_zh_hh_p_b {[{d} {z} {m} {v} {ch} {l} {dh} {g} {w}]}}} {zh}]} {[{zh} {{any_Cx_zh_hh_p_b {[{d} {z} {m} {v} {ch} {l} {dh} {g} {w}]}}}]}]}]}]}
+Phoneme rule:
+guard: zh phoneme: ae
+rule: {[{[{[{{[{{any_Vx_zh_zh_ae_noSlide {[{ah} {ao} {eh} {ih} {oh} {uw} {uh} {aa} {ax} {iy} {y}]}}} {zh}]}} {{[{zh} {{any_Vx_zh_zh_ae_noSlide {[{ah} {ao} {eh} {ih} {oh} {uw} {uh} {aa} {ax} {iy} {y}]}}}]}}]} {[{{[{{any_Cx_zh_zh_r_b {[{g} {l} {d} {hh} {m} {v} {ch} {w} {dh} {z}]}}} {zh}]}} {{[{zh} {{any_Cx_zh_zh_r_b {[{g} {l} {d} {hh} {m} {v} {ch} {w} {dh} {z}]}}}]}}]}]} {[{ae} {[{[{{any_Vx_zh_zh_ae_noSlide {[{ah} {ao} {eh} {ih} {oh} {uw} {uh} {aa} {ax} {iy} {y}]}}} {zh}]} {[{zh} {{any_Vx_zh_zh_ae_noSlide {[{ah} {ao} {eh} {ih} {oh} {uw} {uh} {aa} {ax} {iy} {y}]}}}]}]}]}]}
+Phoneme rule:
+guard: y phoneme: r
+rule: {[{[{{[{{any_Cx_y_zh_r {[{ch} {g} {d} {hh} {w} {l} {m} {v} {b} {dh} {z}]}}} {y}]}} {{[{y} {{any_Cx_y_zh_r {[{ch} {g} {d} {hh} {w} {l} {m} {v} {b} {dh} {z}]}}}]}}]} {[{r} {[{[{{any_Cx_y_zh_r_axl {[{l} {z} {b} {d} {dh} {w} {v} {m} {hh} {ch} {g}]}}} {y}]} {[{y} {{any_Cx_y_zh_r_axl {[{l} {z} {b} {d} {dh} {w} {v} {m} {hh} {ch} {g}]}}}]}]}]}]}
+Phoneme rule:
+guard: ch phoneme: axl
+rule: {[{[{{[{{any_Cx_ch_y_axl_r {[{w} {hh} {b} {v} {g} {dh} {l} {m} {z} {zh} {d}]}}} {ch}]}} {{[{ch} {{any_Cx_ch_y_axl_r {[{w} {hh} {b} {v} {g} {dh} {l} {m} {z} {zh} {d}]}}}]}}]} {[{axl} {[{[{{any_Cx_ch_y_axl_r {[{w} {hh} {b} {v} {g} {dh} {l} {m} {z} {zh} {d}]}}} {ch}]} {[{ch} {{any_Cx_ch_y_axl_r {[{w} {hh} {b} {v} {g} {dh} {l} {m} {z} {zh} {d}]}}}]}]}]}]}
+Closing rule:
+guard: thr
+rule: {[{[{{[{{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}} {thr}]}} {{[{thr} {{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}}]}}]} {[{{[{{any_Cx_ch_axl_thr {[{z} {zh} {b} {d} {dh} {l} {hh} {w} {g} {m} {v}]}}} {thr}]}} {{[{thr} {{any_Cx_ch_axl_thr {[{z} {zh} {b} {d} {dh} {l} {hh} {w} {g} {m} {v}]}}}]}}]} {sil}]}
+rule 4 =
+Trapped opening rule:
+trap: hh
+rule: {hh}
+Opening rule:
+guard: l
+rule: {l {[{sil} {{[{[{l} {{any_Cx_b_l_hh {[{z} {dh} {g} {m} {ch} {v} {w} {d} {zh}]}}}]} {[{{any_Cx_b_l_hh {[{z} {dh} {g} {m} {ch} {v} {w} {d} {zh}]}}} {l}]}]}} {{[{[{l} {{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}}]} {[{{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}} {l}]}]}}]}}
+Phoneme rule:
+guard: jh phoneme: b
+rule: {[{[{{[{{any_Cx_jh_hh_l_b {[{g} {zh} {ch} {m} {z} {dh} {v} {w} {d}]}}} {jh}]}} {{[{jh} {{any_Cx_jh_hh_l_b {[{g} {zh} {ch} {m} {z} {dh} {v} {w} {d}]}}}]}}]} {[{b} {[{[{{any_Cx_jh_hh_l_b {[{g} {zh} {ch} {m} {z} {dh} {v} {w} {d}]}}} {jh}]} {[{jh} {{any_Cx_jh_hh_l_b {[{g} {zh} {ch} {m} {z} {dh} {v} {w} {d}]}}}]}]}]}]}
+Phoneme rule:
+guard: zh phoneme: ae
+rule: {[{[{[{{[{{any_Vx_zh_jh_ae_noSlide {[{y} {ao} {eh} {uw} {uh} {ih} {ah} {ax} {iy} {oh} {aa}]}}} {zh}]}} {{[{zh} {{any_Vx_zh_jh_ae_noSlide {[{y} {ao} {eh} {uw} {uh} {ih} {ah} {ax} {iy} {oh} {aa}]}}}]}}]} {[{{[{{any_Cx_zh_jh_r_b {[{ch} {m} {dh} {v} {w} {g} {hh} {l} {z} {d}]}}} {zh}]}} {{[{zh} {{any_Cx_zh_jh_r_b {[{ch} {m} {dh} {v} {w} {g} {hh} {l} {z} {d}]}}}]}}]}]} {[{ae} {[{[{{any_Vx_zh_jh_ae_noSlide {[{y} {ao} {eh} {uw} {uh} {ih} {ah} {ax} {iy} {oh} {aa}]}}} {zh}]} {[{zh} {{any_Vx_zh_jh_ae_noSlide {[{y} {ao} {eh} {uw} {uh} {ih} {ah} {ax} {iy} {oh} {aa}]}}}]}]}]}]}
+Phoneme rule:
+guard: y phoneme: r
+rule: {[{[{{[{{any_Cx_y_zh_r {[{z} {b} {ch} {d} {dh} {hh} {v} {m} {g} {l} {w}]}}} {y}]}} {{[{y} {{any_Cx_y_zh_r {[{z} {b} {ch} {d} {dh} {hh} {v} {m} {g} {l} {w}]}}}]}}]} {[{r} {[{[{{any_Cx_y_zh_r_axl {[{g} {w} {z} {dh} {v} {b} {d} {l} {ch} {m} {hh}]}}} {y}]} {[{y} {{any_Cx_y_zh_r_axl {[{g} {w} {z} {dh} {v} {b} {d} {l} {ch} {m} {hh}]}}}]}]}]}]}
+Phoneme rule:
+guard: ch phoneme: axl
+rule: {[{[{{[{{any_Cx_ch_y_axl_r {[{d} {dh} {g} {w} {z} {hh} {l} {v} {zh} {b} {m}]}}} {ch}]}} {{[{ch} {{any_Cx_ch_y_axl_r {[{d} {dh} {g} {w} {z} {hh} {l} {v} {zh} {b} {m}]}}}]}}]} {[{axl} {[{[{{any_Cx_ch_y_axl_r {[{d} {dh} {g} {w} {z} {hh} {l} {v} {zh} {b} {m}]}}} {ch}]} {[{ch} {{any_Cx_ch_y_axl_r {[{d} {dh} {g} {w} {z} {hh} {l} {v} {zh} {b} {m}]}}}]}]}]}]}
+Closing rule:
+guard: hh
+rule: {[{[{{[{{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}} {hh}]}} {{[{hh} {{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}}]}}]} {[{{[{{any_Cx_ch_axl_hh {[{l} {w} {zh} {b} {z} {d} {g} {v} {dh} {m}]}}} {hh}]}} {{[{hh} {{any_Cx_ch_axl_hh {[{l} {w} {zh} {b} {z} {d} {g} {v} {dh} {m}]}}}]}}]} {sil}]}
+
+parse: err = Parser error
+Mapped result =
+result 0 =
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+result 1 =
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+result 2 =
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+result 3 =
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+result 4 =
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+start: 0 end: 0 phonemeFound: false
+
+Rules =
+rule 0 =
+Trapped opening rule:
+trap: hh
+rule: {hh}
+Opening rule:
+guard: p
+rule: {p {[{sil} {{[{[{p} {{any_Cx_b_p_hh {[{ch} {dh} {zh} {z} {g} {w} {d} {m} {l} {v}]}}}]} {[{{any_Cx_b_p_hh {[{ch} {dh} {zh} {z} {g} {w} {d} {m} {l} {v}]}}} {p}]}]}} {{[{[{p} {{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}}]} {[{{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}} {p}]}]}}]}}
+Phoneme rule:
+guard: zh phoneme: b
+rule: {[{[{{[{{any_Cx_zh_hh_p_b {[{ch} {d} {dh} {l} {z} {g} {m} {v} {w}]}}} {zh}]}} {{[{zh} {{any_Cx_zh_hh_p_b {[{ch} {d} {dh} {l} {z} {g} {m} {v} {w}]}}}]}}]} {[{b} {[{[{{any_Cx_zh_hh_p_b {[{ch} {d} {dh} {l} {z} {g} {m} {v} {w}]}}} {zh}]} {[{zh} {{any_Cx_zh_hh_p_b {[{ch} {d} {dh} {l} {z} {g} {m} {v} {w}]}}}]}]}]}]}
+Phoneme rule:
+guard: zh phoneme: ae
+rule: {[{[{[{{[{{any_Vx_zh_zh_ae_noSlide {[{ah} {ao} {eh} {iy} {oh} {y} {aa} {uw} {uh} {ax} {ih}]}}} {zh}]}} {{[{zh} {{any_Vx_zh_zh_ae_noSlide {[{ah} {ao} {eh} {iy} {oh} {y} {aa} {uw} {uh} {ax} {ih}]}}}]}}]} {[{{[{{any_Cx_zh_zh_r_b {[{dh} {hh} {m} {w} {z} {v} {ch} {d} {g} {l}]}}} {zh}]}} {{[{zh} {{any_Cx_zh_zh_r_b {[{dh} {hh} {m} {w} {z} {v} {ch} {d} {g} {l}]}}}]}}]}]} {[{ae} {[{[{{any_Vx_zh_zh_ae_noSlide {[{ah} {ao} {eh} {iy} {oh} {y} {aa} {uw} {uh} {ax} {ih}]}}} {zh}]} {[{zh} {{any_Vx_zh_zh_ae_noSlide {[{ah} {ao} {eh} {iy} {oh} {y} {aa} {uw} {uh} {ax} {ih}]}}}]}]}]}]}
+Phoneme rule:
+guard: y phoneme: r
+rule: {[{[{{[{{any_Cx_y_zh_r {[{m} {d} {l} {ch} {dh} {hh} {v} {w} {b} {z} {g}]}}} {y}]}} {{[{y} {{any_Cx_y_zh_r {[{m} {d} {l} {ch} {dh} {hh} {v} {w} {b} {z} {g}]}}}]}}]} {[{r} {[{[{{any_Cx_y_zh_r_axl {[{b} {dh} {v} {w} {ch} {g} {l} {z} {m} {d} {hh}]}}} {y}]} {[{y} {{any_Cx_y_zh_r_axl {[{b} {dh} {v} {w} {ch} {g} {l} {z} {m} {d} {hh}]}}}]}]}]}]}
+Phoneme rule:
+guard: ch phoneme: axl
+rule: {[{[{{[{{any_Cx_ch_y_axl_r {[{hh} {b} {l} {zh} {w} {d} {dh} {m} {v} {g} {z}]}}} {ch}]}} {{[{ch} {{any_Cx_ch_y_axl_r {[{hh} {b} {l} {zh} {w} {d} {dh} {m} {v} {g} {z}]}}}]}}]} {[{axl} {[{[{{any_Cx_ch_y_axl_r {[{hh} {b} {l} {zh} {w} {d} {dh} {m} {v} {g} {z}]}}} {ch}]} {[{ch} {{any_Cx_ch_y_axl_r {[{hh} {b} {l} {zh} {w} {d} {dh} {m} {v} {g} {z}]}}}]}]}]}]}
+Closing rule:
+guard: thr
+rule: {[{[{{[{{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}} {thr}]}} {{[{thr} {{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}}]}}]} {[{{[{{any_Cx_ch_axl_thr {[{v} {g} {w} {m} {d} {hh} {l} {z} {b} {dh} {zh}]}}} {thr}]}} {{[{thr} {{any_Cx_ch_axl_thr {[{v} {g} {w} {m} {d} {hh} {l} {z} {b} {dh} {zh}]}}}]}}]} {sil}]}
+rule 1 =
+Trapped opening rule:
+trap: hh
+rule: {hh}
+Opening rule:
+guard: p
+rule: {p {[{sil} {{[{[{p} {{any_Cx_b_p_hh {[{m} {zh} {l} {dh} {v} {g} {ch} {w} {z} {d}]}}}]} {[{{any_Cx_b_p_hh {[{m} {zh} {l} {dh} {v} {g} {ch} {w} {z} {d}]}}} {p}]}]}} {{[{[{p} {{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}}]} {[{{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}} {p}]}]}}]}}
+Phoneme rule:
+guard: zh phoneme: b
+rule: {[{[{{[{{any_Cx_zh_hh_p_b {[{z} {w} {d} {g} {ch} {dh} {v} {m} {l}]}}} {zh}]}} {{[{zh} {{any_Cx_zh_hh_p_b {[{z} {w} {d} {g} {ch} {dh} {v} {m} {l}]}}}]}}]} {[{b} {[{[{{any_Cx_zh_hh_p_b {[{z} {w} {d} {g} {ch} {dh} {v} {m} {l}]}}} {zh}]} {[{zh} {{any_Cx_zh_hh_p_b {[{z} {w} {d} {g} {ch} {dh} {v} {m} {l}]}}}]}]}]}]}
+Phoneme rule:
+guard: zh phoneme: ae
+rule: {[{[{[{{[{{any_Vx_zh_zh_ae_noSlide {[{eh} {iy} {uw} {uh} {ao} {ah} {ax} {ih} {oh} {y} {aa}]}}} {zh}]}} {{[{zh} {{any_Vx_zh_zh_ae_noSlide {[{eh} {iy} {uw} {uh} {ao} {ah} {ax} {ih} {oh} {y} {aa}]}}}]}}]} {[{{[{{any_Cx_zh_zh_r_b {[{ch} {hh} {w} {g} {m} {v} {dh} {d} {l} {z}]}}} {zh}]}} {{[{zh} {{any_Cx_zh_zh_r_b {[{ch} {hh} {w} {g} {m} {v} {dh} {d} {l} {z}]}}}]}}]}]} {[{ae} {[{[{{any_Vx_zh_zh_ae_noSlide {[{eh} {iy} {uw} {uh} {ao} {ah} {ax} {ih} {oh} {y} {aa}]}}} {zh}]} {[{zh} {{any_Vx_zh_zh_ae_noSlide {[{eh} {iy} {uw} {uh} {ao} {ah} {ax} {ih} {oh} {y} {aa}]}}}]}]}]}]}
+Phoneme rule:
+guard: y phoneme: r
+rule: {[{[{{[{{any_Cx_y_zh_r {[{b} {d} {m} {l} {v} {g} {hh} {w} {dh} {z} {ch}]}}} {y}]}} {{[{y} {{any_Cx_y_zh_r {[{b} {d} {m} {l} {v} {g} {hh} {w} {dh} {z} {ch}]}}}]}}]} {[{r} {[{[{{any_Cx_y_zh_r_axl {[{b} {d} {g} {m} {z} {hh} {w} {l} {v} {ch} {dh}]}}} {y}]} {[{y} {{any_Cx_y_zh_r_axl {[{b} {d} {g} {m} {z} {hh} {w} {l} {v} {ch} {dh}]}}}]}]}]}]}
+Phoneme rule:
+guard: ch phoneme: axl
+rule: {[{[{{[{{any_Cx_ch_y_axl_r {[{b} {z} {g} {zh} {v} {hh} {d} {w} {dh} {l} {m}]}}} {ch}]}} {{[{ch} {{any_Cx_ch_y_axl_r {[{b} {z} {g} {zh} {v} {hh} {d} {w} {dh} {l} {m}]}}}]}}]} {[{axl} {[{[{{any_Cx_ch_y_axl_r {[{b} {z} {g} {zh} {v} {hh} {d} {w} {dh} {l} {m}]}}} {ch}]} {[{ch} {{any_Cx_ch_y_axl_r {[{b} {z} {g} {zh} {v} {hh} {d} {w} {dh} {l} {m}]}}}]}]}]}]}
+Closing rule:
+guard: m
+rule: {[{[{{[{{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}} {m}]}} {{[{m} {{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}}]}}]} {[{{[{{any_Cx_ch_axl_m {[{b} {dh} {g} {l} {zh} {d} {hh} {v} {w} {z}]}}} {m}]}} {{[{m} {{any_Cx_ch_axl_m {[{b} {dh} {g} {l} {zh} {d} {hh} {v} {w} {z}]}}}]}}]} {sil}]}
+rule 2 =
+Trapped opening rule:
+trap: hh
+rule: {hh}
+Opening rule:
+guard: f
+rule: {f {[{sil} {{[{[{f} {{any_Cx_b_f_hh {[{w} {v} {d} {m} {z} {zh} {ch} {dh} {g} {l}]}}}]} {[{{any_Cx_b_f_hh {[{w} {v} {d} {m} {z} {zh} {ch} {dh} {g} {l}]}}} {f}]}]}} {{[{[{f} {{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}}]} {[{{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}} {f}]}]}}]}}
+Phoneme rule:
+guard: jh phoneme: b
+rule: {[{[{{[{{any_Cx_jh_hh_f_b {[{ch} {zh} {w} {l} {z} {d} {dh} {g} {m} {v}]}}} {jh}]}} {{[{jh} {{any_Cx_jh_hh_f_b {[{ch} {zh} {w} {l} {z} {d} {dh} {g} {m} {v}]}}}]}}]} {[{b} {[{[{{any_Cx_jh_hh_f_b {[{ch} {zh} {w} {l} {z} {d} {dh} {g} {m} {v}]}}} {jh}]} {[{jh} {{any_Cx_jh_hh_f_b {[{ch} {zh} {w} {l} {z} {d} {dh} {g} {m} {v}]}}}]}]}]}]}
+Phoneme rule:
+guard: zh phoneme: ae
+rule: {[{[{[{{[{{any_Vx_zh_jh_ae_noSlide {[{ah} {ao} {uh} {y} {aa} {ih} {eh} {iy} {oh} {uw} {ax}]}}} {zh}]}} {{[{zh} {{any_Vx_zh_jh_ae_noSlide {[{ah} {ao} {uh} {y} {aa} {ih} {eh} {iy} {oh} {uw} {ax}]}}}]}}]} {[{{[{{any_Cx_zh_jh_r_b {[{v} {d} {l} {m} {dh} {z} {g} {hh} {w} {ch}]}}} {zh}]}} {{[{zh} {{any_Cx_zh_jh_r_b {[{v} {d} {l} {m} {dh} {z} {g} {hh} {w} {ch}]}}}]}}]}]} {[{ae} {[{[{{any_Vx_zh_jh_ae_noSlide {[{ah} {ao} {uh} {y} {aa} {ih} {eh} {iy} {oh} {uw} {ax}]}}} {zh}]} {[{zh} {{any_Vx_zh_jh_ae_noSlide {[{ah} {ao} {uh} {y} {aa} {ih} {eh} {iy} {oh} {uw} {ax}]}}}]}]}]}]}
+Phoneme rule:
+guard: y phoneme: r
+rule: {[{[{{[{{any_Cx_y_zh_r {[{d} {dh} {z} {ch} {w} {g} {b} {v} {l} {hh} {m}]}}} {y}]}} {{[{y} {{any_Cx_y_zh_r {[{d} {dh} {z} {ch} {w} {g} {b} {v} {l} {hh} {m}]}}}]}}]} {[{r} {[{[{{any_Cx_y_zh_r_axl {[{d} {ch} {dh} {hh} {w} {l} {b} {g} {v} {m} {z}]}}} {y}]} {[{y} {{any_Cx_y_zh_r_axl {[{d} {ch} {dh} {hh} {w} {l} {b} {g} {v} {m} {z}]}}}]}]}]}]}
+Phoneme rule:
+guard: ch phoneme: axl
+rule: {[{[{{[{{any_Cx_ch_y_axl_r {[{g} {v} {w} {d} {l} {b} {z} {dh} {m} {hh} {zh}]}}} {ch}]}} {{[{ch} {{any_Cx_ch_y_axl_r {[{g} {v} {w} {d} {l} {b} {z} {dh} {m} {hh} {zh}]}}}]}}]} {[{axl} {[{[{{any_Cx_ch_y_axl_r {[{g} {v} {w} {d} {l} {b} {z} {dh} {m} {hh} {zh}]}}} {ch}]} {[{ch} {{any_Cx_ch_y_axl_r {[{g} {v} {w} {d} {l} {b} {z} {dh} {m} {hh} {zh}]}}}]}]}]}]}
+Closing rule:
+guard: hh
+rule: {[{[{{[{{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}} {hh}]}} {{[{hh} {{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}}]}}]} {[{{[{{any_Cx_ch_axl_hh {[{z} {g} {l} {v} {b} {m} {dh} {zh} {w} {d}]}}} {hh}]}} {{[{hh} {{any_Cx_ch_axl_hh {[{z} {g} {l} {v} {b} {m} {dh} {zh} {w} {d}]}}}]}}]} {sil}]}
+rule 3 =
+Trapped opening rule:
+trap: hh
+rule: {hh}
+Opening rule:
+guard: p
+rule: {p {[{sil} {{[{[{p} {{any_Cx_b_p_hh {[{d} {w} {ch} {v} {z} {m} {zh} {dh} {g} {l}]}}}]} {[{{any_Cx_b_p_hh {[{d} {w} {ch} {v} {z} {m} {zh} {dh} {g} {l}]}}} {p}]}]}} {{[{[{p} {{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}}]} {[{{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}} {p}]}]}}]}}
+Phoneme rule:
+guard: zh phoneme: b
+rule: {[{[{{[{{any_Cx_zh_hh_p_b {[{d} {z} {m} {v} {ch} {l} {dh} {g} {w}]}}} {zh}]}} {{[{zh} {{any_Cx_zh_hh_p_b {[{d} {z} {m} {v} {ch} {l} {dh} {g} {w}]}}}]}}]} {[{b} {[{[{{any_Cx_zh_hh_p_b {[{d} {z} {m} {v} {ch} {l} {dh} {g} {w}]}}} {zh}]} {[{zh} {{any_Cx_zh_hh_p_b {[{d} {z} {m} {v} {ch} {l} {dh} {g} {w}]}}}]}]}]}]}
+Phoneme rule:
+guard: zh phoneme: ae
+rule: {[{[{[{{[{{any_Vx_zh_zh_ae_noSlide {[{ah} {ao} {eh} {ih} {oh} {uw} {uh} {aa} {ax} {iy} {y}]}}} {zh}]}} {{[{zh} {{any_Vx_zh_zh_ae_noSlide {[{ah} {ao} {eh} {ih} {oh} {uw} {uh} {aa} {ax} {iy} {y}]}}}]}}]} {[{{[{{any_Cx_zh_zh_r_b {[{g} {l} {d} {hh} {m} {v} {ch} {w} {dh} {z}]}}} {zh}]}} {{[{zh} {{any_Cx_zh_zh_r_b {[{g} {l} {d} {hh} {m} {v} {ch} {w} {dh} {z}]}}}]}}]}]} {[{ae} {[{[{{any_Vx_zh_zh_ae_noSlide {[{ah} {ao} {eh} {ih} {oh} {uw} {uh} {aa} {ax} {iy} {y}]}}} {zh}]} {[{zh} {{any_Vx_zh_zh_ae_noSlide {[{ah} {ao} {eh} {ih} {oh} {uw} {uh} {aa} {ax} {iy} {y}]}}}]}]}]}]}
+Phoneme rule:
+guard: y phoneme: r
+rule: {[{[{{[{{any_Cx_y_zh_r {[{ch} {g} {d} {hh} {w} {l} {m} {v} {b} {dh} {z}]}}} {y}]}} {{[{y} {{any_Cx_y_zh_r {[{ch} {g} {d} {hh} {w} {l} {m} {v} {b} {dh} {z}]}}}]}}]} {[{r} {[{[{{any_Cx_y_zh_r_axl {[{l} {z} {b} {d} {dh} {w} {v} {m} {hh} {ch} {g}]}}} {y}]} {[{y} {{any_Cx_y_zh_r_axl {[{l} {z} {b} {d} {dh} {w} {v} {m} {hh} {ch} {g}]}}}]}]}]}]}
+Phoneme rule:
+guard: ch phoneme: axl
+rule: {[{[{{[{{any_Cx_ch_y_axl_r {[{w} {hh} {b} {v} {g} {dh} {l} {m} {z} {zh} {d}]}}} {ch}]}} {{[{ch} {{any_Cx_ch_y_axl_r {[{w} {hh} {b} {v} {g} {dh} {l} {m} {z} {zh} {d}]}}}]}}]} {[{axl} {[{[{{any_Cx_ch_y_axl_r {[{w} {hh} {b} {v} {g} {dh} {l} {m} {z} {zh} {d}]}}} {ch}]} {[{ch} {{any_Cx_ch_y_axl_r {[{w} {hh} {b} {v} {g} {dh} {l} {m} {z} {zh} {d}]}}}]}]}]}]}
+Closing rule:
+guard: thr
+rule: {[{[{{[{{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}} {thr}]}} {{[{thr} {{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}}]}}]} {[{{[{{any_Cx_ch_axl_thr {[{z} {zh} {b} {d} {dh} {l} {hh} {w} {g} {m} {v}]}}} {thr}]}} {{[{thr} {{any_Cx_ch_axl_thr {[{z} {zh} {b} {d} {dh} {l} {hh} {w} {g} {m} {v}]}}}]}}]} {sil}]}
+rule 4 =
+Trapped opening rule:
+trap: hh
+rule: {hh}
+Opening rule:
+guard: l
+rule: {l {[{sil} {{[{[{l} {{any_Cx_b_l_hh {[{z} {dh} {g} {m} {ch} {v} {w} {d} {zh}]}}}]} {[{{any_Cx_b_l_hh {[{z} {dh} {g} {m} {ch} {v} {w} {d} {zh}]}}} {l}]}]}} {{[{[{l} {{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}}]} {[{{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}} {l}]}]}}]}}
+Phoneme rule:
+guard: jh phoneme: b
+rule: {[{[{{[{{any_Cx_jh_hh_l_b {[{g} {zh} {ch} {m} {z} {dh} {v} {w} {d}]}}} {jh}]}} {{[{jh} {{any_Cx_jh_hh_l_b {[{g} {zh} {ch} {m} {z} {dh} {v} {w} {d}]}}}]}}]} {[{b} {[{[{{any_Cx_jh_hh_l_b {[{g} {zh} {ch} {m} {z} {dh} {v} {w} {d}]}}} {jh}]} {[{jh} {{any_Cx_jh_hh_l_b {[{g} {zh} {ch} {m} {z} {dh} {v} {w} {d}]}}}]}]}]}]}
+Phoneme rule:
+guard: zh phoneme: ae
+rule: {[{[{[{{[{{any_Vx_zh_jh_ae_noSlide {[{y} {ao} {eh} {uw} {uh} {ih} {ah} {ax} {iy} {oh} {aa}]}}} {zh}]}} {{[{zh} {{any_Vx_zh_jh_ae_noSlide {[{y} {ao} {eh} {uw} {uh} {ih} {ah} {ax} {iy} {oh} {aa}]}}}]}}]} {[{{[{{any_Cx_zh_jh_r_b {[{ch} {m} {dh} {v} {w} {g} {hh} {l} {z} {d}]}}} {zh}]}} {{[{zh} {{any_Cx_zh_jh_r_b {[{ch} {m} {dh} {v} {w} {g} {hh} {l} {z} {d}]}}}]}}]}]} {[{ae} {[{[{{any_Vx_zh_jh_ae_noSlide {[{y} {ao} {eh} {uw} {uh} {ih} {ah} {ax} {iy} {oh} {aa}]}}} {zh}]} {[{zh} {{any_Vx_zh_jh_ae_noSlide {[{y} {ao} {eh} {uw} {uh} {ih} {ah} {ax} {iy} {oh} {aa}]}}}]}]}]}]}
+Phoneme rule:
+guard: y phoneme: r
+rule: {[{[{{[{{any_Cx_y_zh_r {[{z} {b} {ch} {d} {dh} {hh} {v} {m} {g} {l} {w}]}}} {y}]}} {{[{y} {{any_Cx_y_zh_r {[{z} {b} {ch} {d} {dh} {hh} {v} {m} {g} {l} {w}]}}}]}}]} {[{r} {[{[{{any_Cx_y_zh_r_axl {[{g} {w} {z} {dh} {v} {b} {d} {l} {ch} {m} {hh}]}}} {y}]} {[{y} {{any_Cx_y_zh_r_axl {[{g} {w} {z} {dh} {v} {b} {d} {l} {ch} {m} {hh}]}}}]}]}]}]}
+Phoneme rule:
+guard: ch phoneme: axl
+rule: {[{[{{[{{any_Cx_ch_y_axl_r {[{d} {dh} {g} {w} {z} {hh} {l} {v} {zh} {b} {m}]}}} {ch}]}} {{[{ch} {{any_Cx_ch_y_axl_r {[{d} {dh} {g} {w} {z} {hh} {l} {v} {zh} {b} {m}]}}}]}}]} {[{axl} {[{[{{any_Cx_ch_y_axl_r {[{d} {dh} {g} {w} {z} {hh} {l} {v} {zh} {b} {m}]}}} {ch}]} {[{ch} {{any_Cx_ch_y_axl_r {[{d} {dh} {g} {w} {z} {hh} {l} {v} {zh} {b} {m}]}}}]}]}]}]}
+Closing rule:
+guard: hh
+rule: {[{[{{[{{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}} {hh}]}} {{[{hh} {{any_vowel_noSlide {[{aa} {ae} {ah} {eh} {ih} {iy} {oh} {uw} {uh} {y}]}}}]}}]} {[{{[{{any_Cx_ch_axl_hh {[{l} {w} {zh} {b} {z} {d} {g} {v} {dh} {m}]}}} {hh}]}} {{[{hh} {{any_Cx_ch_axl_hh {[{l} {w} {zh} {b} {z} {d} {g} {v} {dh} {m}]}}}]}}]} {sil}]}
+
+parse: err = Parser error
+ruleAligned = [{{b 1} [{2 1} {3 1} {4 1}]} {{ae 1} [{2 2} {3 2} {4 2}]} {{r 1} [{2 3} {3 3} {4 3}]} {{axl 1} [{2 4} {3 4} {4 4}]}]
+
+results (after rule-alignment) =
+{72 []}
+{80 []}
+{91 [{sil 0 0} {b 45 49} {ae 51 60} {r 62 78} {axl 79 110} {sil 111 111}]}
+{105 [{sil 0 0} {b 46 50} {ae 51 61} {r 62 79} {axl 80 89} {thr 90 90} {iy 92 106} {sil 107 107}]}
+{125 [{sil 3 3} {b 46 50} {ae 51 63} {r 64 81} {axl 82 92} {iy 93 106} {hh 107 107} {sil 110 110}]}
+
+timeAligned = [{{b 46 49} [{2 1} {3 1} {4 1}]} {{ae 51 60} [{2 2} {3 2} {4 2}]} {{r 64 78} [{2 3} {3 3} {4 3}]} {{axl 82 89} [{2 4} {3 4} {4 4}]}]
+
+i, iTime, newITime, timeStartFrom = 0 0 0 0
+i, iTime, newITime, timeStartFrom = 1 0 1 49
+i, iTime, newITime, timeStartFrom = 2 1 2 60
+i, iTime, newITime, timeStartFrom = 3 2 3 78
+combinedVerdict    = [{b 1} {ae 1} {r 1} {axl 1}]
+ruleAlignedVerdict = [{b 1} {ae 1} {r 1} {axl 1}]
+
+score->
++1 for b
++1 for ae
++1 for r
++1 for axl
+score<-: 9
+testPronounce b possible ae possible r possible axl possible
+publish->
+phonsToAlphas = [{[b] b} {[ae] a} {[r] rr} {[axl] el}]
+getVerdict<-:new {b [b] 1}
+getVerdict<-:new {a [ae] 1}
+getVerdict<-:new {rr [r] 1}
+getVerdict<-:new {el [axl] 1}
+lettersVerdicts = [{b [b] 1} {a [ae] 1} {rr [r] 1} {el [axl] 1}]
+publish<-
+Total: 360.317356ms
+{
+  "results": [
+    {
+      "letters": "b",
+      "phonemes": "b",
+      "verdict": "possible"
+    },
+    {
+      "letters": "a",
+      "phonemes": "æ",
+      "verdict": "possible"
+    },
+    {
+      "letters": "rr",
+      "phonemes": "ɹ",
+      "verdict": "possible"
+    },
+    {
+      "letters": "el",
+      "phonemes": "axl",
+      "verdict": "possible"
+    }
+  ],
+  "err": null
+}
