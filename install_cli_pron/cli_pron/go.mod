@@ -1,6 +1,6 @@
 module github.com/colinarticulate/cli_pron
 
-go 1.13
+go 1.18
 
 replace github.com/colinarticulate/pron => ../pron
 

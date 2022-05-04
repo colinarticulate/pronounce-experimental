@@ -17,8 +17,8 @@ time ./test_pronounce -dict /Users/test/Downloads/sourceFiltered_exp3Mar22.dict 
                         -tests /Users/test/Downloads/train/scrape/i_ve/ok/i_ve_input.csv \
                         -expectations /Users/test/Downloads/train/scrape/i_ve/ok/i_ve_expectations.csv \
                         -outfolder /Users/test/Downloads/audio_temp \
-                        -featparams /Users/test/Documents/GitHub/pronounce-experimental/Models/Bare.ci_cont_4Apr22/feat.params \
-                        -hmm /Users/test/Documents/GitHub/pronounce-experimental/Models/Bare.ci_cont_4Apr22
+                        -featparams /Users/test/Documents/GitHub/pronounce-experimental/Models/Bare.ci_cont_3May22/model/feat.params \
+                        -hmm /Users/test/Documents/GitHub/pronounce-experimental/Models/Bare.ci_cont_3May22/model
                         
 echo
 echo "clean up"
