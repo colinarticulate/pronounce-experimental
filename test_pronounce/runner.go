@@ -77,17 +77,54 @@ func new() runner {
 
 func (r *runner) loop() {
 	//Throttling
-	maxRunningTests := 100 //10 default
+	maxRunningTests := 1 //100 //10 default
 	runningTests := 0
-	limit := time.Tick(5 * time.Millisecond) //500 default
+	nms := 1750
+	ms := nms * 1000000 //in milliseconds
+	//ms := float64(nms) * 0.001
+	fmt.Println(time.Duration(ms))         //0.001=1ms
+	limit := time.Tick(time.Duration(nms)) //5 //500 default
+	//limit := time.Tick(1 * time.Millisecond)
+
+	maxTest := strconv.Itoa(maxRunningTests)
+	millisecons := strconv.Itoa(nms)
+	filename := "timings_ipaul_x100_" + maxTest + "_" + millisecons + ".txt"
+	fmt.Println(filename)
+	f, err := os.Create(filename)
+	check(err)
+	f.WriteString("Id Waiting Response\n")
+	fms := float64(time.Millisecond)
+
+	// starts := make(map[int]time.Duration)
+	// ends := make(map[int]time.Duration)
+
+	start_test := time.Now()
+	count := 0
 	for {
 		select {
 		case <-limit:
 			// Run the next test, if there are any to run...
 			if len(r.pending) > 0 && runningTests < maxRunningTests {
 				go func(test scheduledTest) {
+					// runningTests++
+					// fmt.Println("running new test...")
+					// //out, err := exec.Command("cli_pron", test.args...).Output()
+					// os.Setenv("GODEBUG", "cgocheck=0")
+					// out, err := exec.Command("cli_pron", test.args...).Output()
+					// if err != nil {
+					// 	fmt.Println("testPronounce:Oops, err is", err, "Check args maybe?...", test.args)
+					// 	// What do we do here?
+					// 	fmt.Println(string(out))
+					// }
+					// runningTests--
+					// fmt.Println("test run...")
+					// test.replyTo <- out
+					count = count + 1
+					start := time.Now()
+					start_time := start.Sub(start_test)
+
+					fmt.Println("Start test(", count, ") =", start_time)
 					runningTests++
-					fmt.Println("running new test...")
 					//out, err := exec.Command("cli_pron", test.args...).Output()
 					os.Setenv("GODEBUG", "cgocheck=0")
 					out, err := exec.Command("cli_pron", test.args...).Output()
@@ -97,7 +134,18 @@ func (r *runner) loop() {
 						fmt.Println(string(out))
 					}
 					runningTests--
-					fmt.Println("test run...")
+					end := time.Now()
+					elapsed := end.Sub(start)
+
+					fs := float64(start_time) / fms
+					fe := (float64(start_time) + float64(elapsed)) / fms
+					ss := strconv.FormatFloat(fs, 'f', -1, 64)
+					se := strconv.FormatFloat(fe, 'f', -1, 64)
+					file := filepath.Base(test.args[1])
+					idx := strings.Split(file, "_")[0]
+					f.WriteString(idx + " " + ss + " " + se + "\n")
+
+					fmt.Println("End test(", count-maxRunningTests+1, "), time taken =", elapsed)
 					test.replyTo <- out
 				}(r.pending[0])
 
@@ -108,8 +156,16 @@ func (r *runner) loop() {
 		case errc := <-r.closing:
 			errc <- nil
 			close(r.schedule)
+			//f.Close()
 			return
 		}
+	}
+
+}
+
+func check(e error) {
+	if e != nil {
+		panic(e)
 	}
 }
 
