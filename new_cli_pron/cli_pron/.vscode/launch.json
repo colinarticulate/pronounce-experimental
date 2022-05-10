@@ -35,14 +35,14 @@
             //     "-dict", "/home/dbarbera/Repositories/pronounce-experimental/Models/Bare.ci_cont_4Apr22_/etc/art_db_v3.dic",
             //     "-phdict", "/home/dbarbera/Repositories/pronounce-experimental/Models/Bare.ci_cont_4Apr22_/etc/art_db.phone"
             //    ],
-            "args":[
-                "-audio", "/home/dbarbera/Data/audio_clips/allowed1_philip.wav",   
-                "-featparams", "/home/dbarbera/Repositories/articulate-pocketsphinx-go/caller_plus/test_data/model/art-en-us/en-us/feat.params",
-                "-hmm", "/home/dbarbera/Repositories/articulate-pocketsphinx-go/caller_plus/test_data/model/art-en-us/en-us",
-                "-word", "allowed",                                 
-                "-dict", "/home/dbarbera/Repositories/articulate-pocketsphinx-go/caller_plus/test_data/dictionaries/art_db.dic",
-                "-phdict", "/home/dbarbera/Repositories/articulate-pocketsphinx-go/caller_plus/test_data/dictionaries/art_db.phone"
-               ],
+            // "args":[
+            //     "-audio", "/home/dbarbera/Data/audio_clips/allowed1_philip.wav",   
+            //     "-featparams", "/home/dbarbera/Repositories/articulate-pocketsphinx-go/caller_plus/test_data/model/art-en-us/en-us/feat.params",
+            //     "-hmm", "/home/dbarbera/Repositories/articulate-pocketsphinx-go/caller_plus/test_data/model/art-en-us/en-us",
+            //     "-word", "allowed",                                 
+            //     "-dict", "/home/dbarbera/Repositories/articulate-pocketsphinx-go/caller_plus/test_data/dictionaries/art_db.dic",
+            //     "-phdict", "/home/dbarbera/Repositories/articulate-pocketsphinx-go/caller_plus/test_data/dictionaries/art_db.phone"
+            //    ],
             // "args":[
             //     "-audio", "/home/dbarbera/Data/audio_clips/abandoned1_paul.wav",   
             //     "-featparams", "/home/dbarbera/Repositories/articulate-pocketsphinx-go/caller_plus/test_data/model/art-en-us/en-us/feat.params",
@@ -51,6 +51,14 @@
             //     "-dict", "/home/dbarbera/Repositories/articulate-pocketsphinx-go/caller_plus/test_data/dictionaries/art_db.dic",
             //     "-phdict", "/home/dbarbera/Repositories/articulate-pocketsphinx-go/caller_plus/test_data/dictionaries/art_db.phone"
             //    ],
+            "args":[
+                "-audio", "/home/dbarbera/Data/audio_clips/abandoned1_paul.wav",   
+                "-featparams", "/home/dbarbera/Repositories/pronounce-experimental/Models/Bare.ci_cont_3May22/model/feat.params",
+                "-hmm", "/home/dbarbera/Repositories/pronounce-experimental/Models/Bare.ci_cont_3May22/model",
+                "-word", "abandoned",                                 
+                "-dict", "/home/dbarbera/Repositories/pronounce-experimental/Models/Bare.ci_cont_3May22/etc/art_db_v3.dic",
+                "-phdict", "/home/dbarbera/Repositories/pronounce-experimental/Models/Bare.ci_cont_3May22/etc/art_db_v3_inference.phone"
+               ],
             "env":{"GODEBUG":"cgocheck=0"},
               
         }
