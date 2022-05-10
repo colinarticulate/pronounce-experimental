@@ -7,6 +7,7 @@ import (
 	"os"
 	pathpkg "path"
 	"time"
+	"runtime/trace"
 
 	"github.com/colinarticulate/pron"
 	"github.com/google/uuid"
@@ -33,10 +34,29 @@ var (
 )
 
 func main() {
+
+	// To use the profiling tool
+	// go tool trace trace.prof
+	// go tool trace {name of file}
+	
+	f, err := os.Create("mytracefile")
+	if err != nil {
+		log.Fatal(err)
+		panic(err)
+	}
+	//trace.Start(f)
+	//defer trace.Stop()
+	err = trace.Start(f)
+		if err != nil {
+    panic(err)
+	}
+	defer trace.Stop()
+	
+
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
 	flag.Parse()
 
-	err := guard()
+	err = guard()
 	if err != nil {
 		returnJSON(pron.ToJSON([]pron.LettersVerdict{}, err))
 		return

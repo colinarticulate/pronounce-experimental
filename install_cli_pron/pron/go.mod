@@ -1,6 +1,6 @@
 module github.com/colinarticulate/pron
 
-go 1.13
+go 1.18
 
 replace github.com/colinarticulate/scanScheduler => ../scanScheduler
 
