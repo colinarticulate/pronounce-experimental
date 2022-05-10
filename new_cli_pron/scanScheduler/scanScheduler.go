@@ -7,7 +7,7 @@ import (
 	"path"
 	"strings"
 
-	"github.com/davidbarbera/articulate-pocketsphinx-go/xyz_plus"
+	"github.com/davidbarbera/xyz_plus"
 )
 
 type batchState int

@@ -82,8 +82,8 @@ def extract_all_phones_from_dictionary(dictionary):
 def phones_from_transciptions():
     #transcription_file="./data/art_db_Bare_train_Double.transcription"
 
-    #transcription_file="./data/art_db_Bare_train_Expanded.transcription"
-    transcription_file="./../art_db_Bare_train_MASTER_0016.transcription"
+    transcription_file="./data/art_db_Bare_train_Expanded.transcription"
+    #transcription_file="./../art_db_Bare_train_MASTER_0016.transcription"
 
     phones = extract_all_phones_from_dummy_transcription(transcription_file)
     print(phones, len(phones))
@@ -123,9 +123,9 @@ def task_create_inference_phone_file():
 def main():
 
 
-    #task_create_inference_phone_file()
+    task_create_inference_phone_file()
     #phones_from_transciptions()
-    phones_from_dictionary()
+    #phones_from_dictionary()
 
 
     
