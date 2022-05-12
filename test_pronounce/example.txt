@@ -32,3 +32,28 @@
                         -outfolder ../Test_Output/I_paul_x100  \
                         -featparams /home/dbarbera/Repositories/pronounce-experimental/Models/Bare.ci_cont_3May22/model/feat.params \
                         -hmm /home/dbarbera/Repositories/pronounce-experimental/Models/Bare.ci_cont_3May22/model
+
+
+Just curious:
+
+
+375 test:
+valgrind --tool=helgrind ./test_pronounce     -dict /home/dbarbera/Repositories/pronounce-experimental/Models/Bare.ci_cont_3May22/etc/art_db_v3.dic \
+                        -phdict /home/dbarbera/Repositories/pronounce-experimental/Models/Bare.ci_cont_3May22/etc/art_db_v3_inference.phone \
+                        -infolder /home/dbarbera/Data/audio_clips \
+                        -tests /home/dbarbera/Repositories/pronounce-experimental/Tests/pronounce_input.csv \
+                        -expectations /home/dbarbera/Repositories/pronounce-experimental/Expectations/expectations_4May22.csv \
+                        -outfolder ../Test_Output/output_testing_xyz_plus  \
+                        -featparams /home/dbarbera/Repositories/pronounce-experimental/Models/Bare.ci_cont_3May22/model/feat.params \
+                        -hmm /home/dbarbera/Repositories/pronounce-experimental/Models/Bare.ci_cont_3May22/model
+
+
+100xI test:
+valgrind --tool=helgrind ./test_pronounce     -dict /home/dbarbera/Repositories/pronounce-experimental/Models/Bare.ci_cont_3May22/etc/art_db_v3.dic \
+                        -phdict /home/dbarbera/Repositories/pronounce-experimental/Models/Bare.ci_cont_3May22/etc/art_db_v3_inference.phone \
+                        -infolder /home/dbarbera/Data/I_audio_from_paul \
+                        -tests /home/dbarbera/Repositories/pronounce-experimental/Tests/i1_paul_only_x100.csv \
+                        -expectations /home/dbarbera/Repositories/pronounce-experimental/Expectations/expectations_i1_paul_x100.csv \
+                        -outfolder ../Test_Output/I_paul_x100  \
+                        -featparams /home/dbarbera/Repositories/pronounce-experimental/Models/Bare.ci_cont_3May22/model/feat.params \
+                        -hmm /home/dbarbera/Repositories/pronounce-experimental/Models/Bare.ci_cont_3May22/model

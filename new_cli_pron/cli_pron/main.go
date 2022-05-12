@@ -6,6 +6,7 @@ import (
 	"log"
 	"os"
 	pathpkg "path"
+	"runtime/debug"
 	"time"
 
 	"github.com/colinarticulate/pron"
@@ -33,6 +34,13 @@ var (
 )
 
 func main() {
+	// We want the stacktrace if it crashes:
+	defer func() {
+		if r := recover(); r != nil {
+			fmt.Println("stacktrace from panic: \n" + string(debug.Stack()))
+		}
+	}()
+
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
 	flag.Parse()
 
