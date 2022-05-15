@@ -1,0 +1,29 @@
+==================
+WARNING: DATA RACE
+Write at 0x00c000018108 by goroutine 13:
+  main.(*runner).loop.func1()
+      /home/dbarbera/Repositories/pronounce-experimental/test_pronounce/runner.go:109 +0x84
+  main.(*runner).loop·dwrap·2()
+      /home/dbarbera/Repositories/pronounce-experimental/test_pronounce/runner.go:152 +0x74
+
+Previous read at 0x00c000018108 by goroutine 7:
+  main.(*runner).loop()
+      /home/dbarbera/Repositories/pronounce-experimental/test_pronounce/runner.go:107 +0x3d5
+  main.new·dwrap·1()
+      /home/dbarbera/Repositories/pronounce-experimental/test_pronounce/runner.go:74 +0x39
+
+Goroutine 13 (running) created at:
+  main.(*runner).loop()
+      /home/dbarbera/Repositories/pronounce-experimental/test_pronounce/runner.go:108 +0x5cd
+  main.new·dwrap·1()
+      /home/dbarbera/Repositories/pronounce-experimental/test_pronounce/runner.go:74 +0x39
+
+Goroutine 7 (running) created at:
+  main.new()
+      /home/dbarbera/Repositories/pronounce-experimental/test_pronounce/runner.go:74 +0x184
+  main.runTests()
+      /home/dbarbera/Repositories/pronounce-experimental/test_pronounce/runner.go:389 +0x1f9
+  main.main()
+      /home/dbarbera/Repositories/pronounce-experimental/test_pronounce/main.go:47 +0x51a
+==================
+Found 1 data race(s)
