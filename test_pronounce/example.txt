@@ -57,3 +57,17 @@ valgrind --tool=helgrind ./test_pronounce     -dict /home/dbarbera/Repositories/
                         -outfolder ../Test_Output/I_paul_x100  \
                         -featparams /home/dbarbera/Repositories/pronounce-experimental/Models/Bare.ci_cont_3May22/model/feat.params \
                         -hmm /home/dbarbera/Repositories/pronounce-experimental/Models/Bare.ci_cont_3May22/model
+
+
+race conditions in a go program with -race:
+
+
+
+GORACE="log_path=./report" ./test_pronounce     -dict /home/dbarbera/Repositories/pronounce-experimental/Models/Bare.ci_cont_3May22/etc/art_db_v3.dic \
+                        -phdict /home/dbarbera/Repositories/pronounce-experimental/Models/Bare.ci_cont_3May22/etc/art_db_v3_inference.phone \
+                        -infolder /home/dbarbera/Data/I_audio_from_paul \
+                        -tests /home/dbarbera/Repositories/pronounce-experimental/Tests/i1_paul_only_x100.csv \
+                        -expectations /home/dbarbera/Repositories/pronounce-experimental/Expectations/expectations_i1_paul_x100.csv \
+                        -outfolder ../Test_Output/I_paul_x100  \
+                        -featparams /home/dbarbera/Repositories/pronounce-experimental/Models/Bare.ci_cont_3May22/model/feat.params \
+                        -hmm /home/dbarbera/Repositories/pronounce-experimental/Models/Bare.ci_cont_3May22/model

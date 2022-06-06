@@ -76,7 +76,8 @@ def create_fileids_from_transcription( transcription_file, fileids_file, audio_f
         raw=f.read()
 
     transcriptions=raw.strip("\n").split("\n")
-
+    print(f"#Transcription Lines: {len(transcriptions)}")
+    
     fileids=[]
     with open(fileids_file, 'w') as f:
         for transcription in transcriptions:

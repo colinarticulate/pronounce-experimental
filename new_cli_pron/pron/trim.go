@@ -81,11 +81,11 @@ func fetchTrimBounds(audiofile string, phons []phoneme) (float64, float64) {
 	}
 
 	_, err = exec.Command("sox", audiofile, sincAudiofile, "sinc", "5000-500").Output()
-	debug("\n length of audio = ", length_audio)
+	_debug("\n length of audio = ", length_audio)
 
 	//_, err := exec.Command("sox", audiofile, sincAudiofile).Output()
 	if err != nil {
-		debug("Call to sox failed with err, ", err)
+		_debug("Call to sox failed with err, ", err)
 	}
 
 	start2 := 0.0
@@ -122,7 +122,7 @@ func fetchTrimBounds(audiofile string, phons []phoneme) (float64, float64) {
 
 	start = math.Min(start2, start3)
 
-	if start - 0.2 <= 0 {
+	if start-0.2 <= 0 {
 		start = 0
 	} else {
 		start = start - 0.10
@@ -147,14 +147,14 @@ func fetchTrimBounds(audiofile string, phons []phoneme) (float64, float64) {
 	   }
 	*/
 
-	debug("\n start2, duration2, end2 = ", start2, duration2, end2)
-	debug("\n start3, duration3, end3 = ", start3, duration3, end3)
-	//debug("\n start0, duration0 = ", start0, duration0)
-	//debug("\n start1, duration1 = ", start1, duration1)
+	_debug("\n start2, duration2, end2 = ", start2, duration2, end2)
+	_debug("\n start3, duration3, end3 = ", start3, duration3, end3)
+	//_debug("\n start0, duration0 = ", start0, duration0)
+	//_debug("\n start1, duration1 = ", start1, duration1)
 
 	duration = end - start
 
-	debug("\n Initial start, duration, end = ", start, duration, end)
+	_debug("\n Initial start, duration, end = ", start, duration, end)
 
 	//Adjustments
 	//start = start - 0.2333  //*********************** adjusted to try and fix tomo replied where the voiceless plosive "p" goes to zero and VAD thinks it's a silence gap
@@ -179,7 +179,7 @@ func fetchTrimBounds(audiofile string, phons []phoneme) (float64, float64) {
 	guard_end := 0.0
 	guard_end = start + duration
 
-	debug("\n Cut at: start, duration = ", start, duration, "    guard_end = ", guard_end, "\n")
+	_debug("\n Cut at: start, duration = ", start, duration, "    guard_end = ", guard_end, "\n")
 	return start, duration
 
 }
@@ -187,60 +187,60 @@ func fetchTrimBounds(audiofile string, phons []phoneme) (float64, float64) {
 func webRtcBounds(audiofile string, mode int) (float64, float64) {
 	info, err := os.Stat(audiofile)
 	if err != nil {
-		debug("webRtcBounds: call to os.Stat failed. err =", err)
+		_debug("webRtcBounds: call to os.Stat failed. err =", err)
 		log.Panic(err)
 	}
 
 	file, err := os.Open(audiofile)
 	if err != nil {
-		debug("webRtcBounds: failed to open file. err =", err)
+		_debug("webRtcBounds: failed to open file. err =", err)
 		log.Panic(err)
 	}
 	defer file.Close()
 
 	wavReader, err := wav.NewReader(file, info.Size())
 	if err != nil {
-		debug("webRtcBounds: call to wav.NewReader failed. err =", err)
+		_debug("webRtcBounds: call to wav.NewReader failed. err =", err)
 		log.Panic(err)
 	}
 
 	reader, err := wavReader.GetDumbReader()
 	if err != nil {
-		debug("webRtcBounds: call to wav.GetDumbReader failed. err =", err)
+		_debug("webRtcBounds: call to wav.GetDumbReader failed. err =", err)
 		log.Panic(err)
 	}
 
 	wavInfo := wavReader.GetFile()
 	rate := int(wavInfo.SampleRate)
 	if wavInfo.Channels != 1 {
-		debug("webRtcBounds: expected mono file")
+		_debug("webRtcBounds: expected mono file")
 		log.Panic("expected mono file")
 	}
 	if rate != 16000 {
-		debug("webRtcBounds: expected 16kHz file")
+		_debug("webRtcBounds: expected 16kHz file")
 		log.Panic("expected 16kHz file")
 	}
 
 	vad, err := webrtcvad.New()
 	// vad, err := artVad.New()
 	if err != nil {
-		debug("webRtcBounds: call to webrtcvad.New failed. err =", err)
+		_debug("webRtcBounds: call to webrtcvad.New failed. err =", err)
 		log.Panic(err)
 	}
 
 	if err := vad.SetMode(mode); err != nil {
-		debug("webRtcBounds: call to vad.SetMode failed. err =", err)
+		_debug("webRtcBounds: call to vad.SetMode failed. err =", err)
 		log.Panic(err)
 	}
 
 	//frame := make([]byte, 160*2)               //  160/16kHz=10ms but each sample is 2 bytes.  Therefore, 320=10ms, 640=20ms, 960=30ms.
 	frame := make([]byte, 640) //640
 
-	debug("\n\n\nlen(frame)=", len(frame))
-	debug("rate =", rate)
-	//debug("\nThe frame is = ", frame)
+	_debug("\n\n\nlen(frame)=", len(frame))
+	_debug("rate =", rate)
+	//_debug("\nThe frame is = ", frame)
 	//if ok := vad.ValidRateAndFrameLength(rate, len(frame)); !ok {
-	//  debug("\nwebRtcBounds: Valid frame rate & length checker failed")
+	//  _debug("\nwebRtcBounds: Valid frame rate & length checker failed")
 	//  log.Panic("webRTC: invalid rate or frame length")
 	//}
 
@@ -260,13 +260,13 @@ func webRtcBounds(audiofile string, mode int) (float64, float64) {
 			break
 		}
 		if err != nil {
-			debug("webRtcBounds: call to io.ReadFull failed. err =", err)
+			_debug("webRtcBounds: call to io.ReadFull failed. err =", err)
 			log.Panic(err)
 		}
 
 		frameActive, err := vad.Process(rate, frame)
 		if err != nil {
-			debug("webRtcBounds: call to vad.Process failed. err =", err)
+			_debug("webRtcBounds: call to vad.Process failed. err =", err)
 			log.Panic(err)
 		}
 
@@ -317,7 +317,7 @@ func trimAudio(audiofile string, phons []phoneme) string {
 
 	err := cmd.Run()
 	if err != nil {
-		debug("err =", err)
+		_debug("err =", err)
 	}
 	return trimmedfile
 }

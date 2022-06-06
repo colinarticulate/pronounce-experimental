@@ -72,7 +72,7 @@ func (c *combiner) parse() {
 			c.mapping[i] = parsRes
 		} else {
 			c.print()
-			debug("parse: err =", err)
+			_debug("parse: err =", err)
 		}
 	}
 }
@@ -374,7 +374,7 @@ func (c *combiner) integrate() []phonVerdict {
 				break
 			}
 		}
-		debug("i, iTime, newITime, timeStartFrom =", i, iTime, newITime, timeStartFrom)
+		_debug("i, iTime, newITime, timeStartFrom =", i, iTime, newITime, timeStartFrom)
 		if len(where) == 0 || newITime < 0 {
 			// We've not found any links in result.links in the time aligned
 			// phonemes. How can that happen?
@@ -505,7 +505,7 @@ func (c *combiner) unexpectedOpening(ruleIndex int) []linkedPhonVerdict {
 	if !ok {
 		// Something's wrong so crash the program for now
 		c.print()
-		debug("unexpectedOpening: type assertion failed")
+		_debug("unexpectedOpening: type assertion failed")
 		log.Panic()
 	}
 	for i, result := range c.mapping {
@@ -644,7 +644,7 @@ func (c *combiner) standardPhoneme(ruleIndex int) []linkedPhonVerdict {
 	if !ok {
 		// Something's wrong so crash the program for now
 		c.print()
-		debug("standardPhoneme: type assertion failed")
+		_debug("standardPhoneme: type assertion failed")
 		log.Panic()
 	}
 	alignedPhs := make([]map[phoneme][]psPhonemeDatumRef, 4)
@@ -667,7 +667,7 @@ func (c *combiner) standardPhoneme(ruleIndex int) []linkedPhonVerdict {
 		if !ok {
 			// Something's wrong so crash the program for now
 			c.print()
-			debug("standardPhoneme: type assertion failed")
+			_debug("standardPhoneme: type assertion failed")
 			log.Panic()
 		}
 		for j := result[ruleIndex].start; j <= result[ruleIndex].end; j++ {
@@ -1156,7 +1156,7 @@ func (c *combiner) standardPhoneme(ruleIndex int) []linkedPhonVerdict {
 			if storeIndex == -1 {
 				// Something's not right with the code above so crash the program
 				c.print()
-				debug("standardPhoneme: failed to set storeIndex")
+				_debug("standardPhoneme: failed to set storeIndex")
 				log.Panic()
 			}
 			ref := psPhonemeDatumRef{
@@ -1304,7 +1304,7 @@ func (c *combiner) diphthongPhoneme(ruleIndex int) []linkedPhonVerdict {
 	if !ok {
 		// Something's wrong so crash the program for now
 		c.print()
-		debug("diphthongPhoneme: type assertion failed")
+		_debug("diphthongPhoneme: type assertion failed")
 		log.Panic()
 	}
 	alignedPhs := make([]map[phoneme][]psPhonemeDatumRef, 5)
@@ -1330,7 +1330,7 @@ func (c *combiner) diphthongPhoneme(ruleIndex int) []linkedPhonVerdict {
 		if !ok {
 			// Something's wrong so crash the program for now
 			c.print()
-			debug("diphthongPhoneme: type assertion failed")
+			_debug("diphthongPhoneme: type assertion failed")
 			log.Panic()
 		}
 		for j := result[ruleIndex].start; j <= result[ruleIndex].end; j++ {
@@ -1430,7 +1430,7 @@ func (c *combiner) diphthongPhoneme(ruleIndex int) []linkedPhonVerdict {
 			if storeIndex == -1 {
 				// Something's not right with the code above so crash the program
 				c.print()
-				debug("diphthongPhoneme: failed to set storeIndex")
+				_debug("diphthongPhoneme: failed to set storeIndex")
 				log.Panic()
 			}
 			ref := psPhonemeDatumRef{
@@ -1475,7 +1475,7 @@ func (c *combiner) diphthongPhoneme(ruleIndex int) []linkedPhonVerdict {
 			     if !ok {
 			       // Something went wrong so crash the program for now
 			       c.print()
-			       debug("diphthongPhoneme: failed to make diphthong")
+			       _debug("diphthongPhoneme: failed to make diphthong")
 			       log.Panic()
 			     }
 			     phV := phonVerdict{
@@ -1557,7 +1557,7 @@ func (c *combiner) diphthongPhoneme(ruleIndex int) []linkedPhonVerdict {
 	  if !ok {
 	    // Something went wrong so crash the program for now
 	    c.print()
-	    debug("diphthongPhoneme: failed to make diphthong")
+	    _debug("diphthongPhoneme: failed to make diphthong")
 	    log.Panic()
 	  }
 	  phV := phonVerdict{
@@ -1598,7 +1598,7 @@ func (c combiner) unexpectedPhoneme(ruleIndex int) []linkedPhonVerdict {
 	}
 	// Something's wrong so crash the program for now
 	c.print()
-	debug("unexpectedPhoneme: type assertion failed")
+	_debug("unexpectedPhoneme: type assertion failed")
 	log.Panic()
 	// Stupid compiler insists on a return here even though it's unreachable
 	// code
@@ -1620,7 +1620,7 @@ func (c *combiner) unexpectedClosing(ruleIndex int) []linkedPhonVerdict {
 	if !ok {
 		// Something's wrong so crash the program for now
 		c.print()
-		debug("unexpectedClosing: type assertion failed")
+		_debug("unexpectedClosing: type assertion failed")
 		log.Panic()
 	}
 	for i, result := range c.mapping {
@@ -1690,7 +1690,7 @@ func (c *combiner) unexpectedClosing(ruleIndex int) []linkedPhonVerdict {
 
 func (c combiner) print() {
 	if len(c.results) == 0 {
-		debug("Nothing to print")
+		_debug("Nothing to print")
 		return
 	}
 	str := fmt.Sprintln("Mapped result =")
@@ -1700,7 +1700,7 @@ func (c combiner) print() {
 			str += fmt.Sprintln("start:", parsedRes.start, "end:", parsedRes.end, "phonemeFound:", parsedRes.phonemeFound)
 		}
 	}
-	debug(str)
+	_debug(str)
 	str = fmt.Sprintln("Rules =")
 	for i, parsRes := range c.results {
 		str += fmt.Sprintln("rule", i, "=")
@@ -1731,5 +1731,5 @@ func (c combiner) print() {
 
 		}
 	}
-	debug(str)
+	_debug(str)
 }

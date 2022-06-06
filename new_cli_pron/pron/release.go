@@ -1,3 +1,4 @@
+//go:build !debug
 // +build !debug
 
 package pron
@@ -6,7 +7,7 @@ import (
 	"os"
 )
 
-func debug(args ...interface{}) {
+func _debug(args ...interface{}) {
 }
 
 func removeFromDisk(filepath string) {

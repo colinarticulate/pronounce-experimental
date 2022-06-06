@@ -77,9 +77,9 @@ func new() runner {
 
 func (r *runner) loop() {
 	//Throttling
-	maxRunningTests := 100 //100 //10 default
+	maxRunningTests := 150 //100 //10 default
 	runningTests := 0
-	nms := 10000        //8500         // 2000
+	nms := 7000         //8500         // 2000
 	ms := nms * 1000000 //in milliseconds
 	//ms := float64(nms) * 0.001
 	fmt.Println(time.Duration(ms))         //0.001=1ms

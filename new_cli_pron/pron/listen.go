@@ -11,6 +11,7 @@ import (
 	"path"
 	"path/filepath"
 	"runtime"
+	"runtime/debug"
 	"sort"
 	"strconv"
 	"strings"
@@ -2298,11 +2299,11 @@ type pruneAssist interface {
 }
 
 func (p psPhonemeResults) resolve(l link, s linkSet) link {
-	debug("resolve->: l =", l, "s =", s)
+	_debug("resolve->: l =", l, "s =", s)
 	if len(s.links) == 0 {
 		// There's nothing to resolve!
 		//
-		debug("resolve<-:", l)
+		_debug("resolve<-:", l)
 		return l
 	}
 	// A local function to determine whether this is a to conflict.
@@ -2326,7 +2327,7 @@ func (p psPhonemeResults) resolve(l link, s linkSet) link {
 				ret = k
 			}
 		}
-		debug("resolve<-:", ret)
+		_debug("resolve<-:", ret)
 		return ret
 	}
 	// if it's not a to conflict then this is either a from conflict or a
@@ -2341,7 +2342,7 @@ func (p psPhonemeResults) resolve(l link, s linkSet) link {
 			diff = thisDiff
 		}
 	}
-	debug("resolve<-:", ret)
+	_debug("resolve<-:", ret)
 	return ret
 }
 
@@ -2774,7 +2775,7 @@ var verdicts = []string{
 func getVerdict(phToAbcEntry phonToAlphas, verdicts []phonVerdict) []LettersVerdict {
 	ret := []LettersVerdict{}
 	if len(verdicts) == 0 {
-		debug("getVerdict<-:len(verdicts) == 0")
+		_debug("getVerdict<-:len(verdicts) == 0")
 		return ret
 	}
 	// This is straightforward. There's only one phoneme so return the corresponding
@@ -2785,7 +2786,7 @@ func getVerdict(phToAbcEntry phonToAlphas, verdicts []phonVerdict) []LettersVerd
 			phToAbcEntry.phons,
 			verdicts[0].goodBadEtc,
 		}
-		debug("getVerdict<-:new", new)
+		_debug("getVerdict<-:new", new)
 		return []LettersVerdict{new}
 	} else {
 		// So here we have a number of phonemes corresponding to a letter (or number of
@@ -2859,7 +2860,7 @@ func (i internalError) Error() string {
 }
 
 func publish(word string, phons []phoneme, verdicts []phonVerdict) ([]LettersVerdict, error) {
-	debug("publish->")
+	_debug("publish->")
 	// First a quick check to see if more than 50% of the phonemes are bad
 	//
 	badCount := 0
@@ -2873,7 +2874,7 @@ func publish(word string, phons []phoneme, verdicts []phonVerdict) ([]LettersVer
 		return []LettersVerdict{}, err
 	}
 
-	debug("phonsToAlphas =", phonsToAlphas)
+	_debug("phonsToAlphas =", phonsToAlphas)
 	lettersVerdicts := []LettersVerdict{}
 	i := 0
 	j := 0
@@ -2906,7 +2907,7 @@ func publish(word string, phons []phoneme, verdicts []phonVerdict) ([]LettersVer
 			i++
 		}
 	}
-	debug("lettersVerdicts =", lettersVerdicts)
+	_debug("lettersVerdicts =", lettersVerdicts)
 
 	// Send results off
 	//
@@ -2916,7 +2917,7 @@ func publish(word string, phons []phoneme, verdicts []phonVerdict) ([]LettersVer
 	// _ = c.Post(json, "pronounce_ingress.php")
 	//
 
-	debug("publish<-")
+	_debug("publish<-")
 	return lettersVerdicts, nil
 }
 
@@ -2956,7 +2957,7 @@ func ToJSON(results []LettersVerdict, err error) []byte {
 	}
 	j, err := json.MarshalIndent(out, "", "  ")
 	if err != nil {
-		debug("toJSON: call to MarshalIndent failed. err =", err)
+		_debug("toJSON: call to MarshalIndent failed. err =", err)
 		log.Panic()
 	}
 	return j
@@ -2965,7 +2966,7 @@ func ToJSON(results []LettersVerdict, err error) []byte {
 // func postResults(c communicator.CommunicatorT, json []byte) {
 // 	err := c.Post(json, "pronounce_ingress.php")
 // 	if err != nil {
-// 		debug("postResults: call to Post failed. err =", err)
+// 		_debug("postResults: call to Post failed. err =", err)
 // 		log.Panic(err)
 // 	}
 // }
@@ -3013,23 +3014,23 @@ func allMissing(verdicts []LettersVerdict) bool {
 }
 
 func score(verdicts []phonVerdict) int {
-	debug("score->")
+	_debug("score->")
 	ret := 0
 	allGood := true
 	for _, verdict := range verdicts {
 		switch verdict.goodBadEtc {
 		case good:
-			debug("+1 for", verdict.phon)
+			_debug("+1 for", verdict.phon)
 			ret += 1 // ret += 2
 		case possible:
-			debug("+1 for", verdict.phon)
+			_debug("+1 for", verdict.phon)
 			ret += 1
 		case missing:
-			debug("-1 for", verdict.phon)
+			_debug("-1 for", verdict.phon)
 			allGood = false
 			ret += -1
 		case surprise:
-			debug("-1 for", verdict.phon)
+			_debug("-1 for", verdict.phon)
 			allGood = false
 			ret += -1
 		}
@@ -3037,7 +3038,7 @@ func score(verdicts []phonVerdict) int {
 	if allGood {
 		ret += 5
 	}
-	debug("score<-:", ret)
+	_debug("score<-:", ret)
 	return ret
 }
 
@@ -3154,7 +3155,7 @@ func runPs(logfile string, withSettings psPhonemeSettings) []psPhonemeDatum {
 	//
 	_, err := exec.Command("pocketsphinx_continuous", args...).Output()
 	if err != nil {
-		debug("Oops, check pocketsphinx settings? args are...", args)
+		_debug("Oops, check pocketsphinx settings? args are...", args)
 		return []psPhonemeDatum{}
 	}
 	return parsePsData(logfile)
@@ -3171,7 +3172,7 @@ func parsePsData(filename string) []psPhonemeDatum {
 
 	f, err := os.Open(filename)
 	if err != nil {
-		debug("parsePsData: failed to open file,", filename, ". err =", err)
+		_debug("parsePsData: failed to open file,", filename, ". err =", err)
 		log.Panic(err)
 	}
 	defer f.Close()
@@ -3252,7 +3253,7 @@ func parsePsData(filename string) []psPhonemeDatum {
 func mkDir(dirname string) {
 	err := os.Mkdir(dirname, 0777)
 	if os.IsPermission(err) {
-		debug("mkDir: failed to make directory. err =", err)
+		_debug("mkDir: failed to make directory. err =", err)
 		log.Panic()
 	}
 	if os.IsExist(err) {
@@ -3266,12 +3267,12 @@ func mkDir(dirname string) {
 
 		   names, err := d.Readdirnames(-1)
 		   if err != nil {
-		     debug("Error", err, "found on reading files and folders")
+		     _debug("Error", err, "found on reading files and folders")
 		   }
 		   for _, name := range names {
 		     err = os.RemoveAll(path.Join(dirname, name))
 		     if err != nil {
-		       debug("Error,", err, "removing file/folder,", name)
+		       _debug("Error,", err, "removing file/folder,", name)
 		     }
 		   }
 		*/
@@ -3920,7 +3921,7 @@ func fixAudioFile(audiofile string) string {
 	fixedfile := filepath.Join(dir, file[:len(file)-len(ext)]+"_fixed"+ext)
 	_, err := exec.Command("sox", audiofile, "-r", "16000", "-c", "1", "-b", "16", fixedfile).Output()
 	if err != nil {
-		debug("fixAudioFile: call to sox failed. err =", err)
+		_debug("fixAudioFile: call to sox failed. err =", err)
 		log.Panic()
 	}
 	return fixedfile
@@ -3929,7 +3930,7 @@ func fixAudioFile(audiofile string) string {
 func clean(outfolder string) {
 	err := os.RemoveAll(outfolder)
 	if err != nil {
-		debug("Doh! Error on removing folder, Temp. Error =", err)
+		_debug("Doh! Error on removing folder, Temp. Error =", err)
 	}
 }
 
@@ -3961,6 +3962,13 @@ func Pronounce(outfolder string,
 	featparams string,
 	hmm string,
 ) ([]LettersVerdict, error) {
+
+	// We want the stacktrace if it crashes:
+	defer func() {
+		if r := recover(); r != nil {
+			fmt.Println("stacktrace from panic: \n" + string(debug.Stack()))
+		}
+	}()
 
 	defer clean(outfolder)
 	defer cleanWavFiles(audiofile, word)
@@ -4038,11 +4046,11 @@ func pronounce(outfolder string, audiofile string, word string, dictfile, phdict
 	// but when presented with the (phonetic) spelling HH AA D L IY then says the
 	// D is missing! Clearly HH AA D L IY should be the result to go for...
 	if couldBeBetter(bestResult) {
-		debug("bestResult =", bestResult)
+		_debug("bestResult =", bestResult)
 		// if result, found := searchForBetter(results); found {
 		if result, found := searchForBest(results, variantPhons); found {
 			bestResult = result
-			debug("Updated bestResult =", bestResult)
+			_debug("Updated bestResult =", bestResult)
 		}
 	}
 
@@ -4064,7 +4072,7 @@ func testResult(bestResult []phonVerdict) {
 	for _, result := range bestResult {
 		str += " " + string(result.phon) + " " + verdicts[result.goodBadEtc]
 	}
-	debug(str)
+	_debug(str)
 }
 
 func runTestVariantScans(sch scanScheduler.Scheduler, outfolder, audiofile, phdictfile string, dict dictionary.Dictionary, featparams string, hmm string, word string, variants [][]phoneme, suiteToRun psSuite, f func([]variantResult)) {
@@ -4216,7 +4224,7 @@ func runVariantScan(c chan<- variantResult, wg *sync.WaitGroup, sch scanSchedule
 		65, 100, 256,
 	}
 	for _, scan := range suiteToRun {
-		debug("Running scan for frate =", scan["-frate"])
+		_debug("Running scan for frate =", scan["-frate"])
 		wg1.Add(1)
 		builderConfig := new_jsgfStandard()
 		suiteOfOne := psSuite{
@@ -4225,7 +4233,7 @@ func runVariantScan(c chan<- variantResult, wg *sync.WaitGroup, sch scanSchedule
 		/*
 		   frate, err := strconv.Atoi(scan["-frate"])
 		   if err != nil {
-		     debug("Failed to get frate for batch scan")
+		     _debug("Failed to get frate for batch scan")
 		   }
 		*/
 		config, jsgf_buffer := TestConfig(outfolder, audiofile, phdictfile, dict, featparams, hmm, word, variant, frates, suiteOfOne, targetRuleForWord, &builderConfig)
@@ -4250,7 +4258,7 @@ func runVariantScan(c chan<- variantResult, wg *sync.WaitGroup, sch scanSchedule
 	for _, result := range sortedResults {
 		str += fmt.Sprintln(result.psPhonemeResults)
 	}
-	debug(str)
+	_debug(str)
 
 	combiner := newCombiner(variant)
 	str = "normalised results =\n"
@@ -4259,31 +4267,31 @@ func runVariantScan(c chan<- variantResult, wg *sync.WaitGroup, sch scanSchedule
 		str += fmt.Sprintln(normResult)
 		combiner.addResult(normResult, result.newPsConfig.tRule)
 	}
-	debug(str)
+	_debug(str)
 
 	combiner.parse()
 	ruleVerdicts := combiner.ruleAlign()
-	debug("ruleAligned =", ruleVerdicts)
+	_debug("ruleAligned =", ruleVerdicts)
 	for i := range combiner.results {
 		combiner.timeAligner.AddResult(combiner.results[i].psPhonemeResults)
 	}
-	debug("")
+	_debug("")
 
 	str = "results (after rule-alignment) =\n"
 	for _, result := range combiner.results {
 		str += fmt.Sprintln(result.psPhonemeResults)
 	}
-	debug(str)
+	_debug(str)
 
 	combiner.timeAlignedPhonemes = combiner.timeAligner.timeAlign()
 	timeVerdicts := combiner.timeAlignedPhonemes
-	debug("timeAligned =", timeVerdicts)
-	debug("")
+	_debug("timeAligned =", timeVerdicts)
+	_debug("")
 	combinedVerdict := combiner.integrate()
-	debug("combinedVerdict    =", combinedVerdict)
+	_debug("combinedVerdict    =", combinedVerdict)
 	ruleAlignedVerdict := mapLinkedVerdicts(ruleVerdicts)
-	debug("ruleAlignedVerdict =", ruleAlignedVerdict)
-	debug("")
+	_debug("ruleAlignedVerdict =", ruleAlignedVerdict)
+	_debug("")
 
 	verdict := combinedVerdict
 	// verdict := ruleAlignedVerdict
@@ -4372,7 +4380,7 @@ func doRunScan(s scanScheduler.Scheduler, config newPsConfig, word string, jsgf_
 		Value: logfile,
 	}
 	params = append(params, param)
-	//This is just so we can debug scanScheduler's call to pocketsphinx
+	//This is just so we can _debug scanScheduler's call to pocketsphinx
 	//so we can right a proper test case name (sometimes same audio is processed with a different target word
 	//to test for mispronunciations, like in minimal pairs)
 	paramword := scanScheduler.PsParam{
@@ -4451,7 +4459,7 @@ func doRunScan(s scanScheduler.Scheduler, config newPsConfig, word string, jsgf_
 	//err := <-ch // All that's returned is an error. It's the log file I need
 	response := <-ch
 	// if err != nil {
-	// 	debug("DoScan returned err =", err)
+	// 	_debug("DoScan returned err =", err)
 	// }
 
 	utts := toPhonemeData(response)
@@ -4535,7 +4543,7 @@ func runDiphthongScan(c chan<- variantResult, wg *sync.WaitGroup, sch scanSchedu
 		/*
 		   frate, err := strconv.Atoi(scan["-frate"])
 		   if err != nil {
-		     debug("Failed to get frate for batch scan")
+		     _debug("Failed to get frate for batch scan")
 		   }
 		*/
 		config, jsgf_buffer := TestConfig(outfolder, audiofile, phdictfile, dict, featparams, hmm, word, variant, frates, suiteOfOne, targetRuleForWord, &builderConfig)
@@ -4552,7 +4560,7 @@ func runDiphthongScan(c chan<- variantResult, wg *sync.WaitGroup, sch scanSchedu
 		results = append(results, d)
 	}
 
-	// Print out some debug stuff
+	// Print out some _debug stuff
 	sortedResults := results
 	sort.Slice(sortedResults, func(i, j int) bool {
 		return sortedResults[i].psPhonemeResults.frate < sortedResults[j].psPhonemeResults.frate
@@ -4561,7 +4569,7 @@ func runDiphthongScan(c chan<- variantResult, wg *sync.WaitGroup, sch scanSchedu
 	for _, result := range sortedResults {
 		str += fmt.Sprintln(result.psPhonemeResults)
 	}
-	debug(str)
+	_debug(str)
 
 	combiner := newCombiner(variant)
 	str = "normalised results =\n"
@@ -4570,30 +4578,30 @@ func runDiphthongScan(c chan<- variantResult, wg *sync.WaitGroup, sch scanSchedu
 		str += fmt.Sprintln(normResult)
 		combiner.addResult(normResult, result.newPsConfig.tRule)
 	}
-	debug(str)
+	_debug(str)
 
 	combiner.parse()
 	ruleVerdicts := combiner.ruleAlign()
-	debug("ruleAligned =", ruleVerdicts)
+	_debug("ruleAligned =", ruleVerdicts)
 	for i := range combiner.results {
 		combiner.timeAligner.AddResult(combiner.results[i].psPhonemeResults)
 	}
-	debug("")
+	_debug("")
 
 	str = "results (after rule-alignment) =\n"
 	for _, result := range combiner.results {
 		str += fmt.Sprintln(result.psPhonemeResults)
 	}
-	debug(str)
+	_debug(str)
 
 	combiner.timeAlignedPhonemes = combiner.timeAligner.timeAlign()
 	timeVerdicts := combiner.timeAlignedPhonemes
-	debug("timeAligned =", timeVerdicts)
-	debug("")
+	_debug("timeAligned =", timeVerdicts)
+	_debug("")
 	combinedVerdict := combiner.integrate()
-	debug("combinedVerdict =", combinedVerdict)
+	_debug("combinedVerdict =", combinedVerdict)
 	ruleAlignedVerdict := mapLinkedVerdicts(ruleVerdicts)
-	debug("ruleAlignedVerdict =", ruleAlignedVerdict)
+	_debug("ruleAlignedVerdict =", ruleAlignedVerdict)
 	verdict := combinedVerdict
 
 	// verdict := ruleAlignedVerdict
@@ -4661,7 +4669,7 @@ func verdictWithDiphthongs(phonemes []phoneme, verdict []phonVerdict) []phonVerd
 			// The parts of the diphthong might have been split up by a surprise
 			// so search for the second part
 			if diphthong[0] != verdict[v].phon {
-				debug("What the hell's going on? Expecting dipthong", diphthong, "but verdict phone is", verdict[v].phon)
+				_debug("What the hell's going on? Expecting dipthong", diphthong, "but verdict phone is", verdict[v].phon)
 				v++
 			} else {
 				if j, ok := searchForPhoneme(diphthong[1], verdict[v:]); ok {
@@ -4693,19 +4701,19 @@ func verdictWithDiphthongs(phonemes []phoneme, verdict []phonVerdict) []phonVerd
 					i++
 					continue
 				}
-				debug("Failed to find the second part of dipthong", diphthong)
+				_debug("Failed to find the second part of dipthong", diphthong)
 				v++
 			}
 		} else {
 			// It's not a diphthong! What to do?
-			debug("Hmm... Thought I'd found a diphthong but it's not. Phoneme is", phonemes[i])
+			_debug("Hmm... Thought I'd found a diphthong but it's not. Phoneme is", phonemes[i])
 			// Better increment v just so we don't get stuck...
 			v++
 			continue
 		}
 	}
 	if v != len(verdict) || i != len(phonemes) {
-		debug("v, len(verdict), i, len(phonemes) =", v, len(verdict), i, len(phonemes))
+		_debug("v, len(verdict), i, len(phonemes) =", v, len(verdict), i, len(phonemes))
 	}
 	return diphthongVerdict
 }
@@ -4775,7 +4783,7 @@ func testResult(bestResult []phonemeVerdict) {
   for _, result := range bestResult {
     str += " " + string(result.psPhonemeDatum.phoneme) + " " + verdicts[result.goodBadEtc]
   }
-  debug(str)
+  _debug(str)
 }
 
 func runSerialTestVariantScans(audiofile, phdictfile string, dict dictionary.Dictionary, word string, variants [][]phoneme, suiteToRun psSuite, f func([]variantResult)) {
@@ -4799,12 +4807,12 @@ func runSerialTestVariantScan(audiofile, phdictfile string, dict dictionary.Dict
     sort.Slice(arg1, func (i,j int) bool {
       return arg1[i].frate < arg1[j].frate
     })
-    debug()
-    debug("trimmedResults =")
+    _debug()
+    _debug("trimmedResults =")
     for _, result := range arg1 {
-      debug(result)
+      _debug(result)
     }
-    debug()
+    _debug()
     verdict := process(word, variant, arg1)
     result := variantResult{
       score(verdict),
@@ -4831,20 +4839,20 @@ func runSerialTestDiphthongScan(audiofile, phdictfile string, dict dictionary.Di
   diphthongBuilderConfig := new_jsgfDiphthong()
   config := TestConfig(audiofile, phdictfile, dict, word, variant, template, frates, suiteToRun, targetRuleWithDiphthongs, &diphthongBuilderConfig)
   return scheduler.RunSerialNewScan(config, func(arg1 []psPhonemeResults) variantResult {
-    debug("diphthong results = ", arg1)
+    _debug("diphthong results = ", arg1)
     diphthongisedResults := diphthongise(arg1)
-    debug("diphthongised results = ", diphthongisedResults)
+    _debug("diphthongised results = ", diphthongisedResults)
     // trimmedResults := trimResults(diphthongisedResults, trim)
     // Put them in frate order for printing to the console
     sort.Slice(diphthongisedResults, func (i,j int) bool {
       return diphthongisedResults[i].frate < diphthongisedResults[j].frate
     })
-    debug()
-    debug("trimmedResults =")
+    _debug()
+    _debug("trimmedResults =")
     for _, result := range diphthongisedResults {
-      debug(result)
+      _debug(result)
     }
-    debug()
+    _debug()
     // Amalgamate vowels into diphthongs
 
     verdict := process(word, variant, diphthongisedResults)
@@ -4946,7 +4954,7 @@ func merge(results []psPhonemeResults) []psPhonemeDatum {
   for _, datum := range scratchPad {
     ret = append(ret, datum)
   }
-  debug("ret =", ret)
+  _debug("ret =", ret)
   return ret
 }
 */
@@ -5079,11 +5087,11 @@ func (ps candidateData) powerset() []candidatePhoneme {
 }
 
 func (c candidateData) resolve(l link, s linkSet) link {
-	debug("resolve->: l =", l, "s =", s)
+	_debug("resolve->: l =", l, "s =", s)
 	if len(s.links) == 0 {
 		// There's nothing to resolve!
 		//
-		debug("resolve<-:", l)
+		_debug("resolve<-:", l)
 		return l
 	}
 	// A local function to determine whether this is a to conflict.
@@ -5107,7 +5115,7 @@ func (c candidateData) resolve(l link, s linkSet) link {
 				ret = k
 			}
 		}
-		debug("resolve<-:", ret)
+		_debug("resolve<-:", ret)
 		return ret
 	}
 	// if it's not a to conflict then this is either a from conflict or a
@@ -5124,12 +5132,12 @@ func (c candidateData) resolve(l link, s linkSet) link {
 			diff = thisDiff
 		}
 	}
-	debug("resolve<-:", ret)
+	_debug("resolve<-:", ret)
 	return ret
 }
 
 func judgement(phons []phoneme, candidates []candidatePhoneme, links linkWithConfidenceSet) []phonemeVerdict {
-	debug("judgement->: candidates", candidates)
+	_debug("judgement->: candidates", candidates)
 	verdicts := []phonemeVerdict{}
 	if len(candidates) == 0 {
 		return verdicts
@@ -5152,7 +5160,7 @@ func judgement(phons []phoneme, candidates []candidatePhoneme, links linkWithCon
 			if link.confidence == 2 {
 				v.goodBadEtc = possible
 			}
-			debug("Adding verdict,", v)
+			_debug("Adding verdict,", v)
 			verdicts = append(verdicts, v)
 		} else {
 			//  Can't do this! There is no candidate phoneme datum because the
@@ -5166,11 +5174,11 @@ func judgement(phons []phoneme, candidates []candidatePhoneme, links linkWithCon
 				i,
 				missing,
 			}
-			debug("Adding verdict,", v)
+			_debug("Adding verdict,", v)
 			verdicts = append(verdicts, v)
 		}
 	}
-	debug("judgement<-")
+	_debug("judgement<-")
 	return verdicts
 }
 
@@ -5222,11 +5230,11 @@ func process(word string, phons []phoneme, results []psPhonemeResults) []phoneme
   candidates := merge(results)
   links := createLinkWithConfidenceSet(candidates, phons)
   remainingLinks := pruneWithConfidence(links, candidateData(candidates))
-  debug("remainingLinks =", remainingLinks)
+  _debug("remainingLinks =", remainingLinks)
   verdicts := judgement(phons, candidates, remainingLinks)
-  debug("verdicts =", verdicts)
+  _debug("verdicts =", verdicts)
   verdicts = insertUnexpected(candidates, verdicts)
-  debug("verdicts(final) =", verdicts)
+  _debug("verdicts(final) =", verdicts)
   return verdicts
 }
 */

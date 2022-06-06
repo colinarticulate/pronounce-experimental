@@ -26,14 +26,14 @@ type linkWithConfidence struct {
 type linkWithConfidenceSet map[linkWithConfidence]bool
 
 func createLinkWithConfidenceSet(actual candidateData, expected []phoneme) linkWithConfidenceSet {
-	debug("createLinkWithConfidenceSet->")
+	_debug("createLinkWithConfidenceSet->")
 	ret := make(linkWithConfidenceSet)
 	for i, phE := range expected {
 		for j, phA := range actual {
 			// Coding in the er_ending rule here!
 			//
 			if i == len(expected)-1 && phE == er && phA.phoneme == ah {
-				debug("Creating link between", phE, "and", phA)
+				_debug("Creating link between", phE, "and", phA)
 				link := linkWithConfidence{
 					link{
 						i,
@@ -45,7 +45,7 @@ func createLinkWithConfidenceSet(actual candidateData, expected []phoneme) linkW
 				continue
 			}
 			if phE == phA.phoneme {
-				debug("Creating link between", phE, "and", phA)
+				_debug("Creating link between", phE, "and", phA)
 				link := linkWithConfidence{
 					link{
 						i,
@@ -58,7 +58,7 @@ func createLinkWithConfidenceSet(actual candidateData, expected []phoneme) linkW
 			}
 		}
 	}
-	debug("createLinkWithConfidenceSet->")
+	_debug("createLinkWithConfidenceSet->")
 	return ret
 }
 
@@ -120,7 +120,7 @@ func pruneWithConfidence(links linkWithConfidenceSet, pa pruneAssist) linkWithCo
 }
 
 func createLinkSet(actual []psPhonemeDatum, expected []phoneme) linkSet {
-	debug("createLinkSet->")
+	_debug("createLinkSet->")
 	ret := linkSet{
 		make(map[link]bool),
 	}
@@ -129,7 +129,7 @@ func createLinkSet(actual []psPhonemeDatum, expected []phoneme) linkSet {
 			// Coding in the er_ending rule here!
 			//
 			if i == len(expected)-1 && phE == er && phA.phoneme == ah {
-				debug("Creating link between", phE, "and", phA)
+				_debug("Creating link between", phE, "and", phA)
 				ret.insert(link{
 					i,
 					j,
@@ -137,7 +137,7 @@ func createLinkSet(actual []psPhonemeDatum, expected []phoneme) linkSet {
 				continue
 			}
 			if phE == phA.phoneme {
-				debug("Creating link between", phE, "and", phA)
+				_debug("Creating link between", phE, "and", phA)
 				ret.insert(link{
 					i,
 					j,
@@ -146,8 +146,8 @@ func createLinkSet(actual []psPhonemeDatum, expected []phoneme) linkSet {
 			}
 		}
 	}
-	debug("Links created =", ret)
-	debug("createLinkSet->")
+	_debug("Links created =", ret)
+	_debug("createLinkSet->")
 	return ret
 }
 
@@ -252,7 +252,7 @@ func costToKeep(l linkSet) int {
 }
 
 func prune(links linkSet, pa pruneAssist) linkSet {
-	debug("prune:->")
+	_debug("prune:->")
 	remaining := linkSet{
 		make(map[link]bool),
 	}
@@ -261,7 +261,7 @@ func prune(links linkSet, pa pruneAssist) linkSet {
 	}
 
 	for k := range links.links {
-		debug("Processing link k =", k)
+		_debug("Processing link k =", k)
 		if removed.contains(k) {
 			continue
 		}
@@ -274,9 +274,9 @@ func prune(links linkSet, pa pruneAssist) linkSet {
 			continue
 		}
 
-		debug("Conflicting link set =", confLinkSet)
+		_debug("Conflicting link set =", confLinkSet)
 		thisCost := costToKeep(confLinkSet)
-		debug("Cost to keep link,", k, "=", thisCost)
+		_debug("Cost to keep link,", k, "=", thisCost)
 
 		type linksWithCost struct {
 			cost int
@@ -291,7 +291,7 @@ func prune(links linkSet, pa pruneAssist) linkSet {
 		for k := range confLinkSet.links {
 			linksConf_k := conflicts(k, links).subtracting(removed)
 			cost := costToKeep(linksConf_k)
-			debug("Cost to keep link,", k, "=", cost)
+			_debug("Cost to keep link,", k, "=", cost)
 			if cost < minCostLinks.cost {
 				links := make(map[link]bool)
 				links[k] = true
@@ -309,30 +309,30 @@ func prune(links linkSet, pa pruneAssist) linkSet {
 		}
 		minCost := minCostLinks.cost
 		if thisCost < minCost {
-			debug("Keeping", k)
+			_debug("Keeping", k)
 			remaining.insert(k)
-			debug("Removing", confLinkSet)
+			_debug("Removing", confLinkSet)
 			removed.formUnion(confLinkSet)
 			continue
 		}
 		if thisCost > minCost {
-			debug("Removing", k)
+			_debug("Removing", k)
 			removed.insert(k)
 			continue
 		}
 		if thisCost == minCost {
 			l := pa.resolve(k, minCostLinks.linkSet)
 			if l == k {
-				debug("Keeping", k)
+				_debug("Keeping", k)
 				remaining.insert(k)
-				debug("Removing", confLinkSet)
+				_debug("Removing", confLinkSet)
 				removed.formUnion(confLinkSet)
 				continue
 			}
 		}
-		debug("Removing", k)
+		_debug("Removing", k)
 		removed.insert(k)
 	}
-	debug("remaining =", remaining)
+	_debug("remaining =", remaining)
 	return remaining
 }

@@ -1,3 +1,4 @@
+//go:build debug
 // +build debug
 
 package pron
@@ -6,7 +7,7 @@ import (
 	"fmt"
 )
 
-func debug(args ...interface{}) {
+func _debug(args ...interface{}) {
 	fmt.Println(args...)
 }
 
