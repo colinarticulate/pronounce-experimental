@@ -80,14 +80,19 @@ func fetchTrimBounds(audiofile string, phons []phoneme) (float64, float64) {
 		log.Panic(err)
 	}
 
-	_, err = exec.Command("sox", audiofile, sincAudiofile, "sinc", "5000-500").Output()
-	defer os.Remove(sincAudiofile)
+	// //sox
+	// _, err = exec.Command("sox", audiofile, sincAudiofile, "sinc", "5000-500").Output()
+	// debug("\n length of audio = ", length_audio)
 
+	// //_, err := exec.Command("sox", audiofile, sincAudiofile).Output()
+	// if err != nil {
+	// 	debug("Call to sox failed with err, ", err)
+	// }
+	//Meena
+	_, err = exec.Command("mt_cv_mvns", audiofile, sincAudiofile, "1", "16000", "25").Output()
 	debug("\n length of audio = ", length_audio)
-
-	//_, err := exec.Command("sox", audiofile, sincAudiofile).Output()
 	if err != nil {
-		debug("Call to sox failed with err, ", err)
+		debug("Call to mt_cv_mvns failed with err, ", err)
 	}
 
 	start2 := 0.0
@@ -122,8 +127,6 @@ func fetchTrimBounds(audiofile string, phons []phoneme) (float64, float64) {
 	  }
 	*/
 
-
-
 	start = math.Min(start2, start3)
 
 	// if start-0.3 <= 0 {
@@ -138,9 +141,6 @@ func fetchTrimBounds(audiofile string, phons []phoneme) (float64, float64) {
 	} else {
 		start = start - 0.10
 	}
-
-
-
 
 	/*
 	   if start2 <= 0.2 {

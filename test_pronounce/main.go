@@ -44,9 +44,10 @@ func main() {
 		return
 	}
 	t0 := time.Now()
-	runTests(dictfile, phdictfile, infolder, tests, expectations, outfolder, featparams, hmm)
+	performance := runTests(dictfile, phdictfile, infolder, tests, expectations, outfolder, featparams, hmm)
 	t1 := time.Now()
 	fmt.Println("Elapsed time =", t1.Sub(t0))
+	fmt.Println("Pass rate = ", performance, "%")
 }
 
 func init() {

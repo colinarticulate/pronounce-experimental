@@ -368,12 +368,12 @@ type testOut struct {
 
 type testsOut []testOut
 
-func runTests(dictfile, phdictfile, infolder, testsToRun, expectations, outfolder, featparams, hmm string) {
+func runTests(dictfile, phdictfile, infolder, testsToRun, expectations, outfolder, featparams, hmm string) int {
 	testfile := testsToRun //filepath.Join(infolder, testsToRun)
 	tests, err := fetchTests(testfile)
 	if err != nil {
 		fmt.Println("Failed to fetch tests, err =", err)
-		return
+		return 0
 	}
 	testInData := testsIn{
 		infolder,
@@ -383,7 +383,7 @@ func runTests(dictfile, phdictfile, infolder, testsToRun, expectations, outfolde
 	testOutData, err := fetchExpectations(expectFile)
 	if err != nil {
 		fmt.Println("Failed to fetch expectations, err =", err)
-		return
+		return 0
 	}
 
 	r := new()
@@ -442,8 +442,10 @@ func runTests(dictfile, phdictfile, infolder, testsToRun, expectations, outfolde
 		// Check result and update summary file
 		testOutData[i].pass = test.checkResult(hmm)
 	}
-	testOutData.summary(outfolder)
+	accuracy := testOutData.summary(outfolder)
 	clean_ctls("./tmp")
+
+	return accuracy
 }
 
 func fetchTests(file string) ([]testIn, error) {
@@ -794,9 +796,9 @@ func (r testOut) checkResult(hmm string) bool {
 	return true
 }
 
-func (ts testsOut) summary(outfolder string) {
+func (ts testsOut) summary(outfolder string) int {
 	if err := os.Mkdir(outfolder, 0777); err != nil && !os.IsExist(err) {
-		return
+		return 0
 	}
 	summaryFile := filepath.Join(outfolder, "000__summary__000.txt")
 	f, err := os.Create(summaryFile)
@@ -831,6 +833,8 @@ func (ts testsOut) summary(outfolder string) {
 		//
 		log.Fatal(err)
 	}
+
+	return passRate
 }
 
 // func check(e error) error {
