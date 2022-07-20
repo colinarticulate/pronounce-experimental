@@ -145,7 +145,7 @@ func nextPhoneme(phons []phoneme, currPh int) (phoneme, bool) {
 	return phons[currPh+1], true
 }
 
-func targetRuleForWord(word string, phons []phoneme, dict dictionary.Dictionary) string {
+func targetRuleForWord(word string, phons []phoneme) string {
 	//end := "(sil+ [<any>] sil* [<any>] sil+)"
 	//targetRule := "public <" + word + ">" + " = " + end + " "
 
@@ -512,7 +512,6 @@ func TestConfig(
 
 func TestConfig(
 	outfolder, audiofile, phdictfile string,
-	cmuDict dictionary.Dictionary,
 	// cmnVec []string,
 	fparams string,
 	hidden_mm string,
@@ -521,7 +520,7 @@ func TestConfig(
 	// template psPhonemeSettings,
 	frates []int,
 	suiteToRun psSuite,
-	targetRule func(string, []phoneme, dictionary.Dictionary) string,
+	// targetRule func(string, []phoneme, dictionary.Dictionary) string,
 	config jsgfConfig,
 ) (newPsConfig, []byte) {
 

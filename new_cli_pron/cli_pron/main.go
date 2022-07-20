@@ -1,12 +1,12 @@
 package main
 
 import (
+	"errors"
 	"flag"
 	"fmt"
 	"log"
 	"os"
 	pathpkg "path"
-	"time"
 
 	"github.com/colinarticulate/pron"
 	"github.com/google/uuid"
@@ -20,7 +20,7 @@ const (
 )
 
 var pronErrors = []string{
-	"File missing. Usage: ./pronounce -audiofolder folder -ctlfile filename -featparams filename -hmm hmm_folder -word word -dict filename -phdict filename\n",
+	"File missing. Usage: ./pronounce -audiofolder folder -ctlfile filename -featparams filename -word word -dict filename -phdict filename\n",
 	"Word missing",
 }
 
@@ -29,51 +29,51 @@ func (p pronError) Error() string {
 }
 
 var (
-	audiofile, featureparams, hmm, word, dictfile, phdictfile string
+	audiofile, featureparams, word, dictfile, phdictfile, hmm string
 )
 
 func main() {
-	// // We want the stacktrace if it crashes:
-	// defer func() {
-	// 	if r := recover(); r != nil {
-	// 		fmt.Println("stacktrace from panic: \n" + string(debug.Stack()))
-	// 	}
-	// }()
-
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
 	flag.Parse()
 
+	defer func() {
+		if r := recover(); r != nil {
+			returnJSON(
+				pron.ToJSON(
+					word,
+					[]pron.LettersVerdict{},
+					errors.New("pron panicked, now recovered"),
+				),
+			)
+		}
+	}()
+
 	err := guard()
 	if err != nil {
-		returnJSON(pron.ToJSON([]pron.LettersVerdict{}, err))
+		returnJSON(pron.ToJSON(word, []pron.LettersVerdict{}, err))
 		return
 	}
 
 	outfolder := pathpkg.Dir(audiofile)
-	// test_folder := "test_output"
-	// outfolder := pathpkg.Clean(pathpkg.Join(pathpkg.Dir(audiofile), "/.."+test_folder))
 
 	outfolder = pathpkg.Join(outfolder, "Temp_"+uuid.New().String())
 	err = os.Mkdir(outfolder, 0777)
 	if err != nil {
 
 	}
-	start := time.Now()
+
+	fmt.Println("Calling Pronounce with args: outfolder", outfolder, "audiofile", audiofile, "word", word, "dictfile", dictfile, "phdictfile", phdictfile, "featureparams", featureparams, "hmm", hmm)
 	results, err := pron.Pronounce(outfolder, audiofile, word, dictfile, phdictfile, featureparams, hmm)
-	elapsed := time.Since(start)
-	fmt.Printf("Total: %s\n", elapsed)
-	result := pron.ToJSON(results, err)
-	returnJSON(result)
-	//testCaseIt(outfolder, audiofile, word, dictfile, phdictfile, featureparams, string(result))
+	returnJSON(pron.ToJSON(word, results, err))
 }
 
 func init() {
 	flag.StringVar(&audiofile, "audio", "", "The URL of the audio file.")
-	flag.StringVar(&featureparams, "featparams", "", "File containing feature extraction parameters.")
-	flag.StringVar(&hmm, "hmm", "", "Directory containing acoustic model files.")
+	flag.StringVar(&featureparams, "featparams", "", "The URL of the modified feat.params file")
 	flag.StringVar(&word, "word", "", "The word to be checked for pronunciation")
 	flag.StringVar(&dictfile, "dict", "", "The dictionary to be used")
 	flag.StringVar(&phdictfile, "phdict", "", "The phonemes.dict file to be used")
+	flag.StringVar(&hmm, "hmm", "", "The URL of the model files")
 }
 
 func guard() error {
@@ -96,11 +96,3 @@ func guard() error {
 func returnJSON(json []byte) {
 	fmt.Println(string(json))
 }
-
-// func audiofileName(audiofolder, ctlfile string) (string, error) {
-// 	audiofile, err := ioutil.ReadFile(ctlfile)
-// 	if err != nil {
-// 		return "", err
-// 	}
-// 	return pathpkg.Join(audiofolder, string(audiofile)+".wav"), nil
-// }

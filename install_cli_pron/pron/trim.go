@@ -81,6 +81,8 @@ func fetchTrimBounds(audiofile string, phons []phoneme) (float64, float64) {
 	}
 
 	_, err = exec.Command("sox", audiofile, sincAudiofile, "sinc", "5000-500").Output()
+	defer os.Remove(sincAudiofile)
+
 	debug("\n length of audio = ", length_audio)
 
 	//_, err := exec.Command("sox", audiofile, sincAudiofile).Output()
@@ -120,13 +122,25 @@ func fetchTrimBounds(audiofile string, phons []phoneme) (float64, float64) {
 	  }
 	*/
 
+
+
 	start = math.Min(start2, start3)
 
-	if start - 0.2 <= 0 {
+	// if start-0.3 <= 0 {
+	// 	start = 0
+	// } else {
+	// 	start = start - 0.25
+	// }
+
+	// Use the settings below for production - PE 2 June 2022 -- the ones above are for trimming scraped audio for training
+	if start-0.2 <= 0 {
 		start = 0
 	} else {
 		start = start - 0.10
 	}
+
+
+
 
 	/*
 	   if start2 <= 0.2 {
@@ -200,7 +214,7 @@ func webRtcBounds(audiofile string, mode int) (float64, float64) {
 
 	wavReader, err := wav.NewReader(file, info.Size())
 	if err != nil {
-		debug("webRtcBounds: call to wav.NewReader failed. err, info.Size, file, audiofile =", err, info.Size(), file, audiofile)
+		debug("webRtcBounds: call to wav.NewReader failed. err =", err)
 		log.Panic(err)
 	}
 

@@ -18,7 +18,6 @@ import (
 
 	"github.com/colinarticulate/dictionary"
 	"github.com/colinarticulate/scanScheduler"
-	"github.com/davidbarbera/articulate-pocketsphinx-go/xyz_plus"
 	"github.com/google/uuid"
 )
 
@@ -45,23 +44,38 @@ const (
 	ao  = "ao"
 	aw  = "aw"
 	ax  = "ax"
+	axl = "axl"
+	axm = "axm"
+	axn = "axn"
+	axr = "axr"
 	ay  = "ay"
 	b   = "b"
+	bl  = "bl"
 	ch  = "ch"
 	d   = "d"
+	dz  = "dz"
 	dh  = "dh"
 	eh  = "eh"
+	ehl = "ehl"
 	ehr = "ehr"
 	er  = "er"
 	ey  = "ey"
 	f   = "f"
+	fl  = "fl"
 	g   = "g"
+	gr  = "gr"
 	hh  = "hh"
 	ih  = "ih"
+	ihl = "ihl"
 	ing = "ing"
 	iy  = "iy"
 	jh  = "jh"
 	k   = "k"
+	kl  = "kl"
+	kr  = "kr"
+	ks  = "ks"
+	kt  = "kt"
+	kw  = "kw"
 	l   = "l"
 	m   = "m"
 	n   = "n"
@@ -70,51 +84,31 @@ const (
 	ow  = "ow"
 	oy  = "oy"
 	p   = "p"
+	pl  = "pl"
+	pr  = "pr"
 	r   = "r"
 	s   = "s"
 	sh  = "sh"
 	sil = "sil"
 	ss  = "ss"
+	st  = "st"
+	sts = "sts"
 	t   = "t"
 	th  = "th"
+	thr = "thr"
+	tr  = "tr"
+	ts  = "ts"
 	uh  = "uh"
 	uw  = "uw"
-	v   = "v"
-	w   = "w"
-	y   = "y"
-	z   = "z"
-	zh  = "zh"
-
-	axl = "axl"
-	axm = "axm"
-	axn = "axn"
-	axr = "axr"
-	ks  = "ks"
-	kw  = "kw"
-	dz  = "dz"
-
 	uwl = "uwl"
 	uwn = "uwn"
 	uwm = "uwm"
-
-	ts = "ts"
-	kl = "kl"
-	pl = "pl"
-	bl = "bl"
-
-	kr = "kr"
-	gr = "gr"
-	tr = "tr"
-	pr = "pr"
-
-	thr = "thr"
-	ihl = "ihl"
+	v   = "v"
+	w   = "w"
+	y   = "y"
 	yuw = "yuw"
-	sts = "sts"
-	st  = "st"
-	ehl = "ehl"
-	kt  = "kt"
-	fl  = "fl"
+	z   = "z"
+	zh  = "zh"
 )
 
 var cmubetToIpa = map[phoneme]string{
@@ -124,78 +118,71 @@ var cmubetToIpa = map[phoneme]string{
 	ao:  "ɔ",
 	aw:  "ɑʊ",
 	ax:  "ə",
+	axl: "əl",
+	axm: "əm",
+	axn: "ən",
+	axr: "əɹ",
 	ay:  "ɑɪ",
 	b:   "b",
+	bl:  "bl",
 	ch:  "ʧ",
 	d:   "d",
 	dh:  "ð",
+	dz:  "dz",
 	eh:  "ɛ",
+	ehl: "ɛl",
 	ehr: "ɛː",
 	er:  "ɜɹ",
 	ey:  "eɪ",
 	f:   "f",
+	fl:  "fl",
 	g:   "g",
+	gr:  "gɹ",
 	hh:  "h",
 	ih:  "ɪ",
+	ihl: "ɪl",
 	ing: "ɪŋ",
 	iy:  "iː",
 	jh:  "ʤ",
 	k:   "k",
+	kl:  "kl",
+	kr:  "kɹ",
+	ks:  "ks",
+	kt:  "kt",
+	kw:  "kw",
 	l:   "l",
 	m:   "m",
 	n:   "n",
-	//nd: "nd",
-	ng: "ŋ",
-	oh: "ɒ",
-	ow: "oʊ",
-	oy: "ɔɪ",
-	p:  "p",
-	r:  "ɹ",
-	s:  "s",
-	//st: "st",
+	ng:  "ŋ",
+	oh:  "ɒ",
+	ow:  "oʊ",
+	oy:  "ɔɪ",
+	p:   "p",
+	pl:  "pl",
+	pr:  "pɹ",
+	r:   "ɹ",
+	s:   "s",
 	sh:  "ʃ",
 	sil: "sil",
 	ss:  "ss",
+	st:  "st",
+	sts: "sts",
 	t:   "t",
 	th:  "θ",
+	thr: "θɹ",
+	tr:  "tɹ",
+	ts:  "ts",
 	uh:  "ʊ",
 	uw:  "u",
+	uwl: "ul",
+	uwn: "un",
+	uwm: "um",
 	v:   "v",
 	w:   "w",
 	y:   "j",
+	yuw: "yu",
 	z:   "z",
 	zh:  "ʒ",
-
-	axl: "axl",
-	axm: "axm",
-	axn: "axn",
-	axr: "əɹ",
-	ks:  "ks",
-	kw:  "kw",
-	dz:  "dz",
-
-	uwl: "uwl",
-	uwn: "uwn",
-	uwm: "uwm",
-
-	ts: "ts",
-	kl: "kl",
-	pl: "pl",
-	bl: "bl",
-
-	kr: "kr",
-	gr: "gr",
-	tr: "tr",
-	pr: "pr",
-
-	thr: "thr",
-	ihl: "ihl",
-	yuw: "yuw",
-	sts: "sts",
-	st:  "st",
-	ehl: "ehl",
-	kt:  "kt",
-	fl:  "fl",
 }
 
 type neighbours map[phoneme][]phoneme
@@ -704,12 +691,17 @@ var settingsCatalgue = []psPhonemeSettings{
 		pbeam: "1e-10000",
 		wbeam: "1e-10000",
 
+		// beam:  "1e-10000",   // Increasing beam width to see if that reduces crashes 16May22
+		// pbeam: "1e-10000",
+		// wbeam: "1e-10000",
+
 		frate: "125",
 		wlen:  "0.016",
 		nfft:  "256",
 
 		lw:       "6",
-		pip:      "1",
+		pip:      "1e-2",  // experimental
+		//pip:      "1",
 		wip:      "0.5",
 		topn:     "4",
 		dither:   "no",
@@ -811,6 +803,10 @@ var settingsCatalgue = []psPhonemeSettings{
 		beam:  "1e-10000",
 		pbeam: "1e-10000",
 		wbeam: "1e-10000",
+
+		// beam:  "1e-1000",   // Increasing beam width to see if that reduces crashes 16May22
+		// pbeam: "1e-1000",
+		// wbeam: "1e-1000",
 
 		frate: "105", //105
 		wlen:  "0.020",
@@ -916,6 +912,10 @@ var settingsCatalgue = []psPhonemeSettings{
 		beam:  "1e-10000",
 		pbeam: "1e-10000",
 		wbeam: "1e-10000",
+
+		// beam:  "1e-1000",   // Increasing beam width to see if that reduces crashes 16May22
+		// pbeam: "1e-1000",
+		// wbeam: "1e-1000",
 
 		frate: "91", //91
 		wlen:  "0.024",
@@ -1025,6 +1025,10 @@ var settingsCatalgue = []psPhonemeSettings{
 		pbeam: "1e-10000",
 		wbeam: "1e-10000",
 
+		// beam:  "1e-1000",   // Increasing beam width to see if that reduces crashes 16May22
+		// pbeam: "1e-1000",
+		// wbeam: "1e-1000",
+
 		frate: "80",
 		wlen:  "0.028",
 		nfft:  "512",
@@ -1112,6 +1116,10 @@ var settingsCatalgue = []psPhonemeSettings{
 		beam:  "1e-10000",
 		pbeam: "1e-10000",
 		wbeam: "1e-10000",
+
+		// beam:  "1e-1000",   // Increasing beam width to see if that reduces crashes 16May22
+		// pbeam: "1e-1000",
+		// wbeam: "1e-1000",
 
 		frate: "72",
 		wlen:  "0.032",
@@ -2920,13 +2928,14 @@ func publish(word string, phons []phoneme, verdicts []phonVerdict) ([]LettersVer
 	return lettersVerdicts, nil
 }
 
-func ToJSON(results []LettersVerdict, err error) []byte {
+func ToJSON(word string, results []LettersVerdict, err error) []byte {
 	type JSON_result struct {
 		Letters  string `json:"letters"`
 		Phonemes string `json:"phonemes"`
 		Verdict  string `json:"verdict"`
 	}
 	type JSON_results struct {
+		Word     string        `json:"word"`
 		Results  []JSON_result `json:"results"`
 		ErrorMsg *string       `json:"err"`
 	}
@@ -2951,6 +2960,7 @@ func ToJSON(results []LettersVerdict, err error) []byte {
 		errStr = &temp
 	}
 	out := JSON_results{
+		word,
 		jResults,
 		errStr,
 	}
@@ -3019,19 +3029,22 @@ func score(verdicts []phonVerdict) int {
 	for _, verdict := range verdicts {
 		switch verdict.goodBadEtc {
 		case good:
-			debug("+1 for", verdict.phon)
-			ret += 1 // ret += 2
+			debug("+2 for", verdict.phon)
+			//ret += 1
+			ret += 2
 		case possible:
 			debug("+1 for", verdict.phon)
 			ret += 1
 		case missing:
-			debug("-1 for", verdict.phon)
+			debug("-2 for", verdict.phon)
 			allGood = false
-			ret += -1
+			//ret += -1
+			ret += -2
 		case surprise:
-			debug("-1 for", verdict.phon)
+			debug("-2 for", verdict.phon)
 			allGood = false
-			ret += -1
+			//ret += -1
+			ret += -2
 		}
 	}
 	if allGood {
@@ -3934,16 +3947,17 @@ func clean(outfolder string) {
 }
 
 func cleanWavFiles(originalWavFile string, word string) {
-	testCaseAudio(originalWavFile, word)
-	// wavDir, _ := filepath.Split(originalWavFile)
-	// _ = filepath.Walk(wavDir, func(path string, info os.FileInfo, err error) error {
-	// 	_, wavFile := filepath.Split(path)
-	// 	if matched, _ := pathpkg.Match("*fixed*.wav", wavFile); matched {
+	// testCaseAudio(originalWavFile, word)
+	wavDir, file := filepath.Split(originalWavFile)
+	file = filepath.Base(file)
+	ext := filepath.Ext(file)
+	file = file[:len(file)-len(ext)]
 
-	// 		removeFromDisk(path)
-	// 	}
-	// 	return nil
-	// })
+	// Remove fixed file...
+	os.Remove(filepath.Join(wavDir, file+"_fixed"+ext))
+
+	// ...and the fixed, trimmed file
+	os.Remove(filepath.Join(wavDir, file+"_fixed_trimmed"+ext))
 }
 
 //=====================================================================
@@ -3970,6 +3984,8 @@ func Pronounce(outfolder string,
 	return verdict, err
 }
 
+var numAudioBytes int
+
 func pronounce(outfolder string, audiofile string, word string, dictfile, phdictfile string, featparams string, hmm string) ([]LettersVerdict, error) {
 	dict := dictionary.Create(dictfile)
 	variantWords, err := dict.LookupWord(word)
@@ -3992,13 +4008,20 @@ func pronounce(outfolder string, audiofile string, word string, dictfile, phdict
 		audiofile = trimAudio(audiofile, variantPhons[0])
 	}
 
+	bytes, err := os.ReadFile(audiofile)
+	if err != nil {
+		// What to do?
+	}
+	numAudioBytes = len(bytes)
+
+
 	sch := scanScheduler.New(outfolder, audiofile, phdictfile)
 
 	d1 := make(chan bool)
 
 	var results = []variantResult{}
 	var variantResults = []variantResult{}
-	runTestVariantScans(sch, outfolder, audiofile, phdictfile, dict, featparams, hmm, word, variantPhons, defaultSuite, func(arg1 []variantResult) {
+	runTestVariantScans(sch, outfolder, audiofile, phdictfile, featparams, hmm, word, variantPhons, defaultSuite, func(arg1 []variantResult) {
 		results = arg1
 		go func() {
 			d1 <- true
@@ -4067,20 +4090,22 @@ func testResult(bestResult []phonVerdict) {
 	debug(str)
 }
 
-func runTestVariantScans(sch scanScheduler.Scheduler, outfolder, audiofile, phdictfile string, dict dictionary.Dictionary, featparams string, hmm string, word string, variants [][]phoneme, suiteToRun psSuite, f func([]variantResult)) {
+func runTestVariantScans(sch scanScheduler.Scheduler, outfolder, audiofile, phdictfile string, featparams string, hmm string, word string, variants [][]phoneme, suiteToRun psSuite, f func([]variantResult)) {
 	c := make(chan variantResult)
 	var wg sync.WaitGroup
 
 	for _, variant := range variants {
-
-		//if !diphthongsInWord(variant) || len(variant) > 3 {
-
-		// Only run a non-diphthong scan if the word has no diphthong vowels or
-		// is longer than 3 phonemes
 		wg.Add(1)
-		go runVariantScan(c, &wg, sch, outfolder, audiofile, phdictfile, dict, featparams, hmm, word, variant, suiteToRun)
-
-		//}
+		go func(variant []phoneme) {
+			defer func() {
+				if r := recover(); r != nil {
+					//Pass an empty result on the channel anyway
+					c <- variantResult{}
+					wg.Done()
+				}
+			}()
+			runVariantScan(c, &wg, sch, outfolder, audiofile, phdictfile, featparams, hmm, word, variant, suiteToRun)
+		}(variant)
 	}
 
 	go func() {
@@ -4206,9 +4231,7 @@ type resultWithConfig struct {
 	newPsConfig
 }
 
-func runVariantScan(c chan<- variantResult, wg *sync.WaitGroup, sch scanScheduler.Scheduler, outfolder, audiofile, phdictfile string, dict dictionary.Dictionary, featparams string, hmm string, word string, variant []phoneme, suiteToRun psSuite) {
-	defer wg.Done()
-
+func runVariantScan(c chan<- variantResult, wg *sync.WaitGroup, sch scanScheduler.Scheduler, outfolder, audiofile, phdictfile string, featparams string, hmm string, word string, variant []phoneme, suiteToRun psSuite) {
 	c1 := make(chan resultWithConfig)
 	var wg1 sync.WaitGroup
 
@@ -4222,14 +4245,17 @@ func runVariantScan(c chan<- variantResult, wg *sync.WaitGroup, sch scanSchedule
 		suiteOfOne := psSuite{
 			scan,
 		}
-		/*
-		   frate, err := strconv.Atoi(scan["-frate"])
-		   if err != nil {
-		     debug("Failed to get frate for batch scan")
-		   }
-		*/
-		config, jsgf_buffer := TestConfig(outfolder, audiofile, phdictfile, dict, featparams, hmm, word, variant, frates, suiteOfOne, targetRuleForWord, &builderConfig)
-		go runVariantScanWithConfig(c1, &wg1, sch, config, word, jsgf_buffer)
+		config, jsgf_buffer := TestConfig(outfolder, audiofile, phdictfile, featparams, hmm, word, variant, frates, suiteOfOne, &builderConfig)
+		go func(config newPsConfig, jsgf_buffer []byte) {
+			defer func() {
+				if r := recover(); r != nil {
+					//Pass an empty result on the channel anyway
+					c1 <- resultWithConfig{}
+					wg1.Done()
+				}
+			}()
+			runVariantScanWithConfig(c1, &wg1, sch, config, word, jsgf_buffer)
+		}(config, jsgf_buffer)
 	}
 
 	go func() {
@@ -4296,6 +4322,7 @@ func runVariantScan(c chan<- variantResult, wg *sync.WaitGroup, sch scanSchedule
 	}
 
 	c <- result
+	wg.Done()
 }
 
 ////////////////////////////////////////////////////////////
@@ -4329,10 +4356,10 @@ func runVariantScanWithConfig(c chan <-resultWithConfig, wg *sync.WaitGroup, con
 // 	Start, End int32
 // }
 
-func toPhonemeData(resp []xyz_plus.Utt) []psPhonemeDatum {
+func toPhonemeData(resp scanScheduler.UttResp) []psPhonemeDatum {
 	phonemeData := []psPhonemeDatum{}
 
-	for _, utt := range resp {
+	for _, utt := range resp.Utts {
 		phonemeData = append(phonemeData, psPhonemeDatum{
 			phoneme(utt.Text),
 			int(utt.Start),
@@ -4398,6 +4425,11 @@ func doRunScan(s scanScheduler.Scheduler, config newPsConfig, word string, jsgf_
 	// jsgf_buffer, err = os.ReadFile(jsgf_file)
 	// check(err)
 	audio_buffer, err = os.ReadFile(audio_file)
+
+	if len(audio_buffer) != numAudioBytes || numAudioBytes == 0 {
+		debug("audio file is corrupted!")
+	}
+
 	check(err)
 	//  ___                            _           _          _      _
 	// | _ \__ _ _ _ __ _ _ __  ___   | |_ ___    | |__  __ _| |_ __| |_      ___ __ __ _ _ _
@@ -4435,7 +4467,7 @@ func doRunScan(s scanScheduler.Scheduler, config newPsConfig, word string, jsgf_
 	context := []string{"-hmm", "-frate", "-lw", "-nfft", "-wlen", "-alpha", "-dither", "-doublebw", "-maxhmmpf", "-maxwpf", "-beam", "-wbeam", "-pbeam", "-fwdflat", "-bestpath", "-wip", "-pip", "-remove_noise", "-remove_silence", "-vad_postspeech", "-vad_prespeech", "-vad_startspeech", "-vad_threshold", "-topn", "-pl_window", "-lpbeam", "-lponlybeam"}
 	//context := []string{"-frate"}
 	//ch := make(chan error)
-	ch := make(chan []xyz_plus.Utt, 1)
+	ch := make(chan scanScheduler.UttResp, 1)
 
 	// Now create a scan, send it and wait on ch for a reply
 	psScan := scanScheduler.PsScan{
@@ -4444,33 +4476,26 @@ func doRunScan(s scanScheduler.Scheduler, config newPsConfig, word string, jsgf_
 		RespondTo:    ch,
 		Jsgf_buffer:  jsgf_buffer,
 		Audio_buffer: audio_buffer,
+		Parameters:   []string{},
 	}
 	frate, _ := strconv.Atoi((config.settings[0]["-frate"]))
 
 	s.DoScan(psScan)
-	//err := <-ch // All that's returned is an error. It's the log file I need
-	response := <-ch
-	// if err != nil {
-	// 	debug("DoScan returned err =", err)
-	// }
 
-	utts := toPhonemeData(response)
+	response := <-ch
 	results := psPhonemeResults{
 		frate,
-		//parsePsData(logfile),
-		utts,
+		toPhonemeData(response),
 	}
+
 	testCaseIt(params, results.data, word)
+
 	f([]psPhonemeResults{results})
 }
 
 // Not an ideal solution but implemented to get a solution together in as
 // short a time as possible and with minimal change to the existing code
 func runVariantScanWithConfig(c chan<- resultWithConfig, wg *sync.WaitGroup, sch scanScheduler.Scheduler, config newPsConfig, word string, jsgf_buffer []byte) {
-	defer wg.Done()
-
-	// scheduler := NewScanScheduler()
-	// scheduler.RunNewScan(config, func(arg1 []psPhonemeResults) {
 	doRunScan(sch, config, word, jsgf_buffer, func(arg1 []psPhonemeResults) {
 		result := resultWithConfig{}
 		// There should only be one result
@@ -4491,6 +4516,7 @@ func runVariantScanWithConfig(c chan<- resultWithConfig, wg *sync.WaitGroup, sch
 			}
 		}
 		c <- result
+		wg.Done()
 	})
 }
 
@@ -4538,7 +4564,7 @@ func runDiphthongScan(c chan<- variantResult, wg *sync.WaitGroup, sch scanSchedu
 		     debug("Failed to get frate for batch scan")
 		   }
 		*/
-		config, jsgf_buffer := TestConfig(outfolder, audiofile, phdictfile, dict, featparams, hmm, word, variant, frates, suiteOfOne, targetRuleForWord, &builderConfig)
+		config, jsgf_buffer := TestConfig(outfolder, audiofile, phdictfile, featparams, hmm, word, variant, frates, suiteOfOne, &builderConfig)
 		go runVariantScanWithConfig(c1, &wg1, sch, config, word, jsgf_buffer)
 	}
 

@@ -116,7 +116,7 @@ func phsAt(ps []phoneme, start, length int, qs ...[]phoneme) ([]phoneme, bool) {
 
 func isConsonant(ph phoneme) bool {
 	consonants := []phoneme{
-		b, bl, ch, d, dh, dz, f, g, gr, hh, jh, k, kl, kr, ks, kw, l, m, n, ng, p, pl, pr, r, s, sh, t, th, tr, ts, v, w, z, zh,
+		b, bl, ch, d, dh, dz, f, fl, g, gr, hh, jh, k, kl, kr, ks, kw, l, m, n, ng, p, pl, pr, r, s, sh, st, t, th, thr, tr, ts, v, w, z, zh,
 	}
 	for _, c := range consonants {
 		if ph == c {
@@ -233,7 +233,7 @@ func (m phonToAlphas) mapB(phons []phoneme, currPh int, alphas string, currAbc i
 				}...),
 				m.alphas + "bb",
 			}
-			return new	
+			return new
 		}
 	}
 	if stringAt(alphas, currAbc, 2, "pb") {
@@ -587,7 +587,7 @@ func mapPhToA(phons []phoneme, alphas string) ([]phonToAlphas, error) {
 			}
 			if stringAt(alphas, currAbc, 3, "ort") {
 				// As in the borrowed French word, rappORT,...
-				if _, ok := phsAt(phons, currPh, 2, []phoneme{ao, ch}, []phoneme{ao, dh}, []phoneme{ao, sh}, []phoneme{ao, t}, []phoneme{ao, tr}, []phoneme{ao, th}); !ok {
+				if _, ok := phsAt(phons, currPh, 2, []phoneme{ao, ch}, []phoneme{ao, dh}, []phoneme{ao, sh}, []phoneme{ao, t}, []phoneme{ao, tr}, []phoneme{ao, th}, []phoneme{ao, thr}); !ok {
 					// But not as in fORTunate, nORTHern, abORTion, repORT, pORTrait, nORTH,...
 					new = phonToAlphas{
 						[]phoneme{
@@ -625,7 +625,7 @@ func mapPhToA(phons []phoneme, alphas string) ([]phonToAlphas, error) {
 					break
 				}
 			}
-			// The test for a phonetic 'r' following the 'ao' doesn't work for 
+			// The test for a phonetic 'r' following the 'ao' doesn't work for
 			// words like storeroom and forerunner so pulling these out as a special
 			// case
 			if (strings.HasPrefix(alphas, "storeroom") || strings.HasPrefix(alphas, "forerunner")) && stringAt(alphas, currAbc, 3, "ore") {
@@ -802,8 +802,8 @@ func mapPhToA(phons []phoneme, alphas string) ([]phonToAlphas, error) {
 			}
 			if str, ok := getStringAt(alphas, currAbc, 0, "ais", "is"); ok {
 				// As in AISle, ISland,...
-				// But NOT as in ISolate, demonISe...
-				if _, ok := phsAt(phons, currPh, 2, []phoneme{ay, s}, []phoneme{ay, z}); !ok {
+				// But NOT as in ISolate, chrIST, demonISe...
+				if _, ok := phsAt(phons, currPh, 2, []phoneme{ay, s}, []phoneme{ay, st}, []phoneme{ay, z}); !ok {
 					new = phonToAlphas{
 						[]phoneme{
 							ay,
@@ -998,17 +998,6 @@ func mapPhToA(phons []phoneme, alphas string) ([]phonToAlphas, error) {
 				break
 			}
 		case d:
-			// A training pronunciation to get out of the way first
-			if stringAt(alphas, currAbc, 1, "t") {
-				// As in lofT,...
-				new = phonToAlphas{
-					[]phoneme{
-						d,
-					},
-					"t",
-				}
-				break
-			}
 			if s, ok := getStringAt(alphas, currAbc, 2, "dd", "ld"); ok {
 				// As in riDDle, and the silent l in wouLD,...
 				p := []phoneme{d}
@@ -1130,6 +1119,19 @@ func mapPhToA(phons []phoneme, alphas string) ([]phonToAlphas, error) {
 					break
 				}
 			}
+			if s, ok := getStringAt(alphas, currAbc, 0, "eh"); ok {
+				if _, ok := phsAt(phons, currPh, 2, []phoneme{eh, hh}); !ok {
+					// The h isn't sounded so grab it here
+					// As in tEHran,...
+					new = phonToAlphas{
+						[]phoneme{
+							eh,
+						},
+						s,
+					}
+					break
+				}
+			}
 			if s, ok := getStringAt(alphas, currAbc, 1, "a", "e", "i", "u"); ok {
 				// As in contrAry, rEd, squIrrel, bUried,...
 				new = phonToAlphas{
@@ -1147,6 +1149,17 @@ func mapPhToA(phons []phoneme, alphas string) ([]phonToAlphas, error) {
 						eh,
 					},
 					"r",
+				}
+				break
+			}
+		case ehl:
+			if s, ok := getStringAt(alphas, currAbc, 1, "eal", "elh", "ell", "el"); ok {
+				// As in wEALth, dELHi, wELLington, hELicopter,...
+				new = phonToAlphas{
+					[]phoneme{
+						ehl,
+					},
+					s,
 				}
 				break
 			}
@@ -1408,9 +1421,8 @@ func mapPhToA(phons []phoneme, alphas string) ([]phonToAlphas, error) {
 			if stringAt(alphas, currAbc, 2, "ft") {
 				// A 't' following 'f' can be silent. Trying to catch this here because
 				// it's harder to catch on the next phoneme
-				if _, ok := phsAt(phons, currPh, 2, []phoneme{f, t}, []phoneme{f, d}, []phoneme{f, th}); !ok {
-					// As in soFTen, but not as in liFT, loFT*, fiFTh ...
-					// *This is a training pronunciation
+				if _, ok := phsAt(phons, currPh, 2, []phoneme{f, t}, []phoneme{f, th}); !ok {
+					// As in soFTen, but not as in liFT, fiFTh ...
 					new = phonToAlphas{
 						[]phoneme{
 							f,
@@ -1426,6 +1438,17 @@ func mapPhToA(phons []phoneme, alphas string) ([]phonToAlphas, error) {
 						f,
 					},
 					"f",
+				}
+				break
+			}
+		case fl:
+			if s, ok := getStringAt(alphas, currAbc, 0, "full", "fel", "ffl", "ghl", "phl", "fl"); ok {
+				// As in awFULLy, liFELess, aFFLuent, rouGHLy, pamPHLet, FLorin,...
+				new = phonToAlphas{
+					[]phoneme{
+						fl,
+					},
+					s,
 				}
 				break
 			}
@@ -1481,8 +1504,8 @@ func mapPhToA(phons []phoneme, alphas string) ([]phonToAlphas, error) {
 					}
 					break
 				}
-				if _, ok := phsAt(phons, currPh, 2, []phoneme{g, ah}, []phoneme{g, er}, []phoneme{g, eh}, []phoneme{g, y}, []phoneme{g, ih}); !ok {
-					// So NOT as in beleaGUEred, beleaGUEred, GUEss, arGUE, vaGUEst,...
+				if _, ok := phsAt(phons, currPh, 2, []phoneme{g, ah}, []phoneme{g, er}, []phoneme{g, eh}, []phoneme{g, y}, []phoneme{g, ih}, []phoneme{g, yuw}); !ok {
+					// So NOT as in beleaGUEred, beleaGUEred, GUEss, arGUE, vaGUEst, arGUE,...
 					// If we get here then the ue is not sounded
 					new = phonToAlphas{
 						[]phoneme{
@@ -1491,8 +1514,8 @@ func mapPhToA(phons []phoneme, alphas string) ([]phonToAlphas, error) {
 						"gue",
 					}
 					break
-				} else if _, ok := phsAt(phons, currPh, 2, []phoneme{g, y}); !ok {
-					// So NOT as in arGUE,...
+				} else if _, ok := phsAt(phons, currPh, 2, []phoneme{g, y}, []phoneme{g, yuw}); !ok {
+					// So NOT as in arGUE, arGUE,...
 					// In other cases the u is silent and the vowel phoneme can be
 					// processed next time round the loop - I think anyway...
 					new = phonToAlphas{
@@ -1584,16 +1607,6 @@ func mapPhToA(phons []phoneme, alphas string) ([]phonToAlphas, error) {
 				break
 			}
 		case ih:
-			// Deal with training 'ih first
-			if alphas == "'ih" {
-				new = phonToAlphas{
-					[]phoneme{
-						ih,
-					},
-					"'ih",
-				}
-				break
-			}
 			// Catch borrowed French words ending -ier
 			if stringAt(alphas, currAbc, 3, "ier") {
 				if _, ok := phsAt(phons, currPh, 2, []phoneme{ih, ey}, []phoneme{ih, ehr}); ok {
@@ -1662,7 +1675,7 @@ func mapPhToA(phons []phoneme, alphas string) ([]phonToAlphas, error) {
 						[]phoneme{
 							ih,
 						},
-						s[:len(s) - 1],
+						s[:len(s)-1],
 					}
 					break
 				}
@@ -1734,6 +1747,19 @@ func mapPhToA(phons []phoneme, alphas string) ([]phonToAlphas, error) {
 					break
 				}
 			}
+		case ihl:
+			if s, ok := getStringAt(alphas, currAbc, 0, "uill", "ell", "eyl", "ill", "uil", "yll", "el", "il", "yl", "l"); ok {
+				// As in in gUILLemot, ELLipse, monEYLender, guerILLa, gUILd, chlorophYLL, bELittle, untIL, pterodactYL, dieLectric*,...
+				// *This is a mapping error elsewhere d AY is swallowing die,
+				// leaving the lexical l to map to the phonetic ihl,
+				new = phonToAlphas{
+					[]phoneme{
+						ihl,
+					},
+					s,
+				}
+				break
+			}
 		case ing:
 			p := []phoneme{
 				ing,
@@ -1744,7 +1770,7 @@ func mapPhToA(phons []phoneme, alphas string) ([]phonToAlphas, error) {
 					// We should save the g for later
 					new = phonToAlphas{
 						p,
-						s[:len(s) - 1],
+						s[:len(s)-1],
 					}
 				} else {
 					// As in waxING, and just about any -ing word...
@@ -1754,25 +1780,25 @@ func mapPhToA(phons []phoneme, alphas string) ([]phonToAlphas, error) {
 					}
 				}
 				break
-			}			
-			if s, ok := getStringAt(alphas, currAbc, 0, "eing", "uing", "eng"); ok {
-				// As in agEING, catalogUING, ENGland,...
+			}
+			if s, ok := getStringAt(alphas, currAbc, 0, "eing", "uing"); ok {
+				// As in agEING, catalogUING,...
 				new = phonToAlphas{
 					p,
 					s,
 				}
 				break
-			}			
+			}
 			if s, ok := getStringAt(alphas, currAbc, 3, "inc", "ink", "inq", "inx", "ync", "ynx"); ok {
 				// As in zINc, twINking, delINquent, sphINx, sYNchronous, pharYNx,...
 				new = phonToAlphas{
 					[]phoneme{
 						ing,
 					},
-					s[:len(s) - 1],
+					s[:len(s)-1],
 				}
 				break
-			}			
+			}
 		case iy:
 			if stringAt(alphas, currAbc-1, 4, "peop") {
 				// Treating pEOple as a special case here. There are other occurrences
@@ -1829,22 +1855,22 @@ func mapPhToA(phons []phoneme, alphas string) ([]phonToAlphas, error) {
 					break
 				}
 				if _, ok := phsAt(phons, currPh, 3, []phoneme{iy, ax, r}); ok {
-					// As in EARRING,...
+					// As in EArring,...
 					new = phonToAlphas{
 						[]phoneme{
 							iy, ax,
 						},
-						"ea",
+						s[:len(s)-1],
 					}
 					break
 				}
 				if _, ok := phsAt(phons, currPh, 2, []phoneme{iy, ax}); ok {
-					// As in EAR,...
+					// As in EAR, bEER...
 					new = phonToAlphas{
 						[]phoneme{
 							iy, ax,
 						},
-						"ear",
+						s,
 					}
 					break
 				}
@@ -1877,7 +1903,7 @@ func mapPhToA(phons []phoneme, alphas string) ([]phonToAlphas, error) {
 				// As in palAEontology, sundAY, mEAt, lEEt, EIther, whiskEYs, pastrIEs, OEstrus,...
 				// But not as in words like rEARM, rEAct, twentIEth, wobblIER, clEARLy, sturdIEr, recrEAte, rEIntegrate,...
 				if _, ok := phsAt(phons, currPh, 2, []phoneme{iy, aa}, []phoneme{iy, ae}, []phoneme{iy, ax}, []phoneme{iy, axr}, []phoneme{iy, axl}, []phoneme{iy, eh}, []phoneme{iy, er}, []phoneme{iy, ey}, []phoneme{iy, ih}); !ok {
-						new = phonToAlphas{
+					new = phonToAlphas{
 						[]phoneme{
 							iy,
 						},
@@ -2044,7 +2070,7 @@ func mapPhToA(phons []phoneme, alphas string) ([]phonToAlphas, error) {
 					s,
 				}
 				break
-			}		
+			}
 			// Check for q on it's own. These will be in borrowed words or foreign placenames
 			if stringAt(alphas, currAbc, 1, "q") {
 				// As in Qatar,...
@@ -2187,6 +2213,24 @@ func mapPhToA(phons []phoneme, alphas string) ([]phonToAlphas, error) {
 					break
 				}
 			}
+			if s, ok := getStringAt(alphas, currAbc, 0, "xts"); ok {
+				if p, ok := phsAt(phons, currPh, 2, []phoneme{k, sts}); ok {
+					new = phonToAlphas{
+						p,
+						s,
+					}
+					break
+				}
+			}
+			if s, ok := getStringAt(alphas, currAbc, 0, "xed", "xt"); ok {
+				if p, ok := phsAt(phons, currPh, 2, []phoneme{k, st}); ok {
+					new = phonToAlphas{
+						p,
+						s,
+					}
+					break
+				}
+			}
 			//The 't' following x is sometimes not pronounced so catch it here
 			if _, ok := getStringAt(alphas, currAbc, 0, "xtb"); ok {
 				if _, ok := phsAt(phons, currPh, 3, []phoneme{k, s, b}); ok {
@@ -2203,17 +2247,18 @@ func mapPhToA(phons []phoneme, alphas string) ([]phonToAlphas, error) {
 			}
 			if stringAt(alphas, currAbc, 1, "x") {
 				if p, ok := phsAt(phons, currPh, 2, []phoneme{k, s}, []phoneme{k, sh}); ok {
-				// As in eXit, anXious,...
-				new = phonToAlphas{
+					// As in eXit, anXious,...
+					new = phonToAlphas{
 						p,
 						"x",
 					}
 				}
 			}
 		case kl:
-			if s, ok := getStringAt(alphas, currAbc, 0, "call", "ckcl", "quel", "ccl", "chl", "ckl", "col", "cul", "kel", "khl", "ctl", "cl", "kl"); ok {
-				// As in dramatiCALLy, saCKCLoth, uniQUELy, aCCLaim, CHLorine, tiCKLer, choCOLate, faCULty, liKELy, neKHLudoff (seriously?
-				// -it's a training word), striCTLy, CLock, KLingon,...
+			// if s, ok := getStringAt(alphas, currAbc, 0, "call", "ckcl", "quel", "ccl", "chl", "ckl", "col", "cul", "kel", "khl", "ctl", "cl", "kl"); ok {
+			if s, ok := getStringAt(alphas, currAbc, 0, "call", "ckcl", "quel", "ccl", "chl", "ckl", "col", "cul", "kel", "ctl", "cl", "kl"); ok {
+				// As in dramatiCALLy, saCKCLoth, uniQUELy, aCCLaim, CHLorine, tiCKLer, choCOLate, faCULty, liKELy,
+				// striCTLy, CLock, KLingon,...
 				new = phonToAlphas{
 					[]phoneme{
 						kl,
@@ -2228,6 +2273,31 @@ func mapPhToA(phons []phoneme, alphas string) ([]phonToAlphas, error) {
 				new = phonToAlphas{
 					[]phoneme{
 						kr,
+					},
+					s,
+				}
+				break
+			}
+		case kt:
+			// This is a bit of a hack. We have a pronunciation of actualities,
+			// A KT CH Y UW AE L IH T IY Z and we need to find a home for the CH
+			if s, ok := getStringAt(alphas, currAbc, 0, "ct"); ok {
+				if _, ok := phsAt(phons, currPh, 2, []phoneme{kt, ch}); ok {
+					new = phonToAlphas{
+						[]phoneme{
+							kt, ch,
+						},
+						s,
+					}
+					break
+				}
+			}
+			if s, ok := getStringAt(alphas, currAbc, 0, "ched", "cked", "kked", "lked", "qued", "ced", "ckt", "ked", "lkt", "ct", "kt"); ok {
+				// As in aCHED, blaCKED, treKKed, bauLKED, piQUED, arCED, baCKTracked*, tusKED, foLKTale*, interaCT, desKTop*,...
+				// *These maybe shouldn't be a kt
+				new = phonToAlphas{
+					[]phoneme{
+						kt,
 					},
 					s,
 				}
@@ -2310,7 +2380,7 @@ func mapPhToA(phons []phoneme, alphas string) ([]phonToAlphas, error) {
 				}
 				break
 			}
-			if _, ok := getStringAt(alphas, currAbc, 0 , "mem"); ok {
+			if _, ok := getStringAt(alphas, currAbc, 0, "mem"); ok {
 				if _, ok := phsAt(phons, currPh, 2, []phoneme{m, m}); ok {
 					// As in hoMEmade,...
 					new = phonToAlphas{
@@ -2333,7 +2403,7 @@ func mapPhToA(phons []phoneme, alphas string) ([]phonToAlphas, error) {
 					break
 				}
 			}
-			if _, ok := getStringAt(alphas, currAbc, 0 , "mbm"); ok {
+			if _, ok := getStringAt(alphas, currAbc, 0, "mbm"); ok {
 				if _, ok := phsAt(phons, currPh, 2, []phoneme{m, m}); ok {
 					// As in entoMBment,...
 					new = phonToAlphas{
@@ -2423,7 +2493,7 @@ func mapPhToA(phons []phoneme, alphas string) ([]phonToAlphas, error) {
 			if s, ok := getStringAt(alphas, currAbc, 2, "mp"); ok {
 				// As in redeMPtion,...
 				// Check for a silent p though. A lexical p can also be sounded as f (as in eMPhatic)!
-				if _, ok := phsAt(phons, currPh, 2, []phoneme{m, f}, []phoneme{m, p}, []phoneme{m, pl}, []phoneme{m, pr}); !ok {
+				if _, ok := phsAt(phons, currPh, 2, []phoneme{m, f}, []phoneme{m, fl}, []phoneme{m, p}, []phoneme{m, pl}, []phoneme{m, pr}); !ok {
 					// The lexical 'p' is silent so grab it now.
 					new = phonToAlphas{
 						[]phoneme{
@@ -2649,13 +2719,13 @@ func mapPhToA(phons []phoneme, alphas string) ([]phonToAlphas, error) {
 			if stringAt(alphas, currAbc, 2, "nc") {
 				// As in the place name, Altrincham, which Wikipedia confirms is pronounced with a
 				// phonetic 'ng'
-				if _, ok := phsAt(phons, currPh, 2, []phoneme{ng, k}, []phoneme{ng, kr}); !ok {
+				if _, ok := phsAt(phons, currPh, 2, []phoneme{ng, k}, []phoneme{ng, kr}, []phoneme{ng, ks}, []phoneme{ng, kt}); !ok {
 					// But not as in acupuNCture, paNCReas...
 					new = phonToAlphas{
 						[]phoneme{
 							ng,
 						},
-						"ch",
+						"nc",
 					}
 					break
 				}
@@ -2810,8 +2880,8 @@ func mapPhToA(phons []phoneme, alphas string) ([]phonToAlphas, error) {
 				}
 			}
 			if stringAt(alphas, currAbc, 2, "ot") {
-					// As in depot,...
-					if _, ok := phsAt(phons, currPh, 2, []phoneme{ow, t}, []phoneme{ow, dh}, []phoneme{ow, sh}, []phoneme{ow, th}, []phoneme{ow, tr}); !ok {
+				// As in depot,...
+				if _, ok := phsAt(phons, currPh, 2, []phoneme{ow, t}, []phoneme{ow, dh}, []phoneme{ow, sh}, []phoneme{ow, th}, []phoneme{ow, tr}); !ok {
 					// But not as in rOTe, bOTH, pOTion, clOTHE, synchrOTRon,...
 					// So it looks like the t is silent here
 					new = phonToAlphas{
@@ -2874,7 +2944,7 @@ func mapPhToA(phons []phoneme, alphas string) ([]phonToAlphas, error) {
 				break
 			}
 			if stringAt(alphas, currAbc, 2, "pt") {
-				if _, ok := phsAt(phons, currPh, 2, []phoneme{p, ch}, []phoneme{p, sh}, []phoneme{p, t}, []phoneme{p, tr}, []phoneme{p, th}); !ok {
+				if _, ok := phsAt(phons, currPh, 2, []phoneme{p, ch}, []phoneme{p, sh}, []phoneme{p, t}, []phoneme{p, tr}, []phoneme{p, th}, []phoneme{p, thr}); !ok {
 					// It's not caPTure, descriPTIon, comPTRoller, uPTurn, upTHrust,...
 					// So it looks like there's a silent t in words like bankruptcy
 					new = phonToAlphas{
@@ -3016,6 +3086,17 @@ func mapPhToA(phons []phoneme, alphas string) ([]phonToAlphas, error) {
 					}
 					break
 				}
+				if _, ok := phsAt(phons, currPh, 2, []phoneme{s, st}); ok {
+					// As in breaSTSTroke,...
+					// The first lexical t isn't sounded so swallow it here
+					new = phonToAlphas{
+						[]phoneme{
+							s,
+						},
+						"st",
+					}
+					break
+				}
 			}
 			// if str, ok := getStringAt(alphas, currAbc, 0, "sts"); ok {
 			// 	if _, ok := phsAt(phons, currPh, 2, []phoneme{s, t}, []phoneme{s, s}); !ok {
@@ -3047,7 +3128,7 @@ func mapPhToA(phons []phoneme, alphas string) ([]phonToAlphas, error) {
 				// if _, ok := phsAt(phons, currPh, 2, []phoneme{s, ch}, []phoneme{s, t}, []phoneme{s, th}, []phoneme{s, tr}, []phoneme{s, ts}); !ok {
 				if _, ok := phsAt(phons, currPh, 2, []phoneme{s, ax}, []phoneme{s, axl}, []phoneme{s, axn}, []phoneme{s, k}, []phoneme{s, l}, []phoneme{s, m}, []phoneme{s, n}, []phoneme{s, p}, []phoneme{s, s}); ok {
 					// As in caSTle, caSTle, muSTn't, waiSTcoat, neSTle, adjuSTment, cheSTnut, poSTpone, breaSTstroke,...
-						// There is a silent t
+					// There is a silent t
 					// As in thiSTle,... but not as in reStless,..
 					new = phonToAlphas{
 						[]phoneme{
@@ -3118,8 +3199,8 @@ func mapPhToA(phons []phoneme, alphas string) ([]phonToAlphas, error) {
 			}
 			if stringAt(alphas, currAbc, 2, "sc") {
 				// As in SCene,...
-				if _, ok := phsAt(phons, currPh, 2, []phoneme{s, ch}, []phoneme{s, k}, []phoneme{s, kr}, []phoneme{s, kl}); !ok {
-					// But not as in miSChief, SChool, SCrum, diSClose,...
+				if _, ok := phsAt(phons, currPh, 2, []phoneme{s, ch}, []phoneme{s, k}, []phoneme{s, kr}, []phoneme{s, kl}, []phoneme{s, ks}); !ok {
+					// But not as in miSChief, SChool, SCrum, diSClose, molluSCs,...
 					new = phonToAlphas{
 						[]phoneme{
 							s,
@@ -3149,8 +3230,8 @@ func mapPhToA(phons []phoneme, alphas string) ([]phonToAlphas, error) {
 			}
 			if stringAt(alphas, currAbc, 2, "ss") {
 				// As in paSS,...
-				if _, ok := phsAt(phons, currPh, 2, []phoneme{s, s}, []phoneme{s, sh}); !ok {
-					// But not as in miSSpell, miSSHapen,... and many other mis- words (in which we leave the second
+				if _, ok := phsAt(phons, currPh, 2, []phoneme{s, s}, []phoneme{s, sh}, []phoneme{s, st}); !ok {
+					// But not as in miSSpell, miSSHapen, miSSTatement,... and many other mis- words (in which we leave the second
 					// lexical 's' for the second phonetic 's')
 					new = phonToAlphas{
 						[]phoneme{
@@ -3231,7 +3312,7 @@ func mapPhToA(phons []phoneme, alphas string) ([]phonToAlphas, error) {
 				}
 			}
 			// Catch threshold, where the h is pronounced...
-			// But be careful. There are words like fishhok where the h is pronounced
+			// But be careful. There are words like fishhook where the h is pronounced
 			// and in these words we do want to swallow the lexical sh
 			_, shh := getStringAt(alphas, currAbc, 0, "shh")
 			if _, ok := getStringAt(alphas, currAbc, 0, "sh"); ok && !shh {
@@ -3265,19 +3346,58 @@ func mapPhToA(phons []phoneme, alphas string) ([]phonToAlphas, error) {
 				}
 				break
 			}
-		case t:
-			// A training pronunciation to get out of the way first
-			if stringAt(alphas, currAbc, 1, "t") {
-				if p, ok := phsAt(phons, currPh, 2, []phoneme{t, ch}); ok {
+		case st:
+			if str, ok := getStringAt(alphas, currAbc, 0, "stst"); ok {
+				if _, ok := phsAt(phons, currPh, 2, []phoneme{st, s}, []phoneme{st, st}); !ok {
+					// We're good to swallow all of this now
+					// As in breaSTSTroke,...
 					new = phonToAlphas{
-						p,
-						"t",
+						[]phoneme{
+							st,
+						},
+						str,
 					}
 					break
 				}
 			}
+			if s, ok := getStringAt(alphas, currAbc, 0, "sth"); ok {
+				if _, ok := phsAt(phons, currPh, 2, []phoneme{st, hh}); !ok {
+					// The lexical h looks like it's silent so swallow it here.
+					// TODO: Actually it would be nicer to swallow it later but fo rnow do it here.
+					// As in poSTHumous,...
+					new = phonToAlphas{
+						[]phoneme{
+							st,
+						},
+						s,
+					}
+					break
+				}
+			}
+			if s, ok := getStringAt(alphas, currAbc, 0, "sced", "ssed", "tzed", "ced", "cet", "sed", "set", "sst", "st"); ok {
+				// As in colaeSCED, obseSSED, walTZED, notiCED, peaCETime, abaSED, mouSETrap, croSSTalk, theoriST,...
+				new = phonToAlphas{
+					[]phoneme{
+						st,
+					},
+					s,
+				}
+				break
+			}
+		case sts:
+			if s, ok := getStringAt(alphas, currAbc, 0, "stes", "sts"); ok {
+				// As in taSTES, geologiSTS,...
+				new = phonToAlphas{
+					[]phoneme{
+						sts,
+					},
+					s,
+				}
+				break
+			}
+		case t:
 			if stringAt(alphas, currAbc, 2, "ts") {
-				if _, ok := phsAt(phons, currPh, 2, []phoneme{t, s}, []phoneme{t, sh}); !ok {
+				if _, ok := phsAt(phons, currPh, 2, []phoneme{t, s}, []phoneme{t, sh}, []phoneme{t, st}); !ok {
 					// A special case, the lexical 's' isn't sounded, as in TSetse,...
 					new = phonToAlphas{
 						[]phoneme{
@@ -3354,8 +3474,8 @@ func mapPhToA(phons []phoneme, alphas string) ([]phonToAlphas, error) {
 				break
 			}
 			if stringAt(alphas, currAbc, 2, "tt") {
-				if _, ok := phsAt(phons, currPh, 2, []phoneme{t, t}, []phoneme{t, tr}); ok {
-					// As in posTTraumatic, posTTRaumatic,...
+				if _, ok := phsAt(phons, currPh, 2, []phoneme{t, t}, []phoneme{t, tr}, []phoneme{t, thr}); ok {
+					// As in posTTraumatic, posTTRaumatic, cuTTHRoat,...
 					// Only swallow one t if the next phoneme is also a t (or is a tr)
 					new = phonToAlphas{
 						[]phoneme{
@@ -3418,6 +3538,17 @@ func mapPhToA(phons []phoneme, alphas string) ([]phonToAlphas, error) {
 				}
 				break
 			}
+		case thr:
+			if s, ok := getStringAt(alphas, currAbc, 0, "thr"); ok {
+				// As in forTHRight,...
+				new = phonToAlphas{
+					[]phoneme{
+						thr,
+					},
+					s,
+				}
+				break
+			}
 		case tr:
 			if s, ok := getStringAt(alphas, currAbc, 0, "taur", "tar", "ter", "tor", "ttr", "ptr", "tr"); ok {
 				// As in resTAURant, planeTARy, cemeTERy, hisTORy, aTTRibute, temPTRess, sTRike,...
@@ -3470,6 +3601,15 @@ func mapPhToA(phons []phoneme, alphas string) ([]phonToAlphas, error) {
 			// if s, ok := getStringAt(alphas, currAbc, 3, "ewer", "oor", "our"); ok {
 			if s, ok := getStringAt(alphas, currAbc, 3, "eur", "ewer", "oor", "our"); ok {
 				if p, ok := phsAt(phons, currPh, 3, []phoneme{uh, ax, r}); ok {
+					// As in plEUral, brEWEry, mOOrish, tOUring,...
+					new = phonToAlphas{
+						p[:len(p)-1],
+						s[:len(s)-1],
+					}
+					break
+				}
+				// And just in case there's no ax
+				if p, ok := phsAt(phons, currPh, 2, []phoneme{uh, r}); ok {
 					// As in plEUral, brEWEry, mOOrish, tOUring,...
 					new = phonToAlphas{
 						p[:len(p)-1],
@@ -3643,7 +3783,7 @@ func mapPhToA(phons []phoneme, alphas string) ([]phonToAlphas, error) {
 			}
 			if stringAt(alphas, currAbc, 3, "ous") {
 				// As in rendezvOUS,...
-				if _, ok := phsAt(phons, currPh, 2, []phoneme{uw, s}, []phoneme{uw, z}); !ok {
+				if _, ok := phsAt(phons, currPh, 2, []phoneme{uw, s}, []phoneme{uw, st}, []phoneme{uw, z}); !ok {
 					// The lexical 's' isn't sounded, so swallow it now
 					new = phonToAlphas{
 						[]phoneme{
@@ -3762,13 +3902,13 @@ func mapPhToA(phons []phoneme, alphas string) ([]phonToAlphas, error) {
 				// We have pronunciation variants with uwm and uwm, m phonemes
 				p := []phoneme{
 					uwm,
-		 		}
+				}
 				if _, ok := phsAt(phons, currPh, 2, []phoneme{uwm, m}); ok {
 					// Leave the phonetic m for procesing later
 					// As in entOMBment, rOOMmate...
 					new = phonToAlphas{
 						p,
-						"omb",
+						s[:len(s)-1],
 					}
 				} else {
 					// As in entOMBMent, rOOMMate...
@@ -3803,21 +3943,6 @@ func mapPhToA(phons []phoneme, alphas string) ([]phonToAlphas, error) {
 				break
 			}
 		case v:
-			// pocketsphinx training means it sometimes swallows a vowel sound
-			// following the v which leads to spellings like conversation where the
-			// ...vers... is repesented phonetically as ... v s ...
-			if stringAt(alphas, currAbc, 3, "ver") {
-				// A very specific test for now for the case conversation
-				if _, ok := phsAt(phons, currPh, 2, []phoneme{v, s}); ok {
-					new = phonToAlphas{
-						[]phoneme{
-							v,
-						},
-						"ver",
-					}
-					break
-				}
-			}
 			if s, ok := getStringAt(alphas, currAbc, 2, "ph", "vv"); ok {
 				// As in nePHew, saVVy,...
 				new = phonToAlphas{
@@ -3884,12 +4009,12 @@ func mapPhToA(phons []phoneme, alphas string) ([]phonToAlphas, error) {
 					if _, ok := phsAt(phons, currPh, 3, []phoneme{w, aa, r}); ok {
 						// We have an r phoneme, it's the last phoneme in the word
 						// As in boudOIR,...
-						if len(phons) == currPh + 3 {
+						if len(phons) == currPh+3 {
 							p = append(p, r)
 						} else {
 							// It isn't the last phoneme so don't swallow the lexical r here
 							// As in sOIree,...
-							s = s[:len(s) -1]
+							s = s[:len(s)-1]
 						}
 					}
 					new = phonToAlphas{
@@ -3970,14 +4095,14 @@ func mapPhToA(phons []phoneme, alphas string) ([]phonToAlphas, error) {
 					// The e is probably sounded so don't swallow it here
 					// As in amULet,...
 					new = phonToAlphas{
-						p[:len(p) - 1],
-						s[:len(s) - 1],
+						p[:len(p)-1],
+						s[:len(s)-1],
 					}
 					break
 				}
 			}
-			if s, ok := getStringAt(alphas, currAbc, 6, "you'll", "oule", "yule", "uel", "ule", "eul", "ul"); ok {
-				// As in YOU'LL, YULE, valUELess, capsULE, EULogy, reticULar...
+			if s, ok := getStringAt(alphas, currAbc, 6, "uel", "ule", "eul", "ul"); ok {
+				// As in valUELess, capsULE, EULogy, reticULar...
 				if p, ok := phsAt(phons, currPh, 2, []phoneme{y, uwl}); ok {
 					new = phonToAlphas{
 						p,
@@ -3985,8 +4110,28 @@ func mapPhToA(phons []phoneme, alphas string) ([]phonToAlphas, error) {
 					}
 					break
 				}
-				// As in the training pronunciation of inarticULate,...
-				if p, ok := phsAt(phons, currPh, 2, []phoneme{y, axl}); ok {
+				// // As in the training pronunciation of inarticULate,...
+				// if p, ok := phsAt(phons, currPh, 2, []phoneme{y, axl}); ok {
+				// 	new = phonToAlphas{
+				// 		p,
+				// 		s,
+				// 	}
+				// 	break
+				// }
+			}
+			if s, ok := getStringAt(alphas, currAbc, 0, "eum", "um"); ok {
+				if p, ok := phsAt(phons, currPh, 2, []phoneme{y, uwm}); ok {
+					// As in pnEUMonia, hUMan,...
+					new = phonToAlphas{
+						p,
+						s,
+					}
+					break
+				}
+			}
+			if s, ok := getStringAt(alphas, currAbc, 0, "eun", "ewn", "ugn", "un"); ok {
+				if p, ok := phsAt(phons, currPh, 2, []phoneme{y, uwn}); ok {
+					// As in EUNuch, hEWN, impUGN, mUNicipal,...
 					new = phonToAlphas{
 						p,
 						s,
@@ -4015,8 +4160,21 @@ func mapPhToA(phons []phoneme, alphas string) ([]phonToAlphas, error) {
 				}
 			}
 			// The many sounds of 'ure'...
+			if _, ok := getStringAt(alphas, currAbc, 3, "eur"); ok {
+				// As in EURope,...
+				// Catch a possible sounded phonetic 'r'
+				if _, ok := phsAt(phons, currPh, 3, []phoneme{y, ax, r}, []phoneme{y, uh, r}); ok {
+					new = phonToAlphas{
+						[]phoneme{
+							y, ax,
+						},
+						"eu",
+					}
+					break
+				}
+			}
 			if s, ok := getStringAt(alphas, currAbc, 3, "eur", "ure", "ur"); ok {
-				// As in EURope, tenUREd, cURious, 
+				// As in EURope, tenUREd, cURious,
 				// Catch a possible sounded phonetic 'r'
 				if _, ok := phsAt(phons, currPh, 3, []phoneme{y, ax, r}, []phoneme{y, uh, r}); ok {
 					// As in failURE,...
@@ -4063,7 +4221,7 @@ func mapPhToA(phons []phoneme, alphas string) ([]phonToAlphas, error) {
 				}
 			}
 			if s, ok := getStringAt(alphas, currAbc, 0, "ut"); ok {
-				if _, ok:= phsAt(phons, currPh, 3, []phoneme{y, uw, sh}, []phoneme{y, uw, ch}, []phoneme{y, uw, tr}, []phoneme{y, uw, t}); !ok {
+				if _, ok := phsAt(phons, currPh, 3, []phoneme{y, uw, sh}, []phoneme{y, uw, ch}, []phoneme{y, uw, tr}, []phoneme{y, uw, t}); !ok {
 					// Not as in restitUtion, fUture, nUtrition, tUtor,...
 					if _, ok := phsAt(phons, currPh, 2, []phoneme{y, uw}); ok {
 						// As in debUT,...
@@ -4075,7 +4233,7 @@ func mapPhToA(phons []phoneme, alphas string) ([]phonToAlphas, error) {
 						}
 						break
 					}
-				}			
+				}
 			}
 			if s, ok := getStringAt(alphas, currAbc, 2, "eau", "eu"); ok {
 				if p, ok := phsAt(phons, currPh, 2, []phoneme{y, uw}); ok {
@@ -4109,7 +4267,7 @@ func mapPhToA(phons []phoneme, alphas string) ([]phonToAlphas, error) {
 						[]phoneme{
 							y, uw,
 						},
-						"i",
+						"u",
 					}
 					break
 				}
@@ -4175,9 +4333,8 @@ func mapPhToA(phons []phoneme, alphas string) ([]phonToAlphas, error) {
 				break
 			}
 			if stringAt(alphas, currAbc, 1, "u") {
-				if p, ok := phsAt(phons, currPh, 2, []phoneme{y, ax}, []phoneme{y, ah}, []phoneme{y, uh}, []phoneme{y, uw}); ok {
-					// As in inarticUlate*, articUlate, tUreen, fUture,... At least according to the CMU dictionary
-					// *This is found in the training pronunciation of inarticULate,...
+				if p, ok := phsAt(phons, currPh, 2, []phoneme{y, ah}, []phoneme{y, uh}, []phoneme{y, uw}); ok {
+					// As in articUlate, tUreen, fUture,... At least according to the CMU dictionary
 					new = phonToAlphas{
 						p,
 						"u",
@@ -4185,14 +4342,73 @@ func mapPhToA(phons []phoneme, alphas string) ([]phonToAlphas, error) {
 				}
 				break
 			}
+		case yuw:
+			if _, ok := getStringAt(alphas, currAbc, 0, "ure"); ok {
+				if _, ok := phsAt(phons, currPh, 2, []phoneme{yuw, ax}, []phoneme{yuw, axm}, []phoneme{yuw, axr}); ok {
+					new = phonToAlphas{
+						[]phoneme{
+							yuw,
+						},
+						"u",
+					}
+					break
+				}
+			}
+			if _, ok := getStringAt(alphas, currAbc, 0, "ue"); ok {
+				if _, ok := phsAt(phons, currPh, 2, []phoneme{yuw, ax}, []phoneme{yuw, axl}, []phoneme{yuw, eh}, []phoneme{yuw, ih}); ok {
+					// Looks like the lexical e is sounded
+					new = phonToAlphas{
+						[]phoneme{
+							yuw,
+						},
+						"u",
+					}
+					break
+				}
+			}
+			if _, ok := getStringAt(alphas, currAbc, 0, "ui"); ok {
+				if _, ok := phsAt(phons, currPh, 2, []phoneme{yuw, ih}, []phoneme{yuw, ing}); ok {
+					// Looks like the lexical i is sounded
+					new = phonToAlphas{
+						[]phoneme{
+							yuw,
+						},
+						"u",
+					}
+					break
+				}
+			}
+			if s, ok := getStringAt(alphas, currAbc, 0, "ut"); ok {
+				if _, ok := phsAt(phons, currPh, 2, []phoneme{yuw, sh}, []phoneme{yuw, ch}, []phoneme{yuw, tr}, []phoneme{yuw, t}); !ok {
+					// Not as in restitUtion, fUture, nUtrition, tUtor,...
+					// As in debUT,...
+					new = phonToAlphas{
+						[]phoneme{
+							yuw,
+						},
+						s,
+					}
+					break
+				}
+			}
+			if s, ok := getStringAt(alphas, currAbc, 0, "eau", "ieu", "iew", "yew", "you", "eu", "ew", "hu", "iu", "ue", "ui", "yu", "u"); ok {
+				// As in bEAUtiful, adIEU, vIEW, YEW, YOUth, EUcalyptus, anEW, postHUmous, jIUjitsu, argUE, sUIt, YUle, Use,...
+				new = phonToAlphas{
+					[]phoneme{
+						yuw,
+					},
+					s,
+				}
+				break
+			}
 		case z:
-			if _, ok := getStringAt(alphas, currAbc, 0, "ds"); ok {
+			if s, ok := getStringAt(alphas, currAbc, 0, "ds"); ok {
 				// As in bonDS,...
 				new = phonToAlphas{
 					[]phoneme{
 						z,
 					},
-					"s",
+					s,
 				}
 				break
 			}
@@ -4234,7 +4450,7 @@ func mapPhToA(phons []phoneme, alphas string) ([]phonToAlphas, error) {
 				}
 			}
 			if str, ok := getStringAt(alphas, currAbc, 2, "ss", "zz"); ok {
-				if _, ok := phsAt(phons, currPh, 2, []phoneme{z, s}); ok {
+				if _, ok := phsAt(phons, currPh, 2, []phoneme{z, s}, []phoneme{z, st}); ok {
 					// As in newSStand,...
 					new = phonToAlphas{
 						[]phoneme{
@@ -4325,9 +4541,9 @@ func mapPhToA(phons []phoneme, alphas string) ([]phonToAlphas, error) {
 				break
 			}
 			if stringAt(alphas, currAbc, 3, "anc") {
-				if _, ok := phsAt(phons, currPh, 3, []phoneme{ax, n, k}, []phoneme{ax, n, s}); !ok {
+				if _, ok := phsAt(phons, currPh, 3, []phoneme{ax, n, k}, []phoneme{ax, n, s}, []phoneme{ax, n, st}); !ok {
 					// As in blANCmange,..
-					// But not as in melANCholy, vagrANCy, and many other words...
+					// But not as in melANCholy, vagrANCy, balanCED, and many other words...
 					new = phonToAlphas{
 						[]phoneme{
 							ax,
@@ -4560,8 +4776,8 @@ func mapPhToA(phons []phoneme, alphas string) ([]phonToAlphas, error) {
 				break
 			}
 		case axr:
-			if s, ok := getStringAt(alphas, currAbc, 0, "ough", "eur", "our", "ure", "wer", "ar", "er", "ia", "ir", "or", "re", "ur", "yr", "a", "e", "o", "r"); ok {
-				// As in thorOUGH, amatEUR, favOUR, sutURE, ansWER, liAR, harriER, nostalgIA, fIR, tailOR, metRE, lemUR, zephYR, troikA, timbrE, ontO*, cobbleR,...
+			if s, ok := getStringAt(alphas, currAbc, 0, "ough", "eur", "our", "ure", "wer", "ar", "er", "ha", "ia", "ir", "or", "re", "ur", "yr", "a", "e", "o", "r"); ok {
+				// As in thorOUGH, amatEUR, favOUR, sutURE, ansWER, liAR, harriER, piranHA, nostalgIA, fIR, tailOR, metRE, lemUR, zephYR, troikA, timbrE, ontO*, cobbleR,...
 				// *onto is a bit suspect for a standalone word pronunciation. In the case of cobbler the test for silent e might
 				// swallow the lexical e so that all we're left with is the lexical r
 				new = phonToAlphas{
@@ -4654,14 +4870,14 @@ func mapPhToA(phons []phoneme, alphas string) ([]phonToAlphas, error) {
 				break
 			}
 			if _, ok := getStringAt(alphas, currAbc, 0, "ar"); ok {
-				if _, ok := phsAt(phons, currPh, 2, []phoneme{ehr,r }); ok {
+				if _, ok := phsAt(phons, currPh, 2, []phoneme{ehr, r}); ok {
 					// The r is sounded so don't grab it here
 					// As in phAraoh,...
 					new = phonToAlphas{
 						[]phoneme{
 							ehr,
 						},
-						"r",
+						"a",
 					}
 					break
 				}
@@ -4798,8 +5014,18 @@ func mapPhToA(phons []phoneme, alphas string) ([]phonToAlphas, error) {
 				}
 				break
 			}
-			if s, ok := getStringAt(alphas, currAbc, 2, "ancm", "urem", "amm", "arm", "erm", "iam", "irm", "ium", "olm", "omm", "orm", "umm", "urm", "am", "em", "im", "om", "um"); ok {
-				// As in bLANCMange, measUREMent, grAMMatical, philhARMonic, vERMillion, parlIAMent, affIRMation, belgIUM, malcOLM, cOMMercial, infORMation, consUMMation, sURMise, fAMiliar, acadEMy, anIMal (not sure this should
+			if stringAt(alphas, currAbc, 4, "harm") {
+				// As in philHARMonic,...
+				new = phonToAlphas{
+					[]phoneme{
+						axm,
+					},
+					"harm",
+				}
+				break
+			}
+			if s, ok := getStringAt(alphas, currAbc, 2, "ancm", "urem", "amm", "arm", "erm", "iam", "irm", "ium", "olm", "omm", "orm", "rem", "umm", "urm", "am", "em", "im", "om", "um"); ok {
+				// As in bLANCMange, measUREMent, grAMMatical, philhARMonic, vERMillion, parlIAMent, affIRMation, belgIUM, malcOLM, cOMMercial, infORMation, procuREMent, consUMMation, sURMise, fAMiliar, acadEMy, anIMal (not sure this should
 				// be a schwa though), incOMe, vacuUM...
 				new = phonToAlphas{
 					[]phoneme{
@@ -4828,7 +5054,7 @@ func mapPhToA(phons []phoneme, alphas string) ([]phonToAlphas, error) {
 						[]phoneme{
 							axn,
 						},
-						s[:len(s) - 1],
+						s[:len(s)-1],
 					}
 					break
 				}
@@ -4920,8 +5146,8 @@ func mapPhToA(phons []phoneme, alphas string) ([]phonToAlphas, error) {
 					break
 				}
 			}
-			if s, ok := getStringAt(alphas, currAbc, 0, "chs", "cks", "kes", "cc", "cs", "cz", "ks"); ok {
-				// As in daCHShund, triCKSter, spoKESperson, aCCede, froliCSome, eczema, pranKSter,...
+			if s, ok := getStringAt(alphas, currAbc, 0, "ches", "ques", "chs", "cks", "cts", "kes", "khs", "lks", "cc", "cs", "cz", "ks"); ok {
+				// As in aCHES, antiQUES, daCHShund, triCKSter, refleCTS, spoKESperson, sheiKHS, waLKS, aCCede, froliCSome, eczema, pranKSter,...
 				new = phonToAlphas{
 					[]phoneme{
 						ks,
@@ -4960,8 +5186,8 @@ func mapPhToA(phons []phoneme, alphas string) ([]phonToAlphas, error) {
 				break
 			}
 		case uwl:
-			if s, ok := getStringAt(alphas, currAbc, 3, "o'll", "oel", "ool", "oul", "uel", "ule", "ul"); ok {
-				// As in whO'LL, shOELace, schOOL, ampOULe, clUELess, rULE, unrULy...
+			if s, ok := getStringAt(alphas, currAbc, 3, "o'll", "oel", "ool", "oul", "ou'll", "uel", "ule", "ul"); ok {
+				// As in whO'LL, shOELace, schOOL, ampOULe, yOU'LL, clUELess, rULE, unrULy...
 				new = phonToAlphas{
 					[]phoneme{
 						uwl,
@@ -4992,7 +5218,6 @@ func mapPhToA(phons []phoneme, alphas string) ([]phonToAlphas, error) {
 			new.alphas = punctuationSkipped + new.alphas
 			currAbc -= len(punctuationSkipped)
 			punctuationSkipped = ""
-			// currAbc -= len(new.alphas)
 		}
 		// Catch any trailing characters not yet mapped to phonemes.
 		// TODO: This is a bit crude but will do for now.
@@ -5004,7 +5229,7 @@ func mapPhToA(phons []phoneme, alphas string) ([]phonToAlphas, error) {
 	if currAbc != len(alphas) || currPh != len(phons) {
 		// This is also a failure. Since we loop on phonemes it's most likely
 		// that currAbc != len(alphas)
-		return fail(phons[len(phons) - 1], alphas)
+		return fail(phons[len(phons)-1], alphas)
 	}
 	return ret, nil
 }

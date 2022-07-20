@@ -1,0 +1,163 @@
+Calling Pronounce with args: outfolder /Users/test/go/src/Phonemes/audio_clips/Temp_85f7433d-d214-4fce-b847-e56d34f9f748 audiofile /Users/test/go/src/Phonemes/audio_clips/set1_paul.wav word set dictfile /Users/test/Downloads/sourceFiltered_exp3Mar22.dict phdictfile /Users/test/Documents/GitHub/pronounce-experimental/Dictionaries/art_db_v3_inference.phone featureparams /Users/test/Documents/GitHub/pronounce-experimental/Models/Bare.ci_cont_29Jun22/model/feat.params hmm /Users/test/Documents/GitHub/pronounce-experimental/Models/Bare.ci_cont_29Jun22/model
+
+ length of audio =  1.902625
+
+
+
+len(frame)= 640
+rate = 16000
+
+
+
+len(frame)= 640
+rate = 16000
+
+ start2, duration2, end2 =  0.5800000000000001 0.74 1.32
+
+ start3, duration3, end3 =  0.8 0.32 1.12
+
+ Initial start, duration, end =  0.4800000000000001 0.84 1.32
+
+ Cut at: start, duration =  0.4800000000000001 1.29     guard_end =  1.77 
+
+Running scan for frate = 125
+Considering guard oy with value 1 for s ...
+candidateGuards = map[oy:true]
+Picking guard, oy
+
+Considering guard oy with value 2 for eh ...
+candidateGuards = map[oy:true]
+Picking guard, oy
+
+Considering guard zh with value 1 for t ...
+Considering guard oy with value 1 for t ...
+candidateGuards = map[oy:true zh:true]
+Picking guard, zh
+
+frate, target rule = 125 public <set> = (((sil [((th <any_Cx_s_th_p>) | (<any_Cx_s_th_p> th))] [((th <any_vowel_noSlide>) | (<any_vowel_noSlide> th))]) | (sil p (sil [((th <any_Cx_s_th_p>) | (<any_Cx_s_th_p> th))] [((th <any_vowel_noSlide>) | (<any_vowel_noSlide> th))]))) (([(<any_Cx_oy_p_th_s> oy)] | [(oy <any_Cx_oy_p_th_s>)]) (s | z | ((<any_Cx_oy_p_th_s> oy) | (oy <any_Cx_oy_p_th_s>)))) ((([(<any_Vx_oy_oy_eh_noSlide> oy)] | [(oy <any_Vx_oy_oy_eh_noSlide>)]) ([(<any_Cx_oy_oy_t_s> oy)] | [(oy <any_Cx_oy_oy_t_s>)])) (eh | ((<any_Vx_oy_oy_eh_noSlide> oy) | (oy <any_Vx_oy_oy_eh_noSlide>)))) (([(<any_Cx_zh_oy_t> zh)] | [(zh <any_Cx_zh_oy_t>)]) (t | ((<any_Cx_zh_oy_t> zh) | (zh <any_Cx_zh_oy_t>)))) (([(<any_vowel_noSlide> g)] | [(g <any_vowel_noSlide>)]) ([(<any_Cx_zh_t_g> g)] | [(g <any_Cx_zh_t_g>)]) sil))
+Running scan for frate = 105
+Considering guard oy with value 1 for s ...
+candidateGuards = map[oy:true]
+Picking guard, oy
+
+Considering guard oy with value 2 for eh ...
+candidateGuards = map[oy:true]
+Picking guard, oy
+
+Considering guard zh with value 1 for t ...
+Considering guard oy with value 1 for t ...
+candidateGuards = map[oy:true zh:true]
+Picking guard, zh
+
+frate, target rule = 105 public <set> = (((sil [((t <any_Cx_s_t_p>) | (<any_Cx_s_t_p> t))] [((t <any_vowel_noSlide>) | (<any_vowel_noSlide> t))]) | (sil p (sil [((t <any_Cx_s_t_p>) | (<any_Cx_s_t_p> t))] [((t <any_vowel_noSlide>) | (<any_vowel_noSlide> t))]))) (([(<any_Cx_oy_p_t_s> oy)] | [(oy <any_Cx_oy_p_t_s>)]) (s | z | ((<any_Cx_oy_p_t_s> oy) | (oy <any_Cx_oy_p_t_s>)))) ((([(<any_Vx_oy_oy_eh_noSlide> oy)] | [(oy <any_Vx_oy_oy_eh_noSlide>)]) ([(<any_Cx_oy_oy_t_s> oy)] | [(oy <any_Cx_oy_oy_t_s>)])) (eh | ((<any_Vx_oy_oy_eh_noSlide> oy) | (oy <any_Vx_oy_oy_eh_noSlide>)))) (([(<any_Cx_zh_oy_t> zh)] | [(zh <any_Cx_zh_oy_t>)]) (t | ((<any_Cx_zh_oy_t> zh) | (zh <any_Cx_zh_oy_t>)))) (([(<any_vowel_noSlide> thr)] | [(thr <any_vowel_noSlide>)]) ([(<any_Cx_zh_t_thr> thr)] | [(thr <any_Cx_zh_t_thr>)]) sil))
+Running scan for frate = 91
+Considering guard oy with value 1 for s ...
+candidateGuards = map[oy:true]
+Picking guard, oy
+
+Considering guard oy with value 2 for eh ...
+candidateGuards = map[oy:true]
+Picking guard, oy
+
+Considering guard oy with value 1 for t ...
+Considering guard zh with value 1 for t ...
+candidateGuards = map[oy:true zh:true]
+Picking guard, oy
+
+frate, target rule = 91 public <set> = (((sil [((z <any_Cx_s_z_p>) | (<any_Cx_s_z_p> z))] [((z <any_vowel_noSlide>) | (<any_vowel_noSlide> z))]) | (sil p (sil [((z <any_Cx_s_z_p>) | (<any_Cx_s_z_p> z))] [((z <any_vowel_noSlide>) | (<any_vowel_noSlide> z))]))) (([(<any_Cx_oy_p_z_s> oy)] | [(oy <any_Cx_oy_p_z_s>)]) (s | z | ((<any_Cx_oy_p_z_s> oy) | (oy <any_Cx_oy_p_z_s>)))) ((([(<any_Vx_oy_oy_eh_noSlide> oy)] | [(oy <any_Vx_oy_oy_eh_noSlide>)]) ([(<any_Cx_oy_oy_t_s> oy)] | [(oy <any_Cx_oy_oy_t_s>)])) (eh | ((<any_Vx_oy_oy_eh_noSlide> oy) | (oy <any_Vx_oy_oy_eh_noSlide>)))) (([(<any_Cx_oy_oy_t> oy)] | [(oy <any_Cx_oy_oy_t>)]) (t | ((<any_Cx_oy_oy_t> oy) | (oy <any_Cx_oy_oy_t>)))) (([(<any_vowel_noSlide> thr)] | [(thr <any_vowel_noSlide>)]) ([(<any_Cx_oy_t_thr> thr)] | [(thr <any_Cx_oy_t_thr>)]) sil))
+Running scan for frate = 80
+Considering guard oy with value 1 for s ...
+candidateGuards = map[oy:true]
+Picking guard, oy
+
+Considering guard oy with value 2 for eh ...
+candidateGuards = map[oy:true]
+Picking guard, oy
+
+Considering guard oy with value 1 for t ...
+Considering guard zh with value 1 for t ...
+candidateGuards = map[oy:true zh:true]
+Picking guard, oy
+
+frate, target rule = 80 public <set> = (((sil [((t <any_Cx_s_t_p>) | (<any_Cx_s_t_p> t))] [((t <any_vowel_noSlide>) | (<any_vowel_noSlide> t))]) | (sil p (sil [((t <any_Cx_s_t_p>) | (<any_Cx_s_t_p> t))] [((t <any_vowel_noSlide>) | (<any_vowel_noSlide> t))]))) (([(<any_Cx_oy_p_t_s> oy)] | [(oy <any_Cx_oy_p_t_s>)]) (s | z | ((<any_Cx_oy_p_t_s> oy) | (oy <any_Cx_oy_p_t_s>)))) ((([(<any_Vx_oy_oy_eh_noSlide> oy)] | [(oy <any_Vx_oy_oy_eh_noSlide>)]) ([(<any_Cx_oy_oy_t_s> oy)] | [(oy <any_Cx_oy_oy_t_s>)])) (eh | ((<any_Vx_oy_oy_eh_noSlide> oy) | (oy <any_Vx_oy_oy_eh_noSlide>)))) (([(<any_Cx_oy_oy_t> oy)] | [(oy <any_Cx_oy_oy_t>)]) (t | ((<any_Cx_oy_oy_t> oy) | (oy <any_Cx_oy_oy_t>)))) (([(<any_vowel_noSlide> d)] | [(d <any_vowel_noSlide>)]) ([(<any_Cx_oy_t_d> d)] | [(d <any_Cx_oy_t_d>)]) sil))
+Running scan for frate = 72
+Considering guard oy with value 1 for s ...
+candidateGuards = map[oy:true]
+Picking guard, oy
+
+Considering guard oy with value 2 for eh ...
+candidateGuards = map[oy:true]
+Picking guard, oy
+
+Considering guard zh with value 1 for t ...
+Considering guard oy with value 1 for t ...
+candidateGuards = map[oy:true zh:true]
+Picking guard, zh
+
+frate, target rule = 72 public <set> = (((sil [((sh <any_Cx_s_sh_p>) | (<any_Cx_s_sh_p> sh))] [((sh <any_vowel_noSlide>) | (<any_vowel_noSlide> sh))]) | (sil p (sil [((sh <any_Cx_s_sh_p>) | (<any_Cx_s_sh_p> sh))] [((sh <any_vowel_noSlide>) | (<any_vowel_noSlide> sh))]))) (([(<any_Cx_oy_p_sh_s> oy)] | [(oy <any_Cx_oy_p_sh_s>)]) (s | z | ((<any_Cx_oy_p_sh_s> oy) | (oy <any_Cx_oy_p_sh_s>)))) ((([(<any_Vx_oy_oy_eh_noSlide> oy)] | [(oy <any_Vx_oy_oy_eh_noSlide>)]) ([(<any_Cx_oy_oy_t_s> oy)] | [(oy <any_Cx_oy_oy_t_s>)])) (eh | ((<any_Vx_oy_oy_eh_noSlide> oy) | (oy <any_Vx_oy_oy_eh_noSlide>)))) (([(<any_Cx_zh_oy_t> zh)] | [(zh <any_Cx_zh_oy_t>)]) (t | ((<any_Cx_zh_oy_t> zh) | (zh <any_Cx_zh_oy_t>)))) (([(<any_vowel_noSlide> k)] | [(k <any_vowel_noSlide>)]) ([(<any_Cx_zh_t_k> k)] | [(k <any_Cx_zh_t_k>)]) sil))
+
+results =
+{72 [{sil 0 8} {s 9 26} {eh 27 43} {t 44 56} {sil 57 75}]}
+{80 [{sil 0 9} {s 10 29} {eh 30 49} {t 50 62} {sil 63 81}]}
+{91 [{sil 0 11} {s 12 33} {eh 34 56} {t 57 71} {sil 72 116}]}
+{105 [{sil 0 13} {s 14 39} {eh 40 65} {t 66 82} {sil 83 134}]}
+{125 [{sil 0 14} {s 15 44} {eh 45 77} {t 78 93} {sil 94 158}]}
+
+normalised results =
+{72 [{sil 0 8} {s 13 36} {eh 38 60} {t 61 78} {sil 79 104}]}
+{80 [{sil 0 9} {s 13 36} {eh 38 61} {t 63 78} {sil 79 101}]}
+{91 [{sil 0 11} {s 13 36} {eh 37 62} {t 63 78} {sil 79 127}]}
+{105 [{sil 0 13} {s 13 37} {eh 38 62} {t 63 78} {sil 79 128}]}
+{125 [{sil 0 14} {s 12 35} {eh 36 62} {t 62 74} {sil 75 126}]}
+
+ruleAligned = [{{s 0} [{0 1} {1 1} {2 1} {3 1} {4 1}]} {{eh 0} [{0 2} {1 2} {2 2} {3 2} {4 2}]} {{t 0} [{0 3} {1 3} {2 3} {3 3} {4 3}]}]
+
+results (after rule-alignment) =
+{72 [{sil 0 0} {s 13 36} {eh 38 60} {t 61 78} {sil 79 79}]}
+{80 [{sil 0 0} {s 13 36} {eh 38 61} {t 63 78} {sil 79 79}]}
+{91 [{sil 0 0} {s 13 36} {eh 37 62} {t 63 78} {sil 79 79}]}
+{105 [{sil 0 0} {s 13 37} {eh 38 62} {t 63 78} {sil 79 79}]}
+{125 [{sil 0 0} {s 12 35} {eh 36 62} {t 62 74} {sil 75 75}]}
+
+timeAligned = [{{s 13 36} [{0 1} {1 1} {2 1} {3 1} {4 1}]} {{eh 38 62} [{0 2} {1 2} {2 2} {3 2} {4 2}]} {{t 63 78} [{0 3} {1 3} {2 3} {3 3} {4 3}]}]
+
+i, iTime, newITime, timeStartFrom = 0 0 0 0
+i, iTime, newITime, timeStartFrom = 1 0 1 35
+i, iTime, newITime, timeStartFrom = 2 1 2 60
+combinedVerdict    = [{s 0} {eh 0} {t 0}]
+ruleAlignedVerdict = [{s 0} {eh 0} {t 0}]
+
+score->
++2 for s
++2 for eh
++2 for t
+score<-: 11
+testPronounce s good eh good t good
+publish->
+phonsToAlphas = [{[s] s} {[eh] e} {[t] t}]
+getVerdict<-:new {s [s] 0}
+getVerdict<-:new {e [eh] 0}
+getVerdict<-:new {t [t] 0}
+lettersVerdicts = [{s [s] 0} {e [eh] 0} {t [t] 0}]
+publish<-
+{
+  "word": "set",
+  "results": [
+    {
+      "letters": "s",
+      "phonemes": "s",
+      "verdict": "good"
+    },
+    {
+      "letters": "e",
+      "phonemes": "ɛ",
+      "verdict": "good"
+    },
+    {
+      "letters": "t",
+      "phonemes": "t",
+      "verdict": "good"
+    }
+  ],
+  "err": null
+}

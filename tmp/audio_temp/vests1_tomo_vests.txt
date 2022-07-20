@@ -1,0 +1,512 @@
+Calling Pronounce with args: outfolder /Users/test/go/src/Phonemes/audio_clips/Temp_bb39a399-9e48-4f91-938a-e925a3664976 audiofile /Users/test/go/src/Phonemes/audio_clips/vests1_tomo.wav word vests dictfile /Users/test/Downloads/sourceFiltered_exp3Mar22.dict phdictfile /Users/test/Documents/GitHub/pronounce-experimental/Dictionaries/art_db_v3_inference.phone featureparams /Users/test/Documents/GitHub/pronounce-experimental/Models/Bare.ci_cont_29Jun22/model/feat.params hmm /Users/test/Documents/GitHub/pronounce-experimental/Models/Bare.ci_cont_29Jun22/model
+
+ length of audio =  1.680125
+
+
+
+len(frame)= 640
+rate = 16000
+
+
+
+len(frame)= 640
+rate = 16000
+
+ start2, duration2, end2 =  0.8200000000000001 0.38 1.2000000000000002
+
+ start3, duration3, end3 =  0.8200000000000001 0.33999999999999997 1.1600000000000001
+
+ Initial start, duration, end =  0.7200000000000001 0.4800000000000001 1.2000000000000002
+
+ Cut at: start, duration =  0.7200000000000001 0.9300000000000002     guard_end =  1.6500000000000004 
+
+Running scan for frate = 125
+Running scan for frate = 125
+Running scan for frate = 125
+Considering guard zh with value 1 for v ...
+Considering guard oy with value 1 for v ...
+candidateGuards = map[oy:true zh:true]
+Picking guard, zh
+
+Considering guard zh with value 1 for v ...
+Considering guard oy with value 1 for v ...
+candidateGuards = map[oy:true zh:true]
+Picking guard, oy
+
+Considering guard ng with value 10.8 for eh ...
+Considering guard jh with value 10.8 for eh ...
+candidateGuards = map[jh:true ng:true]
+Picking guard, ng
+
+Considering guard oy with value 2 for eh ...
+candidateGuards = map[oy:true]
+Picking guard, oy
+
+Considering guard ng with value 4 for st ...
+Considering guard w with value 4 for st ...
+candidateGuards = map[ng:true w:true]
+Picking guard, ng
+
+Considering guard ng with value 4 for s ...
+Considering guard w with value 4 for s ...
+candidateGuards = map[ng:true w:true]
+Picking guard, ng
+
+Considering guard ih with value 0.6 for s ...
+candidateGuards = map[ih:true]
+Picking guard, ih
+
+Considering guard ih with value 0.6 for ts ...
+candidateGuards = map[ih:true]
+Picking guard, ih
+
+Considering guard oy with value 1 for v ...
+Considering guard zh with value 1 for v ...
+candidateGuards = map[oy:true zh:true]
+Picking guard, oy
+
+Considering guard oy with value 2 for eh ...
+candidateGuards = map[oy:true]
+Picking guard, oy
+
+frate, target rule = 125 public <vests> = (((sil [((n <any_Cx_v_n_p>) | (<any_Cx_v_n_p> n))] [((n <any_vowel_noSlide>) | (<any_vowel_noSlide> n))]) | (sil p (sil [((n <any_Cx_v_n_p>) | (<any_Cx_v_n_p> n))] [((n <any_vowel_noSlide>) | (<any_vowel_noSlide> n))]))) (([(<any_Cx_zh_p_n_v> zh)] | [(zh <any_Cx_zh_p_n_v>)]) (v | ((<any_Cx_zh_p_n_v> zh) | (zh <any_Cx_zh_p_n_v>)))) ((([(<any_Vx_oy_zh_eh_noSlide> oy)] | [(oy <any_Vx_oy_zh_eh_noSlide>)]) ([(<any_Cx_oy_zh_s_v> oy)] | [(oy <any_Cx_oy_zh_s_v>)])) (eh | ((<any_Vx_oy_zh_eh_noSlide> oy) | (oy <any_Vx_oy_zh_eh_noSlide>)))) (([(<any_Cx_ng_oy_s> ng)] | [(ng <any_Cx_ng_oy_s>)]) (s | ((<any_Cx_ng_oy_s_ts> ng) | (ng <any_Cx_ng_oy_s_ts>)))) (([(<any_Cx_ih_ng_ts_s> ih)] | [(ih <any_Cx_ih_ng_ts_s>)]) (ts | ((<any_Cx_ih_ng_ts_s> ih) | (ih <any_Cx_ih_ng_ts_s>)))) (([(<any_vowel_noSlide> hh)] | [(hh <any_vowel_noSlide>)]) ([(<any_Cx_ih_ts_hh> hh)] | [(hh <any_Cx_ih_ts_hh>)]) sil))
+frate, target rule = 125 public <vests> = (((sil [((n <any_Cx_v_n_p>) | (<any_Cx_v_n_p> n))] [((n <any_vowel_noSlide>) | (<any_vowel_noSlide> n))]) | (sil p (sil [((n <any_Cx_v_n_p>) | (<any_Cx_v_n_p> n))] [((n <any_vowel_noSlide>) | (<any_vowel_noSlide> n))]))) (([(<any_Cx_oy_p_n_v> oy)] | [(oy <any_Cx_oy_p_n_v>)]) (v | ((<any_Cx_oy_p_n_v> oy) | (oy <any_Cx_oy_p_n_v>)))) ((([(<any_Vx_ng_oy_eh_noSlide> ng)] | [(ng <any_Vx_ng_oy_eh_noSlide>)]) ([(<any_Cx_ng_oy_st_v> ng)] | [(ng <any_Cx_ng_oy_st_v>)])) (eh | ((<any_Vx_ng_oy_eh_noSlide> ng) | (ng <any_Vx_ng_oy_eh_noSlide>)))) (([(<any_Cx_ng_ng_st> ng)] | [(ng <any_Cx_ng_ng_st>)]) (st | ((<any_Cx_ng_ng_st_s> ng) | (ng <any_Cx_ng_ng_st_s>)))) (([(<any_Cx_ih_ng_s_st> ih)] | [(ih <any_Cx_ih_ng_s_st>)]) (s | ((<any_Cx_ih_ng_s_st> ih) | (ih <any_Cx_ih_ng_s_st>)))) (([(<any_vowel_noSlide> f)] | [(f <any_vowel_noSlide>)]) ([(<any_Cx_ih_s_f> f)] | [(f <any_Cx_ih_s_f>)]) sil))
+Considering guard oy with value 2 for s ...
+candidateGuards = map[oy:true]
+Picking guard, oy
+
+Running scan for frate = 105
+Running scan for frate = 105
+Considering guard aa with value 2 for t ...
+Considering guard oy with value 2 for t ...
+candidateGuards = map[aa:true oy:true]
+Picking guard, oy
+
+Considering guard zh with value 1 for v ...
+Considering guard oy with value 1 for v ...
+candidateGuards = map[oy:true zh:true]
+Picking guard, zh
+
+Considering guard oy with value 1 for v ...
+Considering guard zh with value 1 for v ...
+candidateGuards = map[oy:true zh:true]
+Picking guard, zh
+
+Considering guard oy with value 2 for eh ...
+candidateGuards = map[oy:true]
+Picking guard, oy
+
+Considering guard jh with value 10.8 for eh ...
+Considering guard ng with value 10.8 for eh ...
+candidateGuards = map[jh:true ng:true]
+Picking guard, jh
+
+Considering guard w with value 4 for s ...
+Considering guard ng with value 4 for s ...
+candidateGuards = map[ng:true w:true]
+Picking guard, w
+
+Considering guard ng with value 4 for st ...
+Considering guard w with value 4 for st ...
+candidateGuards = map[ng:true w:true]
+Picking guard, ng
+
+Considering guard ih with value 0.6 for ts ...
+candidateGuards = map[ih:true]
+Picking guard, ih
+
+Considering guard oy with value 1 for s ...
+Considering guard aa with value 1 for s ...
+candidateGuards = map[aa:true oy:true]
+Picking guard, oy
+
+Considering guard ih with value 0.6 for s ...
+candidateGuards = map[ih:true]
+Picking guard, ih
+
+frate, target rule = 105 public <vests> = (((sil [((m <any_Cx_v_m_p>) | (<any_Cx_v_m_p> m))] [((m <any_vowel_noSlide>) | (<any_vowel_noSlide> m))]) | (sil p (sil [((m <any_Cx_v_m_p>) | (<any_Cx_v_m_p> m))] [((m <any_vowel_noSlide>) | (<any_vowel_noSlide> m))]))) (([(<any_Cx_zh_p_m_v> zh)] | [(zh <any_Cx_zh_p_m_v>)]) (v | ((<any_Cx_zh_p_m_v> zh) | (zh <any_Cx_zh_p_m_v>)))) ((([(<any_Vx_oy_zh_eh_noSlide> oy)] | [(oy <any_Vx_oy_zh_eh_noSlide>)]) ([(<any_Cx_oy_zh_s_v> oy)] | [(oy <any_Cx_oy_zh_s_v>)])) (eh | ((<any_Vx_oy_zh_eh_noSlide> oy) | (oy <any_Vx_oy_zh_eh_noSlide>)))) (([(<any_Cx_w_oy_s> w)] | [(w <any_Cx_w_oy_s>)]) (s | ((<any_Cx_w_oy_s_ts> w) | (w <any_Cx_w_oy_s_ts>)))) (([(<any_Cx_ih_w_ts_s> ih)] | [(ih <any_Cx_ih_w_ts_s>)]) (ts | ((<any_Cx_ih_w_ts_s> ih) | (ih <any_Cx_ih_w_ts_s>)))) (([(<any_vowel_noSlide> thr)] | [(thr <any_vowel_noSlide>)]) ([(<any_Cx_ih_ts_thr> thr)] | [(thr <any_Cx_ih_ts_thr>)]) sil))
+frate, target rule = 125 public <vests> = (((sil [((r <any_Cx_v_r_p>) | (<any_Cx_v_r_p> r))] [((r <any_vowel_noSlide>) | (<any_vowel_noSlide> r))]) | (sil p (sil [((r <any_Cx_v_r_p>) | (<any_Cx_v_r_p> r))] [((r <any_vowel_noSlide>) | (<any_vowel_noSlide> r))]))) (([(<any_Cx_oy_p_r_v> oy)] | [(oy <any_Cx_oy_p_r_v>)]) (v | ((<any_Cx_oy_p_r_v> oy) | (oy <any_Cx_oy_p_r_v>)))) ((([(<any_Vx_oy_oy_eh_noSlide> oy)] | [(oy <any_Vx_oy_oy_eh_noSlide>)]) ([(<any_Cx_oy_oy_s_v> oy)] | [(oy <any_Cx_oy_oy_s_v>)])) (eh | ((<any_Vx_oy_oy_eh_noSlide> oy) | (oy <any_Vx_oy_oy_eh_noSlide>)))) (([(<any_Cx_oy_oy_s_t> oy)] | [(oy <any_Cx_oy_oy_s_t>)]) (s | ((<any_Cx_oy_oy_s_t> oy) | (oy <any_Cx_oy_oy_s_t>)))) (([(<any_Cx_oy_oy_t_s> oy)] | [(oy <any_Cx_oy_oy_t_s>)]) (t | ((<any_Cx_oy_oy_t_s_s> oy) | (oy <any_Cx_oy_oy_t_s_s>)))) (([(<any_Cx_oy_oy_s_t> oy)] | [(oy <any_Cx_oy_oy_s_t>)]) (s | ((<any_Cx_oy_oy_s_t> oy) | (oy <any_Cx_oy_oy_s_t>)))) (([(<any_vowel_noSlide> f)] | [(f <any_vowel_noSlide>)]) ([(<any_Cx_oy_s_f> f)] | [(f <any_Cx_oy_s_f>)]) sil))
+frate, target rule = 105 public <vests> = (((sil [((m <any_Cx_v_m_p>) | (<any_Cx_v_m_p> m))] [((m <any_vowel_noSlide>) | (<any_vowel_noSlide> m))]) | (sil p (sil [((m <any_Cx_v_m_p>) | (<any_Cx_v_m_p> m))] [((m <any_vowel_noSlide>) | (<any_vowel_noSlide> m))]))) (([(<any_Cx_zh_p_m_v> zh)] | [(zh <any_Cx_zh_p_m_v>)]) (v | ((<any_Cx_zh_p_m_v> zh) | (zh <any_Cx_zh_p_m_v>)))) ((([(<any_Vx_jh_zh_eh_noSlide> jh)] | [(jh <any_Vx_jh_zh_eh_noSlide>)]) ([(<any_Cx_jh_zh_st_v> jh)] | [(jh <any_Cx_jh_zh_st_v>)])) (eh | ((<any_Vx_jh_zh_eh_noSlide> jh) | (jh <any_Vx_jh_zh_eh_noSlide>)))) (([(<any_Cx_ng_jh_st> ng)] | [(ng <any_Cx_ng_jh_st>)]) (st | ((<any_Cx_ng_jh_st_s> ng) | (ng <any_Cx_ng_jh_st_s>)))) (([(<any_Cx_ih_ng_s_st> ih)] | [(ih <any_Cx_ih_ng_s_st>)]) (s | ((<any_Cx_ih_ng_s_st> ih) | (ih <any_Cx_ih_ng_s_st>)))) (([(<any_vowel_noSlide> f)] | [(f <any_vowel_noSlide>)]) ([(<any_Cx_ih_s_f> f)] | [(f <any_Cx_ih_s_f>)]) sil))
+Running scan for frate = 91
+Running scan for frate = 105
+Running scan for frate = 91
+Considering guard oy with value 1 for v ...
+Considering guard zh with value 1 for v ...
+candidateGuards = map[oy:true zh:true]
+Picking guard, oy
+
+Considering guard oy with value 1 for v ...
+Considering guard zh with value 1 for v ...
+candidateGuards = map[oy:true zh:true]
+Picking guard, oy
+
+Considering guard oy with value 2 for eh ...
+candidateGuards = map[oy:true]
+Picking guard, oy
+
+Considering guard zh with value 1 for v ...
+Considering guard oy with value 1 for v ...
+candidateGuards = map[oy:true zh:true]
+Picking guard, zh
+
+Considering guard oy with value 2 for eh ...
+candidateGuards = map[oy:true]
+Picking guard, oy
+
+Considering guard jh with value 10.8 for eh ...
+Considering guard ng with value 10.8 for eh ...
+candidateGuards = map[jh:true ng:true]
+Picking guard, jh
+
+Considering guard ng with value 4 for s ...
+Considering guard w with value 4 for s ...
+candidateGuards = map[ng:true w:true]
+Picking guard, ng
+
+Considering guard oy with value 2 for s ...
+candidateGuards = map[oy:true]
+Picking guard, oy
+
+Considering guard ng with value 4 for st ...
+Considering guard w with value 4 for st ...
+candidateGuards = map[ng:true w:true]
+Picking guard, ng
+
+Considering guard ih with value 0.6 for ts ...
+candidateGuards = map[ih:true]
+Picking guard, ih
+
+Considering guard aa with value 2 for t ...
+Considering guard oy with value 2 for t ...
+candidateGuards = map[aa:true oy:true]
+Picking guard, aa
+
+Considering guard ih with value 0.6 for s ...
+candidateGuards = map[ih:true]
+Picking guard, ih
+
+frate, target rule = 91 public <vests> = (((sil [((n <any_Cx_v_n_p>) | (<any_Cx_v_n_p> n))] [((n <any_vowel_noSlide>) | (<any_vowel_noSlide> n))]) | (sil p (sil [((n <any_Cx_v_n_p>) | (<any_Cx_v_n_p> n))] [((n <any_vowel_noSlide>) | (<any_vowel_noSlide> n))]))) (([(<any_Cx_oy_p_n_v> oy)] | [(oy <any_Cx_oy_p_n_v>)]) (v | ((<any_Cx_oy_p_n_v> oy) | (oy <any_Cx_oy_p_n_v>)))) ((([(<any_Vx_oy_oy_eh_noSlide> oy)] | [(oy <any_Vx_oy_oy_eh_noSlide>)]) ([(<any_Cx_oy_oy_s_v> oy)] | [(oy <any_Cx_oy_oy_s_v>)])) (eh | ((<any_Vx_oy_oy_eh_noSlide> oy) | (oy <any_Vx_oy_oy_eh_noSlide>)))) (([(<any_Cx_ng_oy_s> ng)] | [(ng <any_Cx_ng_oy_s>)]) (s | ((<any_Cx_ng_oy_s_ts> ng) | (ng <any_Cx_ng_oy_s_ts>)))) (([(<any_Cx_ih_ng_ts_s> ih)] | [(ih <any_Cx_ih_ng_ts_s>)]) (ts | ((<any_Cx_ih_ng_ts_s> ih) | (ih <any_Cx_ih_ng_ts_s>)))) (([(<any_vowel_noSlide> ng)] | [(ng <any_vowel_noSlide>)]) ([(<any_Cx_ih_ts_ng> ng)] | [(ng <any_Cx_ih_ts_ng>)]) sil))
+Considering guard aa with value 1 for s ...
+Considering guard oy with value 1 for s ...
+candidateGuards = map[aa:true oy:true]
+Picking guard, oy
+
+frate, target rule = 91 public <vests> = (((sil [((l <any_Cx_v_l_p>) | (<any_Cx_v_l_p> l))] [((l <any_vowel_noSlide>) | (<any_vowel_noSlide> l))]) | (sil p (sil [((l <any_Cx_v_l_p>) | (<any_Cx_v_l_p> l))] [((l <any_vowel_noSlide>) | (<any_vowel_noSlide> l))]))) (([(<any_Cx_zh_p_l_v> zh)] | [(zh <any_Cx_zh_p_l_v>)]) (v | ((<any_Cx_zh_p_l_v> zh) | (zh <any_Cx_zh_p_l_v>)))) ((([(<any_Vx_jh_zh_eh_noSlide> jh)] | [(jh <any_Vx_jh_zh_eh_noSlide>)]) ([(<any_Cx_jh_zh_st_v> jh)] | [(jh <any_Cx_jh_zh_st_v>)])) (eh | ((<any_Vx_jh_zh_eh_noSlide> jh) | (jh <any_Vx_jh_zh_eh_noSlide>)))) (([(<any_Cx_ng_jh_st> ng)] | [(ng <any_Cx_ng_jh_st>)]) (st | ((<any_Cx_ng_jh_st_s> ng) | (ng <any_Cx_ng_jh_st_s>)))) (([(<any_Cx_ih_ng_s_st> ih)] | [(ih <any_Cx_ih_ng_s_st>)]) (s | ((<any_Cx_ih_ng_s_st> ih) | (ih <any_Cx_ih_ng_s_st>)))) (([(<any_vowel_noSlide> t)] | [(t <any_vowel_noSlide>)]) ([(<any_Cx_ih_s_t> t)] | [(t <any_Cx_ih_s_t>)]) sil))
+Running scan for frate = 80
+frate, target rule = 105 public <vests> = (((sil [((l <any_Cx_v_l_p>) | (<any_Cx_v_l_p> l))] [((l <any_vowel_noSlide>) | (<any_vowel_noSlide> l))]) | (sil p (sil [((l <any_Cx_v_l_p>) | (<any_Cx_v_l_p> l))] [((l <any_vowel_noSlide>) | (<any_vowel_noSlide> l))]))) (([(<any_Cx_oy_p_l_v> oy)] | [(oy <any_Cx_oy_p_l_v>)]) (v | ((<any_Cx_oy_p_l_v> oy) | (oy <any_Cx_oy_p_l_v>)))) ((([(<any_Vx_oy_oy_eh_noSlide> oy)] | [(oy <any_Vx_oy_oy_eh_noSlide>)]) ([(<any_Cx_oy_oy_s_v> oy)] | [(oy <any_Cx_oy_oy_s_v>)])) (eh | ((<any_Vx_oy_oy_eh_noSlide> oy) | (oy <any_Vx_oy_oy_eh_noSlide>)))) (([(<any_Cx_oy_oy_s_t> oy)] | [(oy <any_Cx_oy_oy_s_t>)]) (s | ((<any_Cx_oy_oy_s_t> oy) | (oy <any_Cx_oy_oy_s_t>)))) (([(<any_Cx_aa_oy_t_s> aa)] | [(aa <any_Cx_aa_oy_t_s>)]) (t | ((<any_Cx_aa_oy_t_s_s> aa) | (aa <any_Cx_aa_oy_t_s_s>)))) (([(<any_Cx_oy_aa_s_t> oy)] | [(oy <any_Cx_oy_aa_s_t>)]) (s | ((<any_Cx_oy_aa_s_t> oy) | (oy <any_Cx_oy_aa_s_t>)))) (([(<any_vowel_noSlide> z)] | [(z <any_vowel_noSlide>)]) ([(<any_Cx_oy_s_z> z)] | [(z <any_Cx_oy_s_z>)]) sil))
+Running scan for frate = 80
+Considering guard zh with value 1 for v ...
+Considering guard oy with value 1 for v ...
+candidateGuards = map[oy:true zh:true]
+Picking guard, zh
+
+Running scan for frate = 91
+Considering guard oy with value 1 for v ...
+Considering guard zh with value 1 for v ...
+candidateGuards = map[oy:true zh:true]
+Picking guard, oy
+
+Considering guard oy with value 2 for eh ...
+candidateGuards = map[oy:true]
+Picking guard, oy
+
+Considering guard zh with value 1 for v ...
+Considering guard oy with value 1 for v ...
+candidateGuards = map[oy:true zh:true]
+Picking guard, zh
+
+Considering guard w with value 4 for s ...
+Considering guard ng with value 4 for s ...
+candidateGuards = map[ng:true w:true]
+Picking guard, w
+
+Considering guard jh with value 10.8 for eh ...
+Considering guard ng with value 10.8 for eh ...
+candidateGuards = map[jh:true ng:true]
+Picking guard, jh
+
+Considering guard ih with value 0.6 for ts ...
+candidateGuards = map[ih:true]
+Picking guard, ih
+
+Considering guard oy with value 2 for eh ...
+candidateGuards = map[oy:true]
+Picking guard, oy
+
+Considering guard w with value 4 for st ...
+Considering guard ng with value 4 for st ...
+candidateGuards = map[ng:true w:true]
+Picking guard, w
+
+frate, target rule = 80 public <vests> = (((sil [((m <any_Cx_v_m_p>) | (<any_Cx_v_m_p> m))] [((m <any_vowel_noSlide>) | (<any_vowel_noSlide> m))]) | (sil p (sil [((m <any_Cx_v_m_p>) | (<any_Cx_v_m_p> m))] [((m <any_vowel_noSlide>) | (<any_vowel_noSlide> m))]))) (([(<any_Cx_zh_p_m_v> zh)] | [(zh <any_Cx_zh_p_m_v>)]) (v | ((<any_Cx_zh_p_m_v> zh) | (zh <any_Cx_zh_p_m_v>)))) ((([(<any_Vx_oy_zh_eh_noSlide> oy)] | [(oy <any_Vx_oy_zh_eh_noSlide>)]) ([(<any_Cx_oy_zh_s_v> oy)] | [(oy <any_Cx_oy_zh_s_v>)])) (eh | ((<any_Vx_oy_zh_eh_noSlide> oy) | (oy <any_Vx_oy_zh_eh_noSlide>)))) (([(<any_Cx_w_oy_s> w)] | [(w <any_Cx_w_oy_s>)]) (s | ((<any_Cx_w_oy_s_ts> w) | (w <any_Cx_w_oy_s_ts>)))) (([(<any_Cx_ih_w_ts_s> ih)] | [(ih <any_Cx_ih_w_ts_s>)]) (ts | ((<any_Cx_ih_w_ts_s> ih) | (ih <any_Cx_ih_w_ts_s>)))) (([(<any_vowel_noSlide> f)] | [(f <any_vowel_noSlide>)]) ([(<any_Cx_ih_ts_f> f)] | [(f <any_Cx_ih_ts_f>)]) sil))
+Considering guard oy with value 2 for s ...
+candidateGuards = map[oy:true]
+Picking guard, oy
+
+Considering guard ih with value 0.6 for s ...
+candidateGuards = map[ih:true]
+Picking guard, ih
+
+Considering guard aa with value 2 for t ...
+Considering guard oy with value 2 for t ...
+candidateGuards = map[aa:true oy:true]
+Picking guard, aa
+
+Running scan for frate = 72
+frate, target rule = 80 public <vests> = (((sil [((m <any_Cx_v_m_p>) | (<any_Cx_v_m_p> m))] [((m <any_vowel_noSlide>) | (<any_vowel_noSlide> m))]) | (sil p (sil [((m <any_Cx_v_m_p>) | (<any_Cx_v_m_p> m))] [((m <any_vowel_noSlide>) | (<any_vowel_noSlide> m))]))) (([(<any_Cx_oy_p_m_v> oy)] | [(oy <any_Cx_oy_p_m_v>)]) (v | ((<any_Cx_oy_p_m_v> oy) | (oy <any_Cx_oy_p_m_v>)))) ((([(<any_Vx_jh_oy_eh_noSlide> jh)] | [(jh <any_Vx_jh_oy_eh_noSlide>)]) ([(<any_Cx_jh_oy_st_v> jh)] | [(jh <any_Cx_jh_oy_st_v>)])) (eh | ((<any_Vx_jh_oy_eh_noSlide> jh) | (jh <any_Vx_jh_oy_eh_noSlide>)))) (([(<any_Cx_w_jh_st> w)] | [(w <any_Cx_w_jh_st>)]) (st | ((<any_Cx_w_jh_st_s> w) | (w <any_Cx_w_jh_st_s>)))) (([(<any_Cx_ih_w_s_st> ih)] | [(ih <any_Cx_ih_w_s_st>)]) (s | ((<any_Cx_ih_w_s_st> ih) | (ih <any_Cx_ih_w_s_st>)))) (([(<any_vowel_noSlide> ch)] | [(ch <any_vowel_noSlide>)]) ([(<any_Cx_ih_s_ch> ch)] | [(ch <any_Cx_ih_s_ch>)]) sil))
+Considering guard aa with value 1 for s ...
+Considering guard oy with value 1 for s ...
+candidateGuards = map[aa:true oy:true]
+Picking guard, aa
+
+Considering guard zh with value 1 for v ...
+Considering guard oy with value 1 for v ...
+candidateGuards = map[oy:true zh:true]
+Picking guard, zh
+
+Running scan for frate = 72
+Considering guard oy with value 2 for eh ...
+candidateGuards = map[oy:true]
+Picking guard, oy
+
+frate, target rule = 91 public <vests> = (((sil [((m <any_Cx_v_m_p>) | (<any_Cx_v_m_p> m))] [((m <any_vowel_noSlide>) | (<any_vowel_noSlide> m))]) | (sil p (sil [((m <any_Cx_v_m_p>) | (<any_Cx_v_m_p> m))] [((m <any_vowel_noSlide>) | (<any_vowel_noSlide> m))]))) (([(<any_Cx_zh_p_m_v> zh)] | [(zh <any_Cx_zh_p_m_v>)]) (v | ((<any_Cx_zh_p_m_v> zh) | (zh <any_Cx_zh_p_m_v>)))) ((([(<any_Vx_oy_zh_eh_noSlide> oy)] | [(oy <any_Vx_oy_zh_eh_noSlide>)]) ([(<any_Cx_oy_zh_s_v> oy)] | [(oy <any_Cx_oy_zh_s_v>)])) (eh | ((<any_Vx_oy_zh_eh_noSlide> oy) | (oy <any_Vx_oy_zh_eh_noSlide>)))) (([(<any_Cx_oy_oy_s_t> oy)] | [(oy <any_Cx_oy_oy_s_t>)]) (s | ((<any_Cx_oy_oy_s_t> oy) | (oy <any_Cx_oy_oy_s_t>)))) (([(<any_Cx_aa_oy_t_s> aa)] | [(aa <any_Cx_aa_oy_t_s>)]) (t | ((<any_Cx_aa_oy_t_s_s> aa) | (aa <any_Cx_aa_oy_t_s_s>)))) (([(<any_Cx_aa_aa_s_t> aa)] | [(aa <any_Cx_aa_aa_s_t>)]) (s | ((<any_Cx_aa_aa_s_t> aa) | (aa <any_Cx_aa_aa_s_t>)))) (([(<any_vowel_noSlide> ch)] | [(ch <any_vowel_noSlide>)]) ([(<any_Cx_aa_s_ch> ch)] | [(ch <any_Cx_aa_s_ch>)]) sil))
+Considering guard zh with value 1 for v ...
+Considering guard oy with value 1 for v ...
+candidateGuards = map[oy:true zh:true]
+Picking guard, zh
+
+Considering guard w with value 4 for s ...
+Considering guard ng with value 4 for s ...
+candidateGuards = map[ng:true w:true]
+Picking guard, w
+
+Considering guard ng with value 10.8 for eh ...
+Considering guard jh with value 10.8 for eh ...
+candidateGuards = map[jh:true ng:true]
+Picking guard, ng
+
+Running scan for frate = 80
+Considering guard ih with value 0.6 for ts ...
+candidateGuards = map[ih:true]
+Picking guard, ih
+
+Considering guard w with value 4 for st ...
+Considering guard ng with value 4 for st ...
+candidateGuards = map[ng:true w:true]
+Picking guard, w
+
+Considering guard oy with value 1 for v ...
+Considering guard zh with value 1 for v ...
+candidateGuards = map[oy:true zh:true]
+Picking guard, oy
+
+frate, target rule = 72 public <vests> = (((sil [((z <any_Cx_v_z_p>) | (<any_Cx_v_z_p> z))] [((z <any_vowel_noSlide>) | (<any_vowel_noSlide> z))]) | (sil p (sil [((z <any_Cx_v_z_p>) | (<any_Cx_v_z_p> z))] [((z <any_vowel_noSlide>) | (<any_vowel_noSlide> z))]))) (([(<any_Cx_zh_p_z_v> zh)] | [(zh <any_Cx_zh_p_z_v>)]) (v | ((<any_Cx_zh_p_z_v> zh) | (zh <any_Cx_zh_p_z_v>)))) ((([(<any_Vx_oy_zh_eh_noSlide> oy)] | [(oy <any_Vx_oy_zh_eh_noSlide>)]) ([(<any_Cx_oy_zh_s_v> oy)] | [(oy <any_Cx_oy_zh_s_v>)])) (eh | ((<any_Vx_oy_zh_eh_noSlide> oy) | (oy <any_Vx_oy_zh_eh_noSlide>)))) (([(<any_Cx_w_oy_s> w)] | [(w <any_Cx_w_oy_s>)]) (s | ((<any_Cx_w_oy_s_ts> w) | (w <any_Cx_w_oy_s_ts>)))) (([(<any_Cx_ih_w_ts_s> ih)] | [(ih <any_Cx_ih_w_ts_s>)]) (ts | ((<any_Cx_ih_w_ts_s> ih) | (ih <any_Cx_ih_w_ts_s>)))) (([(<any_vowel_noSlide> p)] | [(p <any_vowel_noSlide>)]) ([(<any_Cx_ih_ts_p> p)] | [(p <any_Cx_ih_ts_p>)]) sil))
+Considering guard ih with value 0.6 for s ...
+candidateGuards = map[ih:true]
+Picking guard, ih
+
+Considering guard oy with value 2 for eh ...
+candidateGuards = map[oy:true]
+Picking guard, oy
+
+Considering guard oy with value 2 for s ...
+candidateGuards = map[oy:true]
+Picking guard, oy
+
+frate, target rule = 72 public <vests> = (((sil [((z <any_Cx_v_z_p>) | (<any_Cx_v_z_p> z))] [((z <any_vowel_noSlide>) | (<any_vowel_noSlide> z))]) | (sil p (sil [((z <any_Cx_v_z_p>) | (<any_Cx_v_z_p> z))] [((z <any_vowel_noSlide>) | (<any_vowel_noSlide> z))]))) (([(<any_Cx_zh_p_z_v> zh)] | [(zh <any_Cx_zh_p_z_v>)]) (v | ((<any_Cx_zh_p_z_v> zh) | (zh <any_Cx_zh_p_z_v>)))) ((([(<any_Vx_ng_zh_eh_noSlide> ng)] | [(ng <any_Vx_ng_zh_eh_noSlide>)]) ([(<any_Cx_ng_zh_st_v> ng)] | [(ng <any_Cx_ng_zh_st_v>)])) (eh | ((<any_Vx_ng_zh_eh_noSlide> ng) | (ng <any_Vx_ng_zh_eh_noSlide>)))) (([(<any_Cx_w_ng_st> w)] | [(w <any_Cx_w_ng_st>)]) (st | ((<any_Cx_w_ng_st_s> w) | (w <any_Cx_w_ng_st_s>)))) (([(<any_Cx_ih_w_s_st> ih)] | [(ih <any_Cx_ih_w_s_st>)]) (s | ((<any_Cx_ih_w_s_st> ih) | (ih <any_Cx_ih_w_s_st>)))) (([(<any_vowel_noSlide> ch)] | [(ch <any_vowel_noSlide>)]) ([(<any_Cx_ih_s_ch> ch)] | [(ch <any_Cx_ih_s_ch>)]) sil))
+Considering guard oy with value 2 for t ...
+Considering guard aa with value 2 for t ...
+candidateGuards = map[aa:true oy:true]
+Picking guard, aa
+
+Considering guard oy with value 1 for s ...
+Considering guard aa with value 1 for s ...
+candidateGuards = map[aa:true oy:true]
+Picking guard, oy
+
+frate, target rule = 80 public <vests> = (((sil [((l <any_Cx_v_l_p>) | (<any_Cx_v_l_p> l))] [((l <any_vowel_noSlide>) | (<any_vowel_noSlide> l))]) | (sil p (sil [((l <any_Cx_v_l_p>) | (<any_Cx_v_l_p> l))] [((l <any_vowel_noSlide>) | (<any_vowel_noSlide> l))]))) (([(<any_Cx_oy_p_l_v> oy)] | [(oy <any_Cx_oy_p_l_v>)]) (v | ((<any_Cx_oy_p_l_v> oy) | (oy <any_Cx_oy_p_l_v>)))) ((([(<any_Vx_oy_oy_eh_noSlide> oy)] | [(oy <any_Vx_oy_oy_eh_noSlide>)]) ([(<any_Cx_oy_oy_s_v> oy)] | [(oy <any_Cx_oy_oy_s_v>)])) (eh | ((<any_Vx_oy_oy_eh_noSlide> oy) | (oy <any_Vx_oy_oy_eh_noSlide>)))) (([(<any_Cx_oy_oy_s_t> oy)] | [(oy <any_Cx_oy_oy_s_t>)]) (s | ((<any_Cx_oy_oy_s_t> oy) | (oy <any_Cx_oy_oy_s_t>)))) (([(<any_Cx_aa_oy_t_s> aa)] | [(aa <any_Cx_aa_oy_t_s>)]) (t | ((<any_Cx_aa_oy_t_s_s> aa) | (aa <any_Cx_aa_oy_t_s_s>)))) (([(<any_Cx_oy_aa_s_t> oy)] | [(oy <any_Cx_oy_aa_s_t>)]) (s | ((<any_Cx_oy_aa_s_t> oy) | (oy <any_Cx_oy_aa_s_t>)))) (([(<any_vowel_noSlide> sh)] | [(sh <any_vowel_noSlide>)]) ([(<any_Cx_oy_s_sh> sh)] | [(sh <any_Cx_oy_s_sh>)]) sil))
+Running scan for frate = 72
+Considering guard oy with value 1 for v ...
+Considering guard zh with value 1 for v ...
+candidateGuards = map[oy:true zh:true]
+Picking guard, oy
+
+Considering guard oy with value 2 for eh ...
+candidateGuards = map[oy:true]
+Picking guard, oy
+
+Considering guard oy with value 2 for s ...
+candidateGuards = map[oy:true]
+Picking guard, oy
+
+Considering guard oy with value 2 for t ...
+Considering guard aa with value 2 for t ...
+candidateGuards = map[aa:true oy:true]
+Picking guard, oy
+
+Considering guard oy with value 1 for s ...
+Considering guard aa with value 1 for s ...
+candidateGuards = map[aa:true oy:true]
+Picking guard, oy
+
+frate, target rule = 72 public <vests> = (((sil [((n <any_Cx_v_n_p>) | (<any_Cx_v_n_p> n))] [((n <any_vowel_noSlide>) | (<any_vowel_noSlide> n))]) | (sil p (sil [((n <any_Cx_v_n_p>) | (<any_Cx_v_n_p> n))] [((n <any_vowel_noSlide>) | (<any_vowel_noSlide> n))]))) (([(<any_Cx_oy_p_n_v> oy)] | [(oy <any_Cx_oy_p_n_v>)]) (v | ((<any_Cx_oy_p_n_v> oy) | (oy <any_Cx_oy_p_n_v>)))) ((([(<any_Vx_oy_oy_eh_noSlide> oy)] | [(oy <any_Vx_oy_oy_eh_noSlide>)]) ([(<any_Cx_oy_oy_s_v> oy)] | [(oy <any_Cx_oy_oy_s_v>)])) (eh | ((<any_Vx_oy_oy_eh_noSlide> oy) | (oy <any_Vx_oy_oy_eh_noSlide>)))) (([(<any_Cx_oy_oy_s_t> oy)] | [(oy <any_Cx_oy_oy_s_t>)]) (s | ((<any_Cx_oy_oy_s_t> oy) | (oy <any_Cx_oy_oy_s_t>)))) (([(<any_Cx_oy_oy_t_s> oy)] | [(oy <any_Cx_oy_oy_t_s>)]) (t | ((<any_Cx_oy_oy_t_s_s> oy) | (oy <any_Cx_oy_oy_t_s_s>)))) (([(<any_Cx_oy_oy_s_t> oy)] | [(oy <any_Cx_oy_oy_s_t>)]) (s | ((<any_Cx_oy_oy_s_t> oy) | (oy <any_Cx_oy_oy_s_t>)))) (([(<any_vowel_noSlide> f)] | [(f <any_vowel_noSlide>)]) ([(<any_Cx_oy_s_f> f)] | [(f <any_Cx_oy_s_f>)]) sil))
+
+results =
+{72 [{sil 0 10} {v 11 14} {eh 15 21} {s 22 28} {ts 29 48} {sil 49 58}]}
+{80 [{sil 0 12} {v 13 16} {eh 17 23} {s 24 32} {ts 33 53} {sil 54 73}]}
+{91 [{sil 0 14} {v 15 18} {eh 19 26} {s 27 36} {g 37 55} {ih 56 61} {sil 62 83}]}
+{105 [{sil 0 17} {v 18 21} {eh 22 31} {s 32 43} {ts 44 56} {sil 57 96}]}
+{125 [{sil 0 18} {v 19 23} {eh 24 35} {s 36 49} {ts 50 65} {sil 66 113}]}
+
+normalised results =
+{72 [{sil 0 10} {v 15 19} {eh 21 29} {s 31 39} {ts 40 67} {sil 68 81}]}
+{80 [{sil 0 12} {v 16 20} {eh 21 29} {s 30 40} {ts 41 66} {sil 68 91}]}
+{91 [{sil 0 14} {v 16 20} {eh 21 29} {s 30 40} {g 41 60} {ih 62 67} {sil 68 91}]}
+{105 [{sil 0 17} {v 17 20} {eh 21 30} {s 30 41} {ts 42 53} {sil 54 91}]}
+{125 [{sil 0 18} {v 15 18} {eh 19 28} {s 29 39} {ts 40 52} {sil 53 90}]}
+
+ruleAligned = [{{v 0} [{0 1} {1 1} {2 1} {3 1} {4 1}]} {{eh 0} [{0 2} {1 2} {2 2} {3 2} {4 2}]} {{s 0} [{0 3} {1 3} {2 3} {3 3} {4 3}]} {{ts 0} [{0 4} {1 4} {3 4} {4 4}]}]
+
+results (after rule-alignment) =
+{72 [{sil 0 0} {v 15 19} {eh 21 29} {s 31 39} {ts 40 67} {sil 68 68}]}
+{80 [{sil 0 0} {v 16 20} {eh 21 29} {s 30 40} {ts 41 66} {sil 68 68}]}
+{91 [{sil 0 0} {v 16 20} {eh 21 29} {s 30 40} {g 41 60} {ih 62 67} {sil 68 68}]}
+{105 [{sil 0 0} {v 17 20} {eh 21 30} {s 30 41} {ts 42 53} {sil 54 54}]}
+{125 [{sil 0 0} {v 15 18} {eh 19 28} {s 29 39} {ts 40 52} {sil 53 53}]}
+
+timeAligned = [{{v 16 20} [{0 1} {1 1} {2 1} {4 1} {3 1}]} {{eh 21 29} [{0 2} {1 2} {2 2} {3 2} {4 2}]} {{s 30 40} [{1 3} {2 3} {3 3} {4 3} {0 3}]} {{ts 41 53} [{0 4} {1 4} {4 4} {3 4}]}]
+
+i, iTime, newITime, timeStartFrom = 0 0 0 0
+i, iTime, newITime, timeStartFrom = 1 0 1 18
+i, iTime, newITime, timeStartFrom = 2 1 2 28
+i, iTime, newITime, timeStartFrom = 3 2 3 39
+combinedVerdict    = [{v 0} {eh 0} {s 0} {ts 0}]
+ruleAlignedVerdict = [{v 0} {eh 0} {s 0} {ts 0}]
+
+score->
++2 for v
++2 for eh
++2 for s
++2 for ts
+score<-: 13
+
+results =
+{72 [{sil 0 10} {v 11 14} {eh 15 21} {s 22 28} {t 29 42} {s 43 48} {sil 49 58}]}
+{80 [{sil 0 12} {v 13 16} {eh 17 23} {s 24 31} {t 32 47} {s 48 53} {sil 54 73}]}
+{91 [{sil 0 14} {v 15 18} {eh 19 26} {s 27 36} {t 37 53} {s 54 61} {sil 62 83}]}
+{105 [{sil 0 17} {v 18 21} {eh 22 31} {s 32 42} {t 43 63} {s 64 70} {sil 71 96}]}
+{125 [{sil 0 18} {v 19 23} {eh 24 35} {s 36 49} {t 50 73} {s 74 81} {sil 82 113}]}
+
+normalised results =
+{72 [{sil 0 10} {v 15 19} {eh 21 29} {s 31 39} {t 40 58} {s 60 67} {sil 68 81}]}
+{80 [{sil 0 12} {v 16 20} {eh 21 29} {s 30 39} {t 40 59} {s 60 66} {sil 68 91}]}
+{91 [{sil 0 14} {v 16 20} {eh 21 29} {s 30 40} {t 41 58} {s 59 67} {sil 68 91}]}
+{105 [{sil 0 17} {v 17 20} {eh 21 30} {s 30 40} {t 41 60} {s 61 67} {sil 68 91}]}
+{125 [{sil 0 18} {v 15 18} {eh 19 28} {s 29 39} {t 40 58} {s 59 65} {sil 66 90}]}
+
+ruleAligned = [{{v 0} [{0 1} {1 1} {2 1} {3 1} {4 1}]} {{eh 0} [{0 2} {1 2} {2 2} {3 2} {4 2}]} {{s 0} [{0 3} {1 3} {2 3} {3 3} {4 3}]} {{t 0} [{0 4} {1 4} {2 4} {3 4} {4 4}]} {{s 0} [{0 5} {1 5} {2 5} {3 5} {4 5}]}]
+
+results (after rule-alignment) =
+{72 [{sil 0 0} {v 15 19} {eh 21 29} {s 31 39} {t 40 58} {s 60 67} {sil 68 68}]}
+{80 [{sil 0 0} {v 16 20} {eh 21 29} {s 30 39} {t 40 59} {s 60 66} {sil 68 68}]}
+{91 [{sil 0 0} {v 16 20} {eh 21 29} {s 30 40} {t 41 58} {s 59 67} {sil 68 68}]}
+{105 [{sil 0 0} {v 17 20} {eh 21 30} {s 30 40} {t 41 60} {s 61 67} {sil 68 68}]}
+{125 [{sil 0 0} {v 15 18} {eh 19 28} {s 29 39} {t 40 58} {s 59 65} {sil 66 66}]}
+
+timeAligned = [{{v 16 20} [{0 1} {1 1} {2 1} {4 1} {3 1}]} {{eh 21 29} [{0 2} {1 2} {2 2} {3 2} {4 2}]} {{s 30 39} [{1 3} {2 3} {3 3} {4 3} {0 3}]} {{t 40 58} [{0 4} {1 4} {4 4} {2 4} {3 4}]} {{s 60 67} [{0 5} {1 5} {2 5} {4 5} {3 5}]}]
+
+i, iTime, newITime, timeStartFrom = 0 0 0 0
+i, iTime, newITime, timeStartFrom = 1 0 1 18
+i, iTime, newITime, timeStartFrom = 2 1 2 28
+i, iTime, newITime, timeStartFrom = 3 2 3 39
+i, iTime, newITime, timeStartFrom = 4 3 4 58
+combinedVerdict    = [{v 0} {eh 0} {s 0} {t 0} {s 0}]
+ruleAlignedVerdict = [{v 0} {eh 0} {s 0} {t 0} {s 0}]
+
+score->
++2 for v
++2 for eh
++2 for s
++2 for t
++2 for s
+score<-: 15
+
+results =
+{72 [{sil 0 10} {v 11 14} {eh 15 21} {st 22 30} {s 31 38} {sil 39 58}]}
+{80 [{sil 0 12} {v 13 16} {eh 17 23} {st 24 47} {s 48 53} {sil 54 73}]}
+{91 [{sil 0 14} {v 15 18} {eh 19 27} {st 28 31} {s 32 36} {t 37 52} {d 53 61} {sil 62 83}]}
+{105 [{sil 0 17} {v 18 21} {eh 22 31} {st 32 36} {s 37 43} {g 44 57} {f 58 69} {sil 70 96}]}
+{125 [{sil 0 18} {v 19 23} {eh 24 35} {st 36 52} {s 53 65} {sil 66 113}]}
+
+normalised results =
+{72 [{sil 0 10} {v 15 19} {eh 21 29} {st 31 42} {s 43 53} {sil 54 81}]}
+{80 [{sil 0 12} {v 16 20} {eh 21 29} {st 30 59} {s 60 66} {sil 68 91}]}
+{91 [{sil 0 14} {v 16 20} {eh 21 30} {st 31 34} {s 35 40} {t 41 57} {d 58 67} {sil 68 91}]}
+{105 [{sil 0 17} {v 17 20} {eh 21 30} {st 30 34} {s 35 41} {g 42 54} {f 55 66} {sil 67 91}]}
+{125 [{sil 0 18} {v 15 18} {eh 19 28} {st 29 42} {s 42 52} {sil 53 90}]}
+
+ruleAligned = [{{v 0} [{0 1} {1 1} {2 1} {3 1} {4 1}]} {{eh 0} [{0 2} {1 2} {2 2} {3 2} {4 2}]} {{st 0} [{0 3} {1 3} {2 3} {3 3} {4 3}]} {{s 0} [{0 4} {1 4} {3 4} {4 4}]}]
+
+results (after rule-alignment) =
+{72 [{sil 0 0} {v 15 19} {eh 21 29} {st 31 42} {s 43 53} {sil 54 54}]}
+{80 [{sil 0 0} {v 16 20} {eh 21 29} {st 30 59} {s 60 66} {sil 68 68}]}
+{91 [{sil 0 0} {v 16 20} {eh 21 30} {st 31 34} {s 35 35} {t 41 57} {d 58 67} {sil 68 68}]}
+{105 [{sil 0 0} {v 17 20} {eh 21 30} {st 30 34} {s 35 41} {g 42 54} {f 55 66} {sil 67 67}]}
+{125 [{sil 0 0} {v 15 18} {eh 19 28} {st 29 42} {s 42 52} {sil 53 53}]}
+
+timeAligned = [{{v 16 20} [{0 1} {1 1} {2 1} {4 1} {3 1}]} {{eh 21 29} [{0 2} {1 2} {2 2} {3 2} {4 2}]} {{st 30 42} [{1 3} {3 3} {4 3} {0 3} {2 3}]}]
+
+i, iTime, newITime, timeStartFrom = 0 0 0 0
+i, iTime, newITime, timeStartFrom = 1 0 1 18
+i, iTime, newITime, timeStartFrom = 2 1 2 28
+i, iTime, newITime, timeStartFrom = 3 2 -1 34
+combinedVerdict    = [{v 0} {eh 0} {st 0} {s 2}]
+ruleAlignedVerdict = [{v 0} {eh 0} {st 0} {s 0}]
+
+score->
++2 for v
++2 for eh
++2 for st
+-2 for s
+score<-: 4
+testPronounce v good eh good s good t good s good
+publish->
+phonsToAlphas = [{[v] v} {[eh] e} {[s] s} {[t] t} {[s] s}]
+getVerdict<-:new {v [v] 0}
+getVerdict<-:new {e [eh] 0}
+getVerdict<-:new {s [s] 0}
+getVerdict<-:new {t [t] 0}
+getVerdict<-:new {s [s] 0}
+lettersVerdicts = [{v [v] 0} {e [eh] 0} {s [s] 0} {t [t] 0} {s [s] 0}]
+publish<-
+{
+  "word": "vests",
+  "results": [
+    {
+      "letters": "v",
+      "phonemes": "v",
+      "verdict": "good"
+    },
+    {
+      "letters": "e",
+      "phonemes": "ɛ",
+      "verdict": "good"
+    },
+    {
+      "letters": "s",
+      "phonemes": "s",
+      "verdict": "good"
+    },
+    {
+      "letters": "t",
+      "phonemes": "t",
+      "verdict": "good"
+    },
+    {
+      "letters": "s",
+      "phonemes": "s",
+      "verdict": "good"
+    }
+  ],
+  "err": null
+}

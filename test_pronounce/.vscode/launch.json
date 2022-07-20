@@ -23,17 +23,30 @@
             //     "-hmm", "./../Models/Bare/2022-03-30T10:55:59-093_Bare.ci_cont"
             // ],
             // Train set
+            // "args":[
+            //     "-dict", "/home/dbarbera/Repositories/pronounce-experimental/Dictionaries/art_db_v3.dic",
+            //     "-phdict", "/home/dbarbera/Repositories/pronounce-experimental/Dictionaries/art_db_v3_inference.phone",
+            //     "-infolder", "/home/dbarbera/Data/audio_clips",
+            //     "-tests", "/home/dbarbera/Repositories/pronounce-experimental/Tests/debug_inputs.csv",
+            //     "-expectations", "/home/dbarbera/Repositories/pronounce-experimental/Expectations/debug_expectations.csv",
+            //     "-outfolder", "/home/dbarbera/Repositories/pronounce-experimental/Test_Output/output_output_testing_xyz_plus",
+            //     "-featparams", "/home/dbarbera/Repositories/pronounce-experimental/Models/Bare/2022-03-30T10:55:59-093_Bare.ci_cont/feat.params",
+            //     "-hmm", "/home/dbarbera/Repositories/pronounce-experimental/Models/Bare/2022-03-30T10:55:59-093_Bare.ci_cont"
+            //    ],
+            // Train set
             "args":[
-                "-dict", "/home/dbarbera/Repositories/pronounce-experimental/Dictionaries/art_db_v3.dic",
-                "-phdict", "/home/dbarbera/Repositories/pronounce-experimental/Dictionaries/art_db_v3_inference.phone",
+                "-dict", "/home/dbarbera/Repositories/pronounce-experimental/Models/Bare/2022-06-29T15:19:34-025_Bare.ci_cont/etc/sourceFiltered_exp3Mar22.dict",
+                "-phdict", "/home/dbarbera/Repositories/pronounce-experimental/Models/Bare/2022-06-29T15:19:34-025_Bare.ci_cont/etc/art_db_v3_inference.phone",
                 "-infolder", "/home/dbarbera/Data/audio_clips",
-                "-tests", "/home/dbarbera/Repositories/pronounce-experimental/Tests/debug_inputs.csv",
-                "-expectations", "/home/dbarbera/Repositories/pronounce-experimental/Expectations/debug_expectations.csv",
-                "-outfolder", "/home/dbarbera/Repositories/pronounce-experimental/Test_Output/output_output_testing_xyz_plus",
-                "-featparams", "/home/dbarbera/Repositories/pronounce-experimental/Models/Bare/2022-03-30T10:55:59-093_Bare.ci_cont/feat.params",
-                "-hmm", "/home/dbarbera/Repositories/pronounce-experimental/Models/Bare/2022-03-30T10:55:59-093_Bare.ci_cont"
+                "-tests", "/home/dbarbera/Repositories/pronounce-experimental/Tests/pronounce_input.csv",
+                "-expectations", "/home/dbarbera/Repositories/pronounce-experimental/Expectations/expectations.csv",
+                "-outfolder", "/home/dbarbera/Repositories/pronounce-experimental/Test_Output/output_testing_dsp1_375test",
+                // "-featparams", "/home/dbarbera/Repositories/pronounce-experimental/Models/Bare/2022-03-30T10:55:59-093_Bare.ci_cont/feat.params",
+                // "-hmm", "/home/dbarbera/Repositories/pronounce-experimental/Models/Bare/2022-03-30T10:55:59-093_Bare.ci_cont"
+                "-featparams", "/home/dbarbera/Repositories/pronounce-experimental/Models/Bare/2022-06-29T15:19:34-025_Bare.ci_cont/model/feat.params",
+                "-hmm", "/home/dbarbera/Repositories/pronounce-experimental/Models/Bare/2022-06-29T15:19:34-025_Bare.ci_cont/model"              
                ],
-            //"env":{"GODEBUG":"cgocheck=0"}, // we can use os.Setenv("GODEBUG", "cgocheck=0") within the code with same effect.
+            "env":{"GODEBUG":"cgocheck=0"}, // we can use os.Setenv("GODEBUG", "cgocheck=0") within the code with same effect.
               // /home/dbarbera/Repositories/pronounce-experimental/Expectations/debug_expectations.csv
             //Debug
             // "args": [

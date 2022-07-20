@@ -14,7 +14,7 @@ import (
 func newGrammarFromTemplate(filename string, word string, phons []phoneme) {
 	f, err := os.Open("template.jsgf")
 	if err != nil {
-		_debug("newGrammarFromTemplate: failed to open file. err =", err)
+		debug("newGrammarFromTemplate: failed to open file. err =", err)
 		log.Panic(err)
 	}
 	defer f.Close()
@@ -40,7 +40,7 @@ func newGrammarFromTemplate(filename string, word string, phons []phoneme) {
 	}
 	g, err := os.Create(filename)
 	if err != nil {
-		_debug("newGrammarFromTemplate: failed to create file. err =", err)
+		debug("newGrammarFromTemplate: failed to create file. err =", err)
 		log.Panic()
 	}
 	defer g.Close()
@@ -48,7 +48,7 @@ func newGrammarFromTemplate(filename string, word string, phons []phoneme) {
 	for _, line := range outlines {
 		_, err = g.WriteString(line + "\n\n")
 		if err != nil {
-			_debug("newGrammarFromTemplate: failed to write to file. err =", err)
+			debug("newGrammarFromTemplate: failed to write to file. err =", err)
 			log.Panic()
 		}
 	}
@@ -57,7 +57,7 @@ func newGrammarFromTemplate(filename string, word string, phons []phoneme) {
 func newGrammarForVariantPhons(filename string, word string, varPhons [][]phoneme) {
 	f, err := os.Open("template.jsgf")
 	if err != nil {
-		_debug("newGrammarForVariantPhons: failed to open file. err =", err)
+		debug("newGrammarForVariantPhons: failed to open file. err =", err)
 		log.Panic(err)
 	}
 	defer f.Close()
@@ -93,7 +93,7 @@ func newGrammarForVariantPhons(filename string, word string, varPhons [][]phonem
 	}
 	g, err := os.Create(filename)
 	if err != nil {
-		_debug("newGrammarForVariantPhons: failed to create file. err =", err)
+		debug("newGrammarForVariantPhons: failed to create file. err =", err)
 		log.Panic()
 	}
 	defer g.Close()
@@ -101,7 +101,7 @@ func newGrammarForVariantPhons(filename string, word string, varPhons [][]phonem
 	for _, line := range outlines {
 		_, err = g.WriteString(line + "\n\n")
 		if err != nil {
-			_debug("newGrammarForVariantPhons: failed to write to file. err =", err)
+			debug("newGrammarForVariantPhons: failed to write to file. err =", err)
 			log.Panic()
 		}
 	}
@@ -145,7 +145,7 @@ func nextPhoneme(phons []phoneme, currPh int) (phoneme, bool) {
 	return phons[currPh+1], true
 }
 
-func targetRuleForWord(word string, phons []phoneme, dict dictionary.Dictionary) string {
+func targetRuleForWord(word string, phons []phoneme) string {
 	//end := "(sil+ [<any>] sil* [<any>] sil+)"
 	//targetRule := "public <" + word + ">" + " = " + end + " "
 
@@ -280,7 +280,7 @@ func targetRuleWithDiphthongs(word string, phons []phoneme, dict dictionary.Dict
 	}
 	targetRule += " " + ";"
 
-	_debug("Diphthong target rule =", targetRule)
+	debug("Diphthong target rule =", targetRule)
 	return targetRule
 }
 
@@ -301,7 +301,7 @@ func targetRuleForTrim(word string, phons []phoneme, dict dictionary.Dictionary)
 		targetRule += " <any> sil+"
 	}
 	targetRule += ";"
-	_debug("Trim target rule =", targetRule)
+	debug("Trim target rule =", targetRule)
 	return targetRule
 }
 
@@ -351,7 +351,7 @@ func targetRuleForTrim(word string, phons []phoneme, dict dictionary.Dictionary)
 func NewGrammarFile(filename string, word string, phons []phoneme, dict dictionary.Dictionary, targetRule func(string, []phoneme, dictionary.Dictionary) string) {
 	f, err := os.Open("template.jsgf")
 	if err != nil {
-		_debug("NewGrammarFile: failed to open file. err =", err)
+		debug("NewGrammarFile: failed to open file. err =", err)
 		log.Panic(err)
 	}
 	defer f.Close()
@@ -369,7 +369,7 @@ func NewGrammarFile(filename string, word string, phons []phoneme, dict dictiona
 	}
 	g, err := os.Create(filename)
 	if err != nil {
-		_debug("NewGrammarFile: failed to create file. err =", err)
+		debug("NewGrammarFile: failed to create file. err =", err)
 		log.Panic(err)
 	}
 	defer g.Close()
@@ -377,7 +377,7 @@ func NewGrammarFile(filename string, word string, phons []phoneme, dict dictiona
 	for _, line := range outlines {
 		_, err = g.WriteString(line + "\n")
 		if err != nil {
-			_debug("NewGrammarFile: failed to write to file. err =", err)
+			debug("NewGrammarFile: failed to write to file. err =", err)
 			log.Panic(err, line)
 		}
 	}
@@ -512,7 +512,6 @@ func TestConfig(
 
 func TestConfig(
 	outfolder, audiofile, phdictfile string,
-	cmuDict dictionary.Dictionary,
 	// cmnVec []string,
 	fparams string,
 	hidden_mm string,
@@ -521,7 +520,7 @@ func TestConfig(
 	// template psPhonemeSettings,
 	frates []int,
 	suiteToRun psSuite,
-	targetRule func(string, []phoneme, dictionary.Dictionary) string,
+	// targetRule func(string, []phoneme, dictionary.Dictionary) string,
 	config jsgfConfig,
 ) (newPsConfig, []byte) {
 
@@ -557,7 +556,7 @@ func TestConfig(
 				runSettings[hmm] = hidden_mm
 			default:
 				if k == frate {
-					_debug("frate, target rule =", v, g.target.generate())
+					debug("frate, target rule =", v, g.target.generate())
 					//g.target.generate()
 				}
 				runSettings[k] = v

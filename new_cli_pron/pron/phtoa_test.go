@@ -1,6 +1,7 @@
 package pron
 
 import (
+	"fmt"
 	"io/ioutil"
 	"log"
 	"os"
@@ -1928,6 +1929,17 @@ func convStrsToPhons(strs []string) []phoneme {
 	return phs
 }
 
+func checkMap(word string, mapping []phonToAlphas) bool {
+	alphas := ""
+	for _, m := range mapping {
+		alphas += m.alphas
+	}
+	if word != alphas {
+		return false
+	}
+	return true
+}
+
 func Test_bigmapPhToA(t *testing.T) {
 	// GIVEN
 	/*
@@ -2068,8 +2080,8 @@ func Test_bigmapPhToA(t *testing.T) {
 	*/
 	// GIVEN
 	// dict := dictionary.Create("../../test/beepFiltered_er_axN_axL_uwL_StS.dict")
-	dict := dictionary.Create("../../test/beepFiltered.dict")
-	f, err := os.Create("../../test/mapPhToAFailures.txt")
+	dict := dictionary.Create("../../WorkingDictionary/wordDictionary/Out/sourceFiltered.dict")
+	f, err := os.Create("test/mapPhToAFailures.txt")
 	if err != nil {
 		// Stop the test now
 		log.Panic(err)
@@ -2081,9 +2093,12 @@ func Test_bigmapPhToA(t *testing.T) {
 		strs := entry.Phonemes()
 		phons := convStrsToPhons(entry.Phonemes())
 		// WHEN
-		_, err = mapPhToA(phons, word)
+		m, err := mapPhToA(phons, word)
 
 		// THEN
+		if !checkMap(word, m) {
+			f.WriteString("Oops, bad map = " + word + ": " + fmt.Sprintf("%v", m) + "\n")
+		}
 		if err != nil {
 			f.WriteString(word + ", " + strings.Join(strs, " ") + "\n")
 			f.WriteString(err.Error() + "\n\n")
