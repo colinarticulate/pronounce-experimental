@@ -5,6 +5,7 @@ and also phonemes-based for different modalities of training.
 
 import os
 import time
+import subprocess
 import shutil
 
 from transcriber import get_dictionary, create_dummy_dictionary, create_file_ids
@@ -69,6 +70,7 @@ def merge_dummy_dictionaries( dict1, dict2):
         dict_merged[entry] = dict2[entry]
 
     return dict_merged
+
 
 def create_fileids_from_transcription( transcription_file, fileids_file, audio_folder):
 
@@ -296,10 +298,13 @@ def delete_invalid_audios():
 
     path_dir = "/home/dbarbera/Repositories/art_db/wav/train/art_db_compilation"
 
-    files = [f for f in os.listdir(path_dir) if "_f90" in f]
+    endigns=["s90", "f103", "f110","f105"]
 
-    for file in files:
-        os.remove(os.path.join(path_dir, file))
+    files = [f for f in os.listdir(path_dir) if ("_s90" in f) or ("_s95" in f) or ("_s97" in f) or ("_f103" in f) or ("_f110" in f) or ("_f105" in f) ]
+    print(len(os.listdir(path_dir)))
+    for i,file in enumerate(files):
+        print(i+1,file)
+        #os.remove(os.path.join(path_dir, file))
 
 def fix_emmanuel():
     with open("data/emmanuel.txt",'r') as f:
@@ -335,6 +340,179 @@ def find_duplicates():
     print(duplicates)
 
 
+def execute_sox(command, cwd, file, speed, audio):
+# should be in a utils module
+    with open(file, 'a') as f:
+        process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, cwd=cwd, universal_newlines=True)
+
+        while True:
+            output = process.stdout.readline()
+            print(speed, audio)
+            print(output.strip())
+            f.write(f"{speed}:{audio}")
+            f.write(output)
+            # Do something else
+            return_code = process.poll()
+            if return_code is not None:
+                print('\n>>> RETURN CODE', return_code)
+                f.write(f"\n{speed}:{audio}>>> RETURN CODE {return_code}\n")
+                # Process has finished, read rest of the output 
+                for output in process.stdout.readlines():
+                    print(speed, audio)
+                    print(output.strip())
+                    f.write(f"{speed}:{audio}")
+                    f.write(output)
+                break
+
+
+def audio_speed(src, dst, speed, audio):
+    command = [f"sox {src} {dst} speed {speed}"]
+    execute_sox(command, os.getcwd(), "audio_augmentation.log", speed, audio)
+
+
+def audio_augmentation_by_speed(src_path, dst_path):
+
+    audios = [f for f in os.listdir(src_path) if f.endswith(".wav")]
+
+    speeds=[0.90, 0.95, 0.97, 1.03, 1.05, 1.10]
+    speed_names=["090", "095", "097", "103", "105", "110"]
+
+    for speed, speed_name in zip(speeds,speed_names):
+        
+        speed_folder = f"audios_speed{speed_name}"
+
+        if not os.path.exists(os.path.join(dst_path,speed_folder)):
+            os.mkdir(os.path.join(dst_path,speed_folder))
+
+
+
+            # for audio in sorted(audios[:]):
+            #     dst_audio_name = f"{audio[:-4]}_s{speed_name}.wav"
+            #     audio_speed(os.path.join(src_path, audio),os.path.join(dst_path,speed_folder,dst_audio_name), speed, audio)
+
+def remove_matching_audios(src_path, dst_path, pattern):
+
+    audios = [f for f in os.listdir(src_path) if f.endswith(pattern)]
+
+    for audio in audios:
+        src = os.path.join(src_path, audio)
+        dst = os.path.join(dst_path, audio)
+        #shutil.move(src, dst)
+        os.remove(src)
+
+def move_matching_audios(src_path, dst_path, pattern):
+
+    audios = [f for f in os.listdir(src_path) if f.endswith(pattern)]
+
+    for audio in audios:
+        src = os.path.join(src_path, audio)
+        dst = os.path.join(dst_path, audio)
+        shutil.move(src, dst)
+        #os.remove(src)
+
+
+def separate_audios_with_changed_speed(src_path, dst_path):
+
+    speeds=[0.90, 0.95, 0.97, 1.03, 1.05, 1.10]
+    speed_names=["090", "095", "097", "103", "105", "110"]
+
+    for speed, speed_name in zip(speeds,speed_names):
+        speed_folder = f"audios_speed{speed_name}"
+        os.mkdir(os.path.join(dst_path,speed_folder))
+        move_matching_audios(src_path, os.path.join(dst_path,speed_folder), f"_s{speed_name}.wav")
+        remove_matching_audios(src_path, os.path.join(dst_path,speed_folder), f"_s{speed_name}.wav")
+
+
+def diff_files(path1, path2, pattern):
+
+    files1 = [f.split(".")[0] for f in os.listdir(path1) if f.endswith(".wav")]
+    files11 = [f.split(".")[0] for f in os.listdir(path1) ]
+    files2 = [f.split(pattern)[0] for f in os.listdir(path2) if f.endswith(".wav")]
+
+    diff1 = sorted(list(set(sorted(files1))-set(sorted(files11))))
+    diff2 = sorted(list(set(sorted(files11))-set(sorted(files1))))
+
+    return diff1, diff2
+
+
+def find_differences(src_path, dst_path):
+
+    speeds=[0.90, 0.95, 0.97, 1.03, 1.05, 1.10]
+    speed_names=["090", "095", "097", "103", "105", "110"]
+
+    for speed, speed_name in zip(speeds,speed_names):
+        speed_folder = f"audios_speed{speed_name}"
+        #os.mkdir(os.path.join(dst_path,speed_folder))
+        diff_files(src_path, os.path.join(dst_path,speed_folder), f"_s{speed_name}.wav")
+        #  remove_matching_audios(src_path, os.path.join(dst_path,speed_folder), f"_s{speed_name}.wav")
+
+def create_file_from_list( filename, lines):
+
+    with open(filename,"w") as f:
+        content = "\n".join(lines) + "\n"
+        f.write(content)
+
+def create_augmented_speed_transcriptions(transcriptions, audio_folder):
+    
+    augmented_transcriptions=[]
+    augmented_fileids=[]
+
+    #the non-augmented part
+    speed_folder="audios" #i.e., no speed change
+    for transcription in transcriptions:
+            fileid = transcription.split("\t")[1][1:-1]
+            part_transcription = transcription.split("\t")[0]
+            part_fileid = transcription.split("\t")[1][1:-1]
+
+            new_filename = part_fileid
+            new_file_id = os.path.join(audio_folder,speed_folder, new_filename)
+            new_transcription = "\t".join([part_transcription,f"({new_filename})"])
+            augmented_fileids.append(new_file_id)
+            augmented_transcriptions.append(new_transcription)
+
+    speeds=[0.90, 0.95, 0.97, 1.03, 1.05, 1.10]
+    speed_names=["090", "095", "097", "103", "105", "110"]
+
+    for speed, speed_name in zip(speeds,speed_names):
+        speed_folder = f"audios_speed{speed_name}"
+
+        for transcription in transcriptions:
+            fileid = transcription.split("\t")[1][1:-1]
+            part_transcription = transcription.split("\t")[0]
+            part_fileid = transcription.split("\t")[1][1:-1]
+
+            new_filename = f"{part_fileid}_s{speed_name}"
+            new_file_id = os.path.join(audio_folder,speed_folder, new_filename)
+            new_transcription = "\t".join([part_transcription,f"({new_filename})"])
+            augmented_fileids.append(new_file_id)
+            augmented_transcriptions.append(new_transcription)
+
+    return augmented_transcriptions, augmented_fileids
+
+
+def create_augmented_transcripts():
+    transcription_file="./data/art_db_Bare_train_Expanded.transcription"
+    fileids_file="./data/art_db_Bare_train_Expanded.fileids"
+    audio_folder="train/art_db_compilation/"
+
+    transcription_file_a="./data/art_db_Bare_train_Expanded_aug.transcription"
+    fileids_file_a="./data/art_db_Bare_train_Expanded_aug.fileids"
+
+    transcriptions, fileids = create_fileids_from_transcription( transcription_file, fileids_file, audio_folder)
+    create_file_ids(transcriptions, fileids_file, audio_folder)
+
+    augmented_transcriptions, augmented_fileids = create_augmented_speed_transcriptions(transcriptions, audio_folder)
+    create_file_from_list( transcription_file_a, augmented_transcriptions)
+    create_file_from_list( fileids_file_a, augmented_fileids)
+
+    #raw_transcriptions, raw_fileids = create_fileids_from_transcription( transcription_file, fileids_file, audio_folder)
+
+    #to_discard_file="./data/missing_not_found.txt"
+    #transcriptions, fileids = discard_entries_from_training_files(to_discard_file, raw_fileids, raw_transcriptions)
+    
+    dummy_entries = create_dummy_dictionary_entries(transcriptions)
+    filename="./data/art_db_v3_dummy_new.dic"
+    save_dummy_dict(filename, dummy_entries)
 
 def main():
 
@@ -344,12 +522,19 @@ def main():
 
     # check_and_create_missing_audios(missing_audios_file, src_path, dst_path)
 
-    given_dummy_transcriptions_create_fileids_and_an_update_general_dummy_dict()
+    #given_dummy_transcriptions_create_fileids_and_an_update_general_dummy_dict()
+    create_augmented_transcripts()
     #find_duplicates()
     #fix_emmanuel()
     #delete_invalid_audios()
 
     #fix_naming_audios()
+    # src_path="/home/dbarbera/Repositories/art_db/wav/train/art_db_compilation/audios"
+    # dst_path="/home/dbarbera/Repositories/art_db/wav/train/art_db_compilation"
+    # #audio_augmentation_by_speed(src_path, dst_path)
+    # #separate_audios_with_changed_speed(src_path, dst_path)
+    # find_differences(src_path, dst_path)
+
 
 
     #This a one-of fix

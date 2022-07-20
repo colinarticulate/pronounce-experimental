@@ -200,7 +200,11 @@ func webRtcBounds(audiofile string, mode int) (float64, float64) {
 
 	wavReader, err := wav.NewReader(file, info.Size())
 	if err != nil {
+<<<<<<< HEAD
 		_debug("webRtcBounds: call to wav.NewReader failed. err =", err)
+=======
+		debug("webRtcBounds: call to wav.NewReader failed. err, info.Size, file, audiofile =", err, info.Size(), file, audiofile)
+>>>>>>> 300e154a8c5cc4f1e3babe852038904345c07d26
 		log.Panic(err)
 	}
 
