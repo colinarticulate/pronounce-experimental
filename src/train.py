@@ -211,7 +211,7 @@ class train():
 
 
 def main():
-    config_folder="./../training_configurations/Bare"
+    config_folder="./../training_configurations/Bare2"
 
 
     training_bare=train(config_folder)

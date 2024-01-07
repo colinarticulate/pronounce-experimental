@@ -82,6 +82,7 @@ func fetchTrimBounds(audiofile string, phons []phoneme) (float64, float64) {
 
 	// //sox
 	// _, err = exec.Command("sox", audiofile, sincAudiofile, "sinc", "5000-500").Output()
+	// debug("\n Using Sox for supressing noise: sinc 5000-500")
 	// debug("\n length of audio = ", length_audio)
 
 	// //_, err := exec.Command("sox", audiofile, sincAudiofile).Output()
@@ -90,6 +91,7 @@ func fetchTrimBounds(audiofile string, phons []phoneme) (float64, float64) {
 	// }
 	//Meena
 	_, err = exec.Command("mt_cv_mvns", audiofile, sincAudiofile, "1", "16000", "25").Output()
+	debug("\n Using Meena Noise Suppression library: cvmvns")
 	debug("\n length of audio = ", length_audio)
 	if err != nil {
 		debug("Call to mt_cv_mvns failed with err, ", err)

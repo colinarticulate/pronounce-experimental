@@ -226,8 +226,10 @@ def given_dictionary_and_word_transcriptions_creates_dummy_versions_and_fileids(
 
 
 def create_dummy_dictionary_from_dictionary():
-    dictionary_file="./../../Dictionaries/art_db_v3.dic"
-    new_dictionary_file="data/art_db_v3_dummy.dic"
+    # dictionary_file="./../../Dictionaries/art_db_v3.dic"
+    dictionary_file="./../../Dictionaries/art_db_Jan24.dic"
+    # new_dictionary_file="data/art_db_v3_dummy.dic"
+    new_dictionary_file="data/art_db_Jan24_dummy.dic"
     dictionary=get_dictionary(dictionary_file)
     create_dummy_dictionary(dictionary,new_dictionary_file)
 
